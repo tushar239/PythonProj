@@ -2,8 +2,10 @@
 
 evennumbers = list()
 
-for i in range(1, 11):
+i = 1
+while len(evennumbers) <= 10:
     if i % 2 == 0:
         evennumbers.append(i)
+    i = i + 1
 
 print(evennumbers)
