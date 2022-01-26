@@ -40,9 +40,10 @@ print(len(newarr[0]))  # 3
 ]
 """
 
-arr = np.array([[1, 2, 3, 4], [5, 6, 7, 8]])
+arr = np.array([[1, 2, 3, 4],
+                [5, 6, 7, 8]])
 
-print(arr.shape)  # (2, 4)  - tuple of number of rows and columns
+print(arr.shape)  # (2, 4)  - tuple of number of outer array elements(2), number of each inner array elements(4)
 
 
 arr = np.array([1, 2, 3, 4], ndmin=5)
