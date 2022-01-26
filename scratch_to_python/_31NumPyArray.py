@@ -15,6 +15,7 @@ import array as ar
 l = [5, 7, 9, 1, "abc"]
 print(type(l)) # <class 'list'>
 
+# Array Creation
 a = np.array(l)
 print(type(a))  # <class 'numpy.ndarray'>
 print(a)  # ['5' '7' '9' '1' 'abc']
@@ -22,15 +23,11 @@ a.put([1, 2], ["hi", "bi"])  # ['5' 'hi' 'bi' '1' 'abc']
 print("numpy array: ", a)
 print("sorted numpy array: ", np.sort(a, kind='mergesort'))  # ['1' '5' 'abc' 'bi' 'hi']
 
-b = a[2:4]
-print("SubArray: ", b)  # ['bi' '1']  --- subarray is just a view of original array. It points to the same memory location. So, if you change anything in subarray, that change will be reflected in original array as well.
-b[:] = 111  # Assign value to all the elements in b
-print("SubArray: ", b)  # ['111' '111']
-print("array: ", a)  # ['5' 'hi' '111' '111' 'abc']
-
+# Copying an array
 c = np.copy(a)  # this will create a new array pointing to different memory location
 print("Copied array: ", c)  # ['5' 'hi' '111' '111' 'abc']
 
+# Using Python's inbuilt Array
 ll = [1, 2, 5, 9]
 aa = ar.array("i", ll)
 print(type(aa))  # <class 'array.array'>

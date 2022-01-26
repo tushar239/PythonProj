@@ -2,7 +2,7 @@ import numpy as np
 
 arr = np.array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12])
 
-newarr = arr.reshape(4, 3)
+newarr = arr.reshape(4, 3)  # convert original array in new array with 4 rows and 3 columns
 
 print(newarr)
 print(len(newarr))  # 4
@@ -14,7 +14,7 @@ print(len(newarr[0]))  # 3
  [10 11 12]]
 """
 
-newarr = arr.reshape(2, 6)
+newarr = arr.reshape(2, 6)  # convert original array in new array with 2 rows and 6 columns
 print(newarr)
 print(len(newarr))  # 2
 print(len(newarr[0]))  # 6
@@ -23,7 +23,7 @@ print(len(newarr[0]))  # 6
  [ 7  8  9 10 11 12]]
 """
 
-newarr = arr.reshape(2, 3, 2)
+newarr = arr.reshape(2, 3, 2)  # convert original array in new array with 2 rows, 3 columns, group 2 elements in each row
 
 print(newarr)
 print(len(newarr))  # 2
@@ -31,22 +31,18 @@ print(len(newarr[0]))  # 3
 """
 [
     [
-        [ 1  2]
-        [ 3  4]
-        [ 5  6]
+        [ 1  2] [ 3  4] [ 5  6]
     ]
 
     [
-        [ 7  8]
-        [ 9 10]
-        [11 12]
+        [ 7  8] [ 9 10] [11 12]
     ]
 ]
 """
 
 arr = np.array([[1, 2, 3, 4], [5, 6, 7, 8]])
 
-print(arr.shape) # (2, 4)
+print(arr.shape)  # (2, 4)  - tuple of number of rows and columns
 
 
 arr = np.array([1, 2, 3, 4], ndmin=5)
