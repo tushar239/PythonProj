@@ -5,8 +5,9 @@ Joining methods
 ---------------
 concatenate
 stack
-hstack
-vstack
+hstack  -  hstack is same as concatenation with axis=1
+vstack  -  vstack is same as concatenation with axis=0
+dstack
 """
 
 
@@ -108,3 +109,20 @@ print(arr)
  [ 3  4  5 10 11 12]]
 """
 
+arr1 = np.array([[0, 1, 2],
+                 [3, 4, 5]])
+arr2 = np.array([[7, 8, 9],
+                 [10, 11, 12]])
+arr = np.dstack((arr1, arr2)) # based on the depth, arrays will be joined
+print(arr)
+"""
+[
+ [[ 0  7]
+  [ 1  8]
+  [ 2  9]]
+ ,
+ [[ 3 10]
+  [ 4 11]
+  [ 5 12]]
+]
+"""
