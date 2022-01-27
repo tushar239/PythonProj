@@ -16,6 +16,7 @@ Videos for kids - Variables and Data Types - https://www.youtube.com/watch?v=mQa
                   List                     - https://www.youtube.com/watch?v=fAr6EMp0SSc
 
 
+
 Difference between == and is
 ----------------------------
 The Equality operator (==) compares the values of both the operands and checks for value equality.

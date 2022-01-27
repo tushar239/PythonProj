@@ -18,5 +18,15 @@ arr = np.array([6, 7, 8, 9])
 index = np.searchsorted(arr, 10)
 print(index)
 
+# By default, the left most index is returned, but we can give side='right' to return the right most index instead.
+# Find the indexes where the value 7 should be inserted, starting from the right.
+arr = np.array([6, 7, 8, 9])
+index = np.searchsorted(arr, 7)
+print(index)  # 1
+index = np.searchsorted(arr, 7, side='right')
+print(index)  # 2
 
-
+arr = np.array([1, 3, 5, 7])
+indices = np.searchsorted(arr, [2, 4, 6])
+print(type(indices))  # <class 'numpy.ndarray'>
+print(indices)  # [1 2 3]
