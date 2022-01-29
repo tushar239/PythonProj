@@ -30,6 +30,7 @@ thisset.add("orange")
 print(thisset)  # {'apple', 'cherry', 'banana', 'orange'}
 
 # Add one set to another
+# The update() method inserts the items in set2 into set1
 thisset = {"apple", "banana", "cherry"}
 tropical = {"pineapple", "mango", "papaya"}
 # thisset.add(tropical)  # TypeError: unhashable type: 'set'
@@ -40,5 +41,38 @@ print(thisset)  # {'papaya', 'cherry', 'banana', 'mango', 'apple', 'pineapple'}
 thisset = {"apple", "banana", "cherry"}
 mylist = ["kiwi", "orange", "kiwi"]
 thisset.update(mylist)
-
 print(thisset)  # {'cherry', 'banana', 'kiwi', 'orange', 'apple'}
+
+# The union() method returns a new set with all items from both sets.
+# The update() method inserts the items in set2 into set1
+set1 = {"a", "b", "c"}
+set2 = {1, 2, 3}
+
+set3 = set1.union(set2)
+print(set3)  # {'a', 1, 'b', 3, 2, 'c'}
+print(set1 is set3)  # False
+
+# Remove an item from a set, use the remove(), or the discard() method
+thisset = {"apple", "banana", "cherry"}
+thisset.remove("banana")
+print(thisset)  # {'apple', 'cherry'}
+thisset.discard("cherry")
+print(thisset)  # {'apple'}
+
+# Remove the last item by using the pop() method
+thisset = {"apple", "banana", "cherry"}
+x = thisset.pop()
+print(x)
+print(thisset)
+
+# delete the set completely
+thisset = {"apple", "banana", "cherry"}
+del (thisset)
+# print(thisset)  # NameError: name 'thisset' is not defined
+
+# Loop (iterate) through the set
+thisset = {"apple", "banana", "cherry"}
+
+for x in thisset:
+    print(x, end=",")  # cherry,banana,apple,
+

@@ -40,7 +40,7 @@ thisdict["city"] = "Sacramento"
 thisdict.update({"state": "CA"})  # {'brand': 'Ford', 'model': 'Mustang', 'year': 1964, 'color': 'red'}
 print(thisdict)  # {'brand': 'Ford', 'model': 'Mustang', 'year': 1964, 'color': 'red', 'city': 'Sacramento', 'state': 'CA'}
 
-# Loop dictionaries
+# Loop (iterate) dictionaries
 for key in thisdict:
     value = thisdict[key]
     print(key, ":", value, end=", ")  # brand : Ford,model : Mustang,year : 1964,color : red,city : Sacramento,state : CA,
