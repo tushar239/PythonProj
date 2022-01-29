@@ -3,6 +3,8 @@ Dictionary in python is like a HashMap in Java.
 Duplicate keys are not allowed.
 
 dictionaryname = {key1: value1, key2: value2}
+
+dictionary used to be unordered before 3.7 version, but now it is ordered.
 """
 
 thisdict = {
@@ -59,3 +61,60 @@ for value in thisdict.values():
     print(value, end=",")  # Ford,Mustang,1964,red,Sacramento,CA,
 
 print()
+
+# Copy dictionary
+thisdict = {
+  "brand": "Ford",
+  "model": "Mustang",
+  "year": 1964
+}
+mydict = thisdict.copy()
+print(mydict)  # {'brand': 'Ford', 'model': 'Mustang', 'year': 1964}
+# or
+mydict = dict(thisdict)
+print(mydict)  # {'brand': 'Ford', 'model': 'Mustang', 'year': 1964}
+
+# Nested dictionaries
+myfamily = [
+  {
+    "name" : "Emil",
+    "year" : 2004
+  },
+  {
+    "name" : "Tobias",
+    "year" : 2007
+  },
+  {
+    "name" : "Linus",
+    "year" : 2011
+  }
+]
+print(type(myfamily))  # <class 'list'>
+print(myfamily)  # [{'name': 'Emil', 'year': 2004}, {'name': 'Tobias', 'year': 2007}, {'name': 'Linus', 'year': 2011}]
+
+# add 3 dictionaries into a new dictionary
+
+child1 = {
+  "name" : "Emil",
+  "year" : 2004
+}
+child2 = {
+  "name" : "Tobias",
+  "year" : 2007
+}
+child3 = {
+  "name" : "Linus",
+  "year" : 2011
+}
+
+myfamily = {
+  "child1" : child1,
+  "child2" : child2,
+  "child3" : child3
+}
+
+print(type(myfamily))  # <class 'dict'>
+print(myfamily)  # {'child1': {'name': 'Emil', 'year': 2004}, 'child2': {'name': 'Tobias', 'year': 2007}, 'child3': {'name': 'Linus', 'year': 2011}}
+
+# All other methods
+# https://www.w3schools.com/python/python_dictionaries_methods.asp
