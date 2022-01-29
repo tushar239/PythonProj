@@ -76,3 +76,54 @@ thisset = {"apple", "banana", "cherry"}
 for x in thisset:
     print(x, end=",")  # cherry,banana,apple,
 
+print()
+
+# Keep the items that exist in both set x and set y
+x = {"apple", "banana", "cherry"}
+y = {"google", "microsoft", "apple"}
+
+x.intersection_update(y)
+print(x)  # {'apple'}
+
+# The intersection() method will return a new set, that only contains the items that are present in both sets
+x = {"apple", "banana", "cherry"}
+y = {"google", "microsoft", "apple"}
+
+z = x.intersection(y)
+
+print(z)  # {'apple'}
+
+# isdisjoint() returns True if no items in set x is present in set y
+x = {"apple", "banana", "cherry"}
+y = {"google", "microsoft", "facebook"}
+
+z = x.isdisjoint(y)
+
+print(z)  # True
+
+# The symmetric_difference_update() method will keep only the elements that are NOT present in both sets.
+x = {"apple", "banana", "cherry"}
+y = {"google", "microsoft", "apple"}
+
+x.symmetric_difference_update(y)
+
+print(x)  # {'google', 'microsoft', 'cherry', 'banana'}
+
+# The symmetric_difference() method will return a new set, that contains only the elements that are NOT present in both sets.
+x = {"apple", "banana", "cherry"}
+y = {"google", "microsoft", "apple"}
+
+z = x.symmetric_difference(y)
+
+print(z)  # {'microsoft', 'google', 'banana', 'cherry'}
+
+# removes all elements from the set
+thisset = {"apple", "banana", "cherry"}
+thisset.clear()
+print(thisset)  # set() --- empty set
+
+# issubset(), issuperset()
+x = {"apple", "banana", "cherry"}
+y = {"apple"}
+print(y.issubset(x))  # True
+print(x.issuperset(y))  # True
