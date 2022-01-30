@@ -76,7 +76,13 @@ thisset = {"apple", "banana", "cherry"}
 for x in thisset:
     print(x, end=",")  # cherry,banana,apple,
 
-print()
+print("hi")
+
+# Unlike to List, you can't access set by index because set doesn't preserve insertion order
+"""
+for index in range(len(thisset)-1, -1, -1):
+    print(thisset[index])
+"""
 
 # Keep the items that exist in both set x and set y
 x = {"apple", "banana", "cherry"}
