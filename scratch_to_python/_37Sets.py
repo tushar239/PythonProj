@@ -60,10 +60,11 @@ thisset.discard("cherry")
 print(thisset)  # {'apple'}
 
 # Remove the last item by using the pop() method
+# In List, you can use pop(index), but you can't do that for set because access order is not same as insertion order in set. So, you can't access set by an index.
 thisset = {"apple", "banana", "cherry"}
 x = thisset.pop()
-print(x)
-print(thisset)
+print(x)  # cherry
+print(thisset)  # {'banana', 'apple'}
 
 # delete the set completely
 thisset = {"apple", "banana", "cherry"}

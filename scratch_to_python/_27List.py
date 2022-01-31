@@ -83,4 +83,18 @@ thistuple = ("kiwi", "orange")
 thislist.extend(thistuple)
 print(thislist)  # ['apple', 'banana', 'cherry', 'kiwi', 'orange']
 
+# Remove 'banana'
+thislist = ["apple", "banana", "cherry"]
+thislist.remove("banana")
+print(thislist)  # ['apple', 'cherry']
 
+# Remove specified indexed element
+# You can't pop an element by index in Set because access order is not same as insertion order in the Set.
+thislist = ["apple", "banana", "cherry"]
+thislist.pop(1)
+print(thislist)  # ['apple', 'cherry']
+
+# If you do not specify the index, the pop() method removes the last item.
+thislist = ["apple", "banana", "cherry"]
+thislist.pop()
+print(thislist)  # ['apple', 'banana']
