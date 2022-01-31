@@ -98,3 +98,13 @@ print(thislist)  # ['apple', 'cherry']
 thislist = ["apple", "banana", "cherry"]
 thislist.pop()
 print(thislist)  # ['apple', 'banana']
+
+# The del keyword also removes the specified index:
+thislist = ["apple", "banana", "cherry"]
+del thislist[0]
+print(thislist)  # ['banana', 'cherry']
+
+# delete the entire list
+thislist = ["apple", "banana", "cherry"]
+del thislist
+# print(thislist)  # NameError: name 'thislist' is not defined
