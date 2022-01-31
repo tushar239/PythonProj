@@ -101,10 +101,11 @@ print(thislist)  # ['apple', 'banana']
 
 # The del keyword also removes the specified index:
 thislist = ["apple", "banana", "cherry"]
-del thislist[0]
+del thislist[0]  # same as thislist.pop(0)
 print(thislist)  # ['banana', 'cherry']
 
 # delete the entire list
 thislist = ["apple", "banana", "cherry"]
 del thislist
 # print(thislist)  # NameError: name 'thislist' is not defined
+

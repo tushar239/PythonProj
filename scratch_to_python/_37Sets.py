@@ -67,6 +67,7 @@ print(x)  # cherry
 print(thisset)  # {'banana', 'apple'}
 
 # delete the set completely
+# You can't delete/pop an element by index in Set because access order is not same as insertion order in the Set.
 thisset = {"apple", "banana", "cherry"}
 del (thisset)
 # print(thisset)  # NameError: name 'thisset' is not defined
