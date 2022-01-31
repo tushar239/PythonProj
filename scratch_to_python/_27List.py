@@ -109,3 +109,21 @@ thislist = ["apple", "banana", "cherry"]
 del thislist
 # print(thislist)  # NameError: name 'thislist' is not defined
 
+# Loop through a list
+thislist = ["apple", "banana", "cherry"]
+for x in thislist:
+    print(x, end=", ")
+
+print()  # apple, banana, cherry,
+
+# Loop through the index numbers
+thislist = ["apple", "banana", "cherry"]
+for i in range(len(thislist)):
+    print(thislist[i], end=", ")
+
+print()  # apple, banana, cherry,
+
+# Loop through the index numbers in reverse direction
+for i in range(len(thislist)-1, -1, -1):
+    print(thislist[i], end=", ")  # cherry, banana, apple,
+
