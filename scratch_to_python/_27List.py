@@ -127,3 +127,9 @@ print()  # apple, banana, cherry,
 for i in range(len(thislist)-1, -1, -1):
     print(thislist[i], end=", ")  # cherry, banana, apple,
 
+print()
+
+# See ListComprehension.py
+# nested for loops and if loop
+newlist = [x.upper() for i in range(len(thislist)) for x in thislist[i] if 'a' in thislist[i]]
+print(newlist)  # ['A', 'P', 'P', 'L', 'E', 'B', 'A', 'N', 'A', 'N', 'A']
