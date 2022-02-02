@@ -46,3 +46,18 @@ myTuple = ("John", "Peter", "Vicky")
 x = "#".join(myTuple)
 print(x)  # John#Peter#Vicky
 
+# Make the first letter in each word upper case.
+txt = "Welcome to my world"
+x = txt.title()
+print(x)  # Welcome To My World
+
+
+# use a dictionary with ascii codes to replace 83 (S) with 80 (P):
+mydict = {83:  80}
+txt = "Hello Sam!"
+print(txt.translate(mydict))  # Hello Pam!
+
+# Print the word "banana", taking up $ of 20 characters, with "banana" in the middle.
+txt = "banana"
+x = txt.center(20, "$")
+print(x)  # $$$$$$$banana$$$$$$$

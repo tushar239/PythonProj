@@ -16,3 +16,7 @@ print(x)  # 3
 x = txt.rindex("casa")
 print(x)  # 12
 # txt.index("hello")  # ValueError: substring not found
+
+txt = "Hello, welcome to my world."
+x = txt.startswith("Hello")
+print(x)  # True
