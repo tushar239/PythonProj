@@ -58,5 +58,8 @@ txt = "The best things in life are free!"
 if "expensive" not in txt:
     print("expensive not in txt")  # expensive not in txt
 
-# print(txt.index("expensive")) # Java returns -1, if substring not found in a string, but python throws an error because -1 is an index in Python(last char of string)
+# OR
+if txt.find("expensive") == -1:
+    print("expensive not in txt")  # expensive not in txt
 
+# print(txt.index("expensive")) # Java returns -1, if substring not found in a string, but python throws an error because -1 is an index in Python(last char of string)
