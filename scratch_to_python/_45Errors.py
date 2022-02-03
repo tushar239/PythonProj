@@ -48,6 +48,7 @@ Python is not compiled, so checked exceptions don't make much sense.
 Look at 'Exception Hierarchy' image. When an exception don't fall in other built-in exception category, then you should use RuntimeError.
 """
 
+
 class B(Exception):
     pass
 
@@ -58,6 +59,7 @@ class C(B):
 
 class D(C):
     pass
+
 
 # he following code will print B, C, D in that order
 for cls in [B, C, D]:
@@ -89,3 +91,164 @@ except BaseException as err:
     raise
 """
 
+"""
+The try block lets you test a block of code for errors.
+
+The except block lets you handle the error.
+
+The else block lets you execute code when there is no error.
+
+The finally block lets you execute code, regardless of the result of the try- and except blocks.
+"""
+"""
+# Example
+try:
+  print(x)
+except:
+  print("An exception occurred")
+"""
+"""
+Many Exceptions
+
+try:
+    print(x)
+except NameError:
+    print("Variable x is not defined")
+except:
+    print("Something else went wrong")
+"""
+
+"""
+You can use the else keyword to define a block of code to be executed if no errors were raised
+
+try:
+  print("Hello")
+except:
+  print("Something went wrong")
+else:
+  print("Nothing went wrong")
+"""
+
+"""
+The finally block, if specified, will be executed regardless if the try block raises an error or not.
+
+try:
+  print(x)
+except:
+  print("Something went wrong")
+finally:
+  print("The 'try except' is finished")
+"""
+
+"""
+Nested try-except blocks
+
+try:
+  f = open("demofile.txt")
+  try:
+    f.write("Lorum Ipsum")
+  except:
+    print("Something went wrong when writing to the file")
+  finally:
+    f.close()
+except:
+  print("Something went wrong when opening the file")
+"""
+
+"""
+Raise an exception
+
+x = -1
+
+if x < 0:
+    raise Exception("Sorry, no numbers below zero")
+
+
+x = "hello"
+
+if not type(x) is int:
+    raise TypeError("Only integers are allowed")
+"""
+
+# https://docs.python.org/3/tutorial/errors.html#tut-userexceptions
+
+"""
+try:
+     raise Exception('spam', 'eggs')
+ except Exception as inst:  # creating an alias
+     print(type(inst))    # the exception instance
+     print(inst.args)     # arguments stored in .args
+     print(inst)          # __str__ allows args to be printed directly,
+                          # but may be overridden in exception subclasses
+     x, y = inst.args     # unpack args
+     print('x =', x)
+     print('y =', y)
+
+<class 'Exception'>
+('spam', 'eggs')
+('spam', 'eggs')
+x = spam
+y = eggs
+
+
+
+def this_fails():
+    x = 1/0
+    try:
+        this_fails()
+    except ZeroDivisionError as err:
+        print('Handling run-time error:', err)
+"""
+
+"""
+If you need to determine whether an exception was raised but don’t intend to handle it, a simpler form of the raise statement allows you to re-raise the exception:
+
+try:
+    raise NameError('HiThere')
+    except NameError:
+        print('An exception flew by!')
+        raise
+
+An exception flew by!
+Traceback (most recent call last):
+  File "<stdin>", line 2, in <module>
+NameError: HiThere
+"""
+
+"""
+Exception Chaining:
+The raise statement allows an optional from which enables chaining exceptions. For example:
+
+# exc must be exception instance or None.
+raise RuntimeError from exc
+This can be useful when you are transforming exceptions. For example:
+
+def func():
+    raise ConnectionError
+
+try:
+    func()
+except ConnectionError as exc:
+    raise RuntimeError('Failed to open database') from exc
+
+ConnectionError
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "<stdin>", line 4, in <module>
+RuntimeError: Failed to open database
+"""
+"""
+Exception chaining happens automatically when an exception is raised inside an except or finally section. 
+This can be disabled by using from None idiom.
+
+try:
+    open('database.sqlite')
+except OSError:
+    raise RuntimeError from None
+
+Traceback (most recent call last):
+  File "<stdin>", line 4, in <module>
+RuntimeError
+"""
