@@ -16,6 +16,14 @@ Videos for kids - Variables and Data Types - https://www.youtube.com/watch?v=mQa
                   List                     - https://www.youtube.com/watch?v=fAr6EMp0SSc
 
 
+Interpreter vs Compiler
+-----------------------
+Python uses interpreter. Java, C, C++ uses compiler
+Difference between interpreter and compiler - https://www.geeksforgeeks.org/difference-between-compiler-and-interpreter/
+
+Compiler converts the all source code in machine understandable code, whereas interpreter does that line by line.
+Everytime, you run the program, it interprets and coverts the code into machine understandable code line by line.
+Interpreter is slower than Compiler.
 
 Difference between == and is
 ----------------------------

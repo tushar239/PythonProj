@@ -2,7 +2,7 @@
 Dictionary in python is like a HashMap in Java.
 Duplicate keys are not allowed.
 
-dictionaryname = {key1: value1, key2: value2}
+dictionaryname = {key1: value1, key2: value2}   --- It is in the form of Json
 
 dictionary used to be unordered before 3.7 version, but now it is ordered.
 """
