@@ -1,4 +1,9 @@
 """
+What is an Exception?
+An unwanted or unexpected event which disturbs the normal flow of the program is called exception.
+Whenever an exception occurs, then immediately program will terminate abnormally.
+In order to get our program executed normally, we need to handle those exceptions on high priority.
+
 https://www.pyforschool.com/tutorial/types-of-errors.html
 
 There are mainly 3 types of errors in Python.
@@ -39,9 +44,9 @@ Programmers are encouraged to derive new exceptions from the Exception class or 
 
 All errors in Python are the UNCHECKED type. Exceptions include both checked and unchecked type.
 Python is not compiled, so checked exceptions don't make much sense.
+
+Look at 'Exception Hierarchy' image. When an exception don't fall in other built-in exception category, then you should use RuntimeError.
 """
-
-
 
 class B(Exception):
     pass
