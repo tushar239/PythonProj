@@ -100,6 +100,13 @@ print(function_with_return_value(3))
 print(function_with_return_value(5))
 print(function_with_return_value(9))
 
+# The 'pass' statement
+# function definitions cannot be empty, but if you for some reason have a function definition with no content, put in the pass statement to avoid getting an error.
+def myfunction():
+    pass
+
+# https://www.geeksforgeeks.org/python-return-statement/#:~:text=A%20return%20statement%20is%20used,special%20value%20None%20is%20returned.
+
 # Function returning multiple values
 # A Python program to return multiple values from a method using tuple
 def function_with_multiple_return_values(x):
@@ -110,3 +117,50 @@ print(result[0], ", ", result[1])  # 15, 8
 # OR
 multiplication_result, addition_result = function_with_multiple_return_values(3)
 print(multiplication_result, ", ", addition_result)  # 15, 8
+
+# Return a list
+def function_returning_list(x):
+    return [5 * x, 5 + x]
+
+mylist = function_returning_list(3)
+print(result[0], ", ", result[1])  # 15, 8
+
+# Return a dictionary
+def function_returning_dictionary(x):
+    result = dict()
+    result["multiplication"] = 5 * x
+    result["addition"] = 5 + x
+    return result
+
+mydict = function_returning_dictionary(3)
+print(mydict["multiplication"], ", ", mydict["addition"])  # 15, 8
+
+# Function returning another function
+# In Python, functions are objects so, we can return a function from another function.
+# This is possible because functions are treated as first class objects in Python.
+def create_adder(x):
+    def adder(y):
+        return x + y
+
+    return adder
+
+
+add_15 = create_adder(15)
+
+print("The result is", add_15(10))
+
+
+# Returning different function
+def outer(x):
+    return x * 10
+
+
+def my_func():
+    # returning different function
+    return outer
+
+
+# storing the function in res
+res = my_func()
+
+print("The result is:", res(10))
