@@ -87,5 +87,26 @@ fruits = ["apple", "banana", "cherry"]
 food_function(fruits)  # apple, banana, cherry,
 print()
 food_function("hello")  # h, e, l, l, o,
+print()
 # This can be confusing. When you don't have to define a type of parameter in the function, you have to look into its code to guess the type.
 # By looking at food_function(), you can send a list, string, tuple or set, everything will work.
+
+
+# Return value
+def function_with_return_value(x):
+    return 5 * x
+
+print(function_with_return_value(3))
+print(function_with_return_value(5))
+print(function_with_return_value(9))
+
+# Function returning multiple values
+# A Python program to return multiple values from a method using tuple
+def function_with_multiple_return_values(x):
+    return 5 * x, 5 + x
+
+result = function_with_multiple_return_values(3)
+print(result[0], ", ", result[1])  # 15, 8
+# OR
+multiplication_result, addition_result = function_with_multiple_return_values(3)
+print(multiplication_result, ", ", addition_result)  # 15, 8
