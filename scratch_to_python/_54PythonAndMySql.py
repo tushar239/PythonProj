@@ -5,27 +5,21 @@ Go to Settings->Python Interpreter->Install a package 'mysql-connector-python'
 
 import mysql.connector
 
-mydb = mysql.connector.connect(
+connection = mysql.connector.connect(
   host="localhost",
   user="admin",
   password="admin"
 )
 
-def getdb():
-    return mydb
+print(connection)
 
-print(mydb)
-
-mycursor = mydb.cursor()
-
-def getcursor():
-    return mycursor
+cursor = connection.cursor()
 
 # Create your database
-mycursor.execute("CREATE DATABASE mydatabase")
+cursor.execute("CREATE DATABASE mydatabase")
 
-mycursor.execute("SHOW DATABASES")
+cursor.execute("SHOW DATABASES")
 
-for x in mycursor:
+for x in cursor:
     print(x)
 

@@ -1,9 +1,18 @@
 import _54MySqlInitialConfig as initial
 
+connection = initial.connection
+cursor = connection.cursor()
+
 sql = "INSERT INTO customers (name, address) VALUES (%s, %s)"
 val = ("John", "Highway 21")
-initial.mycursor.execute(sql, val)
+cursor.execute(sql, val)
 
-initial.mydb.commit()
+connection.commit()
 
-print(initial.mycursor.rowcount, "record inserted.")
+print(cursor.rowcount, "record inserted.")
+# This is how you access rowid of inserted record
+print("1 record inserted, ID:", cursor.lastrowid)
+
+
+cursor.close()
+connection.close()
