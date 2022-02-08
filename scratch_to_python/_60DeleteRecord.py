@@ -24,3 +24,6 @@ cursor.execute(sql, adr)
 connection.commit()
 
 print(cursor.rowcount, "record(s) deleted")
+
+cursor.close()
+connection.close()

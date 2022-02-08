@@ -1,14 +1,14 @@
 import _54MySqlInitialConfig as initial
 
-mycursor = initial.cursor
+cursor = initial.cursor
 connection = initial.connection
 
-mycursor.execute("CREATE TABLE customers (name VARCHAR(255), address VARCHAR(255))")
+cursor.execute("CREATE TABLE customers (name VARCHAR(255), address VARCHAR(255))")
 
-mycursor.execute("SHOW TABLES")
+cursor.execute("SHOW TABLES")
 
-for x in mycursor:
+for x in cursor:
     print(x)
 
-mycursor.close()
+cursor.close()
 connection.close()

@@ -8,3 +8,6 @@ cursor = connection.cursor()
 sql = "DROP TABLE IF EXISTS customers"
 
 cursor.execute(sql)
+
+cursor.close()
+connection.close()

@@ -6,7 +6,7 @@ cursor = connection.cursor()
 # It is considered a good practice to escape the values of any query
 # This is to prevent SQL injections, which is a common web hacking technique to destroy or misuse your database.
 # The mysql.connector module uses the placeholder %s to escape values
-sql = "INSERT INTO customers (name, address) VALUES (%s, %s)"
+sql = "INSERT INTO customers (name, address) VALUES (%s, %s)"  # User %s for even int column also. Don't use %d.
 val = ("John", "Highway 21")
 cursor.execute(sql, val)
 
