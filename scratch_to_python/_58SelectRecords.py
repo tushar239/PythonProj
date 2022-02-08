@@ -49,6 +49,39 @@ myresult = cursor.fetchone()
 print(myresult)
 
 print("#############################")
+# Select With a Filter
+sql = "SELECT * FROM customers WHERE address ='Park Lane 38'"
+
+cursor.execute(sql)
+
+myresult = cursor.fetchall()
+
+for x in myresult:
+    print(x)
+
+print("#############################")
+
+sql = "SELECT * FROM customers WHERE address LIKE '%way%'"
+
+cursor.execute(sql)
+
+myresult = cursor.fetchall()
+
+for x in myresult:
+    print(x)
+
+print("#############################")
+sql = "SELECT * FROM customers WHERE address = %s"
+adr = ("Yellow Garden 2", )
+
+cursor.execute(sql, adr)
+
+myresult = cursor.fetchall()
+
+for x in myresult:
+    print(x)
+
+print("#############################")
 
 cursor.close()
 connection.close()
