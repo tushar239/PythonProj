@@ -1,3 +1,24 @@
+"""
+https://www.tutorialsteacher.com/python/python-user-defined-function
+
+syntax
+def function_name(parameters):
+    /"/"/"docstring/"/"/"
+    statement1
+    statement2
+    ...
+    ...
+    return [expr]
+
+The keyword def is followed by a suitable identifier as the name of the function and parentheses. One or more parameters may be optionally mentioned inside parentheses. The : symbol after parentheses starts an indented block.
+
+The first statement in the function body can be a string, which is called the docstring. It explains the functionality of the function/class. The docstring is not mandatory.
+
+The function body contains one or more statements that perform some actions. It can also use pass keyword.
+
+Optionally, the last statement in the function block is the return statement. It sends an execution control back to calling the environment. If an expression is added in front of return, its value is also returned to the calling code.
+"""
+
 # In Python a function is defined using the 'def' keyword
 def my_function():
     print("Hello from a function")
@@ -164,3 +185,27 @@ def my_func():
 res = my_func()
 
 print("The result is:", res(10))
+
+# Currying
+# function returning a function. Remember, everything is an object in Python, even a function is an object.
+# when can you use this feature?
+# When num1 remains same, but you just want to keep changing num2 at different places in the code.
+def outer(num1):
+    def inner(num2):
+        return num1+num2
+    return inner
+
+inner = outer(1)
+result = inner(2)
+print(result)  # 3
+
+# Look at Lambda functions also in Lambda.py
+# Lambda is an anonymous function
+def outer(num1):
+    return lambda num2:num1 + num2
+
+inner = outer(11)
+result = inner(33)
+print(result)  # 44
+
+
