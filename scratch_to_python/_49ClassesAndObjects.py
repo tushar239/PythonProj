@@ -30,11 +30,16 @@ class <ClassName>:
 
 As per the syntax above, a class is defined using the class keyword followed by the class name and : operator after the class name, which allows you to continue in the next indented line to define class members. The followings are class members.
 
-Class Attributes
-Constructor
-Instance Attributes
-Properties
-Class Methods
+    Class Attributes
+    Constructor
+    Instance Attributes
+    Properties
+    Class Methods
+
+Magic Methods:
+https://www.analyticsvidhya.com/blog/2021/08/explore-the-magic-methods-in-python/
+https://www.tutorialsteacher.com/python/magic-methods-in-python
+
 """
 # sometimes, you just want to create an empty class for some kind of placeholder. Just like function, you can't have empty class. But you can just add 'pass' statement.
 class MyClass:
@@ -49,13 +54,33 @@ print(obj.x)
 # A magic method __init__() is like a constructor in Python.
 # The __init__() function is called automatically every time the class is being used to create a new object.
 class Person:
-    def __init__(self, name, age):  # self - it means current instance. It is like 'this' in java. You can use any variable name like 'abc', 'myinstance' etc instead of 'self'
+    # self - it means current instance of the class and it is used to access variables that belong to the class.
+    # It is like 'this' in java.
+    # It does not have to be named self , you can call it whatever you like, but it has to be the first parameter of any function in the class.
+    def __init__(self, name, age):
         self.name = name
         self.age = age
 
     def myfunc(self):
         print("Hello my name is " + self.name)
 
+    # This is a magic method. Python has many inbuilt magic methods. They work as operator overloading.
+    # Whenever you do instance1 + instance2, __add__ method will be called
+    def __add__(self, other):
+        return self.age + other.age
+
 person = Person("John", 36)
 print(person.name,person.age, sep=", ")  # John, 36
 person.myfunc()  # Hello my name is John
+
+# Modify property. When you modify a property of one instance, it doesn't affect another instance.
+person.age = 37
+
+person2 = Person("Steve", 35)
+print(person + person2)  # 37 + 35 = 72
+
+# deleting an instance. This is like person=null in java.
+del person
+# deleting a property of an instance. This is like person2.age=null in java.
+del person2.age
+
