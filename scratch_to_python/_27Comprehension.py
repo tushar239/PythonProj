@@ -1,35 +1,40 @@
 # https://www.w3schools.com/python/python_lists_comprehension.asp
 
 """
-List Comprehension
-List comprehension offers a shorter syntax when you want to create a new list based on the values of an existing list.
+Comprehension:
+Shorter way to write the code with loops and if conditions in just one line.
 
-Example:
-
-Based on a list of fruits, you want a new list, containing only the fruits with the letter "a" in the name.
+List comprehension:
+It offers a shorter syntax when you want to create a new list based on the values of an existing list.
 """
+
+# Example:
+# Based on a list of fruits, you want a new list, containing only the fruits with the letter "a" in the name.
 
 # Without list comprehension you will have to write a for statement with a conditional test inside:
 fruits = ["apple", "banana", "cherry", "kiwi", "mango"]
 newlist = []
 
 for x in fruits:
-    # if x.__contains__("a"):
-    # or
-    if "a" in x:
+    if "a" in x:  # implicitly calls a magic method __contains__ of str class
         newlist.append(x)
 
 print(newlist)  # ['apple', 'banana', 'mango']
 
 # With list comprehension you can do all that with only one line of code:
+# Syntax: result = expression for item in iterable if condition == True
+is_nice = True
+state = "not nice" if not is_nice else "nice"
+print(state)  # nice
+
 # Syntax: newlist = [expression for item in iterable if condition == True]
 fruits = ["apple", "banana", "cherry", "kiwi", "mango", "apple"]
 newlist = [x for x in fruits if "a" in x]  # for loop and if conditions are merged in one line
 print(newlist)  # ['apple', 'banana', 'mango', "apple"]
 
 # Creating a Set
-newlist = [x for x in fruits if "a" in x]
-print(newlist)  # ['apple', 'banana', 'mango']
+newlist = {x for x in fruits if "a" in x}
+print(newlist)  # {'mango', 'apple', 'banana'}
 
 fruits = ["apple", "banana", "cherry", "kiwi", "mango"]
 
@@ -57,4 +62,3 @@ print(newlist)  # ['hello', 'hello', 'hello', 'hello', 'hello']
 # Return "orange" instead of "banana"
 newlist = [x if x != "banana" else "orange" for x in fruits]
 print(newlist)  # ['apple', 'orange', 'cherry', 'kiwi', 'mango']
-

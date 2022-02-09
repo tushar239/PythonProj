@@ -50,12 +50,12 @@ print("free" in txt)
 
 # Print only if "free" is present
 txt = "The best things in life are free!"
-if "free" in txt:
+if "free" in txt:  # implicitly calls a magic method __contains__ of str class
     print("Yes, 'free' is present.")  # Yes, 'free' is present.
 
 # Check if "expensive" is NOT present in the following text:
 txt = "The best things in life are free!"
-if "expensive" not in txt:
+if "expensive" not in txt:  # implicitly calls a magic method __contains__ of str class
     print("expensive not in txt")  # expensive not in txt
 
 # OR
@@ -63,3 +63,4 @@ if txt.find("expensive") == -1:
     print("expensive not in txt")  # expensive not in txt
 
 # print(txt.index("expensive")) # Java returns -1, if substring not found in a string, but python throws an error because -1 is an index in Python(last char of string)
+# You can use txt.find("expensive"), if you want -1 as returned value, in case a substring is not found in a string.
