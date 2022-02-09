@@ -85,7 +85,7 @@ class Person:
         # Using Turnary operator
         # Syntax: (if_test_is_false, if_test_is_true)[test]
         return "#".join([self.name,
-                         ("", str(self.age))[self.age != None]  # Using Turnary operator
+                         ("", str(self.age))[self.age != None]  # Using Ternary operator
                          ])
         """
         return "#".join([self.name, 
@@ -114,7 +114,7 @@ print(person == person2)  # False
 person.age = 35
 s = {person, person2}  # as hash of both instances are same, set will keep only one of these instances.
 for element in s:
-    print(element.__str__())  # John#35 --- when you print an instance, __str__ method will be called.
+    print(element)  # John#35 --- when you print an instance, __str__ method will be called.
 
 # deleting an instance. This is like person=null in java.
 del person
