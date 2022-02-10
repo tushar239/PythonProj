@@ -44,12 +44,22 @@ x.printname()
 # If there is no __init__() in the child class, it will be inherited from the parent class.
 # But if there is an __init() in the child class, parent class' __init__() will not be called automatically from child class' __init__() method. You have to call it explicitly.
 class Student(Person):
+    """
+    # IMP: In Java, if there is a non-default constructor in parent class, you will be forced to add similar constructor in child class, but that is not true for python.
+    # By default, python will assume that you have following __init__() method
+    def __init__(self, fname, lname):
+        super().__init__(fname, lname)
+    """
+
     pass  # Note: Use the pass keyword when you do not want to add any other properties or methods to the class.
 
 
 x = Student("Mike", "Olsen")
 x.printname()
 
+print( issubclass(Student, Person))  # True
+print( isinstance(x, Person))  # True
+print( isinstance(Student(), Person))  # True
 
 class Student(Person):
     def __init__(self, fname, lname, graduationyear=2021):
