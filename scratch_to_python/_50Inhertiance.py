@@ -1,6 +1,7 @@
 """
 https://www.w3schools.com/python/python_inheritance.asp
 https://www.geeksforgeeks.org/inheritance-in-python/?ref=lbp
+https://www.geeksforgeeks.org/types-of-inheritance-python/
 
 Python Inheritance
 Inheritance allows us to define a class that inherits all the methods and properties from another class.

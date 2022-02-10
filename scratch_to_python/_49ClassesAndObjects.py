@@ -41,11 +41,14 @@ https://www.analyticsvidhya.com/blog/2021/08/explore-the-magic-methods-in-python
 https://www.tutorialsteacher.com/python/magic-methods-in-python
 
 Access modifiers:
-Python has just two modifiers for instance variables.
+https://www.geeksforgeeks.org/encapsulation-in-python/
+Python has three modifiers for instance variables.
 - private (created with suffix '__', e.g. __name, __getname())
 - public (default modifier)
+- protected (created with suffix '_', e.g. _name, _getname())
+    Protected members (in C++ and JAVA) are those members of the class that cannot be accessed outside the class but can be accessed from within the class and its subclasses.
+    Although the protected variable can be accessed out of the class as well as in the derived class(modified too in derived class), it is customary(convention not a rule) to not access the protected out the class body.
 """
-
 
 # sometimes, you just want to create an empty class for some kind of placeholder. Just like function, you can't have empty class. But you can just add 'pass' statement.
 class MyClass:
@@ -128,19 +131,40 @@ del person2.age
 # Private member
 # Python has just two access modifiers - private, public
 class D:
-    def __init__(self, name, age):
-        # name is a private instance variable. It can't be accessed outside this class.
+    def __init__(self, name, age, address):
+        # __name is a private instance variable. It can't be accessed outside this class.
         self.__name = name
         self.age = age
+        # _address is a protected instance variable. It can be accessed in derived class as well in the same package. But it is a convention that you don't use it outside this and derived classes.
+        self._address = address
 
     def printname(self):
         print("name:", self.__name)
 
+    # private method - can't be overridden in derived class and can't be accessed outside this class.
     def __printname(self):
         print("name:", self.__name)
 
-d = D("Steve", 42)
+    # protected method - can be overridden in derived class and can be accessed outside this class, but only in the same package.
+    # It is a convention not to access it outside this and derived classes.
+    def _printaddress(self):
+        print("address:", self._address)
+
+class E(D):
+    # private method of parent class can't be overridden. Interpreter is not showing an error here for some reason, but it gives an error when this method is called.
+    def __printname(self):
+        super().__printname()
+
+    # protected method of parent class can be overridden.
+    def _printaddress(self):
+        super()._printaddress()
+
+d = D("Steve", 42, "Redmond")
 print(d.age)
 d.printname()  # name: Steve
 # print(d.__name)  # AttributeError: 'D' object has no attribute '__name'.
 # d.__printname()  # AttributeError: 'D' object has no attribute '__printname'.
+
+e = E("Steve", 42, "Redmond")
+# e.__printname()  # AttributeError: 'E' object has no attribute '__printname'.
+e._printaddress()  # address: Redmond
