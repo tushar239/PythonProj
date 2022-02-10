@@ -37,12 +37,14 @@ class Person:  # it is same as 'class Person(object)'. object is a parent class 
 x = Person("John", "Doe")
 x.printname()
 
+
 # Create a child class
 # To create a class that inherits the functionality from another class, send the parent class as a parameter when creating the child class.
 # If there is no __init__() in the child class, it will be inherited from the parent class.
 # But if there is an __init() in the child class, parent class' __init__() will not be called automatically from child class' __init__() method. You have to call it explicitly.
 class Student(Person):
     pass  # Note: Use the pass keyword when you do not want to add any other properties or methods to the class.
+
 
 x = Student("Mike", "Olsen")
 x.printname()
@@ -68,8 +70,8 @@ Mike Olsen
 Welcome Mike Olsen to the class of 2019
 """
 
-# Python example to show the working of multiple
-# inheritance
+
+# Multiple inheritance
 class Base1(object):
     def __init__(self):
         self.str1 = "Geek1"
@@ -80,6 +82,7 @@ class Base2(object):
     def __init__(self):
         self.str2 = "Geek2"
         print("Base2")
+
 
 class Derived(Base1, Base2):
     def __init__(self):
@@ -150,3 +153,33 @@ print(g.getName(), g.getAge(), g.getAddress())
 O/P:
 Geek1 23 Noida
 """
+
+"""
+Private members of parent class 
+We don’t always want the instance variables of the parent class to be inherited by the child class i.e. we can make some of the instance variables of the parent class private, which won’t be available to the child class. 
+We can make an instance variable by adding double underscores before its name.
+"""
+
+
+# Private members
+class C(object):
+    def __init__(self):
+        self.c = 21
+
+        # d is private instance variable
+        self.__d = 42
+
+    # private method
+    def __getd(self):
+        return self.__d
+
+class D(C):
+    def __init__(self):
+        self.e = 84
+        C.__init__(self)
+
+
+object1 = D()
+
+# produces an error as d is private instance variable
+# print(object1.d)  # AttributeError: 'D' object has no attribute 'd'

@@ -40,6 +40,10 @@ Magic Methods:
 https://www.analyticsvidhya.com/blog/2021/08/explore-the-magic-methods-in-python/
 https://www.tutorialsteacher.com/python/magic-methods-in-python
 
+Access modifiers:
+Python has just two modifiers for instance variables.
+- private (created with suffix '__', e.g. __name, __getname())
+- public (default modifier)
 """
 
 
@@ -120,3 +124,23 @@ for element in s:
 del person
 # deleting a property of an instance. This is like person2.age=null in java.
 del person2.age
+
+# Private member
+# Python has just two access modifiers - private, public
+class D:
+    def __init__(self, name, age):
+        # name is a private instance variable. It can't be accessed outside this class.
+        self.__name = name
+        self.age = age
+
+    def printname(self):
+        print("name:", self.__name)
+
+    def __printname(self):
+        print("name:", self.__name)
+
+d = D("Steve", 42)
+print(d.age)
+d.printname()  # name: Steve
+# print(d.__name)  # AttributeError: 'D' object has no attribute '__name'.
+# d.__printname()  # AttributeError: 'D' object has no attribute '__printname'.
