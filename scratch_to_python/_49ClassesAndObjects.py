@@ -73,6 +73,12 @@ class Person:
         self.name = name
         self.age = age
 
+    # Destructor --- when you do 'del classinstance' or when program ends, this method will be called automatically
+    # The destructor is called after the program ends or when all the references to object are deleted
+    # i.e. when the reference count becomes zero, not when object went out of scope.
+    def __del__(self):
+        print('Destructor called, instance is deleted.')
+
     def myfunc(self):
         print("Hello my name is " + self.name)
 
@@ -131,6 +137,7 @@ del person2.age
 # Private member
 # Python has just two access modifiers - private, public
 class D:
+    # Constructor
     def __init__(self, name, age, address):
         # __name is a private instance variable. It can't be accessed outside this class.
         self.__name = name
