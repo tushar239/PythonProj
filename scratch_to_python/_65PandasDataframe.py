@@ -51,11 +51,14 @@ Dataframe Info:
 rows, cols = df.shape  # it returns a Tuple containing total rows and total columns in dataframe
 print("rows:",rows,"cols:", cols)  # rows: 3 cols: 2
 print()
+
 columns = df.columns
 print("All column names:\n", columns.values)  # ['cars' 'passings']
 print()
+
 print("First column name:\n", columns.values[0])  # cars
 print()
+
 print("Cars column values:\n", df["cars"])  # you can access first column values just like how you access dictionary(map)
 print("Cars column values - different way:\n", df.cars)  # This is amazing. But you can't use this syntax, if column name has a space in it.
 """
@@ -63,6 +66,7 @@ print("Cars column values - different way:\n", df.cars)  # This is amazing. But 
 1    Volvo
 2     Ford
 """
+print()
 print("Type of a column in dataframe:", type(df["cars"]))  #  <class 'pandas.core.series.Series'>. Remember: Dataframe Column is of type Series
 print()
 print("Multiple columns values:\n", df[["cars", "passings"]])
@@ -160,7 +164,35 @@ month
 10        10  2014    31
 """
 print()
-print(("-----------------------------------"))
+print(("---------------Filtering Rows--------------------"))
+
+print("First two rows only:\n", df[0:2])  # It will print row 0 and 1. you can access rows just like how you access list elements
+print()
+
+"""
+        month  year  sale
+month                   
+1          1  2012    55
+4          4  2014    40
+"""
+
+print("Filtering a row based on index column value:\n", df.loc[7])  # type of df.loc[7] is Series
+print()
+"""
+month       7
+year     2013
+sale       84
+Name: 7, dtype: int64
+"""
+
+print("Filtering multiple rows based on index column value:\n", df.loc[[1,7]])  # type of df.loc[[1,7]] is Dataframe
+"""
+        month  year  sale
+month
+1          1  2012    55
+7          7  2013    84
+"""
+
 """
 loc_ = df.loc[0]
 print(loc_)
