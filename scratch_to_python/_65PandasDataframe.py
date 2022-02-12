@@ -185,6 +185,10 @@ sale       84
 Name: 7, dtype: int64
 """
 
+loc_ = df.loc[7]  # type of df.loc[7] is Series
+print("Accessing Series:",loc_['month'])  # 7
+print()
+
 print("Filtering multiple rows based on index column value:\n", df.loc[[1,7]])  # type of df.loc[[1,7]] is Dataframe
 """
         month  year  sale
