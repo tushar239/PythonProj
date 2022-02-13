@@ -138,6 +138,7 @@ print()
 print("Index type:", df.index)  # RangeIndex(start=0, stop=5, step=1)  --- This is a default one. Row numbers in dataframe are assigned numbers by default.
 print()
 
+# you can set any column as index column. That column can have duplicate values also. When you try to locate rows by that column value, multiple rows can be returned.
 newdf = df.set_index('month')  # setting 'month' column as index column. This function returns a new dataframe without modifying the original one.
 print("Index type:", newdf.index)  # Index type: Int64Index([1, 4, 7, 10], dtype='int64', name='month')
 print("Dataframe with month as index column:\n", newdf)
@@ -204,7 +205,7 @@ print()
 print("First row and second column cell value using row and column numbers:", df.iloc[0, 1])  # 2012
 print()
 
-print("First and third row using row numbers:\n", df.iloc[[0, 2]])
+print("First and third rows using row numbers:\n", df.iloc[[0, 2]])
 print()
 """
         month  year  sale
@@ -284,3 +285,14 @@ month
 7          7  2013    84
 """
 
+print("----------reset index column----------------")
+df.reset_index(inplace=True, drop=True)
+print(df)
+
+"""
+   month  year  sale
+0      1  2012    55
+1      4  2014    40
+2      7  2013    84
+3     10  2014    31
+"""
