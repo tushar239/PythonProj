@@ -59,20 +59,6 @@ print()
 print("First column name:\n", columns.values[0])  # cars
 print()
 
-print("Cars column values:\n", df["cars"])  # you can access first column values just like how you access dictionary(map)
-print("Cars column values - different way:\n", df.cars)  # This is amazing. But you can't use this syntax, if column name has a space in it.
-"""
-0      BMW
-1    Volvo
-2     Ford
-"""
-print()
-print("Type of a column in dataframe:", type(df["cars"]))  #  <class 'pandas.core.series.Series'>. Remember: Dataframe Column is of type Series
-print()
-print("Multiple columns values:\n", df[["cars", "passings"]])
-print()
-print("max() function of Series class:", df["passings"].max())  # 7
-print()
 print("Describe dataframe:\n", df.describe())  # it will print all mathematical values for number columns. Type of the result is Dataframe only.
 print()
 """
@@ -98,9 +84,27 @@ print("Last row:\n", df.tail(1))  # It will print only last row from dataframe
 print()
 print("First two rows only:\n", df[0:2])  # It will print row 0 and 1. you can access rows just like how you access list elements
 print()
-#print("First two rows of cars column only:\n", df.loc[0:1, "cars"])
-#print()
-
+"""
+First two rows:
+     cars  passings
+0    BMW         3
+1  Volvo         7
+"""
+print("Cars column values:\n", df["cars"])  # you can access first column values just like how you access dictionary(map)
+print()
+print("Cars column values - different way:\n", df.cars)  # This is amazing. But you can't use this syntax, if column name has a space in it.
+"""
+0      BMW
+1    Volvo
+2     Ford
+"""
+print()
+print("Type of a column in dataframe:", type(df["cars"]))  #  <class 'pandas.core.series.Series'>. Remember: Dataframe Column is of type Series
+print()
+print("Multiple columns values:\n", df[["cars", "passings"]])
+print()
+print("max() function of Series class:", df["passings"].max())  # 7
+print()
 print("-------------Deep Filtering---------------")
 
 print(df[ df["passings"] > 5 ])  # This is amazing. You can pass a condition like this to filter values from dataframe. It returns dataframe object.
@@ -168,6 +172,9 @@ print()
 print("---------------Filtering Rows and/or Columns based on either Row and Column numbers or Row and Column names--------------------")
 
 # syntax: df[row numbers]  return dataframe, e.g. df[0], df[0:2]
+#         df[column name]
+#         df[[column names]]
+#         df[[column names], [filtering condition]]
 #         I prefer to use df.iloc[] instead of df[] because df.iloc[] has more features
 
 #         df.iloc[row number]  returns a row
