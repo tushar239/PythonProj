@@ -103,7 +103,7 @@ print()
 
 print("-------------Deep Filtering---------------")
 
-print(df[ df["passings"] > 5 ])  # This is amazing. You can pass a condition like this to filter values from dataframe.
+print(df[ df["passings"] > 5 ])  # This is amazing. You can pass a condition like this to filter values from dataframe. It returns dataframe object.
 print()
 # same as
 # print(df[ df.passings > 5 ])
@@ -164,11 +164,27 @@ month
 10        10  2014    31
 """
 print()
-print(("---------------Filtering Rows--------------------"))
+print("---------------Filtering Rows and/or Columns based on either Row and Column numbers or Row and Column names--------------------")
+
+# syntax: df[row numbers]  return dataframe, e.g. df[0], df[0:2]
+#         I prefer to use df.iloc[] instead of df[] because df.iloc[] has more features
+
+#         df.iloc[row number]  returns a row
+#         df.loc[index column value]  returns a row
+
+#         df.iloc[row number, colum number]  returns a cell value, dataframe
+#         df.loc[index column value, colum name]  returns a cell value, dataframe
+
+#         df.iloc[[row numbers], [columns numbers]]  returns multiple cell values, type is dataframe  e.g df.iloc[[1,3], [0,1]]  or df.iloc[[1:3], [0:2]]
+#         df.loc[[index columns values], [columns names]]  returns multiple cell values, type is dataframe
+
+print("------------------ using df[] --------------")
 
 print("First two rows only:\n", df[0:2])  # It will print row 0 and 1. you can access rows just like how you access list elements
 print()
-
+# print("First and third rows only:\n", df[[0, 2]]) # doesn't work
+# print("First and third rows only:\n", df[[0, 2]]) # doesn't work
+# print()
 """
         month  year  sale
 month                   
@@ -176,7 +192,65 @@ month
 4          4  2014    40
 """
 
-print("Filtering a row based on index column value:\n", df.loc[7])  # type of df.loc[7] is Series
+print("------------------ using df.iloc[] --------------")
+print("First row using row number:\n", df.iloc[0])
+print()
+"""
+     cars  passings
+0    BMW         3
+1  Volvo         7
+"""
+
+print("First row and second column cell value using row and column numbers:", df.iloc[0, 1])  # 2012
+print()
+
+print("First and third row using row numbers:\n", df.iloc[[0, 2]])
+print()
+"""
+        month  year  sale
+month                   
+1          1  2012    55
+7          7  2013    84
+"""
+
+print("First to second rows using row numbers:\n", df.iloc[0:2])
+print()
+"""
+        month  year  sale
+month                   
+1          1  2012    55
+4          4  2014    40
+"""
+
+print("First and third row using row numbers and column numbers:\n", df.iloc[[0, 2], [1, 2]])
+print()
+"""
+        year  sale
+month            
+1      2012    55
+7      2013    84
+"""
+
+print("First to second row using row numbers and column numbers:\n", df.iloc[0:2, [1, 2]])
+print()
+"""
+        year  sale
+month            
+1      2012    55
+7      2013    84
+"""
+
+print("------------------ using df.loc[] --------------")
+
+print("First two rows only:\n", df.loc[0:2])  # loc method takes index column values, not row numbers. Here index column is 'month'. There is a row with month=1, but not for month=0
+print()
+"""
+        month  year  sale
+month                   
+1          1  2012    55
+"""
+
+print("Filtering a row based on row index:\n", df.loc[7])  # type of df.loc[7] is Series. It returns a row having index column(month) value=7
 print()
 """
 month       7
@@ -185,11 +259,24 @@ sale       84
 Name: 7, dtype: int64
 """
 
-loc_ = df.loc[7]  # type of df.loc[7] is Series
-print("Accessing Series:",loc_['month'])  # 7
+row = df.loc[7]  # type of df.loc[7] is Series
+print(type(row))  # <class 'pandas.core.series.Series'>
+print("Accessing column of a row:", row['month'])  # 7
 print()
 
-print("Filtering multiple rows based on index column value:\n", df.loc[[1,7]])  # type of df.loc[[1,7]] is Dataframe
+value = df.loc[7, 'year']  # value of row with index 7 and column 'year'
+print("Accessing a cell value of dataframe using a particular row and column names:", value)  # 2013
+
+values = df.loc[[1, 7], ['year', 'sale']]  # value will be the type of dataframe in this case
+print("Accessing multiple cell values of dataframe using a particular rows and columns names:", values)
+"""
+        month  year  sale
+month                   
+1          1  2012    55
+7          7  2013    84
+"""
+
+print("Filtering multiple rows based on index column value:\n", df.loc[[1, 7]])  # type of df.loc[[1,7]] is Dataframe
 """
         month  year  sale
 month
@@ -197,39 +284,3 @@ month
 7          7  2013    84
 """
 
-"""
-loc_ = df.loc[0]
-print(loc_)
-print(type(loc_))
-"/""
-cars        BMW
-passings      3
-"/""
-print(df.loc[0, 'cars'])  # BMW  --- prints a record from 0th row and 'cars' column
-"/""
-     cars  passings
-0    BMW         3
-1  Volvo         7
-2   Ford         2
-"/""
-
-"/""
-What is a Series?
-A Pandas Series is like a column in a table.
-
-It is a one-dimensional array holding data of any type.
-"/""
-a = [1, 7, 2]
-
-df = pd.Series(a)
-
-print(df)
-print(df[0])  # 1
-"/""
-0    1
-1    7
-2    2
-"/""
-
-
-"""
