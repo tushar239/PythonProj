@@ -303,3 +303,9 @@ print(df)
 2      7  2013    84
 3     10  2014    31
 """
+
+print("----------sampling----------------")
+print(df.sample())  # any one row is returned in the form of dataframe
+print()
+print(df.sample(2))  # any two rows are returned in the form of dataframe
+print()
