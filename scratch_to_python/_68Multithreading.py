@@ -26,11 +26,15 @@ import time
 
 
 def print_cube(num):
+    print("Inside print_cube()")
     print("Cube: {}".format(num * num * num))
 
 
 def print_square(num):
-    time.sleep(2)  # adding wait period of 2 secs
+    print("Inside print_square()")
+    #for _ in range(10000000000000):
+        #pass
+    # time.sleep(2)  # adding wait period of 2 secs
     print("Square: {}".format(num * num))
 
 
