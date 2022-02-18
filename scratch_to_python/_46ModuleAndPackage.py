@@ -21,13 +21,17 @@ The package is simply a namespace. The package also contains sub-packages inside
     Example:
 
     Student(Package)
-    | __init__.py (Constructor)
+    | __init__.py (Constructor)   ---- every package has this file and it is empty. This is how python identifies that it is a package.
     | details.py (Module)
     | marks.py (Module)
     | collegeDetails.py (Module)
 """
 
-# You can import entire module or just a class or function inside that module
+# You can import entire package or a specific module inside a package or just a class or function inside the module
+# import packagename - this will import all modules (.py) files inside this package
+# import packagename.module - this will import a specific module in side a package
+# from packagename.module import class1, class2, fun1, fun2
+
 import _46mymodule as mm
 # from _46mymodule import greeting, anotherfunction, someclass
 # from _46mymodule import *   --- importing all the names
