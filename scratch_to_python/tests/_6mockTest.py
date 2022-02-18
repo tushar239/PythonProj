@@ -1,5 +1,5 @@
-import unittest
-from unittest import mock
+import unittest  # unittest is a packagename
+from unittest import mock, main  # unittest package has module 'mock' and variable 'main'. this variable is assigned a class TestProgram. so, when you do main(), it instantiates TestProgram class.
 from unittest.mock import MagicMock
 
 
@@ -19,7 +19,6 @@ class TestMocking(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-
 
 
 class A:
