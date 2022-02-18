@@ -44,5 +44,23 @@ class TestStringMethods(unittest.TestCase):
         with self.assertRaises(ValueError):
             self.parse_int("1a")
 
+    # https://www.geeksforgeeks.org/python-unittest-assertin-function/
+    def test_assertIn(self):
+        key = "gfg"
+        container = "geeksforgeeks"
+        # error message in case if test case got failed
+        message = "key is not in container."
+        # assertIn() to check if key is in container
+        self.assertIn(key, container, message)  # AssertionError: 'gfg' not found in 'geeksforgeeks' : key is not in container.
+        self.assertNotIn(key, container, message)
+
+    def test_assertNotIn(self):
+        key = "gfg"
+        container = "geeksforgeeks"
+        # error message in case if test case got failed
+        message = "key is in container."
+        # assertNotIn() to check if key is not in the container
+        self.assertNotIn(key, container, message)
+
 if __name__ == '__main__':
     unittest.main()
