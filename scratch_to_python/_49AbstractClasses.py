@@ -76,6 +76,8 @@ class Quadrilateral(Polygon):
 
 
 # Driver code
+# P = Polygon()  # TypeError: Can't instantiate abstract class Polygon with abstract methods enjoy, noofsides
+
 R = Triangle()
 R.noofsides()  # I have 3 sides
 R.enjoy()  # enjoy      enjoy drawing Triangle
