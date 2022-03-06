@@ -1,5 +1,5 @@
 # https://www.w3schools.com/python/python_lists_comprehension.asp
-
+# https://pythonguides.com/python-list-comprehension-using-if-else/
 """
 Comprehension:
 Shorter way to write the code with loops and if conditions in just one line.
