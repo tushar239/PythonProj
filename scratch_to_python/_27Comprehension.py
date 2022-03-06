@@ -60,5 +60,6 @@ newlist = ['hello' for x in fruits]
 print(newlist)  # ['hello', 'hello', 'hello', 'hello', 'hello']
 
 # Return "orange" instead of "banana"
+# when you need else condtion, for loop goes after if-else
 newlist = [x if x != "banana" else "orange" for x in fruits]
 print(newlist)  # ['apple', 'orange', 'cherry', 'kiwi', 'mango']
