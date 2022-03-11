@@ -15,8 +15,8 @@ turtle.left(90)
 turtle.forward(50)
 turtle.left(90)
 turtle.forward(50)
-
 turtle.end_fill()
+
 
 # this code will move turtle to a specific position (x,y coordinates) without drawing a line.
 # That's why you need to use penup() first.
