@@ -1,0 +1,98 @@
+introduction to DBMS and RDBMS
+https://www.youtube.com/watch?v=FR4QIeZaPeM
+What is RDBMS?
+https://www.youtube.com/watch?v=OqjJjpjDRLc
+What is SQL?
+https://www.youtube.com/watch?v=ld6YS5ZK2tE
+
+Example of RDBMS tables:
+http://onlineopenacademy.com/what-is-rdbms/
+
+
+Explain what is rows and columns in a table.
+Take an example of customer table from https://www.w3schools.com/sql/sql_syntax.asp
+
+
+Create database
+
+    create database testdb;
+    show tables from testdb;
+
+    DROP DATABASE testdb;
+
+Create table
+
+        CREATE TABLE Persons (
+            PersonID int,
+            LastName varchar(255),
+            FirstName varchar(255),
+            Address varchar(255),
+            City varchar(255)
+        );
+
+
+
+
+In vs Any
+    IN checks for existence of a value in the given list.
+    ANY on the other hand has operators available. It can check for combination of <,>,= .
+    Loosely speaking IN will be equivalent to ANY with equality operator.
+
+    IN clause can have list of values or a query, but ANY clause needs a query only.
+
+ANY vs ALL
+
+    The following SQL statement lists the ProductName if ALL the records in the OrderDetails table has Quantity equal to 10.
+
+    SELECT ProductName
+    FROM Products
+    WHERE ProductID = ALL
+        (SELECT ProductID
+            FROM OrderDetails
+            WHERE Quantity = 10);
+
+    The following SQL statement lists the ProductName if ANY record in the OrderDetails table has Quantity equal to 10.
+
+    SELECT ProductName
+    FROM Products
+    WHERE ProductID = ANY
+        (SELECT ProductID
+            FROM OrderDetails
+            WHERE Quantity = 10);
+
+Join vs Exists
+
+    SELECT SupplierName
+    FROM Suppliers
+    WHERE EXISTS (SELECT ProductName FROM Products WHERE Products.SupplierID = Suppliers.supplierID AND Price < 20);
+
+    Use EXISTS, if you don't want display subquery's columns. Here, if you don't want to display ProductName, use EXISTS.
+    EXISTS is faster because database has just needs to run a subquery and find out TRUE or FALSE result. It doesn't have to join its result with outer query.
+
+After teaching Index,
+    teach how to run execution plan in mysql and explain whether it is full table scan or not.
+
+Functions
+    https://www.w3schools.com/sql/sql_ref_mysql.asp
+
+Date functions
+
+    https://www.w3schools.com/sql/sql_dates.asp
+
+NULL functions
+
+    https://www.w3schools.com/sql/sql_isnull.asp
+
+IS vs =
+    IS is used only for IS NULL, IS NOT NULL
+
+UPPER/LOWER function for case insensitivity
+     select * from customers where BINARY UPPER(address) = UPPER('Highway 21');   ---- performance is not good
+     or
+      select * from customers where  UPPER(address) = BINARY LOWER('Highway 21'); ---- performance is good
+
+     for case sensitivity, you need to use 'BINARY' in mysql. I think it is not required for oracle.
+
+     Why you shouldn't use UPPER/LOWER functions on the left side of where clause
+     https://use-the-index-luke.com/sql/where-clause/functions/case-insensitive-search
+
