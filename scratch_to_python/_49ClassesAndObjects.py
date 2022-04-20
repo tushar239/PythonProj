@@ -1,6 +1,8 @@
 """
 See the video 'Object Oriented Programming, Classes, Objects.mp4'.
 
+https://www.javatpoint.com/java-oops-concepts
+
 https://www.w3schools.com/python/python_classes.asp
 https://www.tutorialsteacher.com/python/python-class
 
