@@ -38,7 +38,7 @@ print(z)  # true
 z = (1 < 2) and (4 > 5)
 print(z)  # false
 
-#if x == True: # doesn't work in python
+# if x == True: # doesn't work in python
 if x: # In python, 0 means false and non-zero is true
     print("x is true")
 
