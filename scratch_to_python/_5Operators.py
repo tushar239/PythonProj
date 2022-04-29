@@ -17,6 +17,9 @@ String concatenation - 'Hello' + 'World'
 Length of String - len('world')
 Character in string - 'world'[0] = w
 """
+
+# Examples: https://www.geeksforgeeks.org/python-logical-operators-with-examples-improvement-needed/
+
 x = int()  # this will assign 0 to x.
 x = 5  # You don't declare identifiers with types in Python, that's what dynamic typing means.
 y: int = 10  # you don't have to assign a type to any variable. Even though, you assign, there is no strict typing in Python. You can assign string value to the same variable later on.
@@ -34,5 +37,10 @@ print(z)  # true
 
 z = (1 < 2) and (4 > 5)
 print(z)  # false
+
+#if x == True: # doesn't work in python
+if x: # In python, 0 means false and non-zero is true
+    print("x is true")
+
 
 
