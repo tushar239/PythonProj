@@ -42,5 +42,9 @@ print(z)  # false
 if x: # In python, 0 means false and non-zero is true
     print("x is true")
 
+a = 9
+b = 3
+if (a % b == 0):
+    print("a can be divided by b")
 
 
