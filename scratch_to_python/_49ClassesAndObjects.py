@@ -137,7 +137,7 @@ del person
 del person2.age
 
 # Private member
-# Python has just two access modifiers - private, public
+# Python has just three access modifiers - private, public, protected
 class D:
     # Constructor
     def __init__(self, name, age, address):
