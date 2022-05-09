@@ -19,6 +19,8 @@ Lambda Architecture
 https://databricks.com/glossary/lambda-architecture
 https://cazton.com/Content/images/blogpost/technicalposts/lambda-architecture-spark-hadoop-cazton.jpg
 
+Messaging queue and database
+https://stackify.com/message-queues-12-reasons/
 
 Explain what is rows and columns in a table.
 Take an example of customer table from https://www.w3schools.com/sql/sql_syntax.asp
@@ -129,6 +131,72 @@ Select Query
 
     The following SQL statement selects all the columns from the "Customers" table.
         SELECT * FROM table_name;
+
+Alias
+    SELECT column as alias_name FROM table_name;
+
+Normalization Forms
+    https://www.youtube.com/watch?v=UrYLYV7WSHM
+
+Types of Queries
+
+    https://media.geeksforgeeks.org/wp-content/uploads/20210920153429/new.png
+
+    https://www.geeksforgeeks.org/sql-ddl-dql-dml-dcl-tcl-commands/
+
+    DDL – Data Definition Language
+    DQl – Data Query Language
+    DML – Data Manipulation Language
+    DCL – Data Control Language
+
+Select Distinct
+
+    insert into Persons values (1, "Cho", "Tus", "A-1", null);
+    insert into Persons values (2, "Cho", "Mir", "A-2", null);
+    insert into Persons values (3, "Patel", "Mir", "A-2", null);
+    insert into Persons values (4, "Cho", "Tus", "A-4", null);
+
+    select distinct LastName from Persons;
+    select distinct LastName, FirstName from Persons;
+    select count(distinct LastName) from Persons;
+
+Creating temporary table using select query
+
+    SELECT Count(*) AS DistinctPersons
+    FROM (SELECT DISTINCT LastName FROM Persons) as a;
+
+    WITH temporaryTable(LName, FName) as
+    (SELECT LastName, FirstName
+    from persons)
+        SELECT LName, FName
+        FROM temporaryTable;
+
+UPDATE statement
+    UPDATE table_name
+    SET column1 = value1, column2 = value2, ...
+
+    UPDATE Customers
+    SET ContactName = 'Alfred Schmidt', City= 'Frankfurt'
+
+DELETE statement
+
+    DELETE FROM table_name
+
+WHERE condition
+
+    Note: The WHERE clause is not only used in SELECT statements, it is also used in UPDATE, DELETE, etc.!
+
+    SELECT column1, column2, ...
+    FROM table_name
+    WHERE condition;
+
+    SELECT * FROM Customers
+    WHERE Country='Mexico';
+
+    SELECT * FROM Customers
+    WHERE CustomerID=1;
+
+    Similarly, you can use where condition with Update and Delete queries also.
 
 
 
