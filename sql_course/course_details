@@ -221,6 +221,15 @@ AND, OR, NOT
     SELECT * FROM Customers
     WHERE NOT Country='Germany';
 
+    Combining AND, OR, NOT
+
+        SELECT * FROM Customers
+        WHERE Country='Germany' AND (City='Berlin' OR City='München');
+
+        SELECT * FROM Customers
+        WHERE NOT Country='Germany' AND NOT Country='USA';
+
+
 In vs Any
     IN checks for existence of a value in the given list.
     ANY on the other hand has operators available. It can check for combination of <,>,= .
