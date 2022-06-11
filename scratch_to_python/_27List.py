@@ -5,6 +5,8 @@ List items are indexed, the first item has index [0], the second item has index 
 Remember that the first item has index 0.
 
 The list is changeable, meaning that we can change, add, and remove items in a list after it has been created.
+
+https://techvidvan.com/tutorials/python-lists/
 """
 
 thislist = ["apple", "banana", "cherry", "apple", "cherry"]
@@ -43,6 +45,7 @@ thislist = ["apple", "banana", "cherry"]
 thislist[1:2] = ["blackcurrant", "watermelon"]
 print(thislist)  # ['apple', 'blackcurrant', 'watermelon', 'cherry']
 
+
 # If you insert less items than you replace, the new items will be inserted where you specified, and the remaining items will move accordingly:
 thislist = ["apple", "banana", "cherry"]
 thislist[1:3] = ["watermelon"]
@@ -56,6 +59,7 @@ print(thislist)  # ['apple', 'banana', 'watermelon', 'cherry']
 # Inserting Items at the end
 thislist = ["apple", "banana", "cherry"]
 thislist.append("orange")
+thislist.miru(len(thislist), "orange")
 print(thislist)  # ['apple', 'banana', 'cherry', 'orange']
 
 # Looping through list

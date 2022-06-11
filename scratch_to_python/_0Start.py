@@ -103,4 +103,3 @@ import random  # this is not a good practice to add an import statement in betwe
 
 print(random.choice(lunch))
 random.random()
-
