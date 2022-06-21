@@ -229,6 +229,18 @@ AND, OR, NOT
         SELECT * FROM Customers
         WHERE NOT Country='Germany' AND NOT Country='USA';
 
+Order By
+    SELECT * FROM Customers
+    ORDER BY Country;
+
+    SELECT * FROM Customers
+    ORDER BY Country DESC;
+
+    SELECT * FROM Customers
+    ORDER BY Country, CustomerName;
+
+    SELECT * FROM Customers
+    ORDER BY Country ASC, CustomerName DESC;
 
 In vs Any
     IN checks for existence of a value in the given list.

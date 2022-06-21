@@ -59,7 +59,7 @@ print(thislist)  # ['apple', 'banana', 'watermelon', 'cherry']
 # Inserting Items at the end
 thislist = ["apple", "banana", "cherry"]
 thislist.append("orange")
-thislist.miru(len(thislist), "orange")
+#thislist.insert(len(thislist), "orange")
 print(thislist)  # ['apple', 'banana', 'cherry', 'orange']
 
 # Looping through list
