@@ -196,6 +196,10 @@ WHERE condition
     SELECT * FROM Customers
     WHERE CustomerID=1;
 
+    SELECT column_names
+    FROM table_name
+    WHERE column_name IS NOT NULL;  --- or IS NULL
+
     Similarly, you can use where condition with Update and Delete queries also.
 
 AND, OR, NOT
@@ -229,6 +233,18 @@ AND, OR, NOT
         SELECT * FROM Customers
         WHERE NOT Country='Germany' AND NOT Country='USA';
 
+Subquery and IN clause
+
+    select * from person as p
+    where p.firstname = (select c.firstname from customer c where c.id = 1);
+
+    Here, subquery returns only one record. So, you can use '=' sign in where clause.
+
+    select * from person as p
+    where p.firstname in (select c.firstname from customer c where c.lastname = 'Chokshi')
+
+    Here, subquery returns only multiple records. So, you can use 'IN' clause in where clause.
+
 Order By
     SELECT * FROM Customers
     ORDER BY Country;
@@ -242,7 +258,158 @@ Order By
     SELECT * FROM Customers
     ORDER BY Country ASC, CustomerName DESC;
 
+Select TOP/LIMIT
+
+    Access uses 'TOP' clause
+
+        SELECT TOP number|percent column_name(s)
+        FROM table_name
+        WHERE condition;
+
+        SELECT TOP 3 * FROM Customers;
+
+    MySql LIMIT clause
+
+        SELECT column_name(s)
+        FROM table_name
+        WHERE condition
+        LIMIT 3;
+
+        SELECT * FROM Customers
+        WHERE Country='Germany'
+        LIMIT 3;
+
+    Oracle uses 'FETCH FIRST n ROWS ONLY' and 'ROWNUM'
+
+        SELECT column_name(s)
+        FROM table_name
+        ORDER BY column_name(s)
+        FETCH FIRST number ROWS ONLY;
+
+        SELECT TOP 50 PERCENT * FROM Customers;
+
+        SELECT * FROM Customers
+        FETCH FIRST 50 PERCENT ROWS ONLY;
+
+    Older oracle syntax
+
+        SELECT column_name(s)
+        FROM table_name
+        WHERE ROWNUM <= number;
+
+
+Alter Table
+
+    The ALTER TABLE statement is used to add, delete, or modify columns in an existing table.
+    The ALTER TABLE statement is also used to add and drop various constraints on an existing table.
+
+    ALTER TABLE table_name
+    ADD column_name datatype;
+
+    ALTER TABLE Customers
+    ADD Email varchar(255);
+
+    To delete a column in a table, use the following syntax (notice that some database systems don't allow deleting a column):
+
+    ALTER TABLE table_name
+    DROP COLUMN column_name;
+
+    ALTER TABLE Customers
+    DROP COLUMN Email;
+
+    To modify the datatype of a column
+
+    ALTER TABLE table_name
+    MODIFY COLUMN column_name datatype;
+
+    A column must be empty while changing the type of a column; otherwise it will raise an error.
+
+    Oracle 10G and later:
+
+    ALTER TABLE table_name
+    MODIFY column_name datatype;
+
+    You can increase the length of an existing column, or decrease it, if all existing data satisfies the new length.
+    Be careful while decreasing the size of a column where the data exist. It will raise an error if the new size is less than any of the data in that column.
+
+Constraints
+
+    CREATE TABLE table_name (
+        column1 datatype constraint,
+        column2 datatype constraint,
+        column3 datatype constraint,
+        ....
+    );
+
+    The following constraints are commonly used in SQL:
+
+        NOT NULL - Ensures that a column cannot have a NULL value
+        UNIQUE - Ensures that all values in a column are different
+        PRIMARY KEY - A combination of a NOT NULL and UNIQUE. Uniquely identifies each row in a table
+        FOREIGN KEY - Prevents actions that would destroy links between tables
+        CHECK - Ensures that the values in a column satisfies a specific condition
+        DEFAULT - Sets a default value for a column if no value is specified
+        CREATE INDEX - Used to create and retrieve data from the database very quickly
+
+Not Null Constraint
+
+    By default, a column can hold NULL values.
+    The NOT NULL constraint enforces a column to NOT accept NULL values.
+
+    CREATE TABLE Persons (
+        ID int NOT NULL,
+        LastName varchar(255) NOT NULL,
+        FirstName varchar(255) NOT NULL,
+        Age int
+    );
+
+    ALTER TABLE Persons
+    MODIFY Age int NOT NULL;
+
+Unique Constraint
+
+    Oracle
+        CREATE TABLE Persons (
+            ID int NOT NULL UNIQUE,
+            LastName varchar(255) NOT NULL,
+            FirstName varchar(255),
+            Age int
+        );
+
+    MySql
+        CREATE TABLE Persons (
+            ID int NOT NULL,
+            LastName varchar(255) NOT NULL,
+            FirstName varchar(255),
+            Age int,
+            UNIQUE (ID)
+        );
+
+    To name a UNIQUE constraint, and to define a UNIQUE constraint on multiple columns, use the following SQL syntax:
+
+    CREATE TABLE Persons (
+        ID int NOT NULL,
+        LastName varchar(255) NOT NULL,
+        FirstName varchar(255),
+        Age int,
+        CONSTRAINT UC_Person UNIQUE (ID,LastName)
+    );
+
+    ALTER TABLE Persons
+    ADD UNIQUE (ID);
+
+    ALTER TABLE Persons
+    ADD CONSTRAINT UC_Person UNIQUE (ID,LastName);
+
+    MySql
+        ALTER TABLE Persons
+        DROP INDEX UC_Person;
+    Oracle
+        ALTER TABLE Persons
+        DROP CONSTRAINT UC_Person;
+
 In vs Any
+
     IN checks for existence of a value in the given list.
     ANY on the other hand has operators available. It can check for combination of <,>,= .
     Loosely speaking IN will be equivalent to ANY with equality operator.
@@ -268,6 +435,9 @@ ANY vs ALL
         (SELECT ProductID
             FROM OrderDetails
             WHERE Quantity = 10);
+
+
+
 
 Join vs Exists
 
