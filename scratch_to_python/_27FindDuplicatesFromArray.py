@@ -2,7 +2,7 @@ def findDuplicates(thislist):
     for i in range(0, len(thislist)):
         element = thislist[i]
         for j in range(i + 1, len(thislist)):
-            if thislist[i] == thislist[j]:
+            if element == thislist[j]:
                 print(thislist[i])
 
 

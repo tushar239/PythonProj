@@ -12,10 +12,22 @@ However, Python does not have a character data type, a single character is simpl
 Square brackets can be used to access elements of the string.
 
 String in IMMUTABLE in Python like Java and many other programming languages.
+https://www.tutorialspoint.com/python_text_processing/python_string_immutability.htm
 """
 
 a = "Hello"
 print(a)  # Hello
+
+# Immutability - Can not reassign - https://www.tutorialspoint.com/python_text_processing/python_string_immutability.htm
+t = "Tutorialspoint"
+print(type(t))
+# t[0] = "M" # TypeError: 'str' object does not support item assignment
+
+# When we run the above program we get the following output.
+# As you can see above a and a point to same location. Also N and N also point to the same location.
+x = 'banana'
+for idx in range(0, len(x)):
+    print(x[idx], "=", id(x[idx]))
 
 # Multiline quotes --- you can use three double quotes or three single quotes
 a = """Lorem ipsum dolor sit amet,
