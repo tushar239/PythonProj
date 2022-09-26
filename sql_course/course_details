@@ -168,8 +168,8 @@ Creating temporary table using select query
     WITH temporaryTable(LName, FName) as
     (SELECT LastName, FirstName
     from persons)
-        SELECT LName, FName
-        FROM temporaryTable;
+    SELECT LName, FName
+    FROM temporaryTable;
 
 UPDATE statement
     UPDATE table_name
@@ -407,6 +407,24 @@ Unique Constraint
     Oracle
         ALTER TABLE Persons
         DROP CONSTRAINT UC_Person;
+
+Primary Key
+
+    Unique + Not Null
+    https://www.w3schools.com/sql/sql_primarykey.asp
+
+    Index will automatically be created on primary key column.
+
+Index
+    https://www.w3schools.com/sql/sql_create_index.asp
+
+Foreign Key
+    https://www.w3schools.com/sql/sql_foreignkey.asp
+    A FOREIGN KEY is a field (or collection of fields) in one table, that refers to the PRIMARY KEY in another table.
+    The table with the foreign key is called the child table, and the table with the primary key is called the referenced or parent table.
+
+    A foreign key can refer to either a unique or a primary key of the parent table. If the foreign key refers to a non-primary unique key, you must specify the column names of the key explicitly.
+
 
 In vs Any
 
