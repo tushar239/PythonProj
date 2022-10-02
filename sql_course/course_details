@@ -418,6 +418,9 @@ Primary Key
 Index
     https://www.w3schools.com/sql/sql_create_index.asp
 
+Check Constraint
+    https://www.w3schools.com/sql/sql_check.asp
+
 Foreign Key
     https://www.w3schools.com/sql/sql_foreignkey.asp
     A FOREIGN KEY is a field (or collection of fields) in one table, that refers to the PRIMARY KEY in another table.
@@ -425,6 +428,14 @@ Foreign Key
 
     A foreign key can refer to either a unique or a primary key of the parent table. If the foreign key refers to a non-primary unique key, you must specify the column names of the key explicitly.
 
+Default value
+    https://www.w3schools.com/sql/sql_default.asp
+
+    The DEFAULT constraint is used to set a default value for a column.
+    The default value will be added to all new records, if no other value is specified.
+
+Auto Increment
+    https://www.w3schools.com/sql/sql_autoincrement.asp
 
 In vs Any
 
