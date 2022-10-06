@@ -76,3 +76,17 @@ if txt.find("expensive") == -1:
 
 # print(txt.index("expensive")) # Java returns -1, if substring not found in a string, but python throws an error because -1 is an index in Python(last char of string)
 # You can use txt.find("expensive"), if you want -1 as returned value, in case a substring is not found in a string.
+
+s: str = "abcad"
+count: int = 0
+while "a" in s: # see whether 'a' is inside s
+    itr = s.find("a")
+    count = count + 1
+    # s.replace('a', '') # all a's will be replaced
+    s.replace('a', '', 1) # replaces only first available a
+print("total number of a's "+count)
+
+
+# ord() function to get a number for a character
+# https://www.w3schools.com/python/ref_func_ord.asp
+x = ord("h") # 104
