@@ -475,6 +475,10 @@ Date and Date Functions
 Between
     https://www.javatpoint.com/mysql-between
 
+Group By and Having
+
+    https://www.w3schools.com/sql/sql_groupby.asp
+
 Join vs Exists
 
     SELECT SupplierName
@@ -500,6 +504,7 @@ Date functions
 
     MySql
     select  DATE_FORMAT(CURRENT_TIMESTAMP, '%e-%M-%Y:%H:%i')  from dual;
+
 
 
 NULL functions
