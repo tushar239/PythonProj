@@ -1,0 +1,2039 @@
+Install Educational Jetbrain's PyCharm Educational Version. It has educational sample python programs.
+Another tutorials: 
+	http://www.tutorialspoint.com/python/  (for beginners)
+	https://docs.python.org/ (This is a full python tutorial)
+
+builins.py (builtins module)
+----------
+	In python module means a python file. you can import one python file into another.
+
+	https://docs.python.org/3/library/builtins.html
+	All builtin functions and vars are in builins.py. It is by default available to your modules. It is like java.lang.* in Java. You dont need to import it java, so as builtins in Python.
+
+
+	1) builtins module's classes
+	builtins module has classes also. 
+
+	2) builtins module's methods
+	https://docs.python.org/3/library/functions.html#built-in-funcs
+
+	Many buitins methods are actually classes
+	e.g. slice, range, list, __generator, __function, __method, __coroutine, __namedtuple
+
+	Many builtins methods are actually methods also
+	e.g. sorted, abs, all, any, callable, compile, setattr, getattr, delattr, dir, eval, exec, exit, format, globals, locals, isinstance, issubclass, iter, len, max, min, open, pow, print, round, __import__, __build_class__, vars etc
+
+	3) builtins module's constants
+	https://docs.python.org/3/library/constants.html#built-in-consts
+
+	object class is a base class in Python. It has many methods, but __new__ and __init__ are special.
+	__new__ is static method that is used to instantiate a class. Normally, you don't override it in your class.
+	__init__(self,...) is a method that is used to initialize instance variables. Normally, you override this method in your class.
+
+	http://stackoverflow.com/questions/674304/pythons-use-of-new-and-init
+
+	__new__ is the first step of instance creation. It's called first, and is responsible for returning a new instance of your class. In contrast, __init__ doesn't return anything; it's only responsible for initializing the instance after it's been created.
+	In general, you shouldn't need to override __new__ unless you're subclassing an immutable type like str, int, unicode or tuple.
+
+
+
+	4) Normally, you don't need to import builtins module in your module, but if you want you can do it to differentiate a call to your function and builtins module's function.
+	e.g. this script has open function that needs to call builtins open.
+		import builtins
+
+		def open(path):
+			f = builtins.open(path)
+
+	You can also use __builitins__.open(path).
+
+	Most modules have the name __builtins__ made available as part of their globals. The value of __builtins__ is normally either this module or the value of this module’s __dict__ attribute.
+
+
+	5) NotImplemented constant and NotImplementedError class:
+		https://dwieeb.com/2015/06/02/usages-of-notimplemented-and-notimplementederror-in-python/
+		NotImplemented is a buitins module's constant.
+		Normally, if you don't want client to access a method, then you raise an error (in Python, you raise NotImplementedError).
+		But catching a raised error is very expensive, so Python has another alternative of returning NotImplemented from these kind of methods.
+		NotImplemented is same as 'None (null)', but it is specially used for methods return value.
+	
+		class BaseClass:
+			def foo(self):
+				raise NotImplementedError
+
+
+			class GoodChildClass(BaseClass):
+				def foo(self):
+					return 'bar'
+
+
+			class BadChildClass(BaseClass):
+				pass
+
+
+		good = GoodChildClass()
+		print(good.foo())  # bar
+		bad = BadChildClass()
+		print(bad.foo()) # NotImplemented
+	
+	
+	6) object class:
+		builtins module has an object class that is by default inherited by any class.
+		object class has many methods that you can override in your class.
+	
+		def __delattr__(self, *args, **kwargs): # real signature unknown
+		def __dir__(self): # real signature unknown; restored from __doc__
+		def __eq__(self, *args, **kwargs): # real signature unknown
+		def __format__(self, *args, **kwargs): # real signature unknown
+		def __getattribute__(self, *args, **kwargs): # real signature unknown
+		def __ge__(self, *args, **kwargs): # real signature unknown
+		def __gt__(self, *args, **kwargs): # real signature unknown
+		def __hash__(self, *args, **kwargs): # real signature unknown
+		def __init__(self): # known special case of object.__init__
+		def __le__(self, *args, **kwargs): # real signature unknown
+		def __lt__(self, *args, **kwargs): # real signature unknown
+
+		@staticmethod # known case of __new__
+		def __new__(cls, *more): # known special case of object.__new__
+		def __ne__(self, *args, **kwargs): # real signature unknown
+		def __reduce_ex__(self, *args, **kwargs): # real signature unknown
+		def __reduce__(self, *args, **kwargs): # real signature unknown
+		def __repr__(self, *args, **kwargs): # real signature unknown
+		def __setattr__(self, *args, **kwargs): # real signature unknown
+		def __sizeof__(self): # real signature unknown; restored from __doc__
+		def __str__(self, *args, **kwargs): # real signature unknown
+
+		@classmethod # known case
+		def __subclasshook__(cls, subclass): # known special case of object.__subclasshook__
+
+	7) BaseException class and Chile Exception classes:
+		builtins module has Exception classes also.
+	
+		It is like a Throwable class in Java. All exception classes extend this class.
+			class BaseException(object):
+	
+	8) str, int, bool, bytearray, bytes, ..., complex class etc:
+		i = int(x="10") # using int class to convert int or string to int
+		print(type(i)) # <class 'int'>
+
+		j = 10
+		print(type(j)) # <class 'int'>
+		print(i == j) # True
+
+		IMP
+		Unlike to Java, there is no difference between int class object and int literal in Python.
+
+
+		what is complex(...) ???????????
+		https://en.wikipedia.org/wiki/Complex_number
+		https://docs.python.org/3.0/library/cmath.html
+	
+	9) staticmethod, classmethod, property class etc
+	
+		These classes are used as decorators(annotations) in Python.
+	
+		- You can use @staticmethod to declare a method as static inside a class.
+		- You can use @classmethod on a method. This method takes 'cls' as a first parameter instead of 'self'
+		- property decorator - property(fget=None, fset=None, fdel=None, doc=None)
+				class C(object):
+					@property
+					def x(self):
+						"I am the 'x' property."
+						return self._x
+				
+					@x.setter
+					def x(self, value):
+						self._x = value
+				
+					@x.deleter
+					def x(self):
+						del self._x
+	
+
+__main__ and __module__
+---------------------
+	http://stackoverflow.com/questions/419163/what-does-if-name-main-do
+	
+	__module__ is a built-in property of any class.
+	__main__ is a module name. Class.__module__ is assigned a module name when Python interpreter runs.
+	if the python interpreter is running that module (the source file) as the main program, it sets the special __module__ variable to have a value "__main__". 
+	If this file is being imported from another module, __module__ will be set to the module's name.
+
+	def fun():
+		...
+	
+	if __name__ == "__main__":  # This condition acts like 'main()' in java    
+		...
+			
+Attributes
+----------
+	variables and functions are called attributes in Python.
+
+Varargs
+-------
+	http://www.saltycrane.com/blog/2008/01/how-to-use-args-and-kwargs-in-python/
+
+	The special syntax, *args and **kwargs in function definitions is used to pass a variable number of arguments to a function. 
+	The single asterisk form (*args) is used to pass a non-keyworded (tuple, list, set etc), variable-length argument list, 
+	and 
+	The double asterisk form is used to pass a keyworded (key-value pairs), variable-length argument list.
+
+
+	# testing *args: parameter with * is considered as tuple (varargs)
+	def test_var_args(farg, *args):
+		print("formal arg:", farg)
+		for element in args: # args is a tuple
+			print("args element: "+element)
+
+
+	# testing **kwargs: parameter with ** is considered as dictionary(map)
+	# you pass it is a test_var_kwargs(1, myarg2="two", myarg3=3)
+	def test_var_kwargs(farg, **kwargs):
+		print("formal arg:", farg)
+		for key in kwargs: # kwargs is a dictionary(map)
+			print("another keyword arg: %s: %s" % (key, kwargs[key]))
+
+
+	# Passing both args and kwargs together
+	def test_var_args_kwargs_together(*args, **kwargs):
+		print(args)
+		print(kwargs)
+
+
+	# You can actually pass arguments as a tuple
+	# args=(...)
+	# test_var_args_call(*args)
+	def test_var_args_call(arg1, arg2, arg3):
+		print("arg1:", arg1)
+		print("arg2:", arg2)
+		print("arg3:", arg3)
+
+
+	# You can actually pass arguments as a dictionary(map)
+	# kwargs={"fn":"...","ln":"...","age":...},
+	# test_var_kwargs_call(**kwargs)
+	def test_var_kwargs_call(fn, ln, age):
+		print("fn:", fn)
+		print("ln:", ln)
+		print("age:", age)
+
+	args=("hi", "I", "am")
+	kwargs={"fn":"Tushar", "ln":"Chokshi", "age":26}
+
+	test_var_args_call(*args) # same as test_var_args_call("hi", "I", "am")
+	test_var_kwargs_call(**kwargs) # same as test_var_args_call("fn":"Tushar", "ln":"Chokshi", "age":26)
+	test_var_args_kwargs_together(*args, **kwargs) # same as test_var_args_call("hi", "I", "am", "fn":"Tushar", "ln":"Chokshi", "age":26)
+
+	test_var_args(1, "hi", "I", "am")
+	test_var_kwargs(1, myarg2="two", myarg3=3)
+
+
+	Another Example:-
+
+	def func(required_arg, *args, **kwargs):
+		# required_arg is a positional-only parameter.
+		print(required_arg)
+
+		# args is a tuple of positional arguments,
+		# because the parameter name has * prepended.
+		if args: # If args is not empty.
+			print(args)
+
+		# kwargs is a dictionary of keyword arguments,
+		# because the parameter name has ** prepended.
+		if kwargs: # If kwargs is not empty.
+			print(kwargs)
+
+	func("required argument")
+	# O/P: required argument
+	func("required argument", 1, 2, '3')
+	# O/P:
+	# required argument
+	# (1, 2, '3')
+	func("required argument", 1, 2, '3', hi=4, hello="foo")
+	# O/P:
+	# required argument
+	# (1, 2, '3')
+	# {'hi': 'foo', 'hello': 4}
+
+print statement
+---------------
+	syntax of print is 'def print(*args, sep=' ', end='\n', file=None)'
+	*args is same as java varargs
+
+	print "Jai Guru Dev"
+
+	In Python, you can send the parameters in any order as long as you provide a parameter name
+	print("Tushar", "Chokshi", sep="$", end="\n")
+	O/P: Tushar$Chokshi
+
+	# This is same as String.format() in java
+	print("Value of static var is %d and value of name var is %s " % (Parent.get_static_var(), parent.get_name()))
+
+	printing in separate new line
+
+		for i in [1,2,3,4,5]
+			print i 		# this will print in new line. Same as System.out.println() in java
+	
+		O/P:
+		1
+		2
+		3
+		4
+		5
+
+	printing in one line
+
+		for i in [1,2,3,4,5]:
+			print(i, end=" ") # 1 2 3 4 5
+
+comments
+--------
+	single line comment
+	# something
+
+	multi-line comment : it is surrounded by 3 single quotes
+	'''
+	something
+	'''
+
+	OR		: it is surrounded by 3 double quotes
+	
+	"""
+	something
+	"""
+
+	3 single/double quotes are also used for documentation string(docstring), but if your contents are not docstring then Python considers it as a comment.
+
+Variables
+---------
+	No type for the variables
+
+	Assignment : 
+		You can reassign a value to a variable with different type
+	Type Casting (Type Conversion): 
+		To change the variable from one type to another, int(var), float(var), str(var) etc inbuilt functions are there
+		Unlike to Java, you cannot concatenate non-string with string. You need to use str(var) function
+	Undefined Vars:
+		Unlike to Javascript, you cannot have undefined variables. It will throw error
+	Arithmetic operations:
+		you can use +, -, *, %, /
+		In addition Python has the power (**) --- NEW
+	Equality Comparison: 
+		Use == operator to compare any two variables (string or non-string). Cannot compare vars of two different types.
+	Chained Comparison: --- NEW
+		one < two < three
+		
+
+	# Assignment
+	a = b = 2  # This is called a "chained assignment"
+	greetings = "greetings"
+	print ("greetings:"+ greetings)
+
+	greetings=10 
+	print ("greetings:"+ str(greetings))
+
+	# Type Conversion
+	# IMP - Unlike to Java, you cannot concatenate non-string with string. You need to use builtins module's class str(var).
+	float_num = 10.0
+	#print("str:"+ float_num)   # doesnt work - you cannot concatenate flat with string
+	print("str:"+ str(float_num))
+
+
+	# Undefined Variable
+	variable = 1
+	#print(otherVar) # NameError: name 'otherVar' is not defined
+
+	# Arithmetic Operations
+	number = 9.0       
+	#result = number/0 # ZeroDivisionError: float division
+	result = number/2
+	remainder = number%2
+
+	print("result = " + str(result)) # 4.5
+	print("remainder = " + str(remainder)) # 1.0
+
+	print(2**3) # it is same as 2*2*2
+
+	# Equality Comparison
+	f1=1.0
+	s="1.0"
+	f2=1.0
+
+	print("comparing float and string: "+str(f1==s)) # False
+	print("comparing float and float: "+str(f1==f2)) # True
+
+	# Chained Comparison
+	one = 1
+	two = 2
+	three = 3
+
+	 # This chained comparison means that the (one < two) and (two < three) comparisons are performed at the same time.
+	print(one < two < three) # True
+
+	is_greater = three < two
+	print(is_greater) # False
+
+None(null) Variable
+-------------------
+	To initialize any variable as null in Python, there is a keyword 'None' available.
+
+	firstName=None # initializing a var as null
+	firstName="Tushar"
+
+Strings
+-------
+	Concatenation
+		Using + operator, you can concatenate strings
+	
+	Multiplication: ----- NEW
+		print("hello" * 10) will print "hello" ten times
+	
+	Indexing --- NEW
+		You can use String like an array of characters to get any character out of it.
+	
+		Positive Indexing		
+			str="hello"   print(str[2])	will print a char 'l'.
+			It is same as charAt(index) function of java.
+		Negative Indexing
+			You can use -ve numbers to read a string backwards
+			str="hello"   print(str[-1])	will print a char 'o'.	
+		
+	Slicing (substring)
+		monty_python = "Monty Python"
+		print(monty_python[:5])  # Monty    # one or both index could be dropped. monty_python[:5] is equal to monty_python[0:5]
+		print(monty_python[1:3]) # on
+	
+	in Operator (contains)
+		print ("ll" in "hello") # True
+		print ("el" not in "hello") # False
+	
+	length function --- NEW
+		len is a function in Python. It is not a method of string object. You cannot do "hello".len(). You have to do len("hello")
+		print(len("hello")) #5
+	
+	Formatting
+		http://www.tutorialspoint.com/python/python_strings.htm
+		Just like String.format("hi %d", 9) in java
+		print "My name is %s and weight is %d kg!" % ('Zara', 21) # My name is Zara and weight is 21 kg!
+
+	Triple Quotes --- NEW
+		http://www.tutorialspoint.com/python/python_strings.htm
+		Python's triple quotes comes to the rescue by allowing strings to span multiple lines, including verbatim NEWLINEs, TABs, and any other special characters.
+	
+		para_str = """this is a long string that is made up of
+					several lines and non-printable characters such as
+					TAB ( \t ) and they will show up that way when displayed.
+					NEWLINEs within the string, whether explicitly given like
+					this within the brackets [ \n ], or just a NEWLINE within
+					the variable assignment will also show up.
+					"""
+		print para_str	
+	
+		O/P:
+			this is a long string that is made up of
+			several lines and non-printable characters such as
+			TAB (    ) and they will show up that way when displayed.
+			NEWLINEs within the string, whether explicitly given like
+			this within the brackets [
+			 ], or just a NEWLINE within
+			the variable assignment will also show up.
+
+	Escaping
+		print('"\'hi\'"') # "'hi'"	
+
+	Ignoring escape --- NEW
+		Raw strings do not treat the backslash as a special character at all. Every character you put into a raw string stays the way you wrote it 
+		print 'C:\\nowhere'  # C:\nowhere
+		print r'C:\\nowhere' # C:\\nowhere	--- prefix r allows to consider a string as a row string. It ignores escape characters.
+	
+		print 'hi \t how r u'  # 'hi		how r u'	
+		print r'hi \t how r u' # 'hi \t how r u'
+		
+	Unicode String --- NEW
+		http://www.tutorialspoint.com/python/python_strings.htm
+		Normal strings in Python are stored internally as 8-bit ASCII, while Unicode strings are stored as 16-bit Unicode. This allows for a more varied set of characters, including special characters from most languages in the world.
+	
+		print u'Hello, world!' --- prefix u allows a string having UTF-8 charsets
+
+	Methods
+		http://www.tutorialspoint.com/python/python_strings.htm
+		There are lots of string methods
+		e.g. "hello".upper() # HELLO
+	
+		capitalize()
+		Capitalizes first letter of string
+
+		center(width, fillchar)
+		Returns a space-padded string with the original string centered to a total of width columns.
+
+		count(str, beg= 0,end=len(string))
+		Counts how many times str occurs in string or in a substring of string if starting index beg and ending index end are given.
+	
+		decode(encoding='UTF-8',errors='strict')
+		Decodes the string using the codec registered for encoding. encoding defaults to the default string encoding.
+	
+		encode(encoding='UTF-8',errors='strict')
+		Returns encoded string version of string; on error, default is to raise a ValueError unless errors is given with 'ignore' or 'replace'.
+	
+		endswith(suffix, beg=0, end=len(string))
+		Determines if string or a substring of string (if starting index beg and ending index end are given) ends with suffix; returns true if so and false otherwise.
+
+		expandtabs(tabsize=8)
+		Expands tabs in string to multiple spaces; defaults to 8 spaces per tab if tabsize not provided.
+	
+		find(str, beg=0 end=len(string))
+		Determine if str occurs in string or in a substring of string if starting index beg and ending index end are given returns index if found and -1 otherwise.
+	
+		index(str, beg=0, end=len(string))
+		Same as find(), but raises an exception if str not found.
+
+		isalnum()
+		Returns true if string has at least 1 character and all characters are alphanumeric and false otherwise.
+
+		isalpha()
+		Returns true if string has at least 1 character and all characters are alphabetic and false otherwise.
+
+		isdigit()
+		Returns true if string contains only digits and false otherwise.
+
+		islower()
+		Returns true if string has at least 1 cased character and all cased characters are in lowercase and false otherwise.
+
+		isnumeric()
+		Returns true if a unicode string contains only numeric characters and false otherwise.
+
+		isspace()
+		Returns true if string contains only whitespace characters and false otherwise.
+
+		istitle()
+		Returns true if string is properly "titlecased" and false otherwise.
+
+		isupper()
+		Returns true if string has at least one cased character and all cased characters are in uppercase and false otherwise.
+
+		join(seq)
+		Merges (concatenates) the string representations of elements in sequence seq into a string, with separator string.
+
+		len(string)
+		Returns the length of the string
+
+		ljust(width[, fillchar])
+		Returns a space-padded string with the original string left-justified to a total of width columns.
+
+		lower()
+		Converts all uppercase letters in string to lowercase.
+
+		lstrip()
+		Removes all leading whitespace in string.
+
+		maketrans()
+		Returns a translation table to be used in translate function.
+
+		max(str)
+		Returns the max alphabetical character from the string str.
+
+		min(str)
+		Returns the min alphabetical character from the string str.
+
+		replace(old, new [, max])
+		Replaces all occurrences of old in string with new or at most max occurrences if max given.
+
+		rfind(str, beg=0,end=len(string))
+		Same as find(), but search backwards in string.
+
+		rindex( str, beg=0, end=len(string))
+		Same as index(), but search backwards in string.
+
+		rjust(width,[, fillchar])
+		Returns a space-padded string with the original string right-justified to a total of width columns.
+
+		rstrip()
+		Removes all trailing whitespace of string.
+
+		split(str="", num=string.count(str))
+		Splits string according to delimiter str (space if not provided) and returns list of substrings; split into at most num substrings if given.
+
+		splitlines( num=string.count('\n'))
+		Splits string at all (or num) NEWLINEs and returns a list of each line with NEWLINEs removed.
+
+		startswith(str, beg=0,end=len(string))
+		Determines if string or a substring of string (if starting index beg and ending index end are given) starts with substring str; returns true if so and false otherwise.
+
+		strip([chars])
+		Performs both lstrip() and rstrip() on string
+
+		swapcase()
+		Inverts case for all letters in string.
+
+		title()
+		Returns "titlecased" version of string, that is, all words begin with uppercase and the rest are lowercase.
+
+		translate(table, deletechars="")
+		Translates string according to translation table str(256 chars), removing those in the del string.
+
+		upper()
+		Converts lowercase letters in string to uppercase.
+
+		zfill (width)
+		Returns original string leftpadded with zeros to a total of width characters; intended for numbers, zfill() retains any sign given (less one zero).
+
+		isdecimal()
+		Returns true if a unicode string contains only decimal characters and false otherwise.		
+
+Data Structures
+---------------
+	http://www.tutorialspoint.com/python/python_lists.htm
+	http://www.tutorialspoint.com/python/python_tuples.htm
+	http://www.tutorialspoint.com/python/python_dictionary.htm
+
+	https://docs.python.org/2/tutorial/datastructures.html
+
+	Python has data structures like 
+		List - can be used to create Set, Stack, Queue, Tuple
+		Tuple --- immutable
+		Dictionary (Map) --- like Java map. keys should be immutable. It means that along with String, int etc, you can also use Tuple.
+
+	List -
+		In Python, List is nothing but an resizable array.  --- NEW
+		Unlike to Java, you don't have to create an instance of a List.
+	
+		Lists might contain items of different types, but usually all the items in the list are of the same type. 
+		Like strings, lists can be indexed and sliced
+		Tuple can be converted to a list using a function list(tuple)
+
+		squares = [1, 4, 9, 16, 25]   # create new list
+		print(squares)	# [1, 4, 9, 16, 25]
+		print(squares[:3]) # [1, 4, 9]
+	
+		List Functions
+			http://www.tutorialspoint.com/python/python_lists.htm
+			cmp(list1, list2)
+			Compares elements of both lists. Return -1 / 0 / 1.
+			list1==list2 returns True/False
+
+			len(list)
+			Gives the total length of the list.
+
+			max(list)
+			Returns item from the list with max value.
+
+			min(list)
+			Returns item from the list with min value.
+
+			list(seq)
+			Converts a tuple into list.
+	
+		List Operations
+			http://www.tutorialspoint.com/python/python_lists.htm
+			- Concatenating two lists  - use list1 += list2
+			- Repetition - use list=list*4     ----- NEW
+			- Adding new element - use list.append(element)
+			- Changing the element - use list[index]=element
+			- Removing an element 
+				- use list[index]=[]  or use list[start:end]=[]
+				- use list.remove(obj)
+				- use del operator  -  del list[index]
+			- Indexing - use list[index] to retrieve an element from a particular index in the list
+			- Slicing - it is same retrieving java sublist. use list[start:end] or list[:end] same as list[0:end] or list[start:] same as list[start:len(list)]
+			- Clearing - clearing is same as removing all elements. list[0:len(list)]=[]
+			- In/not in operator (contains) = 3 in [1,2,3] returns True , 4 not in [1,2,3] returns false
+			- Iteration - 
+				for x in [1, 2, 3]: 
+					print x			# There are no braces like Java. So indentation is important in Python.
+				
+	
+			animals = ['elephant', 'lion', 'tiger', "giraffe"]  # create new list
+			print(animals) 										# ['elephant', 'lion', 'tiger', "giraffe"] 
+
+			animals += ["monkey", 'dog']    # add two items to the list
+			print(animals) 					# ['elephant', 'lion', 'tiger', 'giraffe', 'monkey', 'dog']
+
+			animals.append("dino")   # add one more item to the list using append() method
+			print(animals) 			 # ['elephant', 'lion', 'tiger', 'giraffe', 'monkey', 'dog', 'dino']
+
+			animals[len(animals)-1] = "dinasauras"
+			print(animals) 			 # ['elephant', 'lion', 'tiger', 'giraffe', 'monkey', 'dog', 'dinasauras']
+
+			print(animals[1:3])		 # ['lion', 'tiger']
+
+			animals[1:3]=[]   	 	 #  Removing a few elements
+			print(animals)			 # ['elephant', 'giraffe', 'monkey', 'dog', 'dinasauras']
+
+			animals=animals*2		 # Repetition			
+			print(animals)			 # ['elephant', 'giraffe', 'monkey', 'dog', 'dinasauras', 'elephant', 'giraffe', 'monkey', 'dog', 'dinasauras']	
+		
+			print('elephant' in animals) # True
+		
+			animals[:len(animals)]=[] #  Clearing a list
+			print(animals)			 # []
+
+			del animals				 # animals become undefined
+			# print(animals) # NameError: name 'animals' is not defined
+
+
+
+
+	
+			list.append(obj)
+			Appends object obj to list
+	
+			list.count(obj)
+			Returns count of how many times obj occurs in list
+	
+			list.extend(seq)
+			Appends the contents of seq to list
+	
+			list.index(obj)
+			Returns the lowest index in list that obj appears
+
+			list.insert(index, obj)
+			Inserts object obj into list at offset index
+
+			list.pop(obj=list[-1])
+			Removes and returns last object or obj from list
+	
+			list.remove(obj)
+			Removes object obj from list
+	
+			list.reverse()
+			Reverses objects of list in place
+	
+			list.sort([func])
+			Sorts objects of list, use compare func if given
+
+	Tuples -
+		Tuples are almost same as List. The only difference is they are unmodifiable once created. You cannot add/delete/change anything in a tuple.
+		Tuple is enclosed within (). List is enclosed within []
+	
+		Creating a tuple is as simple as putting different comma-separated values. Optionally you can put these comma-separated values between parentheses also. For example −
+
+		tup1 = ('physics', 'chemistry', 1997, 2000);
+		tup2 = (1, 2, 3, 4, 5 );
+		tup3 = "a", "b", "c", "d";
+	
+		The empty tuple is written as two parentheses containing nothing −
+		tup1 = ();
+	
+		To write a tuple containing a single value you have to include a comma, even though there is only one value −
+		tup1 = (50,);
+	
+		Like string indices, tuple indices start at 0, and they can be sliced, concatenated, and so on.
+	
+		tup=(1,2,'abc')
+		for x in tup:      # There are no braces like Java. So indentation is important in Python
+			print x
+		
+		del tup;
+		#print tup; # NameError: name 'tup' is not defined
+
+	Dictionaries -
+		It is just like a Map in Java.
+		Just like Lists, Tuples and Strings, you can use 'in' operator 
+		You can use 'del' operator to remove key-value
+		Keys must be immutable. ------ NEW
+			Which means you can use strings, numbers or tuples as dictionary keys but something like ['key'] is not allowed. 
+	
+		phone_book = {"John": 123, "Jane": 234, "Jerard": 345}    # "John", "Jane" and "Jerard" are keys and numbers are values
+		print(phone_book)
+
+		# Add new item to the dictionary
+		phone_book["Jill"] = 456
+		print(phone_book)   
+
+		# Remove key-value pair from phone_book
+		del phone_book['John']
+
+		print(phone_book.keys()) # ['Jane', 'Jill', 'Jerard']
+		print(phone_book.values()) # [234, 456, 345]
+	
+		print('Jane' in phone_book) # in operator
+	
+		phone_book.clear();     # remove all entries in dict
+		print(phone_book)		# {}
+	
+		del phone_book ;        # delete entire dictionary
+		# print(phone_book)		# NameError: name 'grocery_dict' is not defined
+	
+		# Keys must be immutable. Which means you can use strings, numbers or tuples as dictionary keys but something like ['key'] is not allowed. 
+		# Following is a simple example:
+		dict = {['Name']: 'Zara', 'Age': 7}
+		# print "dict['Name']: ", dict['Name'] # TypeError: unhashable type: 'list'
+	
+		# You can use tuples as keys because they are immutable.
+		dict = {('Name'): 'Zara', 'Age': 7}
+		print "dict['Name']: ", dict[('Name')]
+	
+		http://www.tutorialspoint.com/python/python_dictionary.htm
+		Functions
+	
+			cmp(dict1, dict2)
+			Compares elements of both dict.
+
+			len(dict)
+			Gives the total length of the dictionary. This would be equal to the number of items in the dictionary.
+
+			str(dict)
+			Produces a printable string representation of a dictionary
+
+			type(variable)
+			Returns the type of the passed variable. If passed variable is dictionary, then it would return a dictionary type.
+	
+		Operations
+	
+		dict.clear()
+		Removes all elements of dictionary dict
+	
+		dict.copy()
+		Returns a shallow copy of dictionary dict
+
+		dict.fromkeys()
+		Create a new dictionary with keys from seq and values set to value.
+
+		dict.get(key, default=None)
+		For key key, returns value or default if key not in dictionary
+
+		dict.has_key(key)
+		Returns true if key in dictionary dict, false otherwise
+
+		dict.items()
+		Returns a list of dict's (key, value) tuple pairs. Converts {key1=value1, key2...} to [(key1,value1), (key2,value2), ...]
+
+		dict.keys()
+		Returns list of dictionary dict's keys
+
+		dict.setdefault(key, default=None)
+		Similar to get(), but will set dict[key]=default if key is not already in dict
+
+		dict.update(dict2)
+		Adds dictionary dict2's key-values pairs to dict
+
+		dict.values()
+		Returns list of dictionary dict's values
+
+	Set, Stack, Queue
+		https://docs.python.org/2/tutorial/datastructures.html
+	
+		List is used to create a Set, Stack or Queue
+	
+		# list provides pop(). so, it can be used as a stack
+		list = [3,4,5,4]
+		list.append(6)
+		list.pop() # list provides pop(). So It acts as a stack's pop()
+		print("list: "+str(list)) # [3, 4, 5, 4]
+		print([i for i in list]) # [3, 4, 5, 4] - one liner for loop (comprehensive loop)
+
+		# list as a set
+		# Note: to create an empty set you have to use set(), not {}; the latter creates an empty dictionary
+		mySet = set(list) # use set(list) to convert a list to set
+		print("set: "+str(mySet)) # {3, 4, 5}
+		for i in mySet:
+			print(i, end=" ") # 3 4 5
+		print()
+
+		# list as a queue
+		# To implement a queue, use collections.deque which was designed to have fast appends and pops from both ends.
+		myQueue = collections.deque(list) # use collections.deque(list) to convert a list to queue
+		myQueue.pop()
+		myQueue.popleft()
+		print("queue: "+ str(myQueue)) # deque([4, 5])
+		for i in myQueue:
+			print(i, end=" ") # 4 5
+		print()
+	
+		# list as a tuple
+		t = tuple(list)
+		print(t) # [3,4,5,4]
+
+Comprehensions of List (writing a loop in one line)
+----------------------
+	https://docs.python.org/2/tutorial/datastructures.html#list-comprehensions
+	
+	You can write a for loop in one line. Even nested for loop with if condition. This kind of comprehension returns a list.
+	
+	list=[3, 4, 5, 4]
+	print([i for i in list]) # [3, 4, 5, 4] - one liner for loop (comprehensive loop)
+	
+	# nested for loops with if condition
+	list1 = [1,2,3,4]
+	list2 = [4,5]
+	result = [(i,j) for i in list1 for j in list2 if i!=j]
+	print(result) # [(1, 4), (1, 5), (2, 4), (2, 5), (3, 4), (3, 5), (4, 5)]
+	
+Condition Expressions
+---------------------
+	equals (==), not equals (!=), and (and), or (or), not (not)
+	
+		Boolean operators are not evaluated from left to right. 
+		There's an order of operations for boolean operators: 
+			"not" is evaluated first, 
+			"and" is evaluated next, 
+			"or" is evaluated last.
+	
+		name = "John"
+		age = 17
+
+		print(name == "John" or age == 17) # True   # checks that either name equals to "John" OR age equals to 17
+		print(name == "John" and age != 23) # True
+		print (name == "John" and not age == 23) # True
+
+		print(name == "John" or not age > 17) # True
+		print(name == "Ellis" or not (name == "John" and age == 17)) # False
+	
+		file = open("readwritefile.txt","r+",1);
+		if(not file.closed): # instead of using if(file.closed == False), use if(not file.closed)
+			print("Reading the file\n")
+			print(file.read())
+			file.close()
+
+	if condition
+	
+		- If the suite of an if clause consists only of a single line, it may go on the same line as the header statement.
+	
+		var = 100
+		if ( var  == 100 ) : print "Value of expression is 100"
+		print "Good bye!"
+	
+	
+		- If the suite of an if clause consists of multiple lines, indentation is very important as there are no {} like Java.
+	
+		name = "John"
+		age = 17
+
+		if (name == "John" or age == 17):   # check that name is "John" or age is 17. If so print next 2 lines.
+			print("name is John")
+			print("John is 17 years old")
+
+		tasks = ['task1', 'task2']    # create new list
+
+		- if-else block
+	
+		if (tasks == []):
+			print("empty")
+		else:
+			print("not empty")
+	
+		- nested if block
+	
+		if expression1:
+		   statement(s)
+		   if expression2:
+			  statement(s)
+		   elif expression3:
+			  statement(s)
+		   else:
+			  statement(s)
+		elif expression4:
+		   statement(s)
+		else:
+		   statement(s)
+	
+Loops
+-----
+	For loop
+		# Iterating a list given by a range
+		for i in range(5):    # range(5) function returns list [0, 1, 2, 3, 4]
+			print(i)          
+
+
+		# Iterating a list
+		primes = [2, 3, 5, 7]   # create new list
+		for prime in primes:
+			print(prime)
+
+		# Iterating a Tuple
+		tuple1=(1,2,3,"hi",4,5,6)
+		for i in tuple1:
+			print(i)
+
+		# Iterating a String ----- NEW
+		# Strings are very similar to list in Python. So, you can iterate a String just like a list
+		for char in hello_world:
+			print char
+		
+	While loop
+		while expression:
+		   statement(s)
+   
+		Infinite while loop
+			b = True
+			while(b):
+				print("hi")   
+
+	break statement
+		zoo = ["lion", 'tiger', 'elephant']
+		while True:                         # this condition cannot possibly be false
+			animal = zoo.pop()       # extract one element from the list end
+			print(animal)
+			if animal == 'elephant':
+				break           # exit loop
+
+	continue statement
+		for x in range(10):
+			if x%2 == 0:   # If x is an even number
+				continue   # skip print(x) for this loop
+			print(x)
+
+	pass statement ------ NEW
+		http://www.tutorialspoint.com/python/python_pass_statement.htm
+		The pass statement is a null operation; nothing happens when it executes. The pass is also useful in places where your code will eventually go, but has not been written yet (e.g., in stubs for example):
+
+		for letter in 'Python': 
+		   if letter == 'h':
+			  pass			# nothing happens. It is a placeholder for future statements.
+			  print 'This is pass block'
+		   print 'Current Letter :', letter
+	   
+		   O/P:
+			Current Letter : P
+			Current Letter : y
+			Current Letter : t
+			This is pass block
+			Current Letter : h
+			Current Letter : o
+			Current Letter : n	
+		
+Methods
+---------
+	https://docs.python.org/3/library/stdtypes.html#other-built-in-types
+
+	There are two types of Methods - 
+		UnBound 
+		Bound (instance method)
+
+	Every instance method (Bound Method) has two specials attributes:
+		1) __self__ attribute stores the reference of a class instance.
+		2) __func__ attribute is the function implementing the method.
+			Calling m(arg-1, arg-2, ..., arg-n) is completely equivalent to calling m.__func__(m.__self__, arg-1, arg-2, ..., arg-n).
+			You can add attributes to __func__ like method.__func__.hi = "hi"
+
+	class C:
+		def method(self, name):
+			"I am a method"
+			self.name=name
+			print(name)
+			pass
+		def method1(self):
+			print("Inside method1")
+
+		c=C()
+		print(type(c)) # <class '__main__.C'>
+		c.method("Tushar")
+		print(type(c.name)) # <class 'str'>
+
+		print(c.method.__self__) # <__main__.C object at 0x1005a5e48>
+		c1 = c.method.__self__
+		c1.method1() # Inside method1
+
+		print(c.method.__func__) # <function C.method at 0x1023f0158>
+		print(c.method.__func__(c.method.__self__,"Tushar"))
+
+		print(c.method.__str__()) # <bound method C.method of <__main__.C object at 0x102078908>>
+		print(c.method.__module__) # __main__
+
+		#c.method.whoami  = 'my name is method'  # can't set on the method
+		c.method.__func__.whoami = 'my name is method'
+		c.method.__func__.hi = "hi"
+		print(c.method.__func__.whoami) # my name is method
+		print(c.method.__func__.hi) # hi
+	
+	Class attributes can be referenced
+		https://docs.python.org/3/reference/expressions.html
+	
+		m1=c.method1
+		m1() # Inside method1
+
+	
+
+	http://www.tutorialspoint.com/python/python_functions.htm
+	
+	You can call a function by using the following types of formal arguments:
+
+		- Required arguments
+	
+				Required arguments are the arguments passed to a function in correct positional order.
+			
+				def foo(x):                 # x is a function parameter
+					print("x = " + str(x))
+
+				foo(5)   # pass 5 to foo(). Here 5 is an argument passed to function foo.
+
+
+				def fun(myList):
+					for i in myList:
+						print i,
+
+				list = [1,2,3]
+				fun(list) 		# 1 2 3
+			
+		- Keyword arguments
+	
+				Keyword arguments are related to the function calls. When you use keyword arguments in a function call, the caller identifies the arguments by the parameter name.
+				This allows you to skip arguments or place them out of order because the Python interpreter is able to use the keywords provided to match the values with parameters. 
+			
+				def printinfo( name, age ):
+				   "This prints a passed info into this function"
+				   print "Name: ", name
+				   print "Age ", age
+				   return;
+
+				# Now you can call printinfo function
+				printinfo( age=50, name="miki" )
+						O/P:
+						Name:  miki
+						Age  50
+					
+		- Default arguments
+	
+				def printinfo( name, age = 35 ):
+				   "This prints a passed info into this function"
+				   print "Name: ", name
+				   print "Age ", age
+				   return;
+
+				# Now you can call printinfo function
+				printinfo( age=50, name="miki" )
+				printinfo( name="miki" )
+			
+	return statement-
+
+		list = [1,2] --- global variable
+
+		def fun(a, b):
+			list = [a,b]   --- function's local variable. It is not global 'list' variable.
+			return list
+
+		list2=fun(3,4)  
+		print(list2) --- [3,4]
+		print(list) --- [1,2]
+	
+	Accessing outside variables from a function
+	
+		To access outside variables from a function, you need to use a keyword 'global', otherwise Python will consider as a local variable.
+	
+		firstName = None # None is same as null in java
+		lastName = None
+
+		def set_name(fName, lName=None): # default value of lName is 'None', which is same as null in java
+			global firstName	# To access global variable firstName, you need to declare it as global inside the function
+			global lastName	
+			firstName=fName
+			lastName=lName
+	
+		def get_name():
+			return firstName+" "+lastName    
+
+		set_name("Tushar", "Chokshi")
+		print(get_name()) # Tushar Chokshi
+
+	Accessing globals and locals members
+
+		If locals() is called from within a function, it will return all the names that can be accessed locally from that function.
+		If globals() is called from within a function, it will return all the names that can be accessed globally from that function.
+		The return type of both these functions is dictionary.
+	
+		firstName = None
+		lastName = None
+
+		def set_name(fName, lName=None):
+			locals()	# {'lastName': 'Chokshi', 'firstName': 'Tushar', 'fName': 'Tushar', 'lName': 'Chokshi'}
+			globals()   # {'lastName': None, 'set_name': <function set_name at 0x10207b8c8>, '__package__': None, '__builtins__': <module 'builtins' (built-in)>, '__spec__': None, '__name__': '__main__', 'firstName': None, '__doc__': None, '__cached__': None, '__loader__': <_frozen_importlib_external.SourceFileLoader object at 0x1005a5cf8>, 'get_name': <function get_name at 0x10207b950>, '__file__': '/Users/chokst/MavenizedProjectEclipseWSNew/PythonProject/globalslocals/globalslocals.py'}
+
+
+	Assigning a function to a variable (just like javascript)	
+
+		class MyCalendar:
+			def get_calendar(self):
+				return calendar.month(2016, 1) # displays a calendar fo January 2016
+
+		myCalendar = MyCalendar()
+		getCalendarMethodVar = myCalendar.get_calendar # binding a function to a variable (just like javascript)
+		print(getCalendarMethodVar())
+
+
+Lambda (anonymous) functions
+----------------------------
+	http://www.tutorialspoint.com/python/python_functions.htm
+
+	The syntax of lambda functions contains only a single statement, which is as follows −
+		lambda [arg1 [,arg2,.....argn]]:expression
+
+		# Function definition is here
+		sum = lambda arg1, arg2: arg1 + arg2;
+
+		# Now you can call sum as a function
+		print "Value of total : ", sum( 10, 20 )
+		print "Value of total : ", sum( 20, 20 )
+
+	map, filter and reduce functions
+		http://www.python-course.eu/lambda.php
+		
+		These functions takes either a function or lambda as a parameter.
+		lambda internally creates a function only, but it is a compact code. 
+
+		map function-
+			The advantage of the lambda operator can be seen when it is used in combination with the map() function. 
+	
+			map() is a function with two arguments:
+				r = map(func, seq)
+	
+			The first argument func is the name of a function and the second a sequence (e.g. a list) seq. 
+			map() applies the function func to all the elements of the sequence seq. 
+			It returns a new list with the elements changed by func
+
+			e.g. map taking function as an argument
+				def fahrenheit(T):
+					print T
+					return ((float(9)/5)*T + 32)
+
+				temp = (36.5, 37, 37.5,39)
+
+				F = map(fahrenheit, temp) # map takes a list/tuple as an argument. It sends an element of list/tuple one by one to a function/lambda (here fahrenheit function) and collects the ouptut in a list and returns that list
+				print F # [97.700000000000003, 98.600000000000009, 99.5, 102.2]
+
+			e.g. map taking lambda as an argument
+			map() can be applied to more than one list. The lists have to have the same length.
+	
+			a = [1,2,3,4]
+			b = [17,12,11,10]
+			print map(lambda x,y: x+y, a,b)	--- this lambda implicitly creates a function having x,y as parameters and 'return x+y' as body. map sends a value of lists a and b one by one to this function.
+
+		filter function-
+			The function filter(function, list) offers an elegant way to filter out all the elements of a list, for which the function function returns True. 
+			The function filter(f,l) needs a function f as its first argument. f returns a Boolean value, i.e. either True or False. This function will be applied to every element of the list l. 
+			Only if f returns True will the element of the list be included in the result list.
+	
+			fib = [0,1,1,2,3,5,8,13,21,34,55]
+			result = filter(lambda x: x % 2 == 0, fib)
+			print result # [0, 2, 8, 34]
+
+		reduce function-
+			The function reduce(func, seq) continually applies the function func() to the sequence seq. It returns a single value. 
+
+			If seq = [ s1, s2, s3, ... , sn ], calling reduce(func, seq) works like this:
+	
+				- At first the first two elements of seq will be applied to func, i.e. func(s1,s2) The list on which reduce() works looks now like this: [ func(s1, s2), s3, ... , sn ]
+				- In the next step func will be applied on the previous result and the third element of the list, i.e. func(func(s1, s2),s3)
+					The list looks like this now: [ func(func(s1, s2),s3), ... , sn ]
+				- Continue like this until just one element is left and return this element as the result of reduce()
+
+	
+			reduce(lambda x,y: x+y, [47,11,42,13])  # 113
+				47+11=58
+				58+42=100
+				100+13=113
+	
+			f = lambda a,b: a if (a > b) else b
+			reduce(f, [47,11,42,102,13]) # 102
+	
+			reduce(lambda x, y: x+y, range(1,101)) # 5050
+	
+Classes and Objects
+-------------------
+	_ __new__(...) method and initialization method __init__(self,...)
+		object class is a base class in Python. It has many methods, but __new__ and __init__ are special.
+		__new__ is a static method that is used to instantiate a class. Normally, you don't override it in your class.
+		__init__(self,...) is a method that is used to initialize instance variables. Normally, you override this method in your class.
+	
+	- Initialization Method (__init__(self,...)) Overloading: 
+		You cannot overload any method or constructor in Python. It is actually trivial to mimic methdo overloading by passing mentioning optional parameters with default values.
+	
+	- Static Methods: 
+		Methods can be defined static using @staticmethod. static method may or may not take 'self' as an argument. If it takes then you need to pass instance variable as an argument when you call it.
+	
+	- Types of variables in a class:
+		Two types of variables: class and instance
+		- class variables are same as static variables in Java. They can be accessed using ClassName.var or classInstance.var
+	
+	- Self: 
+		Every method (except static methods) in a class has first parameter as 'self'. self is same as 'this' in java.
+	
+	- Adding more class/instance variables:
+		Unlike to java, you can add class/instance variable any time (inside a class or outside a class)
+	
+	- There are methods like
+		-    getattr(obj, name, [default value])
+		-    setattr(obj, name, value)
+		-    hasattr(obj, name)
+		-    delattr(obj, name)
+	
+	- Private Variable and Method: 
+		private variable/method is defined with a prefix '__'.	Private variable/method cannot be accessed from outside the class.
+		e.g. __privateVar, __get_private_var(self)
+
+	class Calculator:
+		current = 0 # Class Variable is like a static variable
+
+		# def __init__(self): # __init__ method is an implicit method for every class. It acts as a construct/initialization method.
+		#    self.number = 10
+
+		def __init__(self, number): # Unlike to Java, you cannot have overloaded constructors
+			self.number = number
+			self.amount = 0
+			self.__privateVar = 10 # Private variable is prefixed with '__'. Private variable cannot be accessed from outside the class
+
+		def add(self, amount, number=10):
+			self.amount = amount
+			self.number=number
+			Calculator.current += amount # class variables are accessed like ClassName.var or classObj.var
+
+		# Method overloading is not possible in Python
+		# it is actually trivial to mimic overloading in Python by setting method args with default values
+		# def add(self, amt): # As no instance variable is used inside this method, tool advices you to make it static, but it is not mandatory
+		#    return amt+10
+
+		@staticmethod # This is how you can define method as static
+		def static_method1(self):
+			self.number=60
+			return 10
+
+		@staticmethod # You can use decorator @classmethod also
+		def static_method2(): # static method do not need to have 'self' as an argument
+			return 10
+
+
+		def get_amount(self): # Every method takes self as first parameter. You don't have pass self while calling a method.
+			return self.amount # using self is mandatory to access instance variables
+
+		def get_current(self): # Unlike to Java, preferred way of naming a method is keeping all lower case
+			return self.current
+
+		def get_number(self):
+			return self.number
+		
+		def __private_method(self): # Private method starts with '__' prefix 
+			return self.__privateVar;
+
+
+	calc1 = Calculator(0) # no need of data type in Python. No need of 'new' operator
+
+	calc1.add(10)
+
+	print("number: " + str(calc1.get_number())) # 10
+	print("current: " + str(Calculator.current)) # 10
+	print("current: " + str(calc1.current)) # 10
+	print("current: " + str(calc1.get_current())) # 10
+	print("amount: " + str(calc1.get_amount())) # 10
+	# print("privateVar: "+str(calc1.__priavateVar)) # Private variable cannot be accessed from outside the class. 'Calculator' object has no attribute '__priavateVar'
+	# print("calling private method: "+str(calc1.__private_method())) # Private method cannot be accessed from outside the class.
+
+	print("has current attr: " + str(hasattr(calc1, "current"))) # True
+	print("has amount attr: " + str(hasattr(calc1, "amount"))) # True
+	print("has anotherAmount attr: " + str(hasattr(calc1, "anotherAmount"))) # False
+	print("get anotherAmount attr that does not exist: " + str(getattr(calc1, "anotherAmount", 30))) # 30 - If variable does not exist, then return some value instead of throwing an error
+	print("has anotherAmount attr: " + str(hasattr(calc1, "anotherAmount"))) # False
+
+	# Adding class variable whenever required
+	Calculator.otherCurrent = 10
+	# Adding instance variable whenever required
+	calc1.otherAmount = 20
+	print("otherCurrent: " + str(Calculator.otherCurrent)) # 10
+	print("otherAmount: " + str(calc1.otherAmount)) # 20
+
+	print("Calling static method1: "+str(Calculator.static_method1(calc1))) # 10
+	print("number: " + str(calc1.number)) # 60
+	print("Calling static method2: "+str(Calculator.static_method2())) # 10
+
+Class Built-in Attributes
+-------------------------
+	__dict__: Dictionary containing the class's namespace.
+	__doc__: Class documentation string or none, if undefined.
+	__name__: Class name.
+	__module__: Module name in which the class is defined. This attribute is "__main__" in interactive mode.
+				__name__ is a built-in property of any class.
+				__main__ is a module name. Class.__module__ is assigned a module name when Python interpreter runs.
+				if the python interpreter is running that module (the source file) as the main program, it sets the special __name__ variable to have a value "__main__". 
+				If this file is being imported from another module, __module__ will be set to the module's name.
+	__bases__: A possibly empty tuple containing the base classes, in the order of their occurrence in the base class list.
+
+	""" This is not a docstring. It is a comment """
+	class Parent:
+		"""I am a Parent Class"""  # Class Documentation like javadoc. 3 single quotes can also be used. ''' ... '''
+		staticVar = 10
+
+		""" This is not a docstring. It is a comment """
+		def __init__(self, name):
+			"""Constructor for Parent class""" # Method Documentation like javadoc.
+			self.name = name
+
+		def get_name(self):
+			""" I am a get_name() method """
+			return self.name
+
+		@staticmethod
+		def get_static_var():
+			""" I am a get_static_var() static method """
+			return Parent.staticVar;
+
+
+	class Child(Parent):
+		def __init__(self, name):
+			super(Child, self).__init__(name) # calling parent class' constructor
+
+
+	parent = Parent("Tushar")
+	child = Child("Srikant")
+
+	# __name__ gives a class name
+	print("class name: "+Parent.__name__) # Parent
+
+	# __module__ gives a module name where a class is defined
+	print("module name where the class id defined: "+Parent.__module__) # __main__
+	print("all base classes as a tuple: "+ str(Child.__bases__)) # (<class '__main__.Parent'>,)
+
+	# __doc__ is a Class level Documentation
+	print("Parent.__doc__", Parent.__doc__, sep=" : ") # Parent.__doc__ : I am a Parent Class
+
+	# __disc__ is a Dictionary containing the class's namespace.
+	print("Parent.__dict__", Parent.__dict__, sep=" : ") # Parent.__dict__ : {'__doc__': 'I am a Parent Class', '__weakref__': <attribute '__weakref__' of 'Parent' objects>, 'get_name': <function Parent.get_name at 0x10067b9d8>, 'staticVar': 10, 'get_static_var': <staticmethod object at 0x100677e48>, '__dict__': <attribute '__dict__' of 'Parent' objects>, '__init__': <function Parent.__init__ at 0x10067b950>, '__module__': '__main__'}
+
+Inheritance
+-----------
+	http://www.tutorialspoint.com/python/python_classes_objects.htm
+
+	#  With Python 2.X, if you want to use super(...).method(...) calling feature, then you have to extend object or use this line. I don't know why ???
+	# you don't need it for Python 3.x
+	#__metaclass__ = type
+
+
+	class Parent:   # by default it extends 'object' class from __builtins__ module.
+		parentStaticVar = 10  # it's a static variable as it is not like self.parentStaticVar.
+
+		def __init__(self):  # This is like a initialization method which is called after constructor (__new__(self) method) by Python. In Python program, you generally don't define a constructor, but you define init method.
+			self.parentVar=10     # when you do self.var, var becomes an instance variable.
+
+		def method1(self, var):   # non-static method takes 'self' as first parameter
+			self.parentVar = var
+			print("Inside Parent->method1() : "+str(var))
+
+		def get_parent_var(self):
+			return self.parentVar
+
+		@classmethod 	# you can use a decorator @staticmethod also to declare a method as static. 
+		def get_parent_static_var(self): # 'self' is not mandatory for static methods
+			#print(self)
+			return Parent.parentStaticVar # This is how you access static var/method
+
+		def __str__(self):    # it is like toString() in java. __str__ is a method inside 'object' class of __builtins__ module and you are overriding it it here.
+			return "Inside Parent->__str__(), childVar:"+str(self.parentVar)
+
+	# object is top base class and if you want to use super(...).method(...) calling feature, then you have to extend object like this or use '__metaclass__ = type'. I don't know why ???
+	# you don't need it for Python 3.x
+	#class Child(Parent, object)
+	class Child(Parent):  # This is same as 'Child extends Parent' in java.
+
+		def __init__(self):    
+			self.childVar=self.parentStaticVar
+
+		# In Python method overloading is not allowed, but method overriding is allowed. 
+		# There is a reason why it is not allowed. Python supports assigning default values to method parameters. So that is equivalent to method overloading because client can pass different number of parameters to the method by ignoring parameters which are assigned default values.
+		# Overridden method from Parent class
+		def method1(self, var):
+			self.parentVar = var
+			print("Inside Child->method1() : "+str(var))
+
+		def get_child_var(self):
+			return self.childVar
+
+		# calling super's method
+		# super(type) -> unbound super object  --- ???
+		# super(type, obj) -> bound super object; requires isinstance(obj, type)
+		# super(type, type2) -> bound super object; requires issubclass(type2, type) --- ???
+		def method2(self, var):
+			super(Child, self).method1(var)
+
+		# __del__ method is called when obj is going be garbage collected
+		def __del__(self):
+			print (self.__class__.__name__ + " instance is going to be garbage collected")
+
+		# It is like equals() method in Java
+		def __cmp__(self, other):
+			return isinstance(other, Child) and self.childVar == other.childVar
+
+		# It is like toString() method in Java
+		def __str__(self):
+			return "Inside Child->__str__(), childVar:"+str(self.childVar)
+
+		# __repr__() provides representation of an object
+		# When __str__() is not available, Python will call __repr__() for print(obj)
+		# But that is not the only use of __repr__().
+		# repr(obj) calls obj.__repr__. It is mainly used for debugging purpose by programmers.
+		# For actual user experience, you should use __str__()
+
+		# http://www2.lib.uchicago.edu/keith/courses/python/class/5/#__repr__
+		# The __str__ method is exactly like __repr__ except that it is called when the builtin str function is applied to an object; this function is also called for the %s escape of the % operator.
+		# In general, the string returned by __str__ is meant for the user of an application to see, while the string returned by __repr__ is meant for the programmer to see, as in debugging and development: but there are no hard and fast rules about this.
+		# You're best off just thinking, __str__ for %s, __repr__ for backquotes.
+		def __repr__(self):
+			return "Inside Child->__repr__(), childVar:"+str(self.childVar)
+
+
+	child = Child()
+	child.method1(15)
+	print("childVar: " + str(child.get_child_var())) # 10
+
+	# issubclass(subclass, superclass)
+	print("is Child a subclass of Parent class: " + str(issubclass(Child, Parent))) # True
+	# isinstance(obj, Class)
+	print("is child an instance of Child class: " + str(isinstance(child, Child))) # True
+	print("is child an instance of Parent class: " + str(isinstance(child, Parent))) # True
+	print(child) # It calls __str__ method, just like Java
+	print(repr(child)) # It calls __repr__ method, just like Java
+	print("Testing super method call: "+ str(child.method2(10)))
+	print("Testing static method call: "+ str(Child.get_parent_static_var())) # 10
+
+	child2 = Child()
+	print("is child and child2 equals: " + str(child.__cmp__(child2))) # True
+	#del child
+
+Garbage Collection
+------------------
+	http://www.tutorialspoint.com/python/python_classes_objects.htm
+
+	Python deletes unneeded objects (built-in types or class instances) automatically to free the memory space.
+
+Modules and Packages
+--------------------
+	http://www.tutorialspoint.com/python/python_modules.htm
+
+	In Python, file names are same modules and a directory of these modules is called a package.
+	Each of these modules can have classes or functions that can be imported and used by client script
+	There are two ways to import modules
+		1. create __init__.py in a package and import all modules there and import just a package in client script
+		2. import all modules directly in client script
+
+	https://docs.python.org/3/reference/import.html#packages
+	parent/
+		__init__.py
+		one/
+			__init__.py
+		two/
+			__init__.py
+		three/
+			__init__.py
+		
+	A regular package is typically implemented as a directory containing an __init__.py file. 
+	When a regular package is imported, this __init__.py file is implicitly executed, and the objects it defines are bound to names in the package’s namespace. 
+	The __init__.py file can contain the same Python code that any other module can contain, and Python will add some additional attributes to the module when it is imported.        
+
+	Importing parent.one will implicitly execute parent/__init__.py and parent/one/__init__.py. Subsequent imports of parent.two or parent.three will execute parent/two/__init__.py and parent/three/__init__.py respectively.
+
+	These are multiple ways you can import the modules.
+
+		1) import modulename.classname --- if you use this approach, then you need to use modulename.classname()
+		2) from modname import classname1[, classname2[, ... classnameN]] --- if you use this approach, then you can use classname()
+		3) from modname import * --- if you use this approach, then you can use classname()	
+		4) importlib.import_module(moduleName) or 
+		5) __import__(modulename)
+
+
+	Locating Modules:
+
+		When you import a module, the Python interpreter searches for the module in the following sequences −
+
+		- The current directory.
+		- If the module isn't found, Python then searches each directory in the shell variable PYTHONPATH.
+		- If all else fails, Python checks the default path. On UNIX, this default path is normally /usr/local/lib/python/.
+
+		The module search path is stored in the system module sys as the sys.path variable.
+		The sys.path variable contains the current directory, PYTHONPATH, and the installation-dependent default.
+
+		The PYTHONPATH is an environment variable, consisting of a list of directories.
+		The syntax of PYTHONPATH is the same as that of the shell variable PATH.
+
+		Here is a typical PYTHONPATH from a Windows system:
+
+		set PYTHONPATH=c:\python20\lib;
+		And here is a typical PYTHONPATH from a UNIX system:
+
+		set PYTHONPATH=/usr/local/lib/python
+
+	create packagesandmodules.Phone package(directory)
+		G3.py
+	
+			def g3():
+				print("I'm G3 Phone")
+
+			def anotherG3():
+				print("I'm anotherG3 Phone")
+
+		G4.py
+			class G4:
+				def get_g4(self):
+					print("I'm G4 Phone")	
+	
+		Isdn.py
+			def isdn():
+				print("I'm Isdn Phone")	
+	
+		Pots.py
+			def pots():
+				print("I'm Pots Phone")			
+	
+		__init__.py		-------------- IMP
+			from packagesandmodules.Phone.Pots import pots
+			from packagesandmodules.Phone.Isdn import isdn
+			from packagesandmodules.Phone.G3 import g3, anotherG3 # G3, anotherG3 are functions
+			from packagesandmodules.Phone.G4 import G4 # G4 is a class	    
+
+	Create these to class files under 'packagesandmodules.library' package.
+		apple.py
+			class Apple:
+				def set_color(self, color):
+					self.color = color
+
+				def get_color(self):
+					return self.color
+
+		pineapple.py
+			def get_pineapple():
+				print("I'm a Pineapple")
+			
+		calculator.py		
+			class Calculator:
+				def set_name(self, name):
+					self.name=name
+
+				def get_name(self):
+					return self.name
+					
+	Create packagesandmodules.client package
+		Client.py
+	
+			############### Importing a package (that has modules imported in __init__.py)
+			import packagesandmodules.Phone as Phone 
+
+			get_pineapple() # I'm a Pineapple
+			Phone.pots() # I'm Pots Phone
+			Phone.isdn() # I'm Isdn Phone
+			Phone.g3() # I'm G3 Phone
+			g4 = Phone.G4()
+			g4.get_g4() # I'm G4 Phone
+		
+			############### Importing modules
+			# Ideally all imports should be on the top of the file. For your understanding, I have done this way		
+
+			from packagesandmodules.library           import apple, calculator # importing modules (.py files)
+			from packagesandmodules.library.pineapple import get_pineapple     # importing a function from pineapple module(pineapple.py)
+			# import packagesandmodules.library.calculator                     # importing calculator module (calculator.py file) from packagesandmodules.library package
+			# from packagesandmodules.library import *                         # importing all modules (.py files) from packagesandmodules.library package
+
+			calc = calculator.Calculator()
+			calc.set_name("Tushar")
+			print(calc.get_name())
+
+			app = apple.Apple()
+			app.set_color("red")
+			print(app.get_color())
+
+			############### Importing built-in modules	
+			# Ideally all imports should be on the top of the file. For your understanding, I have done this way	
+			import sys # it is a builtin module for all environment specific variables
+
+			# sys is like a environment module and it has environment specific variables
+			# sys.path.append("/home/me/mypy") # you can add your modules in sys.path
+			print("system path: " + str(sys.path)) # ['/Users/chokst/MavenizedProjectEclipseWSNew/PythonProject/module/client', '/Users/chokst/MavenizedProjectEclipseWSNew/PythonProject', '/Library/Frameworks/Python.framework/Versions/3.5/lib/python35.zip', '/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5', '/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/plat-darwin', '/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/lib-dynload', '/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages']
+			print("system modules: " + str(sys.modules)) # {'_imp': <module '_imp' (built-in)>, 'os.path': <module 'posixpath' from '/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/posixpath.py'>, 'module.library.apple': <module 'module.library.apple' from '/Users/chokst/MavenizedProjectEclipseWSNew/PythonProject/module/library/apple.py'>, 'sre_constants': <module 'sre_constants' from '/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/sre_constants.py'>, '_bootlocale': <module '_bootlocale' from '/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/_bootlocale.py'>, 'encodings.latin_1': <module 'encodings.latin_1' from '/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/encodings/latin_1.py'>, 'posix': <module 'posix' (built-in)>, 'site': <module 'site' from '/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site.py'>, '_warnings': <module '_warnings' (built-in)>, 'encodings.aliases': <module 'encodings.aliases' from '/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/encodings/aliases.py'>, 'abc': <module 'abc' from '/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/abc.py'>, 'module.library.calculator': <module 'module.library.calculator' from '/Users/chokst/MavenizedProjectEclipseWSNew/PythonProject/module/library/calculator.py'>, '_stat': <module '_stat' (built-in)>, 'sre_compile': <module 'sre_compile' from '/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/sre_compile.py'>, '_collections_abc': <module '_collections_abc' from '/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/_collections_abc.py'>, '_sysconfigdata': <module '_sysconfigdata' from '/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/_sysconfigdata.py'>, '_frozen_importlib': <module '_frozen_importlib' (frozen)>, '_locale': <module '_locale' (built-in)>, '__main__': <module '__main__' from '/Users/chokst/MavenizedProjectEclipseWSNew/PythonProject/module/client/calculatorclient.py'>, 'copyreg': <module 'copyreg' from '/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/copyreg.py'>, 'encodings': <module 'encodings' from '/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/encodings/__init__.py'>, 'sys': <module 'sys' (built-in)>, '_codecs': <module '_codecs' (built-in)>, 'codecs': <module 'codecs' from '/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/codecs.py'>, 'marshal': <module 'marshal' (built-in)>, '_io': <module 'io' (built-in)>, '_frozen_importlib_external': <module '_frozen_importlib_external' (frozen)>, '_weakref': <module '_weakref' (built-in)>, 'module': <module 'module' (namespace)>, 'module.library': <module 'module.library' (namespace)>, '_signal': <module '_signal' (built-in)>, 're': <module 're' from '/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/re.py'>, 'os': <module 'os' from '/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/os.py'>, 'errno': <module 'errno' (built-in)>, 'zipimport': <module 'zipimport' (built-in)>, '_thread': <module '_thread' (built-in)>, 'io': <module 'io' from '/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/io.py'>, 'builtins': <module 'builtins' (built-in)>, 'encodings.utf_8': <module 'encodings.utf_8' from '/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/encodings/utf_8.py'>, '_sitebuiltins': <module '_sitebuiltins' from '/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/_sitebuiltins.py'>, '_sre': <module '_sre' (built-in)>, 'genericpath': <module 'genericpath' from '/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/genericpath.py'>, '_osx_support': <module '_osx_support' from '/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/_osx_support.py'>, 'stat': <module 'stat' from '/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/stat.py'>, 'posixpath': <module 'posixpath' from '/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/posixpath.py'>, '_weakrefset': <module '_weakrefset' from '/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/_weakrefset.py'>, 'sysconfig': <module 'sysconfig' from '/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/sysconfig.py'>, 'sre_parse': <module 'sre_parse' from '/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/sre_parse.py'>}
+		
+
+	Create this class file under module.client package.
+
+		#import module.library.calculator
+		from module.library import apple, calculator
+		# from module.library import *
+		import sys # it is a builtin module for all environment specific variables
+
+		calc = calculator.Calculator()
+		calc.set_name("Tushar")
+		print(calc.get_name())
+
+		app = apple.Apple()
+		app.set_color("red")
+		print(app.get_color())
+
+		# sys is like a environment module and it has environment specific variables
+		# sys.path.append("/home/me/mypy") # you can add your modules in sys.path
+		print("system path: " + str(sys.path)) # ['/Users/chokst/MavenizedProjectEclipseWSNew/PythonProject/module/client', '/Users/chokst/MavenizedProjectEclipseWSNew/PythonProject', '/Library/Frameworks/Python.framework/Versions/3.5/lib/python35.zip', '/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5', '/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/plat-darwin', '/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/lib-dynload', '/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages']
+		print("system modules: " + str(sys.modules)) # {'_imp': <module '_imp' (built-in)>, 'os.path': <module 'posixpath' from '/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/posixpath.py'>, 'module.library.apple': <module 'module.library.apple' from '/Users/chokst/MavenizedProjectEclipseWSNew/PythonProject/module/library/apple.py'>, 'sre_constants': <module 'sre_constants' from '/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/sre_constants.py'>, '_bootlocale': <module '_bootlocale' from '/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/_bootlocale.py'>, 'encodings.latin_1': <module 'encodings.latin_1' from '/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/encodings/latin_1.py'>, 'posix': <module 'posix' (built-in)>, 'site': <module 'site' from '/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site.py'>, '_warnings': <module '_warnings' (built-in)>, 'encodings.aliases': <module 'encodings.aliases' from '/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/encodings/aliases.py'>, 'abc': <module 'abc' from '/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/abc.py'>, 'module.library.calculator': <module 'module.library.calculator' from '/Users/chokst/MavenizedProjectEclipseWSNew/PythonProject/module/library/calculator.py'>, '_stat': <module '_stat' (built-in)>, 'sre_compile': <module 'sre_compile' from '/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/sre_compile.py'>, '_collections_abc': <module '_collections_abc' from '/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/_collections_abc.py'>, '_sysconfigdata': <module '_sysconfigdata' from '/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/_sysconfigdata.py'>, '_frozen_importlib': <module '_frozen_importlib' (frozen)>, '_locale': <module '_locale' (built-in)>, '__main__': <module '__main__' from '/Users/chokst/MavenizedProjectEclipseWSNew/PythonProject/module/client/calculatorclient.py'>, 'copyreg': <module 'copyreg' from '/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/copyreg.py'>, 'encodings': <module 'encodings' from '/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/encodings/__init__.py'>, 'sys': <module 'sys' (built-in)>, '_codecs': <module '_codecs' (built-in)>, 'codecs': <module 'codecs' from '/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/codecs.py'>, 'marshal': <module 'marshal' (built-in)>, '_io': <module 'io' (built-in)>, '_frozen_importlib_external': <module '_frozen_importlib_external' (frozen)>, '_weakref': <module '_weakref' (built-in)>, 'module': <module 'module' (namespace)>, 'module.library': <module 'module.library' (namespace)>, '_signal': <module '_signal' (built-in)>, 're': <module 're' from '/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/re.py'>, 'os': <module 'os' from '/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/os.py'>, 'errno': <module 'errno' (built-in)>, 'zipimport': <module 'zipimport' (built-in)>, '_thread': <module '_thread' (built-in)>, 'io': <module 'io' from '/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/io.py'>, 'builtins': <module 'builtins' (built-in)>, 'encodings.utf_8': <module 'encodings.utf_8' from '/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/encodings/utf_8.py'>, '_sitebuiltins': <module '_sitebuiltins' from '/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/_sitebuiltins.py'>, '_sre': <module '_sre' (built-in)>, 'genericpath': <module 'genericpath' from '/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/genericpath.py'>, '_osx_support': <module '_osx_support' from '/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/_osx_support.py'>, 'stat': <module 'stat' from '/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/stat.py'>, 'posixpath': <module 'posixpath' from '/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/posixpath.py'>, '_weakrefset': <module '_weakrefset' from '/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/_weakrefset.py'>, 'sysconfig': <module 'sysconfig' from '/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/sysconfig.py'>, 'sre_parse': <module 'sre_parse' from '/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/sre_parse.py'>}
+
+	Reloading a module (reload(module) function)
+		http://www.tutorialspoint.com/python/python_modules.htm
+	
+		Let's say you have imported some module in your script. You script is running and there is a possibility that while your script is running, imported module's script can change.
+		So, in this case, you need to reload imported module in your script in between.
+	
+		import foo
+
+		while True:
+			# Do some things.
+			if is_changed(foo):
+				foo = reload(foo)
+
+File Input/Output and Directories
+---------------------------------
+	http://www.tutorialspoint.com/python/python_files_io.htm
+
+	File related methods are in builtins package only. So, you don't need to import any additional module.
+	Directories related methods are in a module called 'os'.
+
+	Syntax: 
+		file object = open(file_name [, access_mode][, buffering])
+
+	Buffering-
+		If the buffering value is set to 0, no buffering takes place. If the buffering value is 1, line buffering is performed while accessing a file. 
+		If you specify the buffering value as an integer greater than 1, then buffering action is performed with the indicated buffer size. 
+		If negative, the buffer size is the system default(default behavior).
+
+	Access Modes-
+		You can open a file in many modes 
+		- read (r)
+		- overwrite (w)
+		- append (a)
+		- write and read (w+)
+		- append and read (a+)
+		and many more
+
+	File Attributes-
+		file.closed		Returns true if file is closed, false otherwise.
+		file.mode		Returns access mode with which file was opened.
+		file.name		Returns name of the file.
+		file.softspace	Returns false if space explicitly required with print, true otherwise.
+
+	file.tell()-
+		tells you the current position within the file; in other words, the next read or write will occur at that many bytes from the beginning of the file.
+
+	file.seek(offset[, from])-
+		changes the current file position.
+
+	file.rename(current_file_name, new_file_name)
+		renames the file
+
+	file.remove()
+		removes the file
+	
+	Other file related methods
+		http://www.tutorialspoint.com/python/file_methods.htm
+	
+
+	'os' module
+		'os' module has many methods related to directories.
+	
+		import os
+
+		os.mkdir("test")  --- make a new directory
+		os.chdir("newdir") --- change the current directory
+		os.getcwd() --- give location of current directory
+		os.rmdir("dirname") --- removes	directory
+
+	Other directories related methods
+		http://www.tutorialspoint.com/python/os_file_methods.htm
+
+
+	e.g. 
+
+		file = open("readwritefile.txt","r+",1);
+
+		if(not file.closed):
+			print("Reading the file\n")
+			print(file.read())
+
+			# Check current position
+			position = file.tell();
+			print("postition: "+str(position)) # 63 (end of the file
+
+			# Reposition pointer at the beginning once again
+			position = file.seek(0, 0);
+			print("postition: "+str(position)) # 0
+
+			print("\n\nReading the file till 10th position")
+			print(file.read(10))
+
+			position = file.tell();
+			print("postition: "+str(position)) # 10
+
+			file.close()
+
+Exception handling
+------------------
+	Exceptions:
+		http://www.tutorialspoint.com/python/python_exceptions.htm
+		Unlike to Java, Python has only Unchecked exceptions. It means that it is not mandatory to catch any exception in Python.
+		You can see all types of exceptions - http://www.tutorialspoint.com/python/standard_exceptions.htm
+	Assertions:
+		http://www.tutorialspoint.com/python/assertions_in_python.htm
+
+	try block:
+	except block:
+		A single try statement can have multiple except statements.
+	else block:
+		After the except clause(s), you can include an else-clause.
+		The code in the else-block executes if the code in the try block does not raise an exception.
+		The else-block is a good place for code that does not need the try: block's protection.
+	finally block:
+		It is just like Java's finally block.
+
+	syntax of try-except-else-finally block:
+
+		try:
+		   You do your operations here;
+		   ......................
+		except ExceptionI:
+		   If there is ExceptionI, then execute this block.
+		except ExceptionII:
+		   If there is ExceptionII, then execute this block.
+		   ......................
+		else:
+		   If there is no exception then execute this block.
+		finally:
+			This would always be executed.
+
+
+		Handling multiple exceptions together
+
+			try:
+			   You do your operations here;
+			   ......................
+			except(Exception1[, Exception2[,...ExceptionN]]]):
+			   If there is any exception from the given exception list,
+			   then execute this block.
+			   ......................
+			else:
+			   If there is no exception then execute this block.
+			finally:
+				This would always be executed.
+
+		try-finally (without except)
+
+			try:
+			   You do your operations here;
+			finally:
+				This would always be executed.
+
+	Raising an Exceptions:
+		An exception can be a string, a class or an object.
+		syntax:
+			raise [Exception [, args [, traceback]]]
+	
+
+	e.g.
+		import random
+		import os
+
+		try:
+			# open a file only for reading
+
+			randomNo = random.randint(1, 10)
+			fileName = "onlyforread" + str(randomNo) + ".txt"
+			if(os._exists()):
+				os.remove(fileName) # just want to raise an exception and trying to open a file after deleting it
+			file = open(fileName, "r")
+		except IOError:
+			print("file doesn't exist")
+		except:
+			print("some other exception")
+		#else:
+			#  else block is executed, if exception is not raised from try block
+		finally:
+			file = open("onlyforread" + str(randomNo) + ".txt", "w+")
+			file.write("I am happy")
+
+			if(not file.closed):
+				file.close()
+
+
+		# Example of raising an error using custom error class
+		# Custom Error class extending RuntimeError
+		class Networkerror(RuntimeError):
+			def __init__(self, arg):
+				assert(arg  != None), "No error message supplied"
+				super().__init__(arg)
+
+		try:
+		   raise Networkerror("Bad hostname")
+		except Networkerror as e:
+		   # print(e.__str__())
+		   # or
+		   print(e)
+
+
+		# Example of raising a string error
+		def fun(level):
+			try:
+			   if(not level or level == 0):
+				   raise "Invalid level!"
+
+			except "Invalid level!" as e:
+			   print(e)
+			else:
+			   print("level: "+str(level))
+
+		#fun(0) # to raise an exception
+		fun(1)	
+
+
+Date and Time
+-------------
+	http://www.tutorialspoint.com/python/python_date_time.htm
+
+	Python Modules related to time and calendar
+		- time
+		- calendar
+
+	In Python, time can be retrieved in Seconds, TimeTuple, Formatted Time
+	Python also provides a capability of displaying Calendar.
+
+	e.g.
+
+		import time, calendar
+
+		timeInSeconds = time.time()
+		print("Time in seconds: "+ str(timeInSeconds)) # Time in seconds: 1464043435.923485
+
+		# converting seconds to time-tuple
+		# TimeTuple is nothing but just a record of time related attributes like tm_year, tm_mon, tm_mday, tm_hour, tm_min, tm_sec etc.
+		timeTupleOfLocalTime = time.localtime(timeInSeconds)
+		print("Time Tuple: "+ str(timeTupleOfLocalTime)) # Time Tuple: time.struct_time(tm_year=2016, tm_mon=5, tm_mday=23, tm_hour=15, tm_min=45, tm_sec=36, tm_wday=0, tm_yday=144, tm_isdst=1)
+
+		# time.ctime(seconds) function
+		print("ctime(seconds) is same as asktime(timeTuple)" + str(time.ctime(timeInSeconds))) # Mon May 23 15:52:49 2016
+
+		# time.gmtime(seconds) give UTC time
+		print("UTC TimeTuple: "+ str(time.gmtime(timeInSeconds))) # UTC time: time.struct_time(tm_year=2016, tm_mon=5, tm_mday=23, tm_hour=23, tm_min=3, tm_sec=28, tm_wday=0, tm_yday=144, tm_isdst=0)
+
+		# Formatting TimeTuple
+		formattedTime = time.asctime(timeTupleOfLocalTime)
+		print("Formatted Time: "+formattedTime) # Formatted Time: Mon May 23 15:50:51 2016
+
+		# time.clock() returns the current CPU time as a floating-point number of seconds. To measure computational costs of different approaches, the value of time.clock is more useful than that of time.time().
+		print("CPU time: "+ str(time.clock()))
+
+		# time.strptime(time in some format, format) will return a tuple of TimeTuple attributes
+		# http://www.tutorialspoint.com/python/time_strptime.htm
+		struct_time = time.strptime("30 Nov 00", "%d %b %y")
+		print("returned tuple: %s" % str(struct_time)) # returned tuple: time.struct_time(tm_year=2000, tm_mon=11, tm_mday=30, tm_hour=0, tm_min=0, tm_sec=0, tm_wday=3, tm_yday=335, tm_isdst=-1)
+
+
+		# calendar is module in Python that you can use to display a calendar
+		print("Calendar:\n"+calendar.month(2016, 1))
+		"""
+		O/P:
+
+			January 2016
+		Mo Tu We Th Fr Sa Su
+					 1  2  3
+		 4  5  6  7  8  9 10
+		11 12 13 14 15 16 17
+		18 19 20 21 22 23 24
+		25 26 27 28 29 30 31
+		"""
+
+Database Access
+---------------
+	http://www.tutorialspoint.com/python/python_database_access.htm
+
+	1) Download and install MySql DB from 'https://dev.mysql.com/downloads/mysql/'
+	To start MySql DB, go to 'System Preferences->click on mysql'. This will open MySql Preferences window. You can start and stop MySql from there..
+
+	2) Install MySql workbench. It is just like 'SQL Developer'
+
+	3) Download and install MySql Python package
+	You have installed Python 3. Default installation is Python 2.7.x on mac.
+	Python 3 is installed at "/Library/Frameworks/Python.framework/Versions/3.5" in mac
+
+	> python --version
+	Python 2.7.6
+
+	> python3 --version
+	Python 3.5.1
+
+	So, there are two different commands
+
+	For MySql or any other DB, you need to install a package. It doesn't come with default Python installation.
+	MySql package for Python 3 is at 'https://pypi.python.org/pypi/mysqlclient'
+	Go to mysqlclient>
+				python3 setup.py build
+				python3 setup.py install
+			
+	This will install mysql package at "/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages"
+
+	4) create a schema in mysql called 'myschema' and create a table 'employee' with cols id and name.
+
+	e.g.
+		import MySQLdb  # You need to import this module
+	
+		# Open database connection
+		db = MySQLdb.connect("localhost", "root", "admin", "myschema")
+
+		# prepare a cursor object using cursor() method
+		cursor = db.cursor()
+
+		# execute SQL query using execute() method.
+		cursor.execute("SELECT VERSION()")
+
+		# Fetch a single row using fetchone() method.
+		data = cursor.fetchone()
+		print("Database version : %s " % data)
+
+		try:
+			# Execute the SQL command
+			cursor.execute("select * from employee")
+			# Fetch all the rows in a list of lists.
+			results = cursor.fetchall()
+			for row in results:
+				#print(row)
+				id = row[0]
+				name = row[1]
+				# Now print fetched result
+				print("id=%d,name=%s" % \
+					  (id, name))
+
+		except Exception as e:
+			print("Error: unable to fecth data: " + e)  # disconnect from server
+
+		db.close()
+
+
+
+Regular Expression
+------------------
+http://www.tutorialspoint.com/python/python_reg_expressions.htm
+
+Sending Email
+-------------
+http://www.tutorialspoint.com/python/python_sending_email.htm
+
+Network Programming
+-------------------
+http://www.tutorialspoint.com/python/python_networking.htm
+
+Multi Threading
+---------------
+	http://www.tutorialspoint.com/python/python_multithreading.htm
+
+	Two ways to implement threads in Python.
+
+	1. use thread.start_new_thread ( function, args[, kwargs] )
+	This method call enables a fast and efficient way to create new threads in both Linux and Windows.
+
+	2. use 'threading' module and then you can do 
+	class myThread (threading.Thread):
+
+	Synchronizing Threads
+		Not yet read
+
+	Multithreaded Priority Queue
+		Not yet read
+	
+XML Processing
+--------------
+http://www.tutorialspoint.com/python/python_xml_processing.htm
+
+GUI Programming
+---------------
+	http://www.tutorialspoint.com/python/python_gui_programming.htm
+
+	Python provides various options for developing graphical user interfaces (GUIs). 
+		- Tkinter
+		- wxPython
+		- JPython
+
+	It is just like AWT/Swing in Java.	
