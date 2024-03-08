@@ -319,7 +319,8 @@ Variables
 		you can use +, -, *, %, /
 		In addition Python has the power (**) --- NEW
 	Equality Comparison: 
-		Use == operator to compare any two variables (string or non-string). Cannot compare vars of two different types.
+		Use == operator to compare any two variables (string or non-string).
+		Cannot compare vars of two different types.
 	Chained Comparison: --- NEW
 		one < two < three
 		

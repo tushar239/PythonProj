@@ -1,7 +1,9 @@
 class Parent:  # by default it extends 'object' class from __builtins__ module.
     parentStaticVar = 10  # it's a static variable as it is not like self.parentStaticVar.
 
-    def __init__(self):  # This is like a initialization method which is called after constructor (__new__(self) method) by Python. In Python program, you generally don't define a constructor, but you define init method.
+    # __new(cls) and __init(self)
+    # https://www.geeksforgeeks.org/__new__-in-python/
+    def __init__(self):  # This is like a initialization method which is called after constructor (__new__(cls) method) by Python. In Python program, you generally don't define a constructor, but you define init method.
         self.parentVar = 10  # when you do self.var, var becomes an instance variable.
 
     def method1(self, var):  # non-static method takes 'self' as first parameter

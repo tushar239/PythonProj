@@ -1,0 +1,1 @@
+# https://www.geeksforgeeks.org/difference-between-__eq__-vs-is-vs-in-python/
