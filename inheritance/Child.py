@@ -46,14 +46,14 @@ class Child(Parent):  # This is same as 'Child extends Parent' in java.
         return isinstance(other, Child) and self.childVar == other.childVar
     '''
 
-    # It is like toString() method in Java
-    def __str__(self):
-        return "Inside Child->__str__(), childVar:" + str(self.childVar)
-
     # It is like hashCode() method in Java
     def __hash__(self):
         # hash(custom_object)
         return hash((self.parentVar, self.childVar))
+
+    # It is like toString() method in Java
+    def __str__(self):
+        return "Inside Child->__str__(), childVar:" + str(self.childVar)
 
     # __repr__() provides representation of an object
     # When __str__() is not available, Python will call __repr__() for print(obj)
@@ -71,9 +71,13 @@ class Child(Parent):  # This is same as 'Child extends Parent' in java.
         return "Inside Child->__repr__(), childVar:" + str(self.childVar)
 
 
-child = Child()
-child.method1(15)
-print("childVar: " + str(child.get_child_var()))  # 10
+# Python repr() function returns a printable representation of the object by converting that object to a string.
+print("The value of __name__ is:", repr(__name__))
+
+if __name__ == "__main__":
+    child = Child()
+    child.method1(15)
+    print("childVar: " + str(child.get_child_var()))  # 10
 
 # issubclass(subclass, superclass)
 print("is Child a subclass of Parent class: " + str(issubclass(Child, Parent)))  # True
@@ -86,5 +90,5 @@ print("Testing super method call: " + str(child.method2(10)))
 print("Testing static method call: " + str(Child.get_parent_static_var()))  # 10
 
 child2 = Child()
-print("is child and child2 equals: " + str(child.__cmp__(child2)))  # True
+print("is child and child2 equals: " + str(child.__eq__(child2)))  # True
 # del child
