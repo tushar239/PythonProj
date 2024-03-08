@@ -1,16 +1,18 @@
-from interface_practice import demoInterface
+from interface_practice import DemoInterface
 
 
-class concreteclass(demoInterface):
+class ConcreteClass(DemoInterface):
     def method1(self):
+        super().method1()
         print("This is method1")
-        
+        return
 
     def method2(self):
+        super().method2()
         print("This is method2")
+        return
 
 
-
-obj = concreteclass()
+obj = ConcreteClass()
 obj.method1()
 obj.method2()
