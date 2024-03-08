@@ -1,3 +1,6 @@
+# object is the parent class of all classes
+# class Parent(object):
+# same as
 class Parent:  # by default it extends 'object' class from __builtins__ module.
     parentStaticVar = 10  # it's a static variable as it is not like self.parentStaticVar.
 
