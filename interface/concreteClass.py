@@ -3,6 +3,7 @@ from interface_practice import DemoInterface
 
 class ConcreteClass(DemoInterface):
     def method1(self):
+        # https://www.geeksforgeeks.org/python-super/
         super().method1()
         print("This is method1")
         return
