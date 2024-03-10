@@ -1,5 +1,6 @@
 import numpy as np
 from inheritance.Child import Child
+import matplotlib.pyplot as plt
 
 '''
 numpy is is used to create n-dimensional array and so it is called nd array
@@ -55,7 +56,7 @@ print(array) # [1.  1.5     2.  2.5     3.  3.5     4.  4.5]
 '''
 return an array of given shape and type filled with ones
 shape - integer or sequence of integers
-        shape is 
+        shape determines number of rows and columns
 dtype = data type(default:float)
 '''
 # it returns 2D array of 5 rows and 4 cols, 1s are filled up as ints
@@ -98,3 +99,74 @@ print(array)
   [1 1]
   [1 1]]]
 '''
+
+'''
+returns an array of given shape and type filled with zeros
+shape - integer or sequence of integers
+        shape determines number of rows and columns
+dtype = data type(default:float)
+'''
+array = np.zeros((5, 4))
+print(array)
+'''
+[[0. 0. 0. 0.]
+ [0. 0. 0. 0.]
+ [0. 0. 0. 0.]
+ [0. 0. 0. 0.]
+ [0. 0. 0. 0.]]
+'''
+
+'''
+returns an array of given shape filled with random values
+'''
+array = np.random.rand(3)
+print(array) # [0.4565651  0.7101034  0.50924081]
+
+# generates 2D array of 5 rows and 3 cols filled with random numbers
+array = np.random.rand(5, 3)
+print(array)
+'''
+[[0.65511054 0.78611646 0.10467883]
+ [0.62518694 0.1005175  0.96188029]
+ [0.25696408 0.01781009 0.53449356]
+ [0.35996827 0.29416267 0.61813613]
+ [0.82316784 0.86706935 0.90414276]]
+'''
+
+# generates 3D array of 5 rows and 3 cols and each cell having 2 random numbers
+array = np.random.rand(5, 3, 2)
+print(array)
+'''
+[[[0.70266655 0.6811018 ]
+  [0.21893095 0.1254682 ]
+  [0.4469065  0.07394416]]
+
+ [[0.29631807 0.15017304]
+  [0.64406398 0.78102127]
+  [0.96732061 0.30657564]]
+
+ [[0.44664486 0.05322068]
+  [0.1761625  0.61774614]
+  [0.2437411  0.14295917]]
+
+ [[0.7748825  0.85084441]
+  [0.99227456 0.28233192]
+  [0.30785338 0.60687447]]
+
+ [[0.50641863 0.204215  ]
+  [0.45005414 0.42171476]
+  [0.68092093 0.35879159]]]
+'''
+
+array = np.random.randint(low=0, high=3, size=5)
+print(array) # [0 2 0 2 0] random numbers are generated in between 0 to 2. size of the array will be 5
+
+array = np.random.randint(low=-3, high=10, size=(2, 3))
+print(array)
+'''
+[[-3  6 -1]
+ [ 9  0 -2]]
+'''
+
+array = np.random.choice(10, 15)
+print(array) # [5 8 9 1 6 7 9 3 7 7 3 6 9 2 9]
