@@ -79,16 +79,16 @@ if __name__ == "__main__":
     child.method1(15)
     print("childVar: " + str(child.get_child_var()))  # 10
 
-# issubclass(subclass, superclass)
-print("is Child a subclass of Parent class: " + str(issubclass(Child, Parent)))  # True
-# isinstance(obj, Class)
-print("is child an instance of Child class: " + str(isinstance(child, Child)))  # True
-print("is child an instance of Parent class: " + str(isinstance(child, Parent)))  # True
-print(child)  # It calls __str__ method, just like Java
-print(repr(child))  # It calls __repr__ method, just like Java
-print("Testing super method call: " + str(child.method2(10)))
-print("Testing static method call: " + str(Child.get_parent_static_var()))  # 10
+    # issubclass(subclass, superclass)
+    print("is Child a subclass of Parent class: " + str(issubclass(Child, Parent)))  # True
+    # isinstance(obj, Class)
+    print("is child an instance of Child class: " + str(isinstance(child, Child)))  # True
+    print("is child an instance of Parent class: " + str(isinstance(child, Parent)))  # True
+    print(child)  # It calls __str__ method, just like Java
+    print(repr(child))  # It calls __repr__ method, just like Java
+    print("Testing super method call: " + str(child.method2(10)))
+    print("Testing static method call: " + str(Child.get_parent_static_var()))  # 10
 
-child2 = Child()
-print("is child and child2 equals: " + str(child.__eq__(child2)))  # True
-# del child
+    child2 = Child()
+    print("is child and child2 equals: " + str(child.__eq__(child2)))  # True
+    # del child
