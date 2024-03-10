@@ -43,7 +43,58 @@ array = np.linspace(start=1, stop=10, num=5, endpoint=False, dtype=float, retste
 print(array) # (array([1. , 2.8, 4.6, 6.4, 8.2]), 1.8)
 
 '''
+returns equally spaced numbers with in the given range based on step size
 
+start - start o finterval range
+stop - end of interval range (excluding stop number)
+step - step size of interval
 '''
 array = np.arange(start=1, stop=5, step=.5)
 print(array) # [1.  1.5     2.  2.5     3.  3.5     4.  4.5]
+
+'''
+return an array of given shape and type filled with ones
+shape - integer or sequence of integers
+        shape is 
+dtype = data type(default:float)
+'''
+# it returns 2D array of 5 rows and 4 cols, 1s are filled up as ints
+array = np.ones((5,4), int)
+print(array)
+'''
+[[1 1 1 1]
+ [1 1 1 1]
+ [1 1 1 1]
+ [1 1 1 1]
+ [1 1 1 1]]
+'''
+
+# it returns 3D array of 4 rows, 4 cols , in that each cell has 2 elements. 1s are filled up as ints
+array = np.ones((5, 4, 2), int)
+print(array)
+'''
+[[[1 1]
+  [1 1]
+  [1 1]
+  [1 1]]
+
+ [[1 1]
+  [1 1]
+  [1 1]
+  [1 1]]
+
+ [[1 1]
+  [1 1]
+  [1 1]
+  [1 1]]
+
+ [[1 1]
+  [1 1]
+  [1 1]
+  [1 1]]
+
+ [[1 1]
+  [1 1]
+  [1 1]
+  [1 1]]]
+'''
