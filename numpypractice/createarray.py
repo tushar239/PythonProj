@@ -31,13 +31,19 @@ print(array) # ['2' '3' 'hi' '5']
 array = np.array([2, 3, "hi", Child()]) # ['2' '3' 'hi' '5']  Child instance is going to be garbage collected
 
 '''
-creates am array
+creates an array of equally spaced numbers within the given range based on the sample number
 start = starting number
 stop = end number
 num = number of elements
 endpoint = include end number in the array or not
 dtype = data type of elements (default is float)
-retstep = include step that was used to generate the elements of an array
+retstep = It's an increment value. Include step that was used to generate the elements of an array
 '''
 array = np.linspace(start=1, stop=10, num=5, endpoint=False, dtype=float, retstep=True)
-print(array)
+print(array) # (array([1. , 2.8, 4.6, 6.4, 8.2]), 1.8)
+
+'''
+
+'''
+array = np.arange(start=1, stop=5, step=.5)
+print(array) # [1.  1.5     2.  2.5     3.  3.5     4.  4.5]
