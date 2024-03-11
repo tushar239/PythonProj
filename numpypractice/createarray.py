@@ -168,5 +168,20 @@ print(array)
  [ 9  0 -2]]
 '''
 
+'''
+returns equally spaced numbers based on log scale
+start - start value of the sequence
+stop - end value of the sequence
+num - number of samples to generate (default : 50)
+endpoint - if true, stop is the last sample
+base - base of the log space (default : 10.0)
+dtype = type of output array
+'''
+array = np.logspace(start=1, stop=10, num=5, endpoint=True, base=10.0, dtype=float)
+print(array) # [1.00000000e+01 1.77827941e+03 3.16227766e+05 5.62341325e+07 1.00000000e+10]
+
+
+
+
 array = np.random.choice(10, 15)
 print(array) # [5 8 9 1 6 7 9 3 7 7 3 6 9 2 9]
