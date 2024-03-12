@@ -11,25 +11,21 @@ operations carried out on python lists.
 '''
 
 import numpy as np
-import timeit
-'''
-# vectorized sum
-print(np.sum(np.arange(15000)))
+import time
+# Just like time module, there is timeit module also
+# https://stackoverflow.com/questions/14452145/how-to-measure-time-taken-between-lines-of-code-in-python
 
-print("Time taken by vectorized sum : ", end="")
-print(timeit.timeit(np.sum(np.arange(15000))))
+# vectorized sum
+start = time.time_ns()
+sum = np.sum(np.arange(15000))
+end = time.time_ns()
+print("time taken to sum by numpy in nano seconds: " +str(end-start))
+
 
 # iterative sum
-total = 0
+start = time.time_ns()
+sum = 0
 for item in range(0, 15000):
-    total += item
-a=total
-print("\n" + str(total))
-
-print("Time taken by iterative sum : ", end="")
-print(timeit.timeit(a))
-'''
-# code snippet to be executed only once
-mysetup = "5+5"
-
-print(timeit.timeit(mysetup))
+    sum += item
+end = time.time_ns()
+print("time taken to sum by iterative sum in nano seconds: " +str(end-start))
