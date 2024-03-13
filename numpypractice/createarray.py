@@ -33,6 +33,7 @@ array = np.array([2, 3, "hi", Child()]) # ['2' '3' 'hi' '5']  Child instance is 
 
 '''
 creates an array of equally spaced numbers within the given range based on the sample number
+
 start = starting number
 stop = end number
 num = number of elements
