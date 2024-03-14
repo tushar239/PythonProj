@@ -1,6 +1,5 @@
 import numpy as np
 from inheritance.Child import Child
-import matplotlib.pyplot as plt
 
 '''
 numpy is is used to create n-dimensional array and so it is called nd array
@@ -9,12 +8,12 @@ creates a numpy array
 '''
 array = np.array([2, 3, 4, 5])  # creating a numpy array from a list
 print(array)  # [2 3 4 5]
-print(type(array)) # <class 'numpy.ndarray'> type is a class and you are creating an object of that class and trying
+print(type(array))  # <class 'numpy.ndarray'> type is a class, and you are creating an object of that class and trying
 # to print it.
 
 array = np.array((2, 3, 4, 5))  # creating a numpy array from a tuple
 print(array)  # [2 3 4 5]
-print(array[0]) # 2
+print(array[0])  # 2
 
 # trying to use a dictionary to create a numpy array, but doesn't work properly
 '''
@@ -27,9 +26,9 @@ print(array["1"]) # IndexError: only integers, slices (`:`), ellipsis (`...`), n
 # Numpy can handle different categorical entities
 # If one element is a string, it converts all others to string also
 array = np.array([2, 3, "hi", 5])
-print(array) # ['2' '3' 'hi' '5']
+print(array)  # ['2' '3' 'hi' '5']
 
-array = np.array([2, 3, "hi", Child()]) # ['2' '3' 'hi' '5']  Child instance is going to be garbage collected
+array = np.array([2, 3, "hi", Child()])  # ['2' '3' 'hi' '5']  Child instance is going to be garbage collected
 
 '''
 creates an array of equally spaced numbers within the given range based on the sample number
@@ -42,7 +41,7 @@ dtype = data type of elements (default is float)
 retstep = It's an increment value. Include step that was used to generate the elements of an array
 '''
 array = np.linspace(start=1, stop=10, num=5, endpoint=False, dtype=float, retstep=True)
-print(array) # (array([1. , 2.8, 4.6, 6.4, 8.2]), 1.8)
+print(array)  # (array([1. , 2.8, 4.6, 6.4, 8.2]), 1.8)
 
 '''
 returns equally spaced numbers with in the given range based on step size
@@ -52,7 +51,7 @@ stop - end of interval range (excluding stop number)
 step - step size of interval
 '''
 array = np.arange(start=1, stop=5, step=.5)
-print(array) # [1.  1.5     2.  2.5     3.  3.5     4.  4.5]
+print(array)  # [1.  1.5     2.  2.5     3.  3.5     4.  4.5]
 
 '''
 return an array of given shape and type filled with ones
@@ -61,7 +60,7 @@ shape - integer or sequence of integers
 dtype = data type(default:float)
 '''
 # it returns 2D array of 5 rows and 4 cols, 1s are filled up as ints
-array = np.ones((5,4), int)
+array = np.ones((5, 4), int)
 print(array)
 '''
 [[1 1 1 1]
@@ -121,7 +120,7 @@ print(array)
 returns an array of given shape filled with random values
 '''
 array = np.random.rand(3)
-print(array) # [0.4565651  0.7101034  0.50924081]
+print(array)  # [0.4565651  0.7101034  0.50924081]
 
 # generates 2D array of 5 rows and 3 cols filled with random numbers
 array = np.random.rand(5, 3)
@@ -160,7 +159,7 @@ print(array)
 '''
 
 array = np.random.randint(low=0, high=3, size=5)
-print(array) # [0 2 0 2 0] random numbers are generated in between 0 to 2. size of the array will be 5
+print(array)  # [0 2 0 2 0] random numbers are generated in between 0 to 2. size of the array will be 5
 
 array = np.random.randint(low=-3, high=10, size=(2, 3))
 print(array)
@@ -179,10 +178,7 @@ base - base of the log space (default : 10.0)
 dtype = type of output array
 '''
 array = np.logspace(start=1, stop=10, num=5, endpoint=True, base=10.0, dtype=float)
-print(array) # [1.00000000e+01 1.77827941e+03 3.16227766e+05 5.62341325e+07 1.00000000e+10]
-
-
-
+print(array)  # [1.00000000e+01 1.77827941e+03 3.16227766e+05 5.62341325e+07 1.00000000e+10]
 
 array = np.random.choice(10, 15)
-print(array) # [5 8 9 1 6 7 9 3 7 7 3 6 9 2 9]
+print(array)  # [5 8 9 1 6 7 9 3 7 7 3 6 9 2 9]
