@@ -1,0 +1,1 @@
+# https://www.geeksforgeeks.org/enum-in-python/
