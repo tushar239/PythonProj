@@ -20,6 +20,7 @@ default stop = last index + 1
 default step = 1
 '''
 
+a = np.array([[1,2,3], [4,5,6], [7,8,9]])
 # retrieving sub-array
 subArray = a[1:3] # default step=1
 print(subArray)
