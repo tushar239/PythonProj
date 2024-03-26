@@ -26,6 +26,10 @@ print(c)
  [ 7  8  9 10]]
 '''
 
+# Fourth way to create a matrix from a range of numbers
+d = np.arange(11, 20, 1).reshape((3,3))
+print(d)
+
 print(a.shape)  # (3, 4)
 # array.shape returns a tuple. So, you can access a tuple to know number of rows and cols
 print(a.shape[0])  # gives number of rows - 3
