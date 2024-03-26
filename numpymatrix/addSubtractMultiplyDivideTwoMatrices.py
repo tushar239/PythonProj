@@ -43,12 +43,22 @@ print(result)
 
 '''
 matrix3 = numpy.dot(matrix1, matrix2)
+OR
+matrix3 = numpy.matmult(matrix1, matrix2)
+
 It does elementwise multiplication between two matrices
+
+It multiplies rows and columns
+Number of rows in matrix1 should be same as number of columns in matrix2
 '''
-result = np.dot(a, b)
+
+result = np.dot(a, b) # gives the same result as np.matmult(a, b)
 print(result)
+
+
 '''
 It multiplies rows and columns
+Number of rows in matrix1 should be same as number of columns in matrix2
 
 [[1*11 + 2*14 + 3*17        1*12 + 2*15 + 3*18      1*13 + 2*16 + 3*19]
  [4*11 + 5*14 + 6*17        4*12 + 5*15 + 6*18      4*13 + 5*16 + 6*19]
@@ -57,4 +67,37 @@ It multiplies rows and columns
 [[ 90  96 102]
  [216 231 246]
  [342 366 390]]
+'''
+
+result = np.matmul(a, b)  # gives the same result as np.dot(a, b)
+print(result)
+'''
+[[ 90  96 102]
+ [216 231 246]
+ [342 366 390]]
+'''
+
+
+'''
+matrix3 = numpy.multiply(matrix1, matrix2)
+It performs elementwise multiplication between two matrices
+'''
+result = np.multiply(a, b)
+print(result)
+'''
+[[ 11  24  39]
+ [ 56  75  96]
+ [119 144 171]]
+'''
+
+'''
+matrix3 = numpy.divide(matrix1, matrix2)
+It performs elementwise division between two matrices
+'''
+result = np.divide(a, b)
+print(result)
+'''
+[[0.09090909 0.16666667 0.23076923]
+ [0.28571429 0.33333333 0.375     ]
+ [0.41176471 0.44444444 0.47368421]]
 '''
