@@ -27,8 +27,21 @@ print(c)
 '''
 
 # Fourth way to create a matrix from a range of numbers
-d = np.arange(11, 20, 1).reshape((3,3))
+d = np.arange(11, 20, 1).reshape((3, 3))
 print(d)
+'''
+[[11 12 13]
+ [14 15 16]
+ [17 18 19]]
+'''
+# Fifth way to create a matrix
+e = np.matrix(np.arange(21, 30, 1)).reshape(3, 3)
+print(e)
+'''
+[[21 22 23]
+ [24 25 26]
+ [27 28 29]]
+'''
 
 print(a.shape)  # (3, 4)
 # array.shape returns a tuple. So, you can access a tuple to know number of rows and cols
