@@ -4,6 +4,9 @@ import numpy.linalg as la
 # How to calculate the determinant of a matrix?
 # https://en.wikipedia.org/wiki/Determinant
 
+'''
+|A| means determinant of A
+'''
 a = np.matrix([[1, 2],
                [4, 5]])
 result = la.det(a) # 1x5 - 2x4
