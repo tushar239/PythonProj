@@ -58,6 +58,8 @@ print(result)
 
 '''
 It multiplies rows and columns
+IMPORTANT: Understand how two matrices are multiplied. This concept will be used throughout in Linear Algebra section.
+
 Number of rows in matrix1 should be same as number of columns in matrix2
 
 [[1*11 + 2*14 + 3*17        1*12 + 2*15 + 3*18      1*13 + 2*16 + 3*19]

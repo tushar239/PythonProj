@@ -6,6 +6,8 @@
 
 inverse of matrix A = A^-1 = 1/|A| x Adjoin(A)
 |A| means determinant of A
+Singular matrix means the determinant of a matrix is 0.
+You can’t find an inverse of a matrix, if the determinant of a matrix is 0.
 '''
 
 import numpy as np
