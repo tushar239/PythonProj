@@ -1,0 +1,25 @@
+# https://www.youtube.com/watch?v=kWorj5BBy9k
+# https://www.youtube.com/watch?v=HYWeEx21WWw
+# https://www.youtube.com/watch?v=xfhzwNkMNg4
+
+import numpy as np
+# linalg is a package inside numpy package
+import numpy.linalg as la
+
+a = np.matrix("4,5,16,7;2,-3,2,3;3,4,5,6;4,7,8,9")
+print(a)
+'''
+[[ 4  5 16  7]
+ [ 2 -3  2  3]
+ [ 3  4  5  6]
+ [ 4  7  8  9]]
+'''
+result = la.inv(a)
+print(result)
+
+'''
+[[ 9.37500000e-02 -4.68750000e-01  3.68750000e+00 -2.37500000e+00]
+ [ 1.00929366e-16 -2.50000000e-01  5.00000000e-01 -2.50000000e-01]
+ [ 9.37500000e-02  3.12500000e-02 -3.12500000e-01  1.25000000e-01]
+ [-1.25000000e-01  3.75000000e-01 -1.75000000e+00  1.25000000e+00]]
+'''
