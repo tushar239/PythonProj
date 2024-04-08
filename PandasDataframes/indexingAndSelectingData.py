@@ -49,3 +49,13 @@ print(lastNRows)
 
 [15 rows x 10 columns]
 '''
+
+# at[row id, column name] returns an element in particular cell of dataframe
+# at provides label-based scalar lookups
+result = cars_data.at[4, 'FuelType']
+print(result) # Diesel
+
+# iat[row id, column id] returns an element in particular cell of dataframe
+# iat provides integer-based lookups
+result = cars_data.iat[4, 5]
+print(result) # 0.0
