@@ -59,3 +59,22 @@ print(result) # Diesel
 # iat provides integer-based lookups
 result = cars_data.iat[4, 5]
 print(result) # 0.0
+
+# To access a group of rows and columns by label(s)
+result = cars_data.loc[4:15, ['Price', 'FuelType']]
+print(result)
+'''
+    Price FuelType
+4   13750   Diesel
+5   12950   Diesel
+6   16900   Diesel
+7   18600      NaN
+8   21500   Petrol
+9   12950   Diesel
+10  20950   Petrol
+11  19950   Petrol
+12  19600   Petrol
+13  21500   Petrol
+14  22500   Petrol
+15  22000   Petrol
+'''
