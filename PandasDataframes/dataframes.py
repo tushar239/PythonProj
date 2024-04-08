@@ -1,13 +1,5 @@
-import os
+import gotoDataDir
 import pandas as pd
-
-curDir = os.getcwd()
-print(curDir)
-
-os.chdir(os.curdir + '\data')
-
-curDir = os.getcwd()
-print(curDir)
 
 cars_data = pd.read_csv('Toyota.csv', index_col=0, na_values=['??', '###'])
 print(cars_data)
@@ -72,6 +64,3 @@ dtype: int64
 # gives number of axes/array dimensions
 total_axes = cars_data.ndim
 print(total_axes) # 2
-
-# returns first n rows from dataframe
-print(cars_data.head(5))
