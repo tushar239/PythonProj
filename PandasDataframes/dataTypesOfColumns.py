@@ -1,5 +1,6 @@
 import gotoDataDir
 import pandas as pd
+import numpy as np
 
 cars_data = pd.read_csv('Toyota.csv', index_col=0, na_values=['??', '###'])
 print(cars_data)
@@ -78,7 +79,15 @@ print(cols)
 '''
 
 '''
-Get concise summary of dataframe
+Gives concise summary of dataframe.
+It gives Column types + missing values information.
+
+Sometimes, it may read a column as int64, but it makes more sense to have it as object. 
+e.g. Doors - values are '2','3','4','5','five,'four','three'. So, pandas considers it as object, but from business perspective it should be int64.
+MetColor should be Object type.
+Automatic should be of Categorical type.
+HP should be integer.
+Doors should be int64.
 '''
 summary =  cars_data.info()
 print(summary)
@@ -101,4 +110,35 @@ Data columns (total 10 columns):
 dtypes: float64(3), int64(4), object(3)
 memory usage: 123.4+ KB
 None
+'''
+
+'''
+Gives unique elements of columns.
+It uses numpy package.
+'''
+print('unique elements ...')
+hp_unique_elements = np.unique(cars_data['HP'])
+print(hp_unique_elements)
+'''
+['107' '110' '116' '192' '69' '71' '72' '73' '86' '90' '97' '98' '????']
+
+It has '????'. So, HP is given a data type object instead of int64
+'''
+metcolor_unique_elements = np.unique(cars_data['MetColor'])
+print(metcolor_unique_elements)
+'''
+[ 0.  1. nan]
+it has 0. and 1.. So, it is given a data type float64 instead of object.
+'''
+automatic_unique_elements = np.unique(cars_data['Automatic'])
+print(automatic_unique_elements)
+'''
+[0 1]
+Because it has 0 and 1, it is given a data type int64 instead of category.
+'''
+doors_unique_elements = np.unique(cars_data['Doors'])
+print(doors_unique_elements)
+'''
+['2' '3' '4' '5' 'five' 'four' 'three']
+Due to the mixture of ints and text, it is given a data type object instead of int64.
 '''
