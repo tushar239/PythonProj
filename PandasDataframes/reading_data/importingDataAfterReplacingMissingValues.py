@@ -59,6 +59,8 @@ memory = cars_data.memory_usage()
 print(memory)
 bytes_used = cars_data['Automatic'].nbytes
 print(bytes_used) # 1452
+bytes_used = cars_data['FuelType'].nbytes
+print(bytes_used) # 1460
 '''
 Before changing Automatic's data type to category
 
@@ -71,6 +73,30 @@ After changing Automatic's data type to category
 MetColor     11488
 Automatic     1560  ---- huge impact on memory usage
 FuelType      1568  ---- huge impact on memory usage
+'''
+
+# dataframe summary after changing column data types
+summary =  cars_data.info()
+print(summary)
+'''
+<class 'pandas.core.frame.DataFrame'>
+Index: 1436 entries, 0 to 1435
+Data columns (total 10 columns):
+ #   Column     Non-Null Count  Dtype   
+---  ------     --------------  -----   
+ 0   Price      1436 non-null   int64   
+ 1   Age        1336 non-null   float64 
+ 2   KM         1421 non-null   float64 
+ 3   FuelType   1336 non-null   category - changed
+ 4   HP         1430 non-null   float64 
+ 5   MetColor   1286 non-null   object   - changed
+ 6   Automatic  1436 non-null   category - changed
+ 7   CC         1436 non-null   int64   
+ 8   Doors      1436 non-null   object  
+ 9   Weight     1436 non-null   int64   
+dtypes: category(2), float64(3), int64(3), object(2)
+memory usage: 104.0+ KB
+None
 '''
 
 
