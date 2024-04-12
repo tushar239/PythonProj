@@ -18,7 +18,7 @@ print(summary) # HP will have data type 'object
 
 ############################################################################
 
-
+# na_values attribute replaces mentioned strings with nan value in dataframe.
 print('unique elements after replacing missing values with nan...')
 cars_data = pd.read_csv('Toyota.csv', index_col=0, na_values=["??", "????"])
 print(cars_data)
@@ -32,3 +32,47 @@ Now, HP will get data type float64
 '''
 summary =  cars_data.info()
 print(summary)
+memory = cars_data.memory_usage()
+print(memory)
+
+print('After changing the data types of columns(variables) .......')
+# changing the data types of columns
+cars_data['MetColor'] = cars_data['MetColor'].astype(dtype='object')
+cars_data['Automatic'] = cars_data['Automatic'].astype(dtype='category')
+cars_data['FuelType'] = cars_data['FuelType'].astype(dtype='category')
+summary =  cars_data.info()
+print(summary)
+'''
+Before changing the data types
+
+ 3   FuelType   1336 non-null   object 
+ 5   MetColor   1286 non-null   float64
+ 6   Automatic  1436 non-null   int64 
+ 
+After changing the data types 
+
+ 3   FuelType   1336 non-null   category
+ 5   MetColor   1286 non-null   object  
+ 6   Automatic  1436 non-null   category
+'''
+memory = cars_data.memory_usage()
+print(memory)
+bytes_used = cars_data['Automatic'].nbytes
+print(bytes_used) # 1452
+'''
+Before changing Automatic's data type to category
+
+MetColor     11488
+Automatic    11488
+FuelType     11488
+
+After changing Automatic's data type to category
+
+MetColor     11488
+Automatic     1560  ---- huge impact on memory usage
+FuelType      1568  ---- huge impact on memory usage
+'''
+
+
+
+
