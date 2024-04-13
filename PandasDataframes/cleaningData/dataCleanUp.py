@@ -53,9 +53,10 @@ print(doors_unique_elements) # [2 3 4 5]
 #print(cars_data)
 
 #####################################
+
 '''
-mask function doesn't work as mentioned in 
-https:www.geeksforgeeks.org/how-to-replace-values-in-column-based-on-condition-in-pandas/
+#mask function doesn't work as mentioned in 
+#https:www.geeksforgeeks.org/how-to-replace-values-in-column-based-on-condition-in-pandas/
 
 
 cars_data = pd.read_csv(filepath_or_buffer = 'Toyota.csv', index_col=0, na_values=["??", "????"])
@@ -68,5 +69,6 @@ cars_data['Doors'].mask(cars_data['Doors'] == 'five', 5, inplace=True)
 cars_data['Doors'] = cars_data['Doors'].astype(dtype='int')
 
 doors_unique_elements = np.unique(cars_data['Doors'])
+
 print(doors_unique_elements) # [2 3 4 5]
 '''
