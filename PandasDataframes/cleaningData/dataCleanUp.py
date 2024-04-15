@@ -37,7 +37,6 @@ https:www.geeksforgeeks.org/how-to-replace-values-in-column-based-on-condition-i
 numpy's where(condition, x, y)
 Based on condition, return either x or y
 If the condition is true, then return x, otherwise return y
-
 '''
 cars_data = pd.read_csv(filepath_or_buffer = 'Toyota.csv', index_col=0, na_values=["??", "????"])
 print(cars_data)
