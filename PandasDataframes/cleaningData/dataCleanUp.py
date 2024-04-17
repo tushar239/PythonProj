@@ -24,7 +24,7 @@ cars_data.replace(to_replace='three', value=3, inplace=True)
 cars_data.replace(to_replace='four', value=4, inplace=True)
 cars_data.replace(to_replace='five', value=5, inplace=True)
 # change the data type from object to int64 after changing the data.
-cars_data['Doors'] = cars_data['Doors'].astype(dtype='int')
+cars_data['Doors'] = cars_data['Doors'].astype(dtype='int64')
 
 doors_unique_elements = np.unique(cars_data['Doors'])
 print(doors_unique_elements) # [2 3 4 5]
