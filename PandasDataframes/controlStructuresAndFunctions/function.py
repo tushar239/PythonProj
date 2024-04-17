@@ -49,3 +49,34 @@ dtypes: float64(3), int64(5), object(3)
 memory usage: 134.6+ KB
 None
 '''
+
+# create new column in dataframe with default value as 0
+cars_data.insert(11, "Age_Converted2", 0)
+cars_data.insert(12, "Km_per_month", 0)
+
+# Function with multiple input and output values
+def c_convert(val1, val2):
+    val_converted = val1/12
+    ratio = val1/val2
+    return [val_converted, ratio]
+
+cars_data["Age_Converted2"], cars_data["Km_per_month"] = \
+    c_convert(cars_data["Age"], cars_data["KM"])
+print(cars_data)
+
+'''
+      Price   Age       KM  ... Age_Converted Age_Converted2  Km_per_month
+0     13500  23.0  46986.0  ...             2       1.916667      0.000490
+1     13750  23.0  72937.0  ...             2       1.916667      0.000315
+2     13950  24.0  41711.0  ...             2       2.000000      0.000575
+3     14950  26.0  48000.0  ...             2       2.166667      0.000542
+4     13750  30.0  38500.0  ...             2       2.500000      0.000779
+...     ...   ...      ...  ...           ...            ...           ...
+1431   7500   NaN  20544.0  ...             0            NaN           NaN
+1432  10845  72.0      NaN  ...             6       6.000000           NaN
+1433   8500   NaN  17016.0  ...             0            NaN           NaN
+1434   7250  70.0      NaN  ...             6       5.833333           NaN
+1435   6950  76.0      1.0  ...             6       6.333333     76.000000
+
+[1436 rows x 13 columns]
+'''
