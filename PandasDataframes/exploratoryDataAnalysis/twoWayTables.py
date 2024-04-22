@@ -19,4 +19,6 @@ FuelType   CNG  Diesel  Petrol  NaN
 Automatic                          
 0           15     144    1104   93
 1            0       0      73    7
+
+This relationship shows that Automatic cars (value=1) has only Petrol cars.
 '''
