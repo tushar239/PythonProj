@@ -9,6 +9,8 @@ cars_data_copy = cars_data.copy()
 '''
 Two-way frequency table
 -----------------------
+https://www.youtube.com/watch?v=ZJglN2cXtME - Watch this first
+
 It finds out the frequency cross table between two variables.
 Here the values of Automatic and the values of FuelType variables(columns).
 '''
@@ -72,9 +74,9 @@ https://www.youtube.com/watch?v=-bijcTgRVBQ - watch this video to understand wha
 Conditional probability: focuses on the probability of one event given that another event has already occurred.
 
 In above data with margins, 
-    Conditional probability P(Petrol | Automatic) = probability of petrol with given probability of Automatic
-                                                  = 0.826347/0.945359
-                                                  = 0.874109  
+Conditional probability P(Petrol | Automatic) = probability of petrol with given probability of Automatic
+                                              = 0.826347/0.945359
+                                              = 0.874109  
 '''
 result = pd.crosstab(index=cars_data_copy['Automatic'],
                      columns=cars_data_copy['FuelType'],
@@ -88,6 +90,23 @@ Automatic
 0          0.011876  0.114014  0.874109
 1          0.000000  0.000000  1.000000
 All        0.011228  0.107784  0.880988
+'''
 
 
+'''
+Conditional probability P(Automatic | Petrol) = probability of Automatic with given probability of Petrol
+                                              = 0.826347/0.880988
+                                              = 0.937978  
+'''
+result = pd.crosstab(index=cars_data_copy['Automatic'],
+                     columns=cars_data_copy['FuelType'],
+                     normalize='columns',
+                     margins=True,
+                     dropna=True)
+print(result)
+'''
+FuelType   CNG  Diesel    Petrol       All
+Automatic                                 
+0          1.0     1.0  0.937978  0.945359
+1          0.0     0.0  0.062022  0.054641
 '''
