@@ -1,8 +1,14 @@
 import gotoDataDir
 import pandas as pd
 
+# to see entire dataframe in the output
+#pd.set_option('display.max_columns', None)
+#pd.set_option('display.max_rows', None)
+
 cars_data = pd.read_csv('Toyota.csv', index_col=0, na_values=['??', '###'])
 print(cars_data)
+# to print all rows and cols use to_string()
+#print(cars_data.to_string())
 '''
      Price   Age       KM FuelType  ... Automatic    CC  Doors  Weight
 0     13500  23.0  46986.0   Diesel  ...         0  2000  three    1165

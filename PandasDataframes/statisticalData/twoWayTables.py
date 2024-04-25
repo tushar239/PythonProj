@@ -2,6 +2,9 @@ import PandasDataframes.gotoDataDir
 import pandas as pd
 import numpy as np
 
+# to see entire dataframe in the output
+pd.set_option('display.max_columns', None)
+
 cars_data = pd.read_csv('Toyota.csv', index_col=0, na_values=['??', '???', '###'])
 
 cars_data_copy = cars_data.copy()
