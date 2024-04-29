@@ -28,7 +28,7 @@ print(array["1"]) # IndexError: only integers, slices (`:`), ellipsis (`...`), n
 array = np.array([2, 3, "hi", 5])
 print(array)  # ['2' '3' 'hi' '5']
 
-array = np.array([2, 3, "hi", Child()])  # ['2' '3' 'hi' '5']  Child instance is going to be garbage collected
+array = np.array([2, 3, "hi", Child()])  # ['2' '3' 'hi']  Child instance is going to be garbage collected
 
 '''
 creates an array of equally spaced numbers within the given range based on the sample number
@@ -70,7 +70,7 @@ print(array)
  [1 1 1 1]]
 '''
 
-# it returns 3D array of 4 rows, 4 cols , in that each cell has 2 elements. 1s are filled up as ints
+# it returns 3D array of 5 rows, 4 cols , in that each cell has 2 elements. 1s are filled up as ints
 array = np.ones((5, 4, 2), int)
 print(array)
 '''

@@ -18,10 +18,15 @@ Correlation is bound between -1 and +1. 0 means no correlation at all.
 Closer to +1 represents there is a strong correlation between two variables positively. 
 Theoretically, above 0.7, you can say there is a fair correlation between two numerical variables.
 
-Closer to -1 represents weaker correlation between two numerical variables. E.g. relation between price and age of the car. As car gets older, price goes down.
+Closer to -1 represents weaker correlation between two numerical variables. 
+E.g. relation between price and age of the car. As car gets older, price goes down.
+Relation between price and km. As car is driven more, its price goes down.
+Relation between price and weight. As weight of the car increases, its price also increases. There is a positive correlation between price and weight.
+Relation between Age and KM. As Age of the car increases, its KMs also increases. There is a positive correlation in between these Age and KM.
 '''
 
 # Pearson method can calculate correlation only between two numeric variables.
+# pearson method is a default method
 #cars_data_copy = cars_data_copy.select_dtypes(exclude=['object'])
 result = cars_data_copy.corr(method="pearson", numeric_only=True)
 print(result)
