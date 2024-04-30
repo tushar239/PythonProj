@@ -27,5 +27,5 @@ plt.title('Histogram of Kilometer')
 plt.xlabel('Kilometer')
 plt.ylabel('Frequency')
 plt.show()
-# Frequency distribution of kilometre of the cars shows that most of the cars have tavelled between 50k-100k km
+# Frequency distribution of kilometre of the cars shows that most of the cars have travelled between 50k-100k km
 # and there are only few cars with more distance travelled
