@@ -3,6 +3,7 @@ import numpy as np
 import matplotlib as mpl
 import matplotlib.pyplot as plt # pyplot means python plot
 import gotoDataDir
+
 '''
 Bar Plot:
 It is a plot that presents CATEGORICAL data with rectangular bars with lengths
@@ -76,13 +77,25 @@ rows = valueCountsDataFrame.shape[0]
 cols = valueCountsDataFrame.shape[1]
 for i in range(0, rows, 1):
     for j in range(0, cols, 1):
-        print(valueCountsDataFrame.iat[i,j]) # https://sparkbyexamples.com/pandas/pandas-get-cell-value-from-dataframe/#:~:text=If%20you%20want%20to%20get,1%20as%20the%20column%20position.&text=This%20returns%20the%20same%20output%20as%20above.
+        print(valueCountsDataFrame.iat[i,j]) # https://sparkbyexamples.com/pandas/pandas-get-cell-value-from-dataframe/
 '''
 
+def createRandomColorList(total):
+    my_colors = []
+    for i in range(total):
+        r = 0.11 * i
+        g = 0.22 * i
+        b = 0.33 * i
+        color = [r,g,b]
+        my_colors.append(color)
+    return my_colors
+
+colors = createRandomColorList(len(fuelTypes))
 #index = np.arange(0, len(fuelTypes), 1)
 #plt.bar(index, fuelTypeCount)
-plt.bar(fuelTypes, fuelTypeCount)
+plt.bar(x=fuelTypes, height=fuelTypeCount, color=colors)
 plt.title('Bar plot of fuel types')
 plt.xlabel('Fuel Types')
 plt.ylabel('Frequency')
 plt.show()
+

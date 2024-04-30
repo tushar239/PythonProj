@@ -50,6 +50,11 @@ print(lastNRows)
 [15 rows x 10 columns]
 '''
 
+# When you'd like to access just one value in a pandas DataFrame, both the loc and at functions will work fine.
+# However, when you'd like to access a group of rows and columns, only the loc function is able to do so.
+# https://sparkbyexamples.com/pandas/pandas-get-cell-value-from-dataframe/
+
+
 # at[row id, column name] returns an element in particular cell of dataframe
 # at provides label-based scalar lookups
 result = cars_data.at[4, 'FuelType']
