@@ -19,5 +19,5 @@ print(cars_data)
 
 rows_with_fueltype_petrol = cars_data[cars_data['FuelType'] == 'Petrol']
 print(rows_with_fueltype_petrol)
-total_rows_with_fueltype_petrol = len(petrol_data)
+total_rows_with_fueltype_petrol = len(rows_with_fueltype_petrol)
 print(total_rows_with_fueltype_petrol)
