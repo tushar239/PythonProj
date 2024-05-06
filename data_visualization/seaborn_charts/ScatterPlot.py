@@ -33,7 +33,9 @@ print(summary)
 print(cars_data.shape) # (1099, 10)
 
 sns.set(style="darkgrid")
-sns.regplot(data=cars_data, x='Age', y='Price') # By default, fit_reg=True. If you set it to False, it won't display a regression line in the plot.
+# By default, fit_reg=True. If you set it to False, it won't display a regression line in the plot.
+# marker='*' will display *s instead of dots in the plot
+sns.regplot(data=cars_data, x='Age', y='Price', marker="*")
 plt.show()
 '''
 This is not exactly a Scatter Plot, but it is a Regression Plot.
