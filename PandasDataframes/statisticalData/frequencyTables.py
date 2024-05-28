@@ -13,6 +13,7 @@ cars_data_copy = cars_data.copy()
 It finds out the frequency of different values in a column
 index column in the resulting dataframe will be the values of FuelType.
 '''
+# barplot(countplot) is a graphical representation of crosstab function
 result = pd.crosstab(index=cars_data_copy['FuelType'],
                      columns='count',
                      dropna=False)

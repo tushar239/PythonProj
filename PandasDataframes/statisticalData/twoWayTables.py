@@ -17,6 +17,7 @@ https://www.youtube.com/watch?v=ZJglN2cXtME - Watch this first
 It finds out the frequency cross table between two variables.
 Here the values of Automatic and the values of FuelType variables(columns).
 '''
+# barplot(countplot) is a graphical representation of crosstab function
 result = pd.crosstab(index=cars_data_copy['Automatic'],
                      columns=cars_data_copy['FuelType'],
                      dropna=False)
