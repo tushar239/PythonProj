@@ -16,13 +16,14 @@ cars_data.dropna(axis=0, inplace=True)
 print(cars_data)
 
 '''
+with kde=False, it will be exactly like a Histogram that shows the Frequency of different Age ranges(bins)
+
 kde means kernal density estimate
 Kernel density estimation is the process of estimating an unknown probability density function using a kernel function .
 While a histogram counts the number of data points in somewhat arbitrary regions, a kernel density estimate is a function defined as the sum of a kernel function on every data point.
 
 KDE shows the density where the points match up the most
 
-with kde=False, it will be exactly like a Histogram that shows the Frequency of different Age ranges(bins)
 '''
 sns.distplot(a=cars_data['Age'], kde=False, color='red')
 plt.show()

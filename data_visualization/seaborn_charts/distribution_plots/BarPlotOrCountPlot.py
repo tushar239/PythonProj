@@ -11,7 +11,9 @@ cars_data.dropna(axis=0, inplace=True)
 print(cars_data)
 
 '''
-Bar plot is also called a Count plot. It is normally used for Categorical data.
+Bar plot is also called a Count plot.
+It is just like Histogram plot. Histogram plot is used for Numerical data
+and Bar plot is used for Categorical data.
 '''
 # This will just display total number of CNG cars, total number of Petrol cars, and
 # total number of diesel cars
@@ -24,3 +26,4 @@ plt.show()
 # This graph is a graphical representation of crosstab function (twoWayTables).
 sns.countplot(data=cars_data, x='FuelType', hue='Automatic')
 plt.show()
+

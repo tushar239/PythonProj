@@ -11,6 +11,8 @@ cars_data.dropna(axis=0, inplace=True)
 print(cars_data)
 
 '''
+It shows the relation between two variables.
+
 It is used to draw a plot of two variables with bivariate and univariate graphs. 
 It basically combines two different plots.
 '''
