@@ -24,3 +24,13 @@ Above and below the whiskers, there are points. They are outliers(extreme values
 '''
 sns.boxplot(data=cars_data, y="Price")
 plt.show()
+
+'''
+Box plot can also be used to compare 5-number summary by comparing
+a numerical variable with a categorical variable.
+'''
+sns.boxplot(data=cars_data, y="Price", x="FuelType")
+plt.show()
+
+sns.boxplot(data=cars_data, y="Price", x="FuelType", hue="Automatic")
+plt.show()
