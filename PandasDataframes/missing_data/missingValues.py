@@ -135,6 +135,8 @@ It means
 - 50% of the car's price is lesser than 9900
 - 75% of the car's price is lesser than 11950
 
+Average is represented by mean.
+Median is represented by 50%
 '''
 
 print(cars_data.describe())
@@ -153,3 +155,61 @@ max    32500.000000    80.000000  ...        6.666667     76.000000
 [8 rows x 10 columns]
 '''
 
+'''
+Let' impute(replace) missing values of Age column with mean value.
+'''
+mean_of_age = cars_data2['Age'].mean()
+print(mean_of_age) # 55.67215568862275
+
+cars_data2['Age'].fillna(mean_of_age, inplace=True)
+
+# subsetting the rows that have one or more missing values
+rows_with_missing_values = cars_data2[cars_data2.isnull().any(axis=1)]
+filter = rows_with_missing_values['Age'].isnull()
+print(filter) # Series([], Name: Age, dtype: bool)   no missing values now
+
+'''
+Let' impute(replace) missing values of KM column with median value.
+'''
+
+median_of_km = cars_data2['KM'].median()
+print(median_of_km) # 63061.5
+
+cars_data2['KM'].fillna(median_of_km, inplace=True)
+
+# subsetting the rows that have one or more missing values
+rows_with_missing_values = cars_data2[cars_data2.isnull().any(axis=1)]
+filter = rows_with_missing_values['KM'].isnull()
+print(filter) # Series([], Name: KM, dtype: bool)   no missing values now
+
+
+'''
+Let' impute(replace) missing values of HP column with mean value.
+'''
+
+mean_of_hp = cars_data2['HP'].mean()
+print(mean_of_hp) # 101.28693101262657
+
+cars_data2['HP'].fillna(mean_of_hp, inplace=True)
+
+# subsetting the rows that have one or more missing values
+rows_with_missing_values = cars_data2[cars_data2.isnull().any(axis=1)]
+filter = rows_with_missing_values['HP'].isnull()
+print(filter) # Series([], Name: HP, dtype: bool)   no missing values now
+
+# Finding missing values after filling missing values with mean or median
+count_of_missing_values = cars_data2.isnull().sum()
+print(count_of_missing_values)
+'''
+Price          0
+Age            0
+KM             0
+FuelType     100
+HP             0
+MetColor     150
+Automatic      0
+CC             0
+Doors          0
+Weight         0
+dtype: int64
+'''

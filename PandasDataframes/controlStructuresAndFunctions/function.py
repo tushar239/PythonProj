@@ -91,6 +91,10 @@ It means
 - 50% of the car's price is lesser than 9900
 - 75% of the car's price is lesser than 11950
 
+Average is represented by mean.
+Median is represented by 50%.
+Median will sort all the values and take the middle value in case of odd number of rwos.
+In case of even number of rows, it will take middle two values and take its average.
 '''
 
 print(cars_data.describe())
