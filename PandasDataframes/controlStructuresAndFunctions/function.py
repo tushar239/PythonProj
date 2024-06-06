@@ -80,3 +80,27 @@ print(cars_data)
 
 [1436 rows x 13 columns]
 '''
+
+'''
+describe() will give you count, standard deviation, min, max, mean etc for columns. It generates descriptive statistics 
+that summarize the central tendency, dispersion, and shape of a dataset distribution,excluding NaN values.
+
+From min to max, it is called 5-numbers summary. It gives you min, max and 3 quantiles.
+'''
+
+print(cars_data.describe())
+
+'''
+              Price          Age  ...  Age_Converted2  Km_per_month
+count   1436.000000  1336.000000  ...     1336.000000   1321.000000
+mean   10730.824513    55.672156  ...        4.639346      0.111520
+std     3626.964585    18.589804  ...        1.549150      2.526162
+min     4350.000000     1.000000  ...        0.083333      0.000177
+25%     8450.000000    43.000000  ...        3.583333      0.000661
+50%     9900.000000    60.000000  ...        5.000000      0.000880
+75%    11950.000000    70.000000  ...        5.833333      0.001156
+max    32500.000000    80.000000  ...        6.666667     76.000000
+
+[8 rows x 10 columns]
+'''
+
