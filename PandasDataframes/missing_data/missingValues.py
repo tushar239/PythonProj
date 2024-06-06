@@ -128,7 +128,13 @@ In case of even number of rows, it will take middle two values and take its aver
 describe() will give you count, standard deviation, min, max, mean etc for columns. It generates descriptive statistics 
 that summarize the central tendency, dispersion, and shape of a dataset distribution,excluding NaN values.
 
-From min to max, it is called 5-numbers summary. It gives you min, max and 3 quantiles.
+From min to max, it is called 5-numbers summary. It gives you min, max and 3 quartiles.
+
+It means 
+- 25% of the car's price is lesser than 4350
+- 50% of the car's price is lesser than 9900
+- 75% of the car's price is lesser than 11950
+
 '''
 
 print(cars_data.describe())
