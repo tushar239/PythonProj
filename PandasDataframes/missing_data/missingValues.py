@@ -262,13 +262,13 @@ Replacing NaN of MetColor with its modal value (the most common number that appe
 In statistics, the mode is the value that is repeatedly occurring in a given set. We can also say that the value or number in a data set, which has a high frequency or appears more frequently, is called mode or modal value. 
 It is one of the three measures of central tendency, apart from mean and median.
 '''
-mods = cars_data2['MetColor'].mode()
+mode_value_of_MetColor = cars_data2['MetColor'].mode()
+print(mode_value_of_MetColor)
 '''
  0    1.0
  
  index(label) is 0, value is 1.0
 '''
-print(mods)
-cars_data2.fillna({'MetColor': mods[0]}, inplace=True)
+cars_data2.fillna({'MetColor': mode_value_of_MetColor[0]}, inplace=True)
 count_of_missing_values = cars_data2.isnull().sum()
 print(count_of_missing_values)
