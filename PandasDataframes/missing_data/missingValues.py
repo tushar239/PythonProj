@@ -13,6 +13,8 @@ print(cars_data)
 cars_data2 = cars_data.copy()
 cars_data3 = cars_data2.copy()
 
+
+################ Working with numerical columns ################################
 '''
 To find missing values, you can use isna() or isNull.
 They return True for NaN values.
@@ -211,7 +213,7 @@ Doors          0
 Weight         0
 dtype: int64
 '''
-
+########################## working with categorical columns ################################################################################
 '''
 Every column in data frame is a series. 
 Series.value_counts() will give you counts of every different value.
@@ -253,3 +255,20 @@ Doors          0
 Weight         0
 dtype: int64
 '''
+
+'''
+Replacing NaN of MetColor with its modal value (the most common number that appears in your set of data).
+
+In statistics, the mode is the value that is repeatedly occurring in a given set. We can also say that the value or number in a data set, which has a high frequency or appears more frequently, is called mode or modal value. 
+It is one of the three measures of central tendency, apart from mean and median.
+'''
+mods = cars_data2['MetColor'].mode()
+'''
+ 0    1.0
+ 
+ index(label) is 0, value is 1.0
+'''
+print(mods)
+cars_data2.fillna({'MetColor': mods[0]}, inplace=True)
+count_of_missing_values = cars_data2.isnull().sum()
+print(count_of_missing_values)
