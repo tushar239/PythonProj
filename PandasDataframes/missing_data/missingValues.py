@@ -272,3 +272,6 @@ print(mode_value_of_MetColor)
 cars_data2.fillna({'MetColor': mode_value_of_MetColor[0]}, inplace=True)
 count_of_missing_values = cars_data2.isnull().sum()
 print(count_of_missing_values)
+
+
+# You can impute all the missing values just using fillna() once by supplying multiple key:value pairs in it.
