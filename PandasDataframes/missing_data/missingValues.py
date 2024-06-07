@@ -161,7 +161,7 @@ Let' impute(replace) missing values of Age column with mean value.
 mean_of_age = cars_data2['Age'].mean()
 print(mean_of_age) # 55.67215568862275
 
-cars_data2['Age'].fillna(mean_of_age, inplace=True)
+cars_data2.fillna({'Age' : mean_of_age}, inplace=True)
 
 # subsetting the rows that have one or more missing values
 rows_with_missing_values = cars_data2[cars_data2.isnull().any(axis=1)]
@@ -174,8 +174,7 @@ Let' impute(replace) missing values of KM column with median value.
 
 median_of_km = cars_data2['KM'].median()
 print(median_of_km) # 63061.5
-
-cars_data2['KM'].fillna(median_of_km, inplace=True)
+cars_data2.fillna({'KM' : median_of_km}, inplace=True)
 
 # subsetting the rows that have one or more missing values
 rows_with_missing_values = cars_data2[cars_data2.isnull().any(axis=1)]
@@ -189,8 +188,7 @@ Let' impute(replace) missing values of HP column with mean value.
 
 mean_of_hp = cars_data2['HP'].mean()
 print(mean_of_hp) # 101.28693101262657
-
-cars_data2['HP'].fillna(mean_of_hp, inplace=True)
+cars_data2.fillna({'HP' : mean_of_hp}, inplace=True)
 
 # subsetting the rows that have one or more missing values
 rows_with_missing_values = cars_data2[cars_data2.isnull().any(axis=1)]
@@ -205,6 +203,48 @@ Price          0
 Age            0
 KM             0
 FuelType     100
+HP             0
+MetColor     150
+Automatic      0
+CC             0
+Doors          0
+Weight         0
+dtype: int64
+'''
+
+'''
+Every column in data frame is a series. 
+Series.value_counts() will give you counts of every different value.
+This is useful for Categorical column.
+
+Series.index will give you labels(ids) of each value in a series.
+'''
+fuel_types_counts = cars_data2['FuelType'].value_counts(ascending=False)
+indices = fuel_types_counts.index # finds all labels(ids) from the series
+print(indices[0], ' has count ' , fuel_types_counts.get(indices[0])) # Petrol  has count  1177
+#print(type(fuel_types_counts))
+#print(fuel_types_counts)
+'''
+FuelType
+Petrol    1177
+Diesel     144
+CNG         15
+Name: count, dtype: int64
+'''
+cars_data2.fillna({'FuelType' : indices[0]}, inplace=True)
+
+print('After replacing NaN in FuelType with Petrol')
+fuel_types_counts = cars_data2['FuelType'].value_counts(ascending=False)
+indices = fuel_types_counts.index
+print(indices[0], ' has count ', fuel_types_counts.get(indices[0]))  # Petrol  has count  1277
+
+count_of_missing_values = cars_data2.isnull().sum()
+print(count_of_missing_values)
+'''
+Price          0
+Age            0
+KM             0
+FuelType       0
 HP             0
 MetColor     150
 Automatic      0
