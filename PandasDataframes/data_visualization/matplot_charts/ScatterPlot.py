@@ -27,3 +27,11 @@ plt.title('Scatter plot of Price vs Age of the cars')
 plt.xlabel('Age (months)')
 plt.ylabel('Price (Euros)')
 plt.show()
+
+'''
+plt.scatter(x=cars_data['FuelType'], y=cars_data['Automatic'], c='red')
+plt.title('Scatter plot of Price vs Age of the cars')
+plt.xlabel('Fuel Type')
+plt.ylabel('Automatic (0 and 1)')
+plt.show()
+'''

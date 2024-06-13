@@ -67,7 +67,7 @@ Series is like a column in a table. Each row in a series gets a label. Either yo
 Name: Price_Class, Length: 1436, dtype: object
 '''
 
-values = price_class_series.value_counts()
+values = price_class_series.value_counts()  # you can use crosstab function also that will give you the frequencies (counts)
 print(values)
 '''
 Price_Class
