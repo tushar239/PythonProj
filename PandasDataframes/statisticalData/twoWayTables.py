@@ -56,6 +56,7 @@ This means the probability of Automatic cars having petrol engine is really high
 Two-Way table - marginal probability
 ------------------------------------
 You will get row sums and column sums by setting margins=True
+shows correlation between the data of two variables
 '''
 result = pd.crosstab(index=cars_data_copy['Automatic'],
                      columns=cars_data_copy['FuelType'],
