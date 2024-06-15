@@ -21,3 +21,13 @@ import gotoDataDir
 
 data_income = pd.read_csv('income.csv')
 data = data_income.copy()
+# print(data)
+print(data.to_string())
+
+"""
+Exploratory data analysis:
+1. getting to know the data
+2. data preprocessing (missing values)
+3. cross tables and data visualization
+"""
+
