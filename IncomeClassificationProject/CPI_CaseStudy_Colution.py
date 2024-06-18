@@ -175,3 +175,105 @@ print(occupation_unique_elements)
  
 If you see there is a space before the ? in occupation.
 """
+
+# go back and read the data by including "na_values[' ?']
+data = pd.read_csv('income.csv', na_values=[' ?'])
+#############################################################
+# Data Pre-Processing
+#############################################################
+total_missing_values = data.isnull().sum()
+print('Data columns with null values:\n', total_missing_values)
+"""
+Data columns with null values:
+ age                 0
+JobType          1809
+EdType              0
+maritalstatus       0
+occupation       1816
+relationship        0
+race                0
+gender              0
+capitalgain         0
+capitalloss         0
+hoursperweek        0
+nativecountry       0
+SalStat             0
+dtype: int64
+
+JobType and occupation have missing values
+"""
+
+rows_with_missing_values = data[data.isnull().any(axis=1)] # axis=1 is to consider at least one column with NaN value
+#print("Rows with missing values:\n", rows_with_missing_values.to_string())
+print("Rows with missing values:\n", rows_with_missing_values)
+"""
+Rows with missing values:
+        age        JobType         EdType           maritalstatus occupation     relationship                 race   gender  capitalgain  capitalloss  hoursperweek        nativecountry                        SalStat
+8       17            NaN           11th           Never-married        NaN        Own-child                White   Female            0            0             5        United-States   less than or equal to 50,000
+17      32            NaN   Some-college      Married-civ-spouse        NaN          Husband                White     Male            0            0            40        United-States   less than or equal to 50,000
+29      22            NaN   Some-college           Never-married        NaN        Own-child                White     Male            0            0            40        United-States   less than or equal to 50,000
+42      52            NaN           12th           Never-married        NaN   Other-relative                Black     Male          594            0            40        United-States   less than or equal to 50,000
+44      63            NaN        1st-4th      Married-civ-spouse        NaN          Husband                White     Male            0            0            35        United-States   less than or equal to 50,000
+57      72            NaN        HS-grad      Married-civ-spouse        NaN          Husband                White     Male            0            0            20        United-States   less than or equal to 50,000
+69      53            NaN        5th-6th                 Widowed        NaN        Unmarried                Black   Female            0            0            30        United-States   less than or equal to 50,000
+73      57            NaN      Assoc-voc                 Widowed        NaN        Unmarried                White   Female            0            0            38        United-States   less than or equal to 50,000
+75      20            NaN   Some-college           Never-married        NaN        Own-child                White     Male            0            0            24        United-States   less than or equal to 50,000
+76      21            NaN   Some-college           Never-married        NaN        Unmarried                White   Female            0            0            35        United-States   less than or equal to 50,000
+97      34            NaN        HS-grad           Never-married        NaN        Unmarried                Black   Female            0            0            40        United-States   less than or equal to 50,000
+133     18            NaN           12th           Never-married        NaN        Own-child                White     Male            0            0            25        United-States   less than or equal to 50,000
+137     65            NaN   Some-college      Married-civ-spouse        NaN          Husband                White     Male            0            0            30        United-States            greater than 50,000
+147     42            NaN        HS-grad      Married-civ-spouse        NaN          Husband                White     Male            0            0            40        United-States   less than or equal to 50,000
+148     55            NaN        HS-grad      Married-civ-spouse        NaN             Wife   Asian-Pac-Islander   Female            0            0            40        United-States   less than or equal to 50,000
+153     23            NaN   Some-college           Never-married        NaN        Unmarried   Amer-Indian-Eskimo   Female            0            0            25        United-States   less than or equal to 50,000
+205     58            NaN        HS-grad      Married-civ-spouse        NaN          Husband                White     Male            0            0            50        United-States   less than or equal to 50,000
+213     70            NaN            9th                 Widowed        NaN        Unmarried                White   Female         1111            0            15        United-States   less than or equal to 50,000
+225     20            NaN           11th   Married-spouse-absent        NaN        Own-child   Asian-Pac-Islander   Female            0         1762            40                South   less than or equal to 50,000
+228     17            NaN           11th           Never-married        NaN        Own-child                White   Female            0            0            20        United-States   less than or equal to 50,000
+243     66            NaN        7th-8th           Never-married        NaN    Not-in-family                White     Male            0            0             4        United-States   less than or equal to 50,000
+252     25            NaN     Assoc-acdm           Never-married        NaN   Other-relative                White     Male            0            0            45        United-States   less than or equal to 50,000
+288     45            NaN   Some-college      Married-civ-spouse        NaN             Wife                Black   Female            0            0            40        United-States   less than or equal to 50,000
+340     59            NaN        HS-grad      Married-civ-spouse        NaN          Husband                White     Male            0            0            16        United-States   less than or equal to 50,000
+341     21            NaN        HS-grad           Never-married        NaN    Not-in-family                White   Female         1055            0            40        United-States   less than or equal to 50,000
+344     18            NaN   Some-college           Never-married        NaN        Own-child                White     Male            0            0            33        United-States   less than or equal to 50,000
+358     50            NaN        Masters   Married-spouse-absent        NaN   Other-relative                White     Male            0            0            40        United-States   less than or equal to 50,000
+363     22            NaN   Some-college           Never-married        NaN        Own-child                Black     Male            0            0            40        United-States   less than or equal to 50,000
+382     42            NaN           11th      Married-civ-spouse        NaN          Husband                White     Male            0            0            15        United-States   less than or equal to 50,000
+386     72            NaN           11th                 Widowed        NaN    Not-in-family                White   Female            0            0            24        United-States   less than or equal to 50,000
+437     63            NaN   Some-college      Married-civ-spouse        NaN          Husband                White     Male            0            0            15        United-States   less than or equal to 50,000
+441     48            NaN   Some-college                Divorced        NaN        Unmarried                Black   Female            0            0            30        United-States   less than or equal to 50,000
+454     27            NaN     Assoc-acdm      Married-civ-spouse        NaN        Own-child   Amer-Indian-Eskimo     Male            0            0            40        United-States   less than or equal to 50,000
+475     64            NaN        HS-grad      Married-civ-spouse        NaN          Husband                White     Male            0            0             5        United-States   less than or equal to 50,000
+482     19            NaN   Some-college           Never-married        NaN        Own-child                White   Female            0            0            10        United-States   less than or equal to 50,000
+519     36            NaN      Assoc-voc                 Widowed        NaN    Not-in-family                White   Female            0            0            20        United-States   less than or equal to 50,000
+532     23            NaN        HS-grad           Never-married        NaN        Unmarried                Black   Female            0            0            40        United-States   less than or equal to 50,000
+569     19            NaN        HS-grad           Never-married        NaN        Own-child                White     Male            0            0            30        United-States   less than or equal to 50,000
+583     76            NaN        7th-8th                 Widowed        NaN    Not-in-family                White     Male            0            0             2        United-States   less than or equal to 50,000
+584     19            NaN        HS-grad           Never-married        NaN        Unmarried                White     Male            0         2001            40        United-States   less than or equal to 50,000
+587     34            NaN           11th      Married-civ-spouse        NaN             Wife                White   Female            0            0             8        United-States   less than or equal to 50,000
+594     64            NaN     Assoc-acdm           Never-married        NaN    Not-in-family                White   Female            0            0            20        United-States   less than or equal to 50,000
+645     19            NaN        HS-grad           Never-married        NaN        Own-child                White   Female            0            0            40        United-States   less than or equal to 50,000
+648     68            NaN        7th-8th      Married-civ-spouse        NaN          Husband                White     Male            0            0             8        United-States   less than or equal to 50,000
+678     34            NaN        HS-grad                Divorced        NaN    Not-in-family                White   Female            0            0            40        United-States   less than or equal to 50,000
+681     42            NaN   Some-college                Divorced        NaN        Unmarried                White     Male            0            0            40        United-States   less than or equal to 50,000
+712     22            NaN   Some-college           Never-married        NaN        Own-child                White   Female            0            0             8        United-States   less than or equal to 50,000
+720     58            NaN   Some-college      Married-civ-spouse        NaN          Husband                White     Male            0            0            40        United-States            greater than 50,000
+725     50            NaN        HS-grad      Married-civ-spouse        NaN          Husband                White     Male            0            0            40        United-States            greater than 50,000
+730     51            NaN        Masters      Married-civ-spouse        NaN          Husband                White     Male            0            0            40        United-States   less than or equal to 50,000
+"""
+
+# Finding total number of rows missing values in both JobType and occupation
+jobtype_and_occupation_data = data[['JobType','occupation']]
+print(jobtype_and_occupation_data)
+rows_with_missing_jobtype_and_occupation = jobtype_and_occupation_data\
+    .where(jobtype_and_occupation_data['JobType'].isnull() &
+           jobtype_and_occupation_data['occupation'].isnull())
+print(rows_with_missing_jobtype_and_occupation)
+print("total rows having both JobType and occupation missing values:\n ", rows_with_missing_jobtype_and_occupation.shape[0]) # total 31978 rows have both JobType and occupation with missing values
+# drop all those rows having missing values in all the columns
+rows_with_missing_occupation_and_with_jobtype = jobtype_and_occupation_data.dropna(how="all")\
+    .sort_values(by=['JobType', 'occupation'], ascending=[True, True])
+
+print("rows having JobType, but missing occupation:\n ",
+      rows_with_missing_occupation_and_with_jobtype.to_string())
+rows_with_missing_occupation_and_with_jobtype.to_excel('rows_with_missing_occupation_and_with_jobtype.xlsx')
+
