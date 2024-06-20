@@ -181,6 +181,8 @@ data = pd.read_csv('income.csv', na_values=[' ?'])
 #############################################################
 # Data Pre-Processing
 #############################################################
+# data.isnull() returns a dataframe with True and False values in each cell
+# True means null value and False means not-null value
 total_missing_values = data.isnull().sum()
 print('Data columns with null values:\n', total_missing_values)
 """
@@ -203,6 +205,10 @@ dtype: int64
 JobType and occupation have missing values
 """
 
+
+# data.isnull() returns a dataframe with True and False values in each cell
+# True means null value and False means not-null value
+# any() returns a series of index numbers
 rows_with_missing_values = data[data.isnull().any(axis=1)] # axis=1 is to consider at least one column with NaN value
 #print("Rows with missing values:\n", rows_with_missing_values.to_string())
 print("Rows with missing values:\n", rows_with_missing_values)
@@ -271,6 +277,10 @@ rows_with_missing_jobtype_and_occupation = jobtype_and_occupation_data[jobtype_a
 print('JobType and Occupation columns with NaN value: \n', rows_with_missing_jobtype_and_occupation)
 
 ''' doesn't work
+# data.isnull() returns a dataframe with True and False values in each cell
+# True means null value and False means not-null value
+# where function should have a condition that returns True or False. Here it returns a Series of index numbers.
+# That is why it doesn't work
 
 rows_with_missing_jobtype_and_occupation = jobtype_and_occupation_data\
     .where(jobtype_and_occupation_data['JobType'].isnull() &
@@ -290,6 +300,8 @@ rows_with_non_missing_jobtype_and_missing_occupation = jobtype_and_occupation_da
                                             ]
 print(rows_with_non_missing_jobtype_and_missing_occupation)
 '''
+rows with not-null JobType and null occupation
+
              JobType occupation
 4825    Never-worked        NaN
 10215   Never-worked        NaN
