@@ -263,17 +263,59 @@ Rows with missing values:
 
 # Finding total number of rows missing values in both JobType and occupation
 jobtype_and_occupation_data = data[['JobType','occupation']]
-print(jobtype_and_occupation_data)
+print('JobType and Occupation columns: \n', jobtype_and_occupation_data)
+
+# works
+rows_with_missing_jobtype_and_occupation = jobtype_and_occupation_data[jobtype_and_occupation_data.isnull().all(axis=1)]
+
+print('JobType and Occupation columns with NaN value: \n', rows_with_missing_jobtype_and_occupation)
+
+''' doesn't work
+
 rows_with_missing_jobtype_and_occupation = jobtype_and_occupation_data\
     .where(jobtype_and_occupation_data['JobType'].isnull() &
            jobtype_and_occupation_data['occupation'].isnull())
-print(rows_with_missing_jobtype_and_occupation)
-print("total rows having both JobType and occupation missing values:\n ", rows_with_missing_jobtype_and_occupation.shape[0]) # total 31978 rows have both JobType and occupation with missing values
+'''
+# works
+rows_with_missing_jobtype_and_occupation = jobtype_and_occupation_data[
+                                                jobtype_and_occupation_data['JobType'].isnull() &
+                                                jobtype_and_occupation_data['occupation'].isnull()
+                                            ]
+#print(rows_with_missing_jobtype_and_occupation)
+print("total rows having both JobType and occupation missing values:\n ", rows_with_missing_jobtype_and_occupation.shape[0]) # total 1809 rows have both JobType and occupation with missing values
+
+rows_with_non_missing_jobtype_and_missing_occupation = jobtype_and_occupation_data[
+                                                ~jobtype_and_occupation_data['JobType'].isnull() &
+                                                jobtype_and_occupation_data['occupation'].isnull()
+                                            ]
+print(rows_with_non_missing_jobtype_and_missing_occupation)
+'''
+             JobType occupation
+4825    Never-worked        NaN
+10215   Never-worked        NaN
+14073   Never-worked        NaN
+19542   Never-worked        NaN
+22385   Never-worked        NaN
+31296   Never-worked        NaN
+31305   Never-worked        NaN
+'''
+print("total rows having non-missing JobType and missing occupation:\n ", rows_with_non_missing_jobtype_and_missing_occupation.shape[0]) # 7
+
+'''
 # drop all those rows having missing values in all the columns
 rows_with_missing_occupation_and_with_jobtype = jobtype_and_occupation_data.dropna(how="all")\
     .sort_values(by=['JobType', 'occupation'], ascending=[True, True])
-
+'''
+'''
+# exporting to excel
 print("rows having JobType, but missing occupation:\n ",
       rows_with_missing_occupation_and_with_jobtype.to_string())
 rows_with_missing_occupation_and_with_jobtype.to_excel('rows_with_missing_occupation_and_with_jobtype.xlsx')
+'''
 
+""" Points to note:
+1. Missing values in Jobtype    = 1809
+2. Missing values in Occupation = 1816
+3. There are 1809 rows where two specific columns (i.e. occupation & JobType) have missing values
+4. (1816-1809) = 7 => You still have occupation unfilled for these 7 rows because JobType is 'Never-worked'
+"""
