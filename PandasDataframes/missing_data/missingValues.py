@@ -72,43 +72,33 @@ print(rows_with_missing_values) # there are 340 rows having NaN
 cars_data["Doors"] = np.where(cars_data["Doors"] == "three", 3, cars_data["Doors"])
 
 # Find rows where Age is NaN
-rows_with_missing_age = rows_with_missing_values.where(rows_with_missing_values['Age'].isnull())
+rows_with_missing_age = rows_with_missing_values[rows_with_missing_values['Age'].isnull()]
+print("Rows with missing age...........................", type(rows_with_missing_values['Age'].isnull())) # <class 'pandas.core.series.Series'>
+# print(type(rows_with_missing_values["Age"] > 24)) # <class 'pandas.core.series.Series'>
 print(rows_with_missing_age)
 '''
-      Price  Age       KM FuelType  ...  Automatic      CC  Doors  Weight
-2        NaN  NaN      NaN      NaN  ...        NaN     NaN    NaN     NaN
-6        NaN  NaN      NaN      NaN  ...        NaN     NaN    NaN     NaN
-7        NaN  NaN      NaN      NaN  ...        NaN     NaN    NaN     NaN
-9        NaN  NaN      NaN      NaN  ...        NaN     NaN    NaN     NaN
-15       NaN  NaN      NaN      NaN  ...        NaN     NaN    NaN     NaN
-...      ...  ...      ...      ...  ...        ...     ...    ...     ...
-1428     NaN  NaN      NaN      NaN  ...        NaN     NaN    NaN     NaN
-1431  7500.0  NaN  20544.0   Petrol  ...        0.0  1300.0      3  1025.0
-1432     NaN  NaN      NaN      NaN  ...        NaN     NaN    NaN     NaN
-1433  8500.0  NaN  17016.0   Petrol  ...        0.0  1300.0      3  1015.0
-1434     NaN  NaN      NaN      NaN  ...        NaN     NaN    NaN     NaN
-[340 rows x 10 columns]
+       Price  Age       KM FuelType  ...  Automatic    CC  Doors  Weight
+33    14950  NaN  32692.0   Petrol  ...          0  1400      3    1100
+55    13250  NaN  45725.0   Petrol  ...          0  1600      5    1075
+83    17950  NaN  16238.0   Petrol  ...          1  1600      5    1180
+92    19950  NaN  34472.0   Diesel  ...          0  1995      3    1260
+105   16950  NaN  13748.0   Petrol  ...          0  1400      3    1100
+...     ...  ...      ...      ...  ...        ...   ...    ...     ...
+1416   8950  NaN  40093.0   Petrol  ...          0  1600      5    1114
+1422   7600  NaN  36000.0      NaN  ...          0  1600      3    1050
+1427   8950  NaN  29000.0   Petrol  ...          1  1300      3    1045
+1431   7500  NaN  20544.0   Petrol  ...          0  1300      3    1025
+1433   8500  NaN  17016.0   Petrol  ...          0  1300      3    1015
+
+[100 rows x 10 columns]
 '''
 # where function - https://www.geeksforgeeks.org/python-pandas-dataframe-where/
 filter1 = rows_with_missing_values['Age'].isnull()
 filter2 = rows_with_missing_values['KM'].isnull()
-rows_with_missing_age_and_km = rows_with_missing_values.where(filter1 & filter2)
+rows_with_missing_age_and_km = rows_with_missing_values[filter1 & filter2]
 print(rows_with_missing_age_and_km)
 '''
-      Price  Age  KM FuelType  HP  MetColor  Automatic  CC Doors  Weight
-2       NaN  NaN NaN      NaN NaN       NaN        NaN NaN   NaN     NaN
-6       NaN  NaN NaN      NaN NaN       NaN        NaN NaN   NaN     NaN
-7       NaN  NaN NaN      NaN NaN       NaN        NaN NaN   NaN     NaN
-9       NaN  NaN NaN      NaN NaN       NaN        NaN NaN   NaN     NaN
-15      NaN  NaN NaN      NaN NaN       NaN        NaN NaN   NaN     NaN
-...     ...  ...  ..      ...  ..       ...        ...  ..   ...     ...
-1428    NaN  NaN NaN      NaN NaN       NaN        NaN NaN   NaN     NaN
-1431    NaN  NaN NaN      NaN NaN       NaN        NaN NaN   NaN     NaN
-1432    NaN  NaN NaN      NaN NaN       NaN        NaN NaN   NaN     NaN
-1433    NaN  NaN NaN      NaN NaN       NaN        NaN NaN   NaN     NaN
-1434    NaN  NaN NaN      NaN NaN       NaN        NaN NaN   NaN     NaN
-
-[340 rows x 10 columns]
+Empty DataFrame
 '''
 
 '''
