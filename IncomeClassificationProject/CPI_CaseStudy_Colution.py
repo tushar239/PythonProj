@@ -353,3 +353,66 @@ print(type(something_else))
 something = jobtype_and_occupation_data[pd.Series({0: False, 1:True})]
 print(something)
 """
+
+# Relationship between independent variables
+correlation = data2.corr(method="pearson", numeric_only=True)
+print('Correlation: \n', correlation)
+'''
+                    age  capitalgain  capitalloss  hoursperweek
+age           1.000000     0.080154     0.060165      0.101599
+capitalgain   0.080154     1.000000    -0.032229      0.080432
+capitalloss   0.060165    -0.032229     1.000000      0.052417
+hoursperweek  0.101599     0.080432     0.052417      1.000000
+
+None of the numeric field is co-related to another because none of them have value close to 1. 
+Correlation value varies from -1 to +1.
+'''
+
+# ================================================
+# Cross tables & Data Visualization
+# ================================================
+# Extracting the column names
+col_names = data2.columns
+print('Columns: \n', col_names)
+
+'''
+Columns: 
+ Index(['age', 'JobType', 'EdType', 'maritalstatus', 'occupation',
+       'relationship', 'race', 'gender', 'capitalgain', 'capitalloss',
+       'hoursperweek', 'nativecountry', 'SalStat'],
+      dtype='object')
+'''
+
+# ================================================
+# Gender proportion table:
+# ================================================
+gender = pd.crosstab(index = data2['gender'],
+                     columns = 'count',
+                     normalize = True)
+print('Gender Proportion Table:\n ', gender)
+'''
+col_0      count
+gender          
+Female  0.324315
+Male    0.675685
+
+This shows that 67% data has Male and 33% data has Female.
+'''
+
+# ================================================
+# Gender vs Salary Status:
+# ================================================
+gender_salstat = pd.crosstab(index = data2['gender'],
+                     columns = data2['SalStat'],
+                     margins = True,
+                     normalize = 'index') # index means row. normalize = 'index' means you will get row proportion sum = 1
+print('Gender vs SalStat: \n', gender_salstat)
+
+'''
+ SalStat  greater than 50,000  less than or equal to 50,000
+gender                                                    
+ Female             0.113678                      0.886322
+ Male               0.313837                      0.686163
+All                 0.248922                      0.751078
+'''
+
