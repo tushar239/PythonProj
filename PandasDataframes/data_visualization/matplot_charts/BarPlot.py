@@ -30,7 +30,12 @@ print(fuelTypes) # ['CNG' 'Diesel' 'Petrol']
 
 # counting total number of different fuel types in FuelType column
 # https://www.geeksforgeeks.org/how-to-count-occurrences-of-specific-value-in-pandas-column/
-valueCountsSeries = cars_data['FuelType'].value_counts() # you can use crosstab function also that will give you the frequencies (counts)
+#
+# To find frequencies (count), you can use
+# crosstab function --- frequencyTables.py
+# or sns.countplot(...) chart --- BarPlotOrCountPlot.py
+# or plt.bar(...) chart --- BarPlot.py
+valueCountsSeries = cars_data['FuelType'].value_counts()
 # print(type(valueCountsSeries)) # <class 'pandas.core.series.Series'>
 print('valueCountsSeries: \n', valueCountsSeries)
 '''

@@ -7,6 +7,7 @@ import numpy as np
 
 # To visualize data
 import seaborn as sns
+import matplotlib.pyplot as plt  # pyplot means python plot
 
 # To partition the data
 from sklearn.model_selection import train_test_split
@@ -402,7 +403,7 @@ This shows that 67% data has Male and 33% data has Female.
 # ================================================
 # Gender vs Salary Status:
 # ================================================
-gender_salstat = pd.crosstab(index = data2['gender'],
+gender_salstat = pd.crosstab(index = data2['gender'], # index means row
                      columns = data2['SalStat'],
                      margins = True,
                      normalize = 'index') # index means row. normalize = 'index' means you will get row proportion sum = 1
@@ -414,5 +415,31 @@ gender
  Female             0.113678                      0.886322
  Male               0.313837                      0.686163
 All                 0.248922                      0.751078
+
+Only 11% females earn more than 50k
+89% females have salary lesser or equal to 50k
+
+More Males earn compared to than women (69% males have salary more than 50k)
 '''
+
+# ================================================
+# Frequency distribution of salary status:
+# you can use crosstab function --- frequencyTables.py
+# or value_counts() function --- BarPlot.py
+# or sns.countplot(...) chart --- BarPlotOrCountPlot.py
+# or plt.bar(...) chart --- BarPlot.py
+# ================================================
+values_frequencies = data2['SalStat'].value_counts()
+print("Value Frequencies using value_counts(): \n", values_frequencies)
+
+values_frequencies_using_crosstab = pd.crosstab(index=data2['SalStat'],
+                                                columns="counts") # index means row
+print("Value Frequencies using crosstab: \n", values_frequencies_using_crosstab )
+
+sns.countplot(data=data2, x='SalStat') # same as plt.bar(...) chart
+plt.show()
+
+
+
+
 

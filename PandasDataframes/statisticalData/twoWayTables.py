@@ -18,7 +18,7 @@ It finds out the frequency cross table between two variables.
 Here the values of Automatic and the values of FuelType variables(columns).
 '''
 # barplot(countplot) is a graphical representation of crosstab function
-result = pd.crosstab(index=cars_data_copy['Automatic'],
+result = pd.crosstab(index=cars_data_copy['Automatic'], # index means row
                      columns=cars_data_copy['FuelType'],
                      dropna=False)
 print(result)
@@ -38,7 +38,7 @@ Joint probability: focuses on the probability of multiple events occurring simul
 
 By setting normalize=True in crosstab(), you can convert the values to percentage (probability).
 '''
-result = pd.crosstab(index=cars_data_copy['Automatic'],
+result = pd.crosstab(index=cars_data_copy['Automatic'],# index means row
                      columns=cars_data_copy['FuelType'],
                      normalize=True, # convert the values to percentage (probability)
                      dropna=True)
@@ -60,9 +60,9 @@ shows correlation between the data of two variables
 '''
 result = pd.crosstab(index=cars_data_copy['Automatic'],
                      columns=cars_data_copy['FuelType'],
-                     normalize=True,
+                     normalize=True, # convert the values to percentage (probability)
                      margins=True, # Gives sums of rows and sums of columns
-                     dropna=True)
+                     dropna=True) # do not consider NaN values
 print(result)
 '''
 FuelType        CNG    Diesel    Petrol       All
@@ -85,9 +85,9 @@ Conditional probability P(Petrol | Automatic) = probability of petrol with given
 '''
 result = pd.crosstab(index=cars_data_copy['Automatic'],
                      columns=cars_data_copy['FuelType'],
-                     normalize='index',
-                     margins=True,
-                     dropna=True)
+                     normalize='index', # means sum cols in a row should be 1
+                     margins=True, # Gives sums of rows and sums of columns
+                     dropna=True) # do not consider NaN values
 print(result)
 '''
 FuelType        CNG    Diesel    Petrol
@@ -105,9 +105,9 @@ Conditional probability P(Automatic | Petrol) = probability of Automatic with gi
 '''
 result = pd.crosstab(index=cars_data_copy['Automatic'],
                      columns=cars_data_copy['FuelType'],
-                     normalize='columns',
-                     margins=True,
-                     dropna=True)
+                     normalize='columns', # Sum of rows in a column will become 1
+                     margins=True, # Gives sums of rows and sums of columns
+                     dropna=True) # do not consider NaN values
 print(result)
 '''
 FuelType   CNG  Diesel    Petrol       All

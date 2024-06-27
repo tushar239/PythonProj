@@ -17,13 +17,18 @@ and Bar plot is used for Categorical data.
 '''
 # This will just display total number of CNG cars, total number of Petrol cars, and
 # total number of diesel cars
-# This is same as crosstab function(frequency tables)
+# This is same as crosstab function(frequency tables) --- frequencyTables.py
+# or value_counts() --- BarPlot.py
+# You can also use plt.bar(...) chart --- BarPlot.py
 sns.countplot(data=cars_data, x='FuelType')
 plt.show()
+
 
 # This shows the relation between FuelType and Automatic
 # This shows that there are only Petrol cars with Automatic=1.
 # This graph is a graphical representation of crosstab function (twoWayTables).
 sns.countplot(data=cars_data, x='FuelType', hue='Automatic')
 plt.show()
+
+
 
