@@ -439,7 +439,27 @@ print("Value Frequencies using crosstab: \n", values_frequencies_using_crosstab 
 sns.countplot(data=data2, x='SalStat') # same as plt.bar(...) chart
 plt.show()
 
+'''
+Value Frequencies: ---- Using value_counts() function
 
+SalStat
+less than or equal to 50,000    22654
+greater than 50,000              7508
+
+Name: count, dtype: int64
+
+Value Frequencies: ---- Using crosstab() function
+
+col_0                         counts
+SalStat                             
+greater than 50,000             7508
+less than or equal to 50,000   22654
+'''
+
+"""
+It is very clear that 75% people's salary status is <=50k
+and only 25% people's salary status is >50k
+"""
 
 
 
