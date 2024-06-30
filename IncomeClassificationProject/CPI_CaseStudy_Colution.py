@@ -482,11 +482,20 @@ plt.show()
 # of one variable comparing it with another.
 #
 # dataframe.describe() or sns.boxplot() can be used to get 5 number summary
+# sns.boxplot() can be used to get 5 number summary for one variable or comparing one variable with another.
+# To get exact value by comparing two variables, you can use dataframe.groupby(x axis variable)[y-axis variable].median()
 # ================================================================================================
 sns.boxplot(data=data2, x='SalStat', y='age')
 plt.show()
 # People with age 35-50 are more likely to make >50k
-
+# People with 25-35 age are more likely to make <=50k
+exact_median_of_age_by_salarystatus = data2.groupby('SalStat')['age'].median()
+print('Exact median of age by salary status: ', exact_median_of_age_by_salarystatus)
+'''
+Exact median of age by salary status:  SalStat
+greater than 50,000             43.0
+less than or equal to 50,000    34.0
+'''
 five_numbers_summary_of_age = data2['age'].describe()
 print('Five numbers summary of age:\n', five_numbers_summary_of_age)
 """

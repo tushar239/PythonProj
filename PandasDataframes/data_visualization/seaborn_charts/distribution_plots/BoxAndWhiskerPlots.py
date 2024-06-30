@@ -11,6 +11,8 @@ print(cars_data)
 
 '''
 dataframe.describe() or sns.boxplot() can be used to get 5 number summary
+sns.boxplot() can be used to get 5 number summary for one variable or comparing one variable with another.
+To get exact value by comparing two variables, you can use dataframe.groupby(x axis variable)[y-axis variable].median()
 
 It gives 5-number summary – min, max, Q1(first Quartile), Q2(median – second quartile), Q3(third quartile). 
 It has a box and whiskers(horizontal lines). It excludes extreme prices (outliers).
@@ -35,9 +37,23 @@ plt.show()
 Box plot can also be used to compare 5-number summary of any variable.
 It can be used for a single variable or for two variables to get 5 number summary 
 of one variable comparing it with another.
+
+dataframe.describe() or sns.boxplot() can be used to get 5 number summary
+sns.boxplot() can be used to get 5 number summary for one variable or comparing one variable with another.
+To get exact value by comparing two variables, you can use dataframe.groupby(x axis variable)[y-axis variable].median()
 '''
 sns.boxplot(data=cars_data, y="Price", x="FuelType")
 plt.show()
 
 sns.boxplot(data=cars_data, y="Price", x="FuelType", hue="Automatic")
 plt.show()
+
+exact_median_of_price_by_fueltype = cars_data.groupby('FuelType')['Price'].median()
+print('Exact median of Price by FuelType: ', exact_median_of_price_by_fueltype)
+'''
+Exact median of Price by FuelType:  FuelType
+CNG       8725.0
+Diesel    8950.0
+Petrol    9940.0
+Name: Price, dtype: float64
+'''
