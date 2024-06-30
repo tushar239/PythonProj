@@ -401,7 +401,7 @@ This shows that 67% data has Male and 33% data has Female.
 '''
 
 # ================================================
-# Gender vs Salary Status:
+# Gender vs Salary Status (Categorical variables):
 # ================================================
 gender_salstat = pd.crosstab(index = data2['gender'], # index means row
                      columns = data2['SalStat'],
@@ -423,11 +423,16 @@ More Males earn compared to than women (69% males have salary more than 50k)
 '''
 
 # ================================================
-# Frequency distribution of salary status:
+# Frequency distribution of salary status (Categorical variable):
+
+# So, for Salary Status(Categorical variable),
 # you can use crosstab function --- frequencyTables.py
 # or value_counts() function --- BarPlot.py
 # or sns.countplot(...) chart --- BarPlotOrCountPlot.py
 # or plt.bar(...) chart --- BarPlot.py
+
+# you have to use histogram (plt.hist()/sns.displot()) to find out the frequencies of numeric variable
+# you have to use value_counts()/crosstab(...)/Bar/CountsPlot to find out the frequencies of categorical variable.
 # ================================================
 values_frequencies = data2['SalStat'].value_counts()
 print("Value Frequencies using value_counts(): \n", values_frequencies)
@@ -461,5 +466,11 @@ It is very clear that 75% people's salary status is <=50k
 and only 25% people's salary status is >50k
 """
 
-
-
+# ================================================================================================
+# Frequency distribution of age (Numeric variable):
+# you have to use histogram (plt.hist()/sns.displot()) to find out the frequencies of numeric variable
+# you have to use value_counts()/crosstab(...)/Bar/CountsPlot to find out the frequencies of categorical variable.
+# ================================================================================================
+sns.displot(data2['age'], bins=10, kde=False)
+plt.show()
+# People with age 20-45 age are high in frequency
