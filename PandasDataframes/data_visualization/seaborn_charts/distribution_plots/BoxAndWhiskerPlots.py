@@ -10,6 +10,8 @@ cars_data.dropna(axis=0, inplace=True)
 print(cars_data)
 
 '''
+dataframe.describe() or sns.boxplot() can be used to get 5 number summary
+
 It gives 5-number summary – min, max, Q1(first Quartile), Q2(median – second quartile), Q3(third quartile). 
 It has a box and whiskers(horizontal lines). It excludes extreme prices (outliers).
 Minimum price is about 5000 Euros. It is called lower whisker.
@@ -26,8 +28,9 @@ sns.boxplot(data=cars_data, y="Price")
 plt.show()
 
 '''
-Box plot can also be used to compare 5-number summary by comparing
-a numerical variable with a categorical variable.
+Box plot can also be used to compare 5-number summary of any variable.
+It can be used for a single variable or for two variables to get 5 number summary 
+of one variable comparing it with another.
 '''
 sns.boxplot(data=cars_data, y="Price", x="FuelType")
 plt.show()

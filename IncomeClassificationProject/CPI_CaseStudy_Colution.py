@@ -419,7 +419,7 @@ All                 0.248922                      0.751078
 Only 11% females earn more than 50k
 89% females have salary lesser or equal to 50k
 
-More Males earn compared to than women (69% males have salary more than 50k)
+More Males earn compared to than women (31% males have salary more than 50k)
 '''
 
 # ================================================
@@ -473,4 +473,24 @@ and only 25% people's salary status is >50k
 # ================================================================================================
 sns.displot(data2['age'], bins=10, kde=False)
 plt.show()
-# People with age 20-45 age are high in frequency
+# People with age 20-45 are high in frequency
+
+# ================================================================================================
+# Box Plot - Age vs Salary Status
+# Box plot can also be used to compare 5-number summary of any variable.
+# It can be used for a single variable or for two variables to get 5 number summary
+# of one variable comparing it with another.
+#
+# dataframe.describe() or sns.boxplot() can be used to get 5 number summary
+# ================================================================================================
+sns.boxplot(data=data2, x='SalStat', y='age')
+plt.show()
+# People with age 35-50 are more likely to make >50k
+
+five_numbers_summary_of_age = data2['age'].describe()
+print('Five numbers summary of age:\n', five_numbers_summary_of_age)
+"""
+The mean (average) of a data set is found by adding all numbers in the data set and then dividing by the number of values in the set.
+The median is the middle value when a data set is ordered from least(min) to greatest(max) ignoring outliers. 
+The mode is the number that occurs most often in a data set.
+"""
