@@ -616,3 +616,35 @@ Hence and influencing variable in avoiding the misuse of subsidies.
 """
 sns.countplot(data=data2, x='EdType', hue='SalStat') # y axis is always frequency
 plt.show()
+
+############################ Similar Analysis between Occupation and SalStat #######################
+occupation_salstat = pd.crosstab(index = data2['occupation'], # index means row
+                     columns = data2['SalStat'],
+                     margins = True,
+                     normalize = 'index').round(4)*100 # index means row. normalize = 'index' means you will get row proportion sum = 1
+print('Occupation vs SalStat: \n', occupation_salstat)
+'''
+Occupation vs SalStat: 
+ SalStat             greater than 50,000  less than or equal to 50,000
+occupation                                                           
+ Adm-clerical                     13.38                         86.62
+ Armed-Forces                     11.11                         88.89
+ Craft-repair                     22.53                         77.47
+ Exec-managerial                  48.52                         51.48
+ Farming-fishing                  11.63                         88.37
+ Handlers-cleaners                 6.15                         93.85
+ Machine-op-inspct                12.46                         87.54
+ Other-service                     4.11                         95.89
+ Priv-house-serv                   0.70                         99.30
+ Prof-specialty                   44.85                         55.15
+ Protective-serv                  32.61                         67.39
+ Sales                            27.06                         72.94
+ Tech-support                     30.48                         69.52
+ Transport-moving                 20.29                         79.71
+All                               24.89                         75.11
+
+Those who make more than 50k USD per year are more likely to work as managers and professionals.
+Hence it is an important variable in avoiding the misuse of subsidies.
+'''
+sns.countplot(data=data2, x='occupation', hue='SalStat') # y axis is always frequency
+plt.show()
