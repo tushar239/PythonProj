@@ -581,3 +581,38 @@ plt.ylabel("Salary Status")
 plt.show()
 '''
 
+############################ Similar Analysis between Education and SalStat #######################
+education_salstat = pd.crosstab(index = data2['EdType'], # index means row
+                     columns = data2['SalStat'],
+                     margins = True,
+                     normalize = 'index').round(4)*100 # index means row. normalize = 'index' means you will get row proportion sum = 1
+print('Education vs SalStat: \n', education_salstat)
+"""
+Education vs SalStat: 
+
+ SalStat        greater than 50,000  less than or equal to 50,000
+EdType                                                          
+ 10th                         7.20                         92.80
+ 11th                         5.63                         94.37
+ 12th                         7.69                         92.31
+ 1st-4th                      3.97                         96.03
+ 5th-6th                      4.17                         95.83
+ 7th-8th                      6.28                         93.72
+ 9th                          5.49                         94.51
+ Assoc-acdm                  25.40                         74.60
+ Assoc-voc                   26.32                         73.68
+ Bachelors                   42.15                         57.85
+ Doctorate                   74.67                         25.33
+ HS-grad                     16.43                         83.57
+ Masters                     56.42                         43.58
+ Preschool                    0.00                        100.00
+ Prof-school                 74.91                         25.09
+ Some-college                20.01                         79.99
+All                          24.89                         75.11
+
+From the above table, we can see that people who have done Doctorate, Masters, Prof-school are 
+more likely to earn above 50k USD when compared to with others. 
+Hence and influencing variable in avoiding the misuse of subsidies.
+"""
+sns.countplot(data=data2, x='EdType', hue='SalStat') # y axis is always frequency
+plt.show()
