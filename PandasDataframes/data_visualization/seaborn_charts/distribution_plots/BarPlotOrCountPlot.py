@@ -30,5 +30,8 @@ plt.show()
 sns.countplot(data=cars_data, x='FuelType', hue='Automatic')
 plt.show()
 
-
+# sns.barplot(...) is different than plt.bar(...)
+# sns's bartplot(...) needs categorical variable on x-axis, numerical variable on y-axis, and categorical variable for hue(not mandatory)
+sns.barplot(x='FuelType', y='Price', hue='Automatic', data=cars_data)
+plt.show()
 

@@ -553,7 +553,12 @@ All                              24.89                         75.11
 This shows that majority of the job types (except self-emp-inc) have 2/3 rd people earning <=50k.
 Hence, it is an important variable in avoiding the misuse of subsidies.
 '''
-sns.countplot(data=data2, x='JobType', hue='SalStat')
+sns.countplot(data=data2, x='JobType', hue='SalStat') # y axis is always frequency
+plt.show()
+
+# sns.barplot(...) is different than plt.bar(...)
+# sns's bartplot(...) needs categorical variable on x-axis, numerical variable on y-axis, and categorical variable for hue(not mandatory)
+sns.barplot(x='JobType', y='age', hue='SalStat', data=data2)
 plt.show()
 
 '''

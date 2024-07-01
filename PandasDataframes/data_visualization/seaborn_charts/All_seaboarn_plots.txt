@@ -1,0 +1,13 @@
+https://www.kaggle.com/code/abhishekmamidi/everything-you-can-do-with-seaborn
+
+Bar plot
+Dist plot
+Box plot
+Strip plot
+Pair Grid
+Violin plot
+Clustermap
+Heatmap
+Facet plot
+Joint plot
+Pair plot
