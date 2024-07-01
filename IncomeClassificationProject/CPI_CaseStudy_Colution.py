@@ -400,9 +400,9 @@ Male    0.675685
 This shows that 67% data has Male and 33% data has Female.
 '''
 
-# ================================================
-# Gender vs Salary Status (Categorical variables):
-# ================================================
+# ====================================================
+# Gender vs Salary Status (Two Categorical variables):
+# ====================================================
 gender_salstat = pd.crosstab(index = data2['gender'], # index means row
                      columns = data2['SalStat'],
                      margins = True,
@@ -432,7 +432,7 @@ More Males earn compared to than women (31% males have salary more than 50k)
 # or plt.bar(...) chart --- BarPlot.py
 
 # you have to use histogram (plt.hist()/sns.displot()) to find out the frequencies of numeric variable
-# you have to use value_counts()/crosstab(...)/Bar/CountsPlot to find out the frequencies of categorical variable.
+# you have to use value_counts()/crosstab(...)/Bar/CountPlot to find out the frequencies of categorical variable.
 # ================================================
 values_frequencies = data2['SalStat'].value_counts()
 print("Value Frequencies using value_counts(): \n", values_frequencies)
@@ -469,7 +469,7 @@ and only 25% people's salary status is >50k
 # ================================================================================================
 # Frequency distribution of age (Numeric variable):
 # you have to use histogram (plt.hist()/sns.displot()) to find out the frequencies of numeric variable
-# you have to use value_counts()/crosstab(...)/Bar/CountsPlot to find out the frequencies of categorical variable.
+# you have to use value_counts()/crosstab(...)/Bar/CountPlot to find out the frequencies of categorical variable.
 # ================================================================================================
 sns.displot(data2['age'], bins=10, kde=False)
 plt.show()
@@ -503,3 +503,76 @@ The mean (average) of a data set is found by adding all numbers in the data set 
 The median is the middle value when a data set is ordered from least(min) to greatest(max) ignoring outliers. 
 The mode is the number that occurs most often in a data set.
 """
+
+
+############################ Similar Analysis between JobType and SalStat #######################
+
+sns.countplot(data=data2, x='JobType') # same as plt.bar(...) chart
+plt.show()
+
+jobtype_value_counts = data['JobType'].value_counts()
+print(jobtype_value_counts)
+"""
+JobType
+Private             22286
+Self-emp-not-inc     2499
+Local-gov            2067
+State-gov            1279
+Self-emp-inc         1074
+Federal-gov           943
+Without-pay            14
+Never-worked            7
+Name: count, dtype: int64
+"""
+
+# Both value_count() and countplot show that highest jobs are private (>22k).
+# you can use crosstab with columns='counts' also.
+
+# To show the relation between two categorical variables, you can use crosstab or bar plot
+
+jobtype_salstat = pd.crosstab(index = data2['JobType'], # index means row
+                     columns = data2['SalStat'],
+                     margins = True,
+                     normalize = 'index').round(4)*100 # index means row. normalize = 'index' means you will get row proportion sum = 1
+print('Jobtype vs SalStat: \n', jobtype_salstat)
+'''
+Jobtype vs SalStat: 
+
+ SalStat            greater than 50,000  less than or equal to 50,000
+JobType                                                             
+ Federal-gov                     38.71                         61.29
+ Local-gov                       29.46                         70.54
+ Private                         21.88                         78.12
+ Self-emp-inc                    55.87                         44.13
+ Self-emp-not-inc                28.57                         71.43
+ State-gov                       26.90                         73.10
+ Without-pay                      0.00                        100.00
+All                              24.89                         75.11
+
+
+This shows that majority of the job types (except self-emp-inc) have 2/3 rd people earning <=50k.
+Hence, it is an important variable in avoiding the misuse of subsidies.
+'''
+sns.countplot(data=data2, x='JobType', hue='SalStat')
+plt.show()
+
+'''
+Trying plt.bar(...) plot. It is not as good as sns.countplot(...)
+
+# converting series to lists to use them in bar plot
+print(list(data2['JobType'].unique()))
+list_of_jobtype_counts = data2['JobType'].unique().tolist() # [' Private', ' Federal-gov', ' Self-emp-inc', ' Self-emp-not-inc', ' Local-gov', ' State-gov', ' Without-pay']
+list_of_jobtypes = jobtype_value_counts.tolist() # [22286, 2499, 2067, 1279, 1074, 943, 14, 7]
+
+# bar plot requires lists for x and height parameters and it doesn't have hue paramenter. 
+# countplot is better than bar plot
+#plt.bar(x=list_of_jobtypes, height=list_of_jobtype_counts)
+plt.bar(x=['Private', 'Federal-gov', 'Self-emp-inc', 'Self-emp-not-inc', 'Local-gov', 'State-gov', 'Without-pay', 'Never-Worked'],
+        height=[22286, 2499, 2067, 1279, 1074, 943, 14, 7])
+
+
+plt.xlabel("Job Types")
+plt.ylabel("Salary Status")
+plt.show()
+'''
+

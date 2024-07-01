@@ -98,6 +98,8 @@ def createRandomColorList(total):
 colors = createRandomColorList(len(fuelTypes))
 #index = np.arange(0, len(fuelTypes), 1)
 #plt.bar(index, fuelTypeCount)
+
+# You need lists of unique values for x and height. sns.countplot(...) is better than plt.bar(...)
 plt.bar(x=fuelTypes, height=fuelTypeCount, color=colors)
 plt.title('Bar plot of fuel types')
 plt.xlabel('Fuel Types')
