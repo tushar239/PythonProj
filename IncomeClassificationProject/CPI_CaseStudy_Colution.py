@@ -431,7 +431,7 @@ More Males earn compared to than women (31% males have salary more than 50k)
 # or sns.countplot(...) chart --- BarPlotOrCountPlot.py
 # or plt.bar(...) chart --- BarPlot.py
 
-# you have to use histogram (plt.hist()/sns.displot()) to find out the frequencies of numeric variable
+# you have to use histogram (plt.hist()/sns.displot()) to find out the frequencies of numeric variable. hist means histogram. displot means distribution plot. Both mean the same.
 # you have to use value_counts()/crosstab(...)/Bar/CountPlot to find out the frequencies of categorical variable.
 # ================================================
 values_frequencies = data2['SalStat'].value_counts()
@@ -468,7 +468,7 @@ and only 25% people's salary status is >50k
 
 # ================================================================================================
 # Frequency distribution of age (Numeric variable):
-# you have to use histogram (plt.hist()/sns.displot()) to find out the frequencies of numeric variable
+# you have to use histogram (plt.hist()/sns.displot()) to find out the frequencies of numeric variable.  hist means histogram. displot means distribution plot. Both mean the same.
 # you have to use value_counts()/crosstab(...)/Bar/CountPlot to find out the frequencies of categorical variable.
 # ================================================================================================
 sns.displot(data2['age'], bins=10, kde=False)
@@ -630,13 +630,13 @@ occupation
  Adm-clerical                     13.38                         86.62
  Armed-Forces                     11.11                         88.89
  Craft-repair                     22.53                         77.47
- Exec-managerial                  48.52                         51.48
+ Exec-managerial                  48.52                         51.48 -------
  Farming-fishing                  11.63                         88.37
  Handlers-cleaners                 6.15                         93.85
  Machine-op-inspct                12.46                         87.54
  Other-service                     4.11                         95.89
  Priv-house-serv                   0.70                         99.30
- Prof-specialty                   44.85                         55.15
+ Prof-specialty                   44.85                         55.15 -------
  Protective-serv                  32.61                         67.39
  Sales                            27.06                         72.94
  Tech-support                     30.48                         69.52
@@ -648,3 +648,16 @@ Hence it is an important variable in avoiding the misuse of subsidies.
 '''
 sns.countplot(data=data2, x='occupation', hue='SalStat') # y axis is always frequency
 plt.show()
+
+############################ Capital Gain Analysis - Frequency Distribution analysis ######################################
+# countplot should be used for categorical variables. hist/displot should be used for numerical variables.
+sns.displot(data2['capitalgain'], bins=10, kde=False)
+plt.show()
+# 92% records have 0 capitalgain. Only 8% people have gained some profit from their investments/no investments.
+# Though capital gain varies from 0 to 100k, but there are more observations ranging from 0 to 20k.
+
+############################ Capital Loss Analysis - Frequency Distribution analysis ######################################
+# countplot should be used for categorical variables. hist/displot should be used for numerical variables.
+sns.displot(data2['capitalloss'], bins=10, kde=False)
+plt.show()
+# 95% (28721) observations have 0 capitalloss. Only 5% people have lost some money from their investments/no investments.
