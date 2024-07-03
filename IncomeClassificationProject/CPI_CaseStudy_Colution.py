@@ -661,3 +661,38 @@ plt.show()
 sns.displot(data2['capitalloss'], bins=10, kde=False)
 plt.show()
 # 95% (28721) observations have 0 capitalloss. Only 5% people have lost some money from their investments/no investments.
+
+########################### Hours per week vs Salary Status ############################
+# When you want to compare two variables - use box plot
+'''
+dataframe.describe() or sns.boxplot() can be used to get 5 number summary
+sns.boxplot() can be used to get 5 number summary for one variable or comparing one variable with another.
+To get exact value by comparing two variables, you can use dataframe.groupby(x axis variable)[y-axis variable].median()
+'''
+sns.boxplot(data=data2, y="hoursperweek", x="SalStat")
+plt.show()
+# From the plot, it is clearly visible that those who make more than 50k USD per year are more likely to
+# spend 40-50 hours per week.
+# This variable can contribute in classifying the individual's salary status since there is association between
+# salary status and hours per week.
+
+'''
+# Correlation doesn't work for Object variables. It works only for numeric variables.
+correlation_between_hoursperweek_and_salstat = data2.corr(method="pearson", numeric_only=True)
+print("Correlation between Hours Per Week and Salary Status:\n", correlation_between_hoursperweek_and_salstat)
+'''
+crosstab_between_hoursperweek_and_salstat = pd.crosstab(index = data2['SalStat'], # index means row
+                     columns = data2['hoursperweek'],
+                     margins = True,
+                     normalize = 'index').round(4)*100 # index means row. normalize = 'index' means you will get row proportion sum = 1
+print("Cross Tabulation between Hours Per Week and Salary Status:\n", crosstab_between_hoursperweek_and_salstat.to_string())
+'''
+ hoursperweek                          1         2         3         4         5         6         7         8         9        10        11        12        13        14        15        16        17        18        19        20        21        22        23        24        25        26        27        28        29        30        31        32        33        34        35        36        37        38        39        40        41        42        43        44        45        46        47        48        49        50        51        52        53        54        55        56        57        58        59        60        61        62        63        64        65        66        67        68        70        72        73        74        75        76        77        78        80        81        82        84        85        86        87        88        89        90        91        92        94        95        96        97        98        99
+SalStat                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
+ greater than 50,000           0.000133  0.000266  0.000133  0.000266  0.000799  0.000533  0.000266  0.000799  0.000133  0.001731  0.000000  0.001199  0.000266  0.000266  0.001865  0.001465  0.000133  0.000932  0.000000  0.009057  0.000266  0.000400  0.000000  0.002797  0.004129  0.000533  0.000133  0.000666  0.000133  0.009190  0.000000  0.003729  0.000533  0.000266  0.024241  0.005594  0.002531  0.011188  0.000932  0.414225  0.000799  0.009057  0.005061  0.009856  0.089238  0.003596  0.001998  0.019845  0.000799  0.164758  0.000400  0.006393  0.000799  0.001465  0.041556  0.005061  0.000932  0.001199  0.000133  0.083111  0.000266  0.000533  0.000266  0.000666  0.013852  0.000266  0.000400  0.000666  0.013719  0.003063  0.000133  0.000000  0.002664  0.000266  0.000000  0.000266  0.006926  0.000000  0.000000  0.002131  0.000533  0.000000  0.000000  0.000000  0.000133  0.001332  0.000000  0.000000  0.000000  0.000133  0.000133  0.000133  0.000400  0.003330
+ less than or equal to 50,000  0.000265  0.000574  0.001015  0.001104  0.001413  0.001589  0.000750  0.004238  0.000706  0.009226  0.000397  0.005650  0.000706  0.001192  0.014655  0.007460  0.001148  0.002472  0.000618  0.043524  0.000927  0.001589  0.000883  0.008652  0.023969  0.001059  0.001192  0.002958  0.000177  0.040611  0.000221  0.009270  0.001457  0.001104  0.044231  0.007063  0.005562  0.016421  0.001324  0.491790  0.001236  0.006401  0.004767  0.005959  0.047806  0.002340  0.001501  0.015229  0.000883  0.065375  0.000441  0.003840  0.000706  0.001192  0.015891  0.002295  0.000441  0.000795  0.000132  0.034475  0.000000  0.000618  0.000309  0.000397  0.006047  0.000618  0.000044  0.000309  0.007637  0.001722  0.000044  0.000044  0.001898  0.000044  0.000265  0.000265  0.003002  0.000132  0.000044  0.001059  0.000397  0.000088  0.000044  0.000088  0.000044  0.000795  0.000132  0.000044  0.000044  0.000044  0.000177  0.000044  0.000353  0.002340
+All                            0.000232  0.000497  0.000796  0.000895  0.001260  0.001326  0.000630  0.003382  0.000564  0.007360  0.000298  0.004542  0.000597  0.000961  0.011471  0.005968  0.000895  0.002089  0.000464  0.034945  0.000763  0.001293  0.000663  0.007194  0.019031  0.000928  0.000928  0.002387  0.000166  0.032790  0.000166  0.007891  0.001227  0.000895  0.039255  0.006697  0.004807  0.015118  0.001227  0.472482  0.001127  0.007062  0.004841  0.006929  0.058119  0.002652  0.001625  0.016378  0.000862  0.090113  0.000431  0.004476  0.000729  0.001260  0.022280  0.002984  0.000564  0.000895  0.000133  0.046582  0.000066  0.000597  0.000298  0.000464  0.007990  0.000530  0.000133  0.000398  0.009151  0.002056  0.000066  0.000033  0.002089  0.000099  0.000199  0.000265  0.003979  0.000099  0.000033  0.001326  0.000431  0.000066  0.000033  0.000066  0.000066  0.000928  0.000099  0.000033  0.000033  0.000066  0.000166  0.000066  0.000365  0.002586
+
+Around 16% people who earn >50k USD spends 50 hours at work.
+I don't see that big number for above 40 hours for the people who earn <=50k. So majority of them spend <=40 hours a week.
+'''
