@@ -33,6 +33,8 @@ print("After dropping the rows with missing values, total rows left: ", total_ro
 # It is a machine learning algorithm.
 # It works with numbers only. So, we have to change categorical variables to numbers.
 
+# Reindexing the salary status names to 0,1
+
 # map function doesn't work. Instead, use loc function.
 # https://www.geeksforgeeks.org/python-pandas-map/
 #data2['SalStat'] = data2['SalStat'].map({' less than or equal to 50,000': '0', ' greater than 50,000': '1'})
@@ -42,3 +44,5 @@ print("After dropping the rows with missing values, total rows left: ", total_ro
 data2.loc[(data2['SalStat'] == ' less than or equal to 50,000'), 'SalStat'] = 0
 data2.loc[(data2['SalStat'] == ' greater than 50,000'), 'SalStat'] = 1
 print(data2['SalStat'])
+
+new_data = pd.get_dummies(data2, drop_first=True)
