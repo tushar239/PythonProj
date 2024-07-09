@@ -29,6 +29,12 @@ print("After dropping the rows with missing values, total rows left: ", total_ro
 
 #============================================================
 # Building Logistic Regression Model
+
+# Regression means predicting the relationship between two variable
+# Linear Regression - Based on independent variable, predicting the numerical value
+# Logistic Regression - Based on independent variable, predicting the categorical value (0 or 1)
+# Watch Logistic Regression video
+# Watch Linear Regression video - superb video
 #============================================================
 # It is a machine learning algorithm.
 # It works with numbers only. So, we have to change categorical variables to numbers.
