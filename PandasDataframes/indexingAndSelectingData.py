@@ -83,3 +83,9 @@ print(result)
 14  22500   Petrol
 15  22000   Petrol
 '''
+# df.loc[row_indexer, "col"] = values
+# loc function can be used to change the values in a particular column
+# df.loc takes two arguments, 'row index' and 'column index'.
+# We are checking if the value is greater than 1990 of each row value, under "First season" column and then we replacing it with 1.
+
+# df.loc[df['First season'] > 1990, 'First Season'] = 1
