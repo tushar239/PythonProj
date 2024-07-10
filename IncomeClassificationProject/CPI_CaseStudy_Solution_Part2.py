@@ -36,7 +36,7 @@ print("After dropping the rows with missing values, total rows left: ", total_ro
 # Watch Logistic Regression video
 # Watch Linear Regression video - superb video
 #============================================================
-# It is a machine learning algorithm.
+# Logistic regression is a machine learning algorithm.
 # It works with numbers only. So, we have to change categorical variables to numbers.
 
 # Reindexing the salary status names to 0,1
@@ -98,7 +98,7 @@ columns_list = list(new_data.columns)
 'SalStat_1']
 '''
 
-# Separating input variables from output variable
+# Separating input variables(independent variables) from output variable (dependent variable)
 features = columns_list[0 : len(columns_list)-1] # SalStat_1 is separated because it is an output variable
 print(features)
 '''
