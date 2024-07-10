@@ -24,3 +24,6 @@ print(total_rows_with_fueltype_petrol)
 
 # you can use dataframe.loc(condition) also
 # https://www.geeksforgeeks.org/filter-pandas-dataframe-with-multiple-conditions/
+# fyi: NumPy's where(condition, x, y) is used
+    # Based on condition, return either x or y
+    # If the condition is true, then return x, otherwise return y
