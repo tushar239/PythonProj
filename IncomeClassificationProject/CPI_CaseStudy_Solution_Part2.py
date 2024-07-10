@@ -51,4 +51,70 @@ data2.loc[(data2['SalStat'] == ' less than or equal to 50,000'), 'SalStat'] = 0
 data2.loc[(data2['SalStat'] == ' greater than 50,000'), 'SalStat'] = 1
 print(data2['SalStat'])
 
-new_data = pd.get_dummies(data2, drop_first=True)
+'''
+https://pandas.pydata.org/docs/reference/api/pandas.get_dummies.html
+
+Convert categorical variable into dummy/indicator variables.
+
+Each variable is converted in as many 0/1 variables as there are different values. 
+Columns in the output are each named after a value; 
+if the input is a DataFrame, the name of the original variable is prepended to the value.
+'''
+new_data = pd.get_dummies(data2, drop_first=True, dtype='int')
+#new_data.replace([False, True], [0, 1], inplace=True)
+print(new_data)
+'''
+     age  capitalgain  ...  nativecountry_ Yugoslavia  SalStat_1
+0       45            0  ...                          0          0
+1       24            0  ...                          0          0
+2       44            0  ...                          0          1
+3       27            0  ...                          0          0
+4       20            0  ...                          0          0
+...    ...          ...  ...                        ...        ...
+31973   34          594  ...                          0          0
+31974   34            0  ...                          0          0
+31975   23            0  ...                          0          0
+31976   42            0  ...                          0          0
+31977   29            0  ...                          0          0
+
+[30162 rows x 95 columns]
+'''
+
+# Now, we have mapped all string values to integer values. So, we can work with machine learning algorithms.
+
+# storing the column names
+type(new_data.columns) # <class 'pandas.core.indexes.base.Index'>
+columns_list = list(new_data.columns)
+'''
+['age', 'capitalgain', 'capitalloss', 'hoursperweek', 
+'JobType_ Local-gov', 'JobType_ Private', 'JobType_ Self-emp-inc', 'JobType_ Self-emp-not-inc', 'JobType_ State-gov', 'JobType_ Without-pay', 
+'EdType_ 11th', 'EdType_ 12th', 'EdType_ 1st-4th', 'EdType_ 5th-6th', 'EdType_ 7th-8th', 'EdType_ 9th', 'EdType_ Assoc-acdm', 'EdType_ Assoc-voc', 'EdType_ Bachelors', 'EdType_ Doctorate', 'EdType_ HS-grad', 'EdType_ Masters', 'EdType_ Preschool', 'EdType_ Prof-school', 'EdType_ Some-college', 
+'maritalstatus_ Married-AF-spouse', 'maritalstatus_ Married-civ-spouse', 'maritalstatus_ Married-spouse-absent', 'maritalstatus_ Never-married', 'maritalstatus_ Separated', 'maritalstatus_ Widowed', 
+'occupation_ Armed-Forces', 'occupation_ Craft-repair', 'occupation_ Exec-managerial', 'occupation_ Farming-fishing', 'occupation_ Handlers-cleaners', 'occupation_ Machine-op-inspct', 'occupation_ Other-service', 'occupation_ Priv-house-serv', 'occupation_ Prof-specialty', 'occupation_ Protective-serv', 'occupation_ Sales', 'occupation_ Tech-support', 'occupation_ Transport-moving', 
+'relationship_ Not-in-family', 'relationship_ Other-relative', 'relationship_ Own-child', 'relationship_ Unmarried', 'relationship_ Wife', 
+'race_ Asian-Pac-Islander', 'race_ Black', 'race_ Other', 'race_ White', 
+'gender_ Male', 
+'nativecountry_ Canada', 'nativecountry_ China', 'nativecountry_ Columbia', 'nativecountry_ Cuba', 'nativecountry_ Dominican-Republic', 'nativecountry_ Ecuador', 'nativecountry_ El-Salvador', 'nativecountry_ England', 'nativecountry_ France', 'nativecountry_ Germany', 'nativecountry_ Greece', 'nativecountry_ Guatemala', 'nativecountry_ Haiti', 'nativecountry_ Holand-Netherlands', 'nativecountry_ Honduras', 'nativecountry_ Hong', 'nativecountry_ Hungary', 'nativecountry_ India', 'nativecountry_ Iran', 'nativecountry_ Ireland', 'nativecountry_ Italy', 'nativecountry_ Jamaica', 'nativecountry_ Japan', 'nativecountry_ Laos', 'nativecountry_ Mexico', 'nativecountry_ Nicaragua', 'nativecountry_ Outlying-US(Guam-USVI-etc)', 'nativecountry_ Peru', 'nativecountry_ Philippines', 'nativecountry_ Poland', 'nativecountry_ Portugal', 'nativecountry_ Puerto-Rico', 'nativecountry_ Scotland', 'nativecountry_ South', 'nativecountry_ Taiwan', 'nativecountry_ Thailand', 'nativecountry_ Trinadad&Tobago', 'nativecountry_ United-States', 'nativecountry_ Vietnam', 'nativecountry_ Yugoslavia', 
+'SalStat_1']
+'''
+
+# Separating input variables from output variable
+features = columns_list[0 : len(columns_list)-1] # SalStat_1 is separated because it is an output variable
+print(features)
+'''
+['age', 'capitalgain', 'capitalloss', 'hoursperweek', 'JobType_ Local-gov', 'JobType_ Private', 'JobType_ Self-emp-inc', 'JobType_ Self-emp-not-inc', 'JobType_ State-gov', 'JobType_ Without-pay', 'EdType_ 11th', 'EdType_ 12th', 'EdType_ 1st-4th', 'EdType_ 5th-6th', 'EdType_ 7th-8th', 'EdType_ 9th', 'EdType_ Assoc-acdm', 'EdType_ Assoc-voc', 'EdType_ Bachelors', 'EdType_ Doctorate', 'EdType_ HS-grad', 'EdType_ Masters', 'EdType_ Preschool', 'EdType_ Prof-school', 'EdType_ Some-college', 'maritalstatus_ Married-AF-spouse', 'maritalstatus_ Married-civ-spouse', 'maritalstatus_ Married-spouse-absent', 'maritalstatus_ Never-married', 'maritalstatus_ Separated', 'maritalstatus_ Widowed', 'occupation_ Armed-Forces', 'occupation_ Craft-repair', 'occupation_ Exec-managerial', 'occupation_ Farming-fishing', 'occupation_ Handlers-cleaners', 'occupation_ Machine-op-inspct', 'occupation_ Other-service', 'occupation_ Priv-house-serv', 'occupation_ Prof-specialty', 'occupation_ Protective-serv', 'occupation_ Sales', 'occupation_ Tech-support', 'occupation_ Transport-moving', 'relationship_ Not-in-family', 'relationship_ Other-relative', 'relationship_ Own-child', 'relationship_ Unmarried', 'relationship_ Wife', 'race_ Asian-Pac-Islander', 'race_ Black', 'race_ Other', 'race_ White', 'gender_ Male', 
+'nativecountry_ Canada', 'nativecountry_ China', 'nativecountry_ Columbia', 'nativecountry_ Cuba', 'nativecountry_ Dominican-Republic', 'nativecountry_ Ecuador', 'nativecountry_ El-Salvador', 'nativecountry_ England', 'nativecountry_ France', 'nativecountry_ Germany', 'nativecountry_ Greece', 'nativecountry_ Guatemala', 'nativecountry_ Haiti', 'nativecountry_ Holand-Netherlands', 'nativecountry_ Honduras', 'nativecountry_ Hong', 'nativecountry_ Hungary', 'nativecountry_ India', 'nativecountry_ Iran', 'nativecountry_ Ireland', 'nativecountry_ Italy', 'nativecountry_ Jamaica', 'nativecountry_ Japan', 'nativecountry_ Laos', 'nativecountry_ Mexico', 'nativecountry_ Nicaragua', 'nativecountry_ Outlying-US(Guam-USVI-etc)', 'nativecountry_ Peru', 'nativecountry_ Philippines', 'nativecountry_ Poland', 'nativecountry_ Portugal', 'nativecountry_ Puerto-Rico', 'nativecountry_ Scotland', 'nativecountry_ South', 'nativecountry_ Taiwan', 'nativecountry_ Thailand', 'nativecountry_ Trinadad&Tobago', 'nativecountry_ United-States', 'nativecountry_ Vietnam', 'nativecountry_ Yugoslavia']
+'''
+# Another way to take out SalStat_1
+features = list(set(columns_list) - set(['SalStat_1']))
+print(features)
+# as list is converted to set, retrieval order is not the same as insertion order.
+'''
+['hoursperweek', 'nativecountry_ France', 'maritalstatus_ Widowed', 'JobType_ Without-pay', 'nativecountry_ Portugal', 'occupation_ Handlers-cleaners', 'EdType_ Some-college', 'nativecountry_ Honduras', 'nativecountry_ Guatemala', 'JobType_ Private', 'EdType_ 7th-8th', 'capitalgain', 'occupation_ Sales', 'nativecountry_ Haiti', 'nativecountry_ Ireland', 'nativecountry_ Columbia', 'relationship_ Unmarried', 'maritalstatus_ Never-married', 'occupation_ Armed-Forces', 'race_ Black', 'occupation_ Craft-repair', 'EdType_ 1st-4th', 'nativecountry_ Greece', 'EdType_ Preschool', 'nativecountry_ Poland', 'EdType_ Assoc-voc', 'nativecountry_ Scotland', 'EdType_ 9th', 'nativecountry_ Iran', 'nativecountry_ Hungary', 'nativecountry_ Nicaragua', 'maritalstatus_ Married-spouse-absent', 'nativecountry_ Japan', 'occupation_ Exec-managerial', 'EdType_ Doctorate', 'gender_ Male', 'nativecountry_ United-States', 'nativecountry_ Trinadad&Tobago', 'nativecountry_ Ecuador', 'nativecountry_ Canada', 'JobType_ Self-emp-inc', 'relationship_ Other-relative', 'nativecountry_ Cuba', 'nativecountry_ Holand-Netherlands', 'nativecountry_ Germany', 'occupation_ Protective-serv', 'maritalstatus_ Separated', 'relationship_ Not-in-family', 'EdType_ Bachelors', 'occupation_ Other-service', 'nativecountry_ Peru', 'maritalstatus_ Married-AF-spouse', 'nativecountry_ Taiwan', 'nativecountry_ India', 'EdType_ 5th-6th', 'EdType_ 11th', 'race_ Other', 'relationship_ Own-child', 'nativecountry_ Hong', 'EdType_ Masters', 'occupation_ Priv-house-serv', 'EdType_ Prof-school', 'race_ Asian-Pac-Islander', 'occupation_ Farming-fishing', 'EdType_ HS-grad', 'nativecountry_ Dominican-Republic', 'relationship_ Wife', 'nativecountry_ Laos', 'nativecountry_ Philippines', 'capitalloss', 'occupation_ Machine-op-inspct', 'nativecountry_ Jamaica', 'occupation_ Tech-support', 'JobType_ State-gov', 'nativecountry_ Puerto-Rico', 'nativecountry_ Italy', 'EdType_ Assoc-acdm', 'race_ White', 'JobType_ Self-emp-not-inc', 'nativecountry_ Thailand', 'nativecountry_ England', 'nativecountry_ Outlying-US(Guam-USVI-etc)', 'nativecountry_ Mexico', 'age', 'nativecountry_ Yugoslavia', 'EdType_ 12th', 'nativecountry_ South', 'occupation_ Transport-moving', 'nativecountry_ El-Salvador', 'maritalstatus_ Married-civ-spouse', 'nativecountry_ China', 'JobType_ Local-gov', 'occupation_ Prof-specialty', 'nativecountry_ Vietnam']
+'''
+
+# Storing the output values in y
+y = new_data['SalStat_1'].values
+print(y)
+# [False False  True ... False False False]
+
