@@ -27,3 +27,7 @@ print(total_rows_with_fueltype_petrol)
 # fyi: NumPy's where(condition, x, y) is used
     # Based on condition, return either x or y
     # If the condition is true, then return x, otherwise return y
+
+# dataframe.loc(condition) can be used either to filter out the rows based on condition
+# or to assign a value to rows with a specific condition
+    # dataframe.loc[(dataframe['column'] == ' less than or equal to 50,000'), 'column requires new value'] = 0
