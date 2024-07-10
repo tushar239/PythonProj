@@ -21,3 +21,6 @@ rows_with_fueltype_petrol = cars_data[cars_data['FuelType'] == 'Petrol']
 print(rows_with_fueltype_petrol)
 total_rows_with_fueltype_petrol = len(rows_with_fueltype_petrol)
 print(total_rows_with_fueltype_petrol)
+
+# you can use dataframe.loc(condition) also
+# https://www.geeksforgeeks.org/filter-pandas-dataframe-with-multiple-conditions/
