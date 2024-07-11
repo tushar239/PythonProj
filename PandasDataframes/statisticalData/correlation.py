@@ -14,6 +14,8 @@ It shows the strength of relation between two variables.
 Variables do not have to be numeric, but for our example, we will use numeric variables.
 
 Correlation is bound between -1 and +1. 0 means no correlation at all. 
+# Watch 'Pearson Correlation Coefficient' video
+# https://www.youtube.com/watch?v=B8LcYdblXBI
 
 Closer to +1 represents there is a strong correlation between two variables positively. 
 Theoretically, above 0.7, you can say there is a fair correlation between two numerical variables.

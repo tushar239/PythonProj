@@ -356,6 +356,8 @@ print(something)
 """
 
 # Relationship between independent variables
+# Watch 'Pearson Correlation Coefficient' video
+# https://www.youtube.com/watch?v=B8LcYdblXBI
 correlation = data2.corr(method="pearson", numeric_only=True)
 print('Correlation: \n', correlation)
 '''

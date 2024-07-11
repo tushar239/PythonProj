@@ -9,6 +9,10 @@ import numpy as np
 # To visualize data
 import seaborn as sns
 import matplotlib.pyplot as plt  # pyplot means python plot
+from sklearn.linear_model import LogisticRegression
+from sklearn.model_selection import train_test_split
+import statsmodels.api as sm
+
 import gotoDataDir
 
 data_income = pd.read_csv('income.csv')
@@ -116,5 +120,57 @@ print(features)
 # Storing the output values in y
 y = new_data['SalStat_1'].values
 print(y)
-# [False False  True ... False False False]
+# [0 0 1 ... 0 0 0]
+
+# Storing the values from input features
+x = new_data[features].values
+print(x)
+'''
+[[0 0 0 ... 0 1 0]
+ [1 0 0 ... 0 1 0]
+ [0 0 0 ... 0 1 0]
+ ...
+ [0 0 0 ... 0 1 0]
+ [0 0 0 ... 0 1 0]
+ [0 0 0 ... 0 1 0]]
+'''
+
+# Splitting the data into train and test
+# https://www.geeksforgeeks.org/how-to-split-the-dataset-with-scikit-learns-train_test_split-function/
+# random_state = 0. random_state is a seed used by random number generator. If you set random seed, same set of records
+# will be chosen every time, you run this code, otherwise different set of records will be chosen.
+train_x, test_x, train_y, test_y = train_test_split(x, y, test_size=0.3, random_state=0, shuffle=True)
+print(len(train_x)) # 21113
+'''
+[[0 0 0 ... 0 0 0]
+ [0 1 0 ... 0 0 0]
+ [1 1 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 1 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]]
+'''
+print(len(test_x)) # 9049 - 30% data
+'''
+[[0 1 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 1 ... 0 0 0]
+ [0 1 0 ... 0 0 0]
+ [0 0 1 ... 0 0 0]]
+'''
+
+print(len(train_y)) # 21113
+print(len(test_y)) # 9049  - 30% data
+
+print(train_y) # [0 0 0 ... 1 0 0]
+print(test_y) # [0 0 0 ... 0 0 0]
+
+# Make an instance of the Model.
+logistic = LogisticRegression()
+
+# Fitting the values for x and y
+logistic.fit(train_x, train_y)
+print(logistic.coef_())
 
