@@ -62,7 +62,7 @@ https://pandas.pydata.org/docs/reference/api/pandas.get_dummies.html
 
 Convert categorical variable into dummy/indicator variables.
 
-Each variable is converted in as many 0/1 variables as there are different values. 
+Each categorical variable is converted in as many 0/1 variables as there are different values. 
 Columns in the output are each named after a value; 
 if the input is a DataFrame, the name of the original variable is prepended to the value.
 '''
@@ -170,6 +170,8 @@ print(train_y) # [0 0 0 ... 1 0 0]
 print(test_y) # [0 0 0 ... 0 0 0]
 
 # Make an instance of the Model.
+# to understand how does Logistic Regression work, watch Linear Regression and Logistic Regression videos.
+# there is a mathematical formula for Linear and Logistic Regression. From train_x and train_y, you can find out necessary math scores and from that score required parameters of these formulas can be found.
 logistic = LogisticRegression()
 
 # Fitting the values for x and y
@@ -243,8 +245,8 @@ How to Calculate?
 Accuracy = (True Positive + True Negative) / Total Predictions
 '''
 # Calculating Accuracy Score
-accuracy_score = accuracy_score(test_y, prediction)
-print(accuracy_score) # 0.8360039783401481
+accuracy_score_1 = accuracy_score(test_y, prediction)
+print(accuracy_score_1) # 0.8360039783401481
 
 print(type(prediction)) # <class 'numpy.ndarray'>
 print(type(test_y)) # <class 'numpy.ndarray'>
@@ -252,3 +254,75 @@ print(type(test_y)) # <class 'numpy.ndarray'>
 # Printing misclassified values from prediction
 print('Misclassified samples: %d' % (test_y != prediction).sum()) # 1483 (954+528)
 
+# ############################################################
+# LOGISTIC REGRESSION - REMOVING INSIGNIFICANT VARIABLES
+# ############################################################
+data3 = data.dropna(axis=0)
+
+# Reindexing the salary status names to 0,1
+data3.loc[(data3['SalStat'] == ' less than or equal to 50,000'), 'SalStat'] = 0
+data3.loc[(data3['SalStat'] == ' greater than 50,000'), 'SalStat'] = 1
+print(data3['SalStat'])
+
+# dropping insignificant variables
+insignificant_cols = ['gender', 'nativecountry', 'race', 'JobType']
+new_data = data3.drop(insignificant_cols, axis=1) # axis=1 mean drop cols
+
+# Each categorical variable is converted in as many 0/1 variables as there are different values.
+new_data_2 = pd.get_dummies(new_data, drop_first=True, dtype='int')
+
+columns_list = list(new_data_2.columns)
+print(columns_list)
+
+# Separating input variables(independent variables) from output variable (dependent variable)
+features = columns_list[0 : len(columns_list)-1] # SalStat_1 is separated because it is an output variable
+print(features)
+'''
+['age', 'capitalgain', 'capitalloss', 'hoursperweek', 
+'EdType_ 11th', 'EdType_ 12th', 'EdType_ 1st-4th', 'EdType_ 5th-6th', 'EdType_ 7th-8th', 'EdType_ 9th', 'EdType_ Assoc-acdm', 'EdType_ Assoc-voc', 'EdType_ Bachelors', 'EdType_ Doctorate', 'EdType_ HS-grad', 'EdType_ Masters', 'EdType_ Preschool', 'EdType_ Prof-school', 'EdType_ Some-college', 
+'maritalstatus_ Married-AF-spouse', 'maritalstatus_ Married-civ-spouse', 'maritalstatus_ Married-spouse-absent', 'maritalstatus_ Never-married', 'maritalstatus_ Separated', 'maritalstatus_ Widowed', 
+'occupation_ Armed-Forces', 'occupation_ Craft-repair', 'occupation_ Exec-managerial', 'occupation_ Farming-fishing', 'occupation_ Handlers-cleaners', 'occupation_ Machine-op-inspct', 'occupation_ Other-service', 'occupation_ Priv-house-serv', 'occupation_ Prof-specialty', 'occupation_ Protective-serv', 'occupation_ Sales', 'occupation_ Tech-support', 'occupation_ Transport-moving', 
+'relationship_ Not-in-family', 'relationship_ Other-relative', 'relationship_ Own-child', 'relationship_ Unmarried', 'relationship_ Wife']
+'''
+# Another way to take out SalStat_1
+features = list(set(columns_list) - set(['SalStat_1']))
+print(features)
+
+# Storing the output values in y
+y = new_data_2['SalStat_1'].values
+print(y)
+# [0 0 1 ... 0 0 0]
+
+# Storing the values from input features
+x = new_data_2[features].values
+print(x)
+'''
+[[0 0 0 ... 0 1 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 1]
+ ...
+ [0 0 0 ... 0 0 1]
+ [0 0 0 ... 0 0 1]
+ [0 0 1 ... 0 1 0]]
+'''
+# Splitting the data into train and test
+train_x, test_x, train_y, test_y = train_test_split(x, y, test_size=0.3, random_state=0, shuffle=True)
+# Make an instance of the Model.
+# to understand how does Logistic Regression work, watch Linear Regression and Logistic Regression videos.
+# there is a mathematical formula for Linear and Logistic Regression. From train_x and train_y, you can find out necessary math scores and from that score required parameters of these formulas can be found.
+logistic = LogisticRegression()
+
+# Fitting the values for x and y
+logistic.fit(train_x, train_y)
+
+# Prediction from test data
+prediction = logistic.predict(test_x)
+print(prediction) # [0 0 0 ... 0 0 0]
+print(prediction.dtype) # int32
+print(test_y.dtype) # int32
+
+# Calculating Accuracy Score
+accuracy_score_2 = accuracy_score(test_y, prediction)
+print(accuracy_score_2) # 0.8340148082661067
+
+# NOTE: Accuracy has dropped down a little bit after removing insignificant variables
