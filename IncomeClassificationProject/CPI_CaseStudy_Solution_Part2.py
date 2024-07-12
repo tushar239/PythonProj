@@ -139,8 +139,9 @@ print(x)
 
 # Splitting the data into train and test
 # https://www.geeksforgeeks.org/how-to-split-the-dataset-with-scikit-learns-train_test_split-function/
-# random_state = 0. random_state is a seed used by random number generator. If you set random seed, same set of records
-# will be chosen every time, you run this code, otherwise different set of records will be chosen.
+# random_state = 0. random_state is a seed used by random number generator.
+# If you set random seed, same set of records will be chosen every time, you run this code,
+# otherwise different set of records will be chosen.
 train_x, test_x, train_y, test_y = train_test_split(x, y, test_size=0.3, random_state=0, shuffle=True)
 print(len(train_x)) # 21113
 '''
@@ -171,7 +172,9 @@ print(test_y) # [0 0 0 ... 0 0 0]
 
 # Make an instance of the Model.
 # to understand how does Logistic Regression work, watch Linear Regression and Logistic Regression videos.
-# there is a mathematical formula for Linear and Logistic Regression. From train_x and train_y, you can find out necessary math scores and from that score required parameters of these formulas can be found.
+# there is a mathematical formula for Linear and Logistic Regression.
+# From train_x and train_y, you can find out necessary math scores and
+# from that score required parameters of these formulas can be found.
 logistic = LogisticRegression()
 
 # Fitting the values for x and y
@@ -325,4 +328,5 @@ print(test_y.dtype) # int32
 accuracy_score_2 = accuracy_score(test_y, prediction)
 print(accuracy_score_2) # 0.8340148082661067
 
-# NOTE: Accuracy has dropped down a little bit after removing insignificant variables
+# NOTE: Accuracy has dropped down just a little bit after removing insignificant variables.
+# There is no big change.
