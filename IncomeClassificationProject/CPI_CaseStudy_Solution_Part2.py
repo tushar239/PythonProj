@@ -11,6 +11,8 @@ import seaborn as sns
 import matplotlib.pyplot as plt  # pyplot means python plot
 from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
+from sklearn.metrics import confusion_matrix
+
 import statsmodels.api as sm
 
 import gotoDataDir
@@ -199,4 +201,44 @@ print(logistic.coef_) # To understand, how correlation/coefficient is calculated
    5.25685357e-01 -2.03627587e-02 -2.65742471e-02 -8.89428247e-04
   -5.96112320e-02 -4.94847283e-01  1.60782217e-01 -3.03905406e-01
   -3.23566872e-01  3.57710550e-03]]
+'''
+print(logistic.intercept_) # [-1.03842641]
+
+# Prediction from test data
+prediction = logistic.predict(test_x)
+print(prediction) # [0 0 0 ... 0 0 0]
+
+# Confusion matrix
+# https://www.w3schools.com/python/python_ml_confusion_matrix.asp
+# It is a table that is used in classification problems to assess where errors in the model were made.
+# Confusion matrix can be created by predictions made from a logistic regression.
+# It compares the predictions with actual test output variable
+confusion_matrix = confusion_matrix(test_y, prediction)
+print(confusion_matrix)
+'''
+[[6295  528]
+ [ 954 1272]]
+            ------------------
+         0  | 6295  | 528   |
+  test_y    |       |       |
+            ------------------
+         1  |  954  | 1272  |
+            |       |       |
+            ------------------
+                0       1
+                predictions
+
+The Confusion Matrix created has four different quadrants:
+
+True Negative (Top-Left Quadrant)
+False Positive (Top-Right Quadrant)
+False Negative (Bottom-Left Quadrant)
+True Positive (Bottom-Right Quadrant)
+
+True means that the values were accurately predicted, 
+False means that there was an error or wrong prediction.
+
+Accuracy measures how often the model is correct.
+How to Calculate?
+Accuracy = (True Positive + True Negative) / Total Predictions
 '''
