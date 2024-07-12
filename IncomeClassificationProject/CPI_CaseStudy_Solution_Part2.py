@@ -11,7 +11,7 @@ import seaborn as sns
 import matplotlib.pyplot as plt  # pyplot means python plot
 from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import confusion_matrix
+from sklearn.metrics import confusion_matrix, accuracy_score
 
 import statsmodels.api as sm
 
@@ -242,3 +242,13 @@ Accuracy measures how often the model is correct.
 How to Calculate?
 Accuracy = (True Positive + True Negative) / Total Predictions
 '''
+# Calculating Accuracy Score
+accuracy_score = accuracy_score(test_y, prediction)
+print(accuracy_score) # 0.8360039783401481
+
+print(type(prediction)) # <class 'numpy.ndarray'>
+print(type(test_y)) # <class 'numpy.ndarray'>
+
+# Printing misclassified values from prediction
+print('Misclassified samples: %d' % (test_y != prediction).sum()) # 1483 (954+528)
+
