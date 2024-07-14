@@ -330,3 +330,12 @@ print(accuracy_score_2) # 0.8340148082661067
 
 # NOTE: Accuracy has dropped down just a little bit after removing insignificant variables.
 # There is no big change.
+
+
+# =====================================================================================
+# KNN
+# =====================================================================================
+from sklearn.neighbors import KNeighborsClassifier
+
+# Storing the K nearest neighbors classifier
+KNN_classifier = KNeighborsClassifier(n_neighbors=5)
