@@ -218,8 +218,8 @@ print(prediction) # [0 0 0 ... 0 0 0]
 # It is a table that is used in classification problems to assess where errors in the model were made.
 # Confusion matrix can be created by predictions made from a logistic regression.
 # It compares the predictions with actual test output variable
-confusion_matrix = confusion_matrix(test_y, prediction)
-print(confusion_matrix)
+confusion_matrix_1 = confusion_matrix(test_y, prediction)
+print(confusion_matrix_1)
 '''
 [[6295  528]
  [ 954 1272]]
@@ -333,9 +333,58 @@ print(accuracy_score_2) # 0.8340148082661067
 
 
 # =====================================================================================
-# KNN
+# KNN - Watch 'KNN Classification' video
 # =====================================================================================
 from sklearn.neighbors import KNeighborsClassifier
 
 # Storing the K nearest neighbors classifier
 KNN_classifier = KNeighborsClassifier(n_neighbors=5)
+# Fitting the values for X and Y
+KNN_classifier.fit(train_x, train_y)
+# Predicting the test values with model
+prediction = KNN_classifier.predict(test_x)
+# Performance metric check
+confusion_matrix_3 = confusion_matrix(test_y, prediction)
+print("Predicted values","\n", prediction) #  [0 0 0 ... 1 0 0]
+print("Confusion Matrix", "\n", confusion_matrix_3)
+'''
+Confusion Matrix
+ [[6188  635]
+ [ 855 1371]]
+ 
+             ------------------
+         0  | 6188  | 635   |
+  test_y    |       |       |
+            ------------------
+         1  |  855  | 1371  |
+            |       |       |
+            ------------------
+                0       1
+                predictions
+
+'''
+
+# Calculating Accuracy Score
+accuracy_score_3 = accuracy_score(test_y, prediction)
+print(accuracy_score_3) # 0.835340921648801
+
+print("Misclassified samples: %d" % (test_y != prediction).sum()) # 855+635 = 1490
+
+"""
+Effect of K value on classifier
+"""
+# Calculating error for k values between 1 and 20
+Miscliassifed_sample = []
+for i in range(1, 20):
+    knn = KNeighborsClassifier(n_neighbors=i)
+    knn.fit(train_x, train_y)
+    pred_i = knn.predict(test_x)
+    Miscliassifed_sample.append((test_y != pred_i).sum())
+print(Miscliassifed_sample)
+# [1723, 1512, 1541, 1480, 1490, 1442, 1467, 1433, 1437,
+# 1416, 1413, 1434, 1437, 1445, 1426, 1420, 1438, 1423, 1441]
+
+# Both Logistic Regression and KNN methods are giving almost the same result
+# ==========================================================================
+# END OF SCRIPT
+# ==========================================================================
