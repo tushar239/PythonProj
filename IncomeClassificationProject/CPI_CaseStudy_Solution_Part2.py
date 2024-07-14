@@ -385,6 +385,7 @@ print(Miscliassifed_sample)
 # 1416, 1413, 1434, 1437, 1445, 1426, 1420, 1438, 1423, 1441]
 
 # Both Logistic Regression and KNN methods are giving almost the same result
+# We have not tried removing insignificant variables for KNN model. We can do that also to improve the result.
 # ==========================================================================
 # END OF SCRIPT
 # ==========================================================================
