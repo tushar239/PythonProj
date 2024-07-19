@@ -30,7 +30,18 @@ f = tupleResult[0]
 ax1 = tupleResult[1][0]
 ax2 =tupleResult[1][1]
 '''
+# boxplot is same as dataframe.describe() - summary
 (figure, [ax1, ax2]) = plt.subplots(nrows=2, gridspec_kw={"height_ratios" : (.15, .85)})
 sns.boxplot(data=cars_data["Price"], ax=ax1)
+plt.show()
+'''
+with kde=False, it will be exactly like a Histogram that shows the Frequency of different Age ranges(bins)
+
+kde means kernal density estimate
+Kernel density estimation is the process of estimating an unknown probability density function using a kernel function .
+While a histogram counts the number of data points in somewhat arbitrary regions, a kernel density estimate is a function defined as the sum of a kernel function on every data point.
+
+KDE shows the density where the points match up the most
+'''
 sns.distplot(cars_data["Price"], ax = ax2, kde= False)
 plt.show()

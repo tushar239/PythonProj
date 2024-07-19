@@ -22,6 +22,7 @@ cars_data.dropna(axis=0, inplace=True)
 print(cars_data)
 
 # let's plot a scatter plot
+# scatter plot is same as regplot without regression line(fit_reg=True)
 plt.scatter(x=cars_data['Age'], y=cars_data['Price'], c='red')
 plt.title('Scatter plot of Price vs Age of the cars')
 plt.xlabel('Age (months)')

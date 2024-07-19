@@ -27,7 +27,7 @@ The upper line of the box shows the third quartile (Q3) that is 75% of the cars 
 Above and below the whiskers, there are points. They are outliers(extreme values). 
 
 The mean (average) of a data set is found by adding all numbers in the data set and then dividing by the number of values in the set.
-The median is the middle value when a data set is ordered from least(min) to greatest(max) ignoring outliers. 
+The median is the middle value when a data set is ordered from least(min) to greatest(max). 
 The mode is the number that occurs most often in a data set.
 '''
 sns.boxplot(data=cars_data, y="Price")

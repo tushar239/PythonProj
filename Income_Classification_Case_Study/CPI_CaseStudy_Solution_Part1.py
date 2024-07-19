@@ -502,7 +502,7 @@ five_numbers_summary_of_age = data2['age'].describe()
 print('Five numbers summary of age:\n', five_numbers_summary_of_age)
 """
 The mean (average) of a data set is found by adding all numbers in the data set and then dividing by the number of values in the set.
-The median is the middle value when a data set is ordered from least(min) to greatest(max) ignoring outliers. 
+The median is the middle value when a data set is ordered from least(min) to greatest(max). 
 The mode is the number that occurs most often in a data set.
 """
 

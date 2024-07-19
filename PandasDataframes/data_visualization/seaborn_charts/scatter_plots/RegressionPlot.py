@@ -38,7 +38,5 @@ sns.set(style="darkgrid")
 sns.regplot(data=cars_data, x='Age', y='Price', marker="*")
 plt.show()
 '''
-This is not exactly a Scatter Plot, but it is a Regression Plot.
-But you can easily read it like a scatter plot. As Age of the car increases Price decreases.
-It shows regression line also in the plot.
+Metplotlib's scatter plot is same as Seaborn's regplot without regression line(fit_reg=True)
 '''
