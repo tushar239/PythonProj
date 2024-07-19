@@ -3193,6 +3193,7 @@ Here, mean and median are not far away, but std is huge. If you are going to dev
 
 What is Standard deviation?
 https://byjus.com/maths/standard-deviation/
+Watch 'Variance and Standard Deviation.mp4' video
 Standard Deviation is a measure which shows how much variation (such as spread, dispersion, spread,) from the mean exists. 
 The standard deviation indicates a “typical” deviation from the mean. 
 It is a popular measure of variability because it returns to the original units of measure of the data set. 
