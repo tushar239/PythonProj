@@ -2692,7 +2692,8 @@ Summary shows that there is a huge difference between mean and median(50%).
 So, there are many outliers.
 '''
 # boxplot is same as dataframe.describe(). It shows 5 point summary.
-# because many outliers, it is not able to show proper boxplot also.
+# It can be used for two variables x=categorical variable, y=numerical variable OR just y=numerical variable
+# Because of many outliers, it is not able to show proper boxplot also.
 sns.boxplot(y=cars['price'])
 plt.show()
 

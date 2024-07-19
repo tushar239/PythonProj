@@ -667,7 +667,8 @@ plt.show()
 ########################### Hours per week vs Salary Status ############################
 # When you want to compare two variables - use box plot
 '''
-dataframe.describe() or sns.boxplot() can be used to get 5 number summary
+dataframe.describe() or sns.boxplot() can be used to get 5 number summary.
+It can be used for two variables x=categorical variable, y=numerical variable OR just y=numerical variable
 sns.boxplot() can be used to get 5 number summary for one variable or comparing one variable with another.
 To get exact value by comparing two variables, you can use dataframe.groupby(x axis variable)[y-axis variable].median()
 '''

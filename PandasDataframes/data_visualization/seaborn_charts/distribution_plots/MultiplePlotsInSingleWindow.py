@@ -30,7 +30,8 @@ f = tupleResult[0]
 ax1 = tupleResult[1][0]
 ax2 =tupleResult[1][1]
 '''
-# boxplot is same as dataframe.describe() - summary
+# boxplot is same as dataframe.describe(). It shows 5 point summary.
+# It can be used for two variables x=categorical variable, y=numerical variable OR just y=numerical variable
 (figure, [ax1, ax2]) = plt.subplots(nrows=2, gridspec_kw={"height_ratios" : (.15, .85)})
 sns.boxplot(data=cars_data["Price"], ax=ax1)
 plt.show()
