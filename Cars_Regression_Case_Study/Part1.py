@@ -67,6 +67,8 @@ There are 6 columns of int64 data type and 13 columns of object data type.
 #summary = cars.describe()
 pd.set_option('display.float_format', lambda x: '%.3f' % x)
 pd.set_option('display.max_columns', 500)
+
+
 summary = cars.describe()
 print(summary)
 '''
@@ -258,9 +260,11 @@ cars_with_year_of_registration_lesser_than_1950 = cars[cars['yearOfRegistration'
 print("total records with yearOfRegistration < 1950")
 print(cars_with_year_of_registration_lesser_than_1950.shape[0]) # 38
 
+plt.figure(figsize=(7,6))
 plt.scatter(x=cars['yearOfRegistration'], y=cars['price'], c='blue')
 plt.show()
 # Metplotlib's scatter plot is same as Seaborn's regplot without regression line(fit_reg=True)
+plt.figure(figsize=(7,6))
 sns.regplot(x='yearOfRegistration', y='price', scatter=True, fit_reg=False, data=cars)
 plt.show()
 # this plot is not explaining much  because there are some records with very high price
@@ -275,7 +279,7 @@ Bar plot/Count Plot is used for Categorical data.
 price_count=cars['price'].value_counts().sort_index()
 print(price_count.to_string())
 '''
-price=0 doesn't make sense. It is an outliar. it should be removed.
+price=0 doesn't make sense. It is an outlier. it should be removed.
 
 price
 0           1415
@@ -2673,6 +2677,7 @@ price
 12345678       1
 
 '''
+plt.figure(figsize=(7,6))
 sns.histplot(data=cars, x='price')
 plt.show()
 
@@ -2680,7 +2685,7 @@ price_summary=cars['price'].describe()
 print('price summary: \n', price_summary)
 '''
 price summary: 
- count      49531.000
+count      49531.000
 mean        6567.220
 std        86222.378
 min            0.000
@@ -2705,7 +2710,6 @@ cars_with_price_greater_than_150000 = cars[cars['price'] > 150000]
 print("total records with price > 150000")
 print(cars_with_price_greater_than_150000.shape[0]) # 34
 # working range - 100 and 150000
-
 
 # variable powerPS - You will find the same problem with powerPS also
 powerPS_count=cars['powerPS'].value_counts().sort_index()
@@ -3201,12 +3205,14 @@ Like the variance, if the data points are close to the mean, there is a small va
 Standard deviation calculates the extent to which the values differ from the average. 
 Standard Deviation, the most widely used measure of dispersion, is based on all values.
 '''
-
+plt.figure(figsize=(7,6))
 sns.histplot(data=cars, x='powerPS')
 plt.show()
 
+plt.figure(figsize=(7,6))
 sns.boxplot(y=cars['powerPS'])
 plt.show()
 
+plt.figure(figsize=(7,6))
 sns.regplot(data=cars, x='powerPS', y='price', scatter=True, fit_reg=False)
 plt.show()
