@@ -2699,6 +2699,7 @@ So, there are many outliers.
 # boxplot is same as dataframe.describe(). It shows 5 point summary.
 # It can be used for two variables x=categorical variable, y=numerical variable OR just y=numerical variable
 # Because of many outliers, it is not able to show proper boxplot also.
+plt.figure(figsize=(7,6))
 sns.boxplot(y=cars['price'])
 plt.show()
 
@@ -3212,7 +3213,26 @@ plt.show()
 plt.figure(figsize=(7,6))
 sns.boxplot(y=cars['powerPS'])
 plt.show()
+'''
+Unlike to price's boxplot, here you are seeing at least lines of the box. Yes, there are outliers and we have to fix them.
+'''
 
 plt.figure(figsize=(7,6))
 sns.regplot(data=cars, x='powerPS', y='price', scatter=True, fit_reg=False)
 plt.show()
+'''
+There are many 0s in PowerPS. So, majority of the dots towards the left bottom corner. We need to fix them.
+'''
+
+cars_with_powerPS_lesser_than_10 = cars[cars['powerPS'] < 10]
+print("total records with powerPS < 10")
+print(cars_with_powerPS_lesser_than_10.shape[0]) # 5565
+
+cars_with_powerPS_greater_than_500 = cars[cars['powerPS'] > 500]
+print("total records with powerPS > 500")
+print(cars_with_powerPS_greater_than_500.shape[0]) # 115
+# Working range - 10 and 500
+
+cars_with_powerPS_in_between_than_10_and_500 = cars[(cars['powerPS'] > 10) & (cars['powerPS'] < 500)]
+print("total records with powerPS > 10 and < 500")
+print(cars_with_powerPS_in_between_than_10_and_500.shape[0]) # 43827
