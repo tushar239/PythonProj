@@ -119,6 +119,20 @@ cars = cars.drop(columns=['yearOfRegistration', 'monthOfRegistration'], axis=1)
 
 # Visualizing parameters
 
+'''
+IMPORTANT:
+For categorical variable, following things are useful
+- value_count
+- crosstab - can be used for a single categorical variable or for two categorical variables 
+- countplot - can be used for a single categorical variable or for two categorical variables
+- boxplot - can be used for a single categorical variable or for comparing a categorical variable with a numerical variable
+
+For numerical variable, following things are useful
+- histplot/displot
+- boxplot
+- regplot (same as scatterplot with or without regression line) - to compare to numerical variables 
+'''
+
 # Age
 # kde=True means show a density curve. kde is an algorithm.
 plt.figure(figsize=(7,6))
@@ -169,3 +183,101 @@ plt.show()
 # It shows that Cars priced higher are for higher power
 
 ###### Now, let's compare the price with categorical variables ######
+# Both value_count() and countplot show that highest jobs are private (>22k).
+# you can use crosstab with columns='counts' also. crosstab helps you set margins, normalize etc
+# you can use countplot to see ths same thing graphically
+
+# crosstab and countplot/barplot can be used for one categorical variable also to see its frequency.
+# They can be used to see the relation between two categorical variable also.
+
+
+# Variable seller
+seller_frequency = cars['seller'].value_counts()
+print('seller value_count(frequency): \n', seller_frequency)
+'''
+seller
+private       43154
+commercial        1
+Name: count, dtype: int64
+'''
+seller_crosstab = pd.crosstab(cars['seller'], columns='count', normalize=True)
+print('seller crosstab: \n', seller_crosstab)
+
+'''
+seller crosstab: 
+ col_0          count
+seller              
+commercial  0.000023
+private     0.999977
+'''
+plt.figure(figsize=(7,6))
+sns.countplot(x='seller', data=cars)
+plt.show()
+# Fewer cars have 'commercial' => Insignificant
+
+# Variable offerType
+offerType_frequency = cars['offerType'].value_counts()
+print('offerType value_count(frequency): \n', offerType_frequency)
+'''
+offerType
+offer    43155
+Name: count, dtype: int64
+
+There is just one offerType and that is 'offer'
+'''
+
+offerType_crosstab = pd.crosstab(cars['offerType'], columns='count', normalize=True)
+print('offerType crosstab: \n', offerType_crosstab)
+'''
+col_0      count
+offerType       
+offer        1.0
+There is just one offerType and that is 'offer'
+'''
+
+plt.figure(figsize=(7,6))
+sns.countplot(x='offerType', data=cars)
+plt.show()
+'''
+There is just one offerType and that is 'offer'
+'''
+
+# All cars have 'offer' => Insignificant
+
+# Variable abtest
+abtest_frequency = cars['abtest'].value_counts()
+print('abtest value_count(frequency): \n', abtest_frequency)
+'''
+abtest
+test       22337
+control    20818
+Name: count, dtype: int64
+
+There are only two types of abtest - test and control. Both are equally distributed.
+'''
+abtest_crosstab = pd.crosstab(cars['abtest'], columns='count', normalize=True)
+print('abtest crosstab: \n', abtest_crosstab)
+'''
+ col_0       count
+abtest           
+control  0.482401
+test     0.517599
+
+There are only two types of abtest - test and control. Both are equally distributed.
+'''
+
+
+plt.figure(figsize=(7,6))
+sns.countplot(x='abtest', data=cars)
+plt.show()
+# There are only two types of abtest - test and control. Both are equally distributed.
+
+plt.figure(figsize=(7,6))
+sns.boxplot(x='abtest', y='price', data=cars)
+plt.show()
+# Box plots are almost same for abtest=test and control. We can't infer anything from box plot also.
+
+# For every price value, there is almost 50-50 distribution
+# Does not affect price => Insignificant
+
+

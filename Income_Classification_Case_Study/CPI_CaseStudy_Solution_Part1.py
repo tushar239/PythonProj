@@ -113,6 +113,21 @@ JobType has 9 unique values
 Modal value (most frequently occurring) category is 'Private' and it occurs 22286 times.
 """
 
+'''
+IMPORTANT:
+For categorical variable, following things are useful
+- value_count
+- crosstab - can be used for a single categorical variable or for two categorical variables 
+- countplot - can be used for a single categorical variable or for two categorical variables
+- boxplot - can be used for a single categorical variable or for comparing a categorical variable with a numerical variable
+
+For numerical variable, following things are useful
+- histplot/displot
+- boxplot
+- regplot (same as scatterplot with or without regression line) - to compare to numerical variables 
+'''
+
+
 # Frequency of each JobType value
 jobtype_value_counts = data['JobType'].value_counts()
 print(jobtype_value_counts)
@@ -528,9 +543,11 @@ Name: count, dtype: int64
 """
 
 # Both value_count() and countplot show that highest jobs are private (>22k).
-# you can use crosstab with columns='counts' also.
+# you can use crosstab with columns='counts' also. crosstab helps you set margins, normalize etc
+# you can use countplot to see ths same thing graphically
 
-# To show the relation between two categorical variables, you can use crosstab or bar plot
+# crosstab and countplot/barplot can be used for one categorical variable also to see its frequency.
+# They can be used to see the relation between two categorical variable also.
 
 jobtype_salstat = pd.crosstab(index = data2['JobType'], # index means row
                      columns = data2['SalStat'],
