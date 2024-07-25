@@ -266,7 +266,6 @@ test     0.517599
 There are only two types of abtest - test and control. Both are equally distributed.
 '''
 
-
 plt.figure(figsize=(7,6))
 sns.countplot(x='abtest', data=cars)
 plt.show()
@@ -280,4 +279,126 @@ plt.show()
 # For every price value, there is almost 50-50 distribution
 # Does not affect price => Insignificant
 
+# Variable vehicleType
 
+vehicleType_frequency = cars['vehicleType'].value_counts()
+print('vehicleType value_count(frequency): \n', vehicleType_frequency)
+'''
+ vehicleType
+limousine        11874
+small car         9358
+station wagon     8155
+bus               3624
+cabrio            2810
+coupe             2276
+suv               1847
+others             328
+Name: count, dtype: int64
+'''
+
+vehicleType_crosstab = pd.crosstab(cars['vehicleType'], columns='count', normalize=True)
+print('vehicleType crosstab: \n', vehicleType_crosstab)
+'''
+vehicleType            
+bus            0.089988
+cabrio         0.069776
+coupe          0.056516
+limousine      0.294845
+others         0.008145
+small car      0.232370
+station wagon  0.202498
+suv            0.045863
+'''
+
+plt.figure(figsize=(7,6))
+sns.countplot(x='vehicleType', data=cars)
+plt.show()
+
+plt.figure(figsize=(7,6))
+sns.boxplot(x='vehicleType', y='price', data=cars)
+plt.show()
+# 8 vehicle types - limousine, small cars and station wagons max freq
+# Price is different for different Vehicle Types.
+# So, vehicleType does affect the price
+
+# Variable gearbox
+
+gearbox_frequency = cars['gearbox'].value_counts()
+print('gearbox value_count(frequency): \n', gearbox_frequency)
+'''
+ gearbox
+manual       32847
+automatic     9512
+Name: count, dtype: int64
+'''
+
+gearbox_crosstab = pd.crosstab(cars['gearbox'], columns='count', normalize=True)
+print('gearbox crosstab: \n', gearbox_crosstab)
+'''
+ col_0         count
+gearbox            
+automatic  0.224557
+manual     0.775443
+'''
+
+plt.figure(figsize=(7,6))
+sns.countplot(x='gearbox', data=cars)
+plt.show()
+
+plt.figure(figsize=(7,6))
+sns.boxplot(x='gearbox', y='price', data=cars)
+plt.show()
+# It is evident from the boxplot that manual cars price lower than automatic
+
+# gearbox affects the price
+
+# Variable model
+model_frequency = cars['model'].value_counts()
+print('model value_count(frequency): \n', model_frequency)
+'''
+  model
+golf          3513
+others        2911
+3er           2510
+polo          1513
+corsa         1402
+              ... 
+b_max            1
+serie_3          1
+elefantino       1
+charade          1
+rangerover       1
+Name: count, Length: 247, dtype: int64
+'''
+
+model_crosstab = pd.crosstab(cars['model'], columns='count', normalize=True)
+print('model crosstab: \n', model_crosstab)
+'''
+  col_0       count
+model            
+100      0.001134
+145      0.000096
+147      0.001471
+156      0.001568
+159      0.000458
+...           ...
+yaris    0.003208
+yeti     0.000651
+ypsilon  0.000555
+z_reihe  0.003015
+zafira   0.008007
+
+[247 rows x 1 columns]
+'''
+
+plt.figure(figsize=(7,6))
+model_countplot = sns.countplot(x='model', data=cars)
+model_countplot.set_xticklabels(model_countplot.get_xticklabels(), rotation=45,  horizontalalignment='right')
+plt.show()
+
+plt.figure(figsize=(7,6))
+model_boxplot = sns.boxplot(x='model', y='price', data=cars)
+model_boxplot.set_xticklabels(model_boxplot.get_xticklabels(), rotation=45,  horizontalalignment='right')
+plt.show()
+# Cars are distributed over many models
+# Considered in modelling
