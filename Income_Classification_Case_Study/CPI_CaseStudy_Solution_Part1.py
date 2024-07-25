@@ -433,7 +433,7 @@ More Males earn compared to than women (31% males have salary more than 50k)
 # or sns.countplot(...) chart --- BarPlotOrCountPlot.py
 # or plt.bar(...) chart --- BarPlot.py
 
-# you have to use histogram (plt.hist()/sns.displot()) to find out the frequencies of numeric variable. hist means histogram. displot means distribution plot. Both mean the same.
+# you have to use histogram (plt.hist()/sns.displot()/sns.histplot()) to find out the frequencies of numeric variable. hist means histogram. displot means distribution plot. Both mean the same.
 # you have to use value_counts()/crosstab(...)/Bar/CountPlot to find out the frequencies of categorical variable.
 # ================================================
 values_frequencies = data2['SalStat'].value_counts()

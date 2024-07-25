@@ -159,3 +159,13 @@ plt.show()
 # It shows that Cars priced higher are newer
 # and with increase in age, price decreases
 # However, some cars are priced higher with increase in age
+
+# powerPS vs price
+plt.figure(figsize=(7,6))
+sns.regplot(data=cars, x='powerPS', y='price', scatter=True, fit_reg=True,
+            marker='*', scatter_kws={"color": "blue"}, line_kws={"color": "red"})
+plt.show()
+# Look at the regression line. it is slanted up from left to right.
+# It shows that Cars priced higher are for higher power
+
+###### Now, let's compare the price with categorical variables ######
