@@ -113,3 +113,49 @@ Name: Age, dtype: float64
 mean and median are not very far off. So, data is good.
 '''
 
+# Dropping yearOfRegistration and monthOfRegistration
+# axis = 0 means x-axis(rows), 1 means y-axis(columns)
+cars = cars.drop(columns=['yearOfRegistration', 'monthOfRegistration'], axis=1)
+
+# Visualizing parameters
+
+# Age
+# kde=True means show a density curve. kde is an algorithm.
+plt.figure(figsize=(7,6))
+sns.histplot(data=cars, x='Age', kde=True)
+plt.show()
+
+plt.figure(figsize=(7,6))
+sns.boxplot(y=cars['Age'])
+plt.show()
+
+# price
+# kde=True means show a density curve. kde is an algorithm.
+plt.figure(figsize=(7,6))
+sns.histplot(data=cars, x='price', kde=True)
+plt.show()
+
+plt.figure(figsize=(7,6))
+sns.boxplot(y=cars['price'])
+plt.show()
+
+# powerPS
+# kde=True means show a density curve. kde is an algorithm.
+plt.figure(figsize=(7,6))
+sns.histplot(data=cars, x='powerPS', kde=True)
+plt.show()
+
+plt.figure(figsize=(7,6))
+sns.boxplot(y=cars['powerPS'])
+plt.show()
+
+# Visualizing parameters after narrowing working range
+# Age vs price
+plt.figure(figsize=(7,6))
+sns.regplot(data=cars, x='Age', y='price', scatter=True, fit_reg=True,
+            marker='*', scatter_kws={"color": "blue"}, line_kws={"color": "red"})
+plt.show()
+# Look at the regression line. it is slanted down from left to right.
+# It shows that Cars priced higher are newer
+# and with increase in age, price decreases
+# However, some cars are priced higher with increase in age
