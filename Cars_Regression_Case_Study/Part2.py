@@ -513,3 +513,155 @@ plt.show()
 # It is very clear that different fuelTypes have different price ranges.
 # hybrid cars are more expensive
 # Considered in modelling
+
+# Variable brand
+brand_frequency = cars['brand'].value_counts()
+print('brand value_count(frequency): \n', brand_frequency)
+'''
+ brand
+volkswagen        9229
+bmw               4921
+opel              4532
+mercedes_benz     4182
+audi              4025
+ford              2840
+renault           1954
+peugeot           1333
+fiat              1001
+seat               888
+skoda              703
+mazda              667
+smart              625
+nissan             602
+citroen            600
+toyota             550
+volvo              432
+mini               429
+hyundai            409
+mitsubishi         362
+sonstige_autos     301
+honda              300
+kia                279
+suzuki             264
+porsche            261
+alfa_romeo         249
+chevrolet          214
+chrysler           152
+dacia              126
+subaru             112
+jeep                92
+land_rover          81
+jaguar              79
+daihatsu            67
+saab                65
+lancia              58
+rover               53
+daewoo              53
+trabant             43
+lada                22
+Name: count, dtype: int64
+
+Max number of cars are of brand volkswagen and then bmw
+'''
+brand_crosstab = pd.crosstab(cars['brand'], columns='count', normalize=True)
+print('brand crosstab: \n', brand_crosstab)
+'''
+ col_0              count
+brand                   
+alfa_romeo      0.005770
+audi            0.093268
+bmw             0.114031
+chevrolet       0.004959
+chrysler        0.003522
+citroen         0.013903
+dacia           0.002920
+daewoo          0.001228
+daihatsu        0.001553
+fiat            0.023195
+ford            0.065809
+honda           0.006952
+hyundai         0.009477
+jaguar          0.001831
+jeep            0.002132
+kia             0.006465
+lada            0.000510
+lancia          0.001344
+land_rover      0.001877
+mazda           0.015456
+mercedes_benz   0.096906
+mini            0.009941
+mitsubishi      0.008388
+nissan          0.013950
+opel            0.105017
+peugeot         0.030889
+porsche         0.006048
+renault         0.045279
+rover           0.001228
+saab            0.001506
+seat            0.020577
+skoda           0.016290
+smart           0.014483
+sonstige_autos  0.006975
+subaru          0.002595
+suzuki          0.006117
+toyota          0.012745
+trabant         0.000996
+volkswagen      0.213857
+volvo           0.010010
+
+Max number of cars are of brand volkswagen and then bmw
+'''
+plt.figure(figsize=(7,6))
+brand_countplot = sns.countplot(x='brand', data=cars)
+brand_countplot.set_xticklabels(brand_countplot.get_xticklabels(), rotation=45,  horizontalalignment='right')
+plt.show()
+# Max number of cars are of brand volkswagen and then bmw
+
+plt.figure(figsize=(7,6))
+brand_boxplot = sns.boxplot(x='brand', y='price', data=cars)
+brand_boxplot.set_xticklabels(brand_boxplot.get_xticklabels(), rotation=45,  horizontalalignment='right')
+plt.show()
+# proche has highest price
+# brands definitely has effect on the price
+# Considering brand in modelling
+
+# Variable notRepairedDamage
+# yes- car was damaged but not rectified
+# no- car was damaged but has been rectified
+notRepairedDamage_frequency = cars['notRepairedDamage'].value_counts()
+print('notRepairedDamage value_count(frequency): \n', notRepairedDamage_frequency)
+'''
+ notRepairedDamage
+no     32835
+yes     4018
+
+Max damaged cars were repaired 
+'''
+notRepairedDamage_crosstab = pd.crosstab(cars['notRepairedDamage'], columns='count', normalize=True)
+print('notRepairedDamage crosstab: \n', notRepairedDamage_crosstab)
+'''
+notRepairedDamage          
+no                 0.890972
+yes                0.109028
+
+Max damaged cars were repaired 
+'''
+
+plt.figure(figsize=(7,6))
+notRepairedDamage_countplot = sns.countplot(x='notRepairedDamage', data=cars)
+notRepairedDamage_countplot.set_xticklabels(notRepairedDamage_countplot.get_xticklabels(), rotation=45,  horizontalalignment='right')
+plt.show()
+# Max damaged cars were repaired
+
+plt.figure(figsize=(7,6))
+notRepairedDamage_boxplot = sns.boxplot(x='notRepairedDamage', y='price', data=cars)
+notRepairedDamage_boxplot.set_xticklabels(notRepairedDamage_boxplot.get_xticklabels(), rotation=45,  horizontalalignment='right')
+plt.show()
+# As expected, the cars that require the damages to be repaired fall under lower price ranges
+
+# ============================================================
+# Removing insignificant variables
+# ============================================================
+cols_to_drop=['seller', 'offerType', 'abtest']
+cars=cars.drop(columns=cols_to_drop, axis=1) # axis=1 means cols
+cars_copy = cars.copy()
