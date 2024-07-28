@@ -153,17 +153,8 @@ plt.figure(figsize=(7,6))
 sns.boxplot(y=cars['price'])
 plt.show()
 
-# powerPS
-# kde=True means show a density curve. kde is an algorithm.
-plt.figure(figsize=(7,6))
-sns.histplot(data=cars, x='powerPS', kde=True)
-plt.show()
-
-plt.figure(figsize=(7,6))
-sns.boxplot(y=cars['powerPS'])
-plt.show()
-
 # Visualizing parameters after narrowing working range
+# Both Age and price are numerical variables, so we should use replot also.
 # Age vs price
 plt.figure(figsize=(7,6))
 sns.regplot(data=cars, x='Age', y='price', scatter=True, fit_reg=True,
@@ -174,7 +165,18 @@ plt.show()
 # and with increase in age, price decreases
 # However, some cars are priced higher with increase in age
 
+# powerPS
+# kde=True means show a density curve. kde is an algorithm.
+plt.figure(figsize=(7,6))
+sns.histplot(data=cars, x='powerPS', kde=True)
+plt.show()
+
+plt.figure(figsize=(7,6))
+sns.boxplot(y=cars['powerPS'])
+plt.show()
+
 # powerPS vs price
+# Both powerPS and price are numerical variables, so we should use replot also.
 plt.figure(figsize=(7,6))
 sns.regplot(data=cars, x='powerPS', y='price', scatter=True, fit_reg=True,
             marker='*', scatter_kws={"color": "blue"}, line_kws={"color": "red"})
@@ -462,3 +464,52 @@ plt.figure(figsize=(7,6))
 kilometer_boxplot = sns.boxplot(x='kilometer', y='price', data=cars)
 kilometer_boxplot.set_xticklabels(kilometer_boxplot.get_xticklabels(), rotation=45,  horizontalalignment='right')
 plt.show()
+# As kilometers goes up, price goes down.
+# If kilometer is 5000, its price is the lowest. It seems like an outlier.
+# Considered in modelling
+
+# Variable fuelType
+fuelType_frequency = cars['fuelType'].value_counts().sort_index()
+print('fuelType value_count(frequency): \n', fuelType_frequency)
+'''
+ fuelType
+cng           71
+diesel     13028
+electro       10
+hybrid        36
+lpg          697
+other          6
+petrol     26702
+
+Max cars have fuelType petrol and then diesel
+'''
+
+fuelType_crosstab = pd.crosstab(cars['fuelType'], columns='count', normalize=True)
+print('fuelType crosstab: \n', fuelType_crosstab)
+'''
+ col_0        count
+fuelType          
+cng       0.001751
+diesel    0.321282
+electro   0.000247
+hybrid    0.000888
+lpg       0.017189
+other     0.000148
+petrol    0.658496
+
+Max cars have fuelType petrol and then diesel
+'''
+
+plt.figure(figsize=(7,6))
+fuelType_countplot = sns.countplot(x='fuelType', data=cars)
+fuelType_countplot.set_xticklabels(fuelType_countplot.get_xticklabels(), rotation=45,  horizontalalignment='right')
+plt.show()
+# Max cars have fuelType petrol and then diesel
+
+plt.figure(figsize=(7,6))
+fuelType_boxplot = sns.boxplot(x='fuelType', y='price', data=cars)
+fuelType_boxplot.set_xticklabels(fuelType_boxplot.get_xticklabels(), rotation=45,  horizontalalignment='right')
+plt.show()
+# It is very clear that different fuelTypes have different price ranges.
+# hybrid cars are more expensive
+# Considered in modelling
