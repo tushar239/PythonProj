@@ -130,7 +130,7 @@ For categorical variable, following things are useful
 For numerical variable, following things are useful
 - histplot/displot
 - boxplot
-- regplot (same as scatterplot with or without regression line) - to compare to numerical variables 
+- regplot (same as scatterplot with or without regression line) - to compare two numerical variables 
 '''
 
 # Age
@@ -402,3 +402,63 @@ model_boxplot.set_xticklabels(model_boxplot.get_xticklabels(), rotation=45,  hor
 plt.show()
 # Cars are distributed over many models
 # Considered in modelling
+
+# Variable Kilometer
+kilometer_frequency = cars['kilometer'].value_counts().sort_index()
+print('kilometer value_count(frequency): \n', kilometer_frequency)
+'''
+ kilometer
+5000        480
+10000       209
+20000       654
+30000       725
+40000       807
+50000       938
+60000      1126
+70000      1190
+80000      1395
+90000      1496
+100000     1851
+125000     4635
+150000    27649
+Name: count, dtype: int64
+'''
+kilometer_crosstab = pd.crosstab(cars['kilometer'], columns='count', normalize=True)
+print('kilometer crosstab: \n', kilometer_crosstab)
+'''
+col_0         count
+kilometer          
+5000       0.011123
+10000      0.004843
+20000      0.015155
+30000      0.016800
+40000      0.018700
+50000      0.021736
+60000      0.026092
+70000      0.027575
+80000      0.032325
+90000      0.034666
+100000     0.042892
+125000     0.107404
+150000     0.640691
+'''
+
+plt.figure(figsize=(7,6))
+kilometer_countplot = sns.countplot(x='kilometer', data=cars)
+kilometer_countplot.set_xticklabels(kilometer_countplot.get_xticklabels(), rotation=45,  horizontalalignment='right')
+plt.show()
+
+# Regplot is useful between numerical variables. If one is categorical variable, then dots will not be scattered properly.
+# Use Boxplot in that case.
+'''
+plt.figure(figsize=(7,6))
+kilometer_regplot = sns.regplot(data=cars, x='kilometer', y='price', scatter=True, fit_reg=True,
+            marker='*', scatter_kws={"color": "blue"}, line_kws={"color": "red"})
+kilometer_regplot.set_xticklabels(kilometer_regplot.get_xticklabels(), rotation=45,  horizontalalignment='right')
+plt.show()
+'''
+
+plt.figure(figsize=(7,6))
+kilometer_boxplot = sns.boxplot(x='kilometer', y='price', data=cars)
+kilometer_boxplot.set_xticklabels(kilometer_boxplot.get_xticklabels(), rotation=45,  horizontalalignment='right')
+plt.show()

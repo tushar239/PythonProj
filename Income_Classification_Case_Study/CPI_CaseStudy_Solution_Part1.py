@@ -124,7 +124,7 @@ For categorical variable, following things are useful
 For numerical variable, following things are useful
 - histplot/displot
 - boxplot
-- regplot (same as scatterplot with or without regression line) - to compare to numerical variables 
+- regplot (same as scatterplot with or without regression line) - to compare two numerical variables 
 '''
 
 
