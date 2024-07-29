@@ -115,7 +115,7 @@ mean and median are not very far off. So, data is good.
 
 # Dropping yearOfRegistration and monthOfRegistration
 # axis = 0 means x-axis(rows), 1 means y-axis(columns)
-cars = cars.drop(columns=['yearOfRegistration', 'monthOfRegistration'], axis=1)
+cars = cars.drop(columns=['monthsConvertedToYears', 'yearOfRegistration', 'monthOfRegistration'], axis=1)
 
 # Visualizing parameters
 
@@ -137,21 +137,22 @@ For numerical variable, following things are useful
 # kde=True means show a density curve. kde is an algorithm.
 plt.figure(figsize=(7,6))
 sns.histplot(data=cars, x='Age', kde=True)
-plt.show()
+#plt.show()
+
 
 plt.figure(figsize=(7,6))
 sns.boxplot(y=cars['Age'])
-plt.show()
+#plt.show()
 
 # price
 # kde=True means show a density curve. kde is an algorithm.
 plt.figure(figsize=(7,6))
 sns.histplot(data=cars, x='price', kde=True)
-plt.show()
+#plt.show()
 
 plt.figure(figsize=(7,6))
 sns.boxplot(y=cars['price'])
-plt.show()
+#plt.show()
 
 # Visualizing parameters after narrowing working range
 # Both Age and price are numerical variables, so we should use replot also.
@@ -159,7 +160,7 @@ plt.show()
 plt.figure(figsize=(7,6))
 sns.regplot(data=cars, x='Age', y='price', scatter=True, fit_reg=True,
             marker='*', scatter_kws={"color": "blue"}, line_kws={"color": "red"})
-plt.show()
+#plt.show()
 # Look at the regression line. it is slanted down from left to right.
 # It shows that Cars priced higher are newer
 # and with increase in age, price decreases
@@ -169,18 +170,18 @@ plt.show()
 # kde=True means show a density curve. kde is an algorithm.
 plt.figure(figsize=(7,6))
 sns.histplot(data=cars, x='powerPS', kde=True)
-plt.show()
+#plt.show()
 
 plt.figure(figsize=(7,6))
 sns.boxplot(y=cars['powerPS'])
-plt.show()
+#plt.show()
 
 # powerPS vs price
 # Both powerPS and price are numerical variables, so we should use replot also.
 plt.figure(figsize=(7,6))
 sns.regplot(data=cars, x='powerPS', y='price', scatter=True, fit_reg=True,
             marker='*', scatter_kws={"color": "blue"}, line_kws={"color": "red"})
-plt.show()
+#plt.show()
 # Look at the regression line. it is slanted up from left to right.
 # It shows that Cars priced higher are for higher power
 
@@ -214,7 +215,7 @@ private     0.999977
 '''
 plt.figure(figsize=(7,6))
 sns.countplot(x='seller', data=cars)
-plt.show()
+#plt.show()
 # Fewer cars have 'commercial' => Insignificant
 
 # Variable offerType
@@ -239,7 +240,7 @@ There is just one offerType and that is 'offer'
 
 plt.figure(figsize=(7,6))
 sns.countplot(x='offerType', data=cars)
-plt.show()
+#plt.show()
 '''
 There is just one offerType and that is 'offer'
 '''
@@ -270,12 +271,12 @@ There are only two types of abtest - test and control. Both are equally distribu
 
 plt.figure(figsize=(7,6))
 sns.countplot(x='abtest', data=cars)
-plt.show()
+#plt.show()
 # There are only two types of abtest - test and control. Both are equally distributed.
 
 plt.figure(figsize=(7,6))
 sns.boxplot(x='abtest', y='price', data=cars)
-plt.show()
+#plt.show()
 # Box plots are almost same for abtest=test and control. We can't infer anything from box plot also.
 
 # For every price value, there is almost 50-50 distribution
@@ -314,11 +315,11 @@ suv            0.045863
 
 plt.figure(figsize=(7,6))
 sns.countplot(x='vehicleType', data=cars)
-plt.show()
+#plt.show()
 
 plt.figure(figsize=(7,6))
 sns.boxplot(x='vehicleType', y='price', data=cars)
-plt.show()
+#plt.show()
 # 8 vehicle types - limousine, small cars and station wagons max freq
 # Price is different for different Vehicle Types.
 # So, vehicleType does affect the price
@@ -345,11 +346,11 @@ manual     0.775443
 
 plt.figure(figsize=(7,6))
 sns.countplot(x='gearbox', data=cars)
-plt.show()
+#plt.show()
 
 plt.figure(figsize=(7,6))
 sns.boxplot(x='gearbox', y='price', data=cars)
-plt.show()
+#plt.show()
 # It is evident from the boxplot that manual cars price lower than automatic
 
 # gearbox affects the price
@@ -396,12 +397,12 @@ zafira   0.008007
 plt.figure(figsize=(7,6))
 model_countplot = sns.countplot(x='model', data=cars)
 model_countplot.set_xticklabels(model_countplot.get_xticklabels(), rotation=45,  horizontalalignment='right')
-plt.show()
+#plt.show()
 
 plt.figure(figsize=(7,6))
 model_boxplot = sns.boxplot(x='model', y='price', data=cars)
 model_boxplot.set_xticklabels(model_boxplot.get_xticklabels(), rotation=45,  horizontalalignment='right')
-plt.show()
+#plt.show()
 # Cars are distributed over many models
 # Considered in modelling
 
@@ -448,7 +449,7 @@ kilometer
 plt.figure(figsize=(7,6))
 kilometer_countplot = sns.countplot(x='kilometer', data=cars)
 kilometer_countplot.set_xticklabels(kilometer_countplot.get_xticklabels(), rotation=45,  horizontalalignment='right')
-plt.show()
+#plt.show()
 
 # Regplot is useful between numerical variables. If one is categorical variable, then dots will not be scattered properly.
 # Use Boxplot in that case.
@@ -463,7 +464,7 @@ plt.show()
 plt.figure(figsize=(7,6))
 kilometer_boxplot = sns.boxplot(x='kilometer', y='price', data=cars)
 kilometer_boxplot.set_xticklabels(kilometer_boxplot.get_xticklabels(), rotation=45,  horizontalalignment='right')
-plt.show()
+#plt.show()
 # As kilometers goes up, price goes down.
 # If kilometer is 5000, its price is the lowest. It seems like an outlier.
 # Considered in modelling
@@ -503,13 +504,13 @@ Max cars have fuelType petrol and then diesel
 plt.figure(figsize=(7,6))
 fuelType_countplot = sns.countplot(x='fuelType', data=cars)
 fuelType_countplot.set_xticklabels(fuelType_countplot.get_xticklabels(), rotation=45,  horizontalalignment='right')
-plt.show()
+#plt.show()
 # Max cars have fuelType petrol and then diesel
 
 plt.figure(figsize=(7,6))
 fuelType_boxplot = sns.boxplot(x='fuelType', y='price', data=cars)
 fuelType_boxplot.set_xticklabels(fuelType_boxplot.get_xticklabels(), rotation=45,  horizontalalignment='right')
-plt.show()
+#plt.show()
 # It is very clear that different fuelTypes have different price ranges.
 # hybrid cars are more expensive
 # Considered in modelling
@@ -614,13 +615,13 @@ Max number of cars are of brand volkswagen and then bmw
 plt.figure(figsize=(7,6))
 brand_countplot = sns.countplot(x='brand', data=cars)
 brand_countplot.set_xticklabels(brand_countplot.get_xticklabels(), rotation=45,  horizontalalignment='right')
-plt.show()
+#plt.show()
 # Max number of cars are of brand volkswagen and then bmw
 
 plt.figure(figsize=(7,6))
 brand_boxplot = sns.boxplot(x='brand', y='price', data=cars)
 brand_boxplot.set_xticklabels(brand_boxplot.get_xticklabels(), rotation=45,  horizontalalignment='right')
-plt.show()
+#plt.show()
 # proche has highest price
 # brands definitely has effect on the price
 # Considering brand in modelling
@@ -650,18 +651,50 @@ Max damaged cars were repaired
 plt.figure(figsize=(7,6))
 notRepairedDamage_countplot = sns.countplot(x='notRepairedDamage', data=cars)
 notRepairedDamage_countplot.set_xticklabels(notRepairedDamage_countplot.get_xticklabels(), rotation=45,  horizontalalignment='right')
-plt.show()
+#plt.show()
 # Max damaged cars were repaired
 
 plt.figure(figsize=(7,6))
 notRepairedDamage_boxplot = sns.boxplot(x='notRepairedDamage', y='price', data=cars)
 notRepairedDamage_boxplot.set_xticklabels(notRepairedDamage_boxplot.get_xticklabels(), rotation=45,  horizontalalignment='right')
-plt.show()
+#plt.show()
 # As expected, the cars that require the damages to be repaired fall under lower price ranges
 
 # ============================================================
 # Removing insignificant variables
 # ============================================================
-cols_to_drop=['seller', 'offerType', 'abtest']
+cols_to_drop=['seller', 'offerType', 'abtest', 'postalCode']
 cars=cars.drop(columns=cols_to_drop, axis=1) # axis=1 means cols
 cars_copy = cars.copy()
+
+# Using corr(), just checking whether there is a heavy correlation between price and other numeric variables
+# Pearson method can calculate correlation only between two numeric variables.
+cars_select1=cars.select_dtypes(exclude=[object])
+correlation = cars_select1.corr(method="pearson")
+print(correlation)
+'''
+              price   powerPS  kilometer       Age
+price      1.000000  0.576038  -0.440266 -0.340663
+powerPS    0.576038  1.000000  -0.017510 -0.156198
+kilometer -0.440266 -0.017510   1.000000  0.294685
+Age       -0.340663 -0.156198   0.294685  1.000000
+
+It clearly shows that age and kilometer have inverse correlation with price.
+As Age or kilometer increases, price decreases.
+'''
+# select price column
+just_price_col = correlation['price']
+# select all rows from row# 1
+just_price_col=just_price_col[1:]
+print(just_price_col)
+# OR
+#just_price_col_without_first_row = correlation.loc[:, 'price'][1:]
+#print(just_price_col_without_first_row)
+'''
+             price   
+powerPS      0.576038
+kilometer   -0.440266
+Age         -0.340663
+
+There is no heavy correlation between price and other numeric variables
+'''
