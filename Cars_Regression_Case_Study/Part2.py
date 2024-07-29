@@ -681,7 +681,11 @@ Age       -0.340663 -0.156198   0.294685  1.000000
 
 It clearly shows that age and kilometer have inverse correlation with price.
 As Age or kilometer increases, price decreases.
+
+There is no heavy correlation between price and other numeric variables.
+There is a reasonable correlation between the price and powerPS
 '''
+# Just more filtering
 # select price column
 just_price_col = correlation['price']
 # select all rows from row# 1
@@ -696,5 +700,9 @@ powerPS      0.576038
 kilometer   -0.440266
 Age         -0.340663
 
-There is no heavy correlation between price and other numeric variables
+It clearly shows that age and kilometer have inverse correlation with price.
+As Age or kilometer increases, price decreases.
+
+There is no heavy correlation between price and other numeric variables.
+There is a reasonable correlation between the price and powerPS
 '''
