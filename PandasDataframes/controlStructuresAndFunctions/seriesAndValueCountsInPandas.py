@@ -1,6 +1,4 @@
-import PandasDataframes.gotoDataDir
 import pandas as pd
-import numpy as np
 
 '''
 What is a Series? A Pandas Series is like a column in a table. 

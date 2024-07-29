@@ -1,6 +1,4 @@
-import PandasDataframes.gotoDataDir
 import pandas as pd
-import numpy as np
 
 # to see entire dataframe in the output
 pd.set_option('display.max_columns', None)
