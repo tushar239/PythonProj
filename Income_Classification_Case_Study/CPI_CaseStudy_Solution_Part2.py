@@ -142,6 +142,7 @@ print(x)
 # random_state = 0. random_state is a seed used by random number generator.
 # If you set random seed, same set of records will be chosen every time, you run this code,
 # otherwise different set of records will be chosen.
+# test_size=0.3 means 30% data will go in test set and 70% data will go to train set.
 train_x, test_x, train_y, test_y = train_test_split(x, y, test_size=0.3, random_state=0, shuffle=True)
 print(len(train_x)) # 21113
 '''

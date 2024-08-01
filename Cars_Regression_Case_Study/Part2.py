@@ -706,3 +706,81 @@ As Age or kilometer increases, price decreases.
 There is no heavy correlation between price and other numeric variables.
 There is a reasonable correlation between the price and powerPS
 '''
+
+
+'''
+# ========================================================
+We are going to build a Liner Regression and Random Forest model
+on two sets of data.
+1. Data obtained by omitting rows with any missing value
+2. Data obtained by imputing the missing values
+# ========================================================
+'''
+# ========================================================
+# OMITTING MISSING VALUES
+# ========================================================
+cars_omit=cars.dropna(axis=0)
+print('Number of rows after the rows with empty cells are omitted: ', cars_omit.shape[0]) # 33227
+
+# Converting categorical variables dummy variables
+# All machine learning algorithms work only on numeric data
+cars_omit=pd.get_dummies(data=cars_omit, drop_first=True)
+
+# ======================================================
+# IMPORTING NECESSARY LIBRARIES
+# ======================================================
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.metrics import mean_squared_error
+
+# Separating input and output features
+x1 = cars_omit.drop(['price'], axis='columns', inplace=False) # input variables(features)
+y1 = cars_omit['price'] # output variable (feature)
+
+prices = pd.DataFrame({"1. Before":y1, "2. After":np.log(y1)})
+plt.figure(figsize=(7,6))
+prices_histogram = prices.hist()
+# plt.show()
+# compared to the histogram of y1, the histogram of log(y1) is giving a nice bell curve
+
+# Transforming price as a logarithmic value
+y1 = np.log(y1)
+
+# Splitting data into train and test data
+
+# https://www.geeksforgeeks.org/how-to-split-the-dataset-with-scikit-learns-train_test_split-function/
+# random_state = 0. random_state is a seed used by random number generator.
+# If you set random seed, same set of records will be chosen every time, you run this code,
+# otherwise different set of records will be chosen.
+# test_size=0.3 means 30% data will go in test set and 70% data will go to train set.
+X_train, X_test, y_train, y_test = train_test_split(x1, y1, test_size=0.3, random_state = 3)
+print(X_train.shape, X_test.shape, y_train.shape, y_test.shape) # (23258, 44050) (9969, 44050) (23258,) (9969,)
+
+# ============================================================
+# BASELINE MODEL FOR OMITTED DATA
+# ============================================================
+
+"""
+Let' find out RMSE -Root Mean Square Error
+What is Error?
+difference between actual observation and predicted observation
+
+MAE, MSE, RMSE 
+Watch 'MAE MSE RMSE.mp4'
+https://www.youtube.com/watch?v=XifOXgdl7AI
+
+We are making a base model by using test data mean value
+This is to set a benchmark and to compare with our regression model
+"""
+# finding the mean for test data value
+base_pred = np.mean(y_test)
+print(base_pred)
+
+# Repeating the same value till length of test data
+base_pred = np.repeat(base_pred, len(y_test)) #  [8.24607899 8.24607899 8.24607899 ... 8.24607899 8.24607899 8.24607899]
+print('base_pred : \n', base_pred)
+
+# finding the RMSE
+base_root_mean_square_error = np.sqrt(mean_squared_error(y_test, base_pred))
+print('base_root_mean_square_error (RMSE) : \n', base_root_mean_square_error) # 1.127432049631379
