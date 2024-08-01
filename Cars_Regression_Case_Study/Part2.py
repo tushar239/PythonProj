@@ -784,3 +784,23 @@ print('base_pred : \n', base_pred)
 # finding the RMSE
 base_root_mean_square_error = np.sqrt(mean_squared_error(y_test, base_pred))
 print('base_root_mean_square_error (RMSE) : \n', base_root_mean_square_error) # 1.127432049631379
+
+# Setting intercept as true
+lgr=LinearRegression(fit_intercept=True)
+
+# Model
+model_lin1 = lgr.fit(X_train, y_train)
+
+# Predicting model on test set
+cars_predictions_lin1 = lgr.predict(X_test)
+
+# Computing MSE and RMSE
+lin_mse1 = mean_squared_error(y_test, cars_predictions_lin1)
+lin_rmse1 = np.sqrt(lin_mse1)
+print("RMSE of test data: \n", lin_rmse1)
+
+residuals1=y_test-cars_predictions_lin1
+plt.figure(figsize=(7,6))
+sns.regplot(x=cars_predictions_lin1, y=residuals1, scatter=True, fit_reg=False, data=cars)
+#plt.show()
+residuals1.describe()
