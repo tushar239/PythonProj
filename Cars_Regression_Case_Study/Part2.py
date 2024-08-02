@@ -801,6 +801,6 @@ print("RMSE of test data: \n", lin_rmse1)
 
 residuals1=y_test-cars_predictions_lin1
 plt.figure(figsize=(7,6))
-sns.regplot(x=cars_predictions_lin1, y=residuals1, scatter=True, fit_reg=False, data=cars)
+sns.regplot(x=cars_predictions_lin1, y=residuals1, scatter=True, fit_reg=False)
 #plt.show()
 residuals1.describe()
