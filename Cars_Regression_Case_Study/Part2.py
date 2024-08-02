@@ -809,6 +809,8 @@ residuals1.describe()
 '''
 # ==================================================
 # RANDOM FOREST WITH OMITTED DATA
+# https://www.geeksforgeeks.org/random-forest-regression-in-python/
+# Watch 'Random Forest Algorithm.mp4'
 # ==================================================
 rf = RandomForestRegressor(n_estimators=100,
                            # max_features='auto',
