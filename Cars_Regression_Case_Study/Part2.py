@@ -784,6 +784,8 @@ print('base_pred : \n', base_pred)
 # finding the RMSE
 base_root_mean_square_error = np.sqrt(mean_squared_error(y_test, base_pred))
 print('base_root_mean_square_error (RMSE) : \n', base_root_mean_square_error) # 1.127432049631379
+'''
+# While fitting the train data in LinearRegression model, it is giving out of memory issue
 
 # Setting intercept as true
 lgr=LinearRegression(fit_intercept=True)
@@ -804,3 +806,35 @@ plt.figure(figsize=(7,6))
 sns.regplot(x=cars_predictions_lin1, y=residuals1, scatter=True, fit_reg=False)
 #plt.show()
 residuals1.describe()
+'''
+# ==================================================
+# RANDOM FOREST WITH OMITTED DATA
+# ==================================================
+rf = RandomForestRegressor(n_estimators=100,
+                           # max_features='auto',
+                           max_depth=100, min_samples_split=10,
+                           min_samples_leaf=4, random_state=1)
+
+# Model
+model_rf1 = rf.fit(X_train, y_train)
+
+# Predicting model on test set
+cars_predictions_rf1 = rf.predict(X_test)
+
+# Computing MSE and RMSE
+rf_mse1 = mean_squared_error(y_test, cars_predictions_rf1)
+rf_rmse1 = np.sqrt(rf_mse1)
+print("RMSE: \n", rf_rmse1) # 0.4360736289370223
+# RMSE has come down compared to LinerRegression. So, that's a good sign
+
+# R squared value
+# It's better that R square is closer to 1.
+# closer to 0 R square is not good
+# Watch 'Regression and R square.mp4'
+# https://www.youtube.com/watch?v=w2FKXOa0HGA
+r2_rf_test1 = model_rf1.score(X_test, y_test)
+r2_rf_train1 = model_rf1.score(X_train, y_train)
+print("r2_rf_test1: ", r2_rf_test1) # 0.8504018147750623
+print("r2_rf_train1: ", r2_rf_train1) # 0.9202494705146291
+# It is clear that RandomForest is working better than LinearRegression
+
