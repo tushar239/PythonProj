@@ -824,7 +824,7 @@ cars_predictions_rf1 = rf.predict(X_test)
 # Computing MSE and RMSE
 rf_mse1 = mean_squared_error(y_test, cars_predictions_rf1)
 rf_rmse1 = np.sqrt(rf_mse1)
-print("RMSE: \n", rf_rmse1) # 0.4360736289370223
+print("RMSE: \n", rf_rmse1) # 0.4219736491990182
 # RMSE has come down compared to LinerRegression. So, that's a good sign
 
 # R squared value
@@ -834,7 +834,7 @@ print("RMSE: \n", rf_rmse1) # 0.4360736289370223
 # https://www.youtube.com/watch?v=w2FKXOa0HGA
 r2_rf_test1 = model_rf1.score(X_test, y_test)
 r2_rf_train1 = model_rf1.score(X_train, y_train)
-print("r2_rf_test1: ", r2_rf_test1) # 0.8504018147750623
-print("r2_rf_train1: ", r2_rf_train1) # 0.9202494705146291
+print("r2_rf_test1: ", r2_rf_test1) # 0.85991555609494
+print("r2_rf_train1: ", r2_rf_train1) # 0.9222029210822923
 # It is clear that RandomForest is working better than LinearRegression
 
