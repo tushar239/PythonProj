@@ -58,8 +58,8 @@ regression_model.fit(X_train, y_train)
 print(regression_model.score(X_train, y_train)) # 0.6738072404638304
 print(regression_model.score(X_test, y_test)) # 0.6297977850974639
 
-y_pred = regression_model.predict(X_test) # 1.0
-print(y_pred)
+predictions = regression_model.predict(X_test) # 1.0
+print(predictions)
 '''
 [ 294916.51130745   40087.94682662  379859.36613439  294916.51130745
   -44854.90800032   40087.94682662 -129797.76282727  -44854.90800032
@@ -74,6 +74,35 @@ print(y_pred)
 print(y_test)
 print(X_test)
 
+from sklearn.metrics import mean_squared_error
+
+# Computing MSE and RMSE
+# finding the mean for test data value
+base_pred = np.mean(y_test)
+print(base_pred)
+
+# Repeating the same value till length of test data
+base_pred = np.repeat(base_pred, len(y_test))
+print('base_pred : \n', base_pred) # 241739.37350287204
+
+# finding the RMSE (root_mean_square_error)
+base_mse = mean_squared_error(y_test, base_pred)
+base_rmse = np.sqrt(base_mse)
+print('base rmse (RMSE) : \n', base_rmse)
+
+mse_from_predictions = mean_squared_error(y_test, predictions)
+rmse_from_predictions = np.sqrt(mse_from_predictions)
+print("RMSE: \n", rmse_from_predictions) # 147084.49666373926
+
+# R square
+r2_train = regression_model.score(X_train, y_train)
+r2_test = regression_model.score(X_test, y_test)
+r2_predictions = regression_model.score(X_test, predictions)
+
+print("r2_train: ", r2_train) # 0.6738072404638304
+print("r2_test: ", r2_test) # 0.6297977850974639
+print("r2_predictions: ", r2_predictions) # 1.0
+
 plt.scatter(X_test['Level'], y_test, color='b')
-plt.plot(X_test['Level'], y_pred, color='k')
+plt.plot(X_test['Level'], predictions, color='k')
 plt.show()
