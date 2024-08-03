@@ -12,7 +12,7 @@ loc() can accept the boolean data unlike iloc().
 # selecting cars with brand 'Maruti' and Mileage > 25
 display(data.loc[(data.Brand == 'Maruti') & (data.Mileage > 25)])
 
-# selecting range of rows from 2 to 5
+# selecting range of rows from 2 to 4
 display(data.loc[2: 5])
 
 # updating values of Mileage if Year < 2015
