@@ -88,19 +88,24 @@ print('base_pred : \n', base_pred) # 241739.37350287204
 # finding the RMSE (root_mean_square_error)
 base_mse = mean_squared_error(y_test, base_pred)
 base_rmse = np.sqrt(base_mse)
-print('base rmse (RMSE) : \n', base_rmse)
+print('base rmse (RMSE) : \n', base_rmse) # 241739.37350287204
 
 mse_from_predictions = mean_squared_error(y_test, predictions)
 rmse_from_predictions = np.sqrt(mse_from_predictions)
 print("RMSE: \n", rmse_from_predictions) # 147084.49666373926
+# rmse_from_predictions is a way lower than base_rmse.
+# we can say that our regression model is good.
 
-# R square
+# R squared
+# R squared means how far the actual values from Regression line(predicted values)
+# closer to 1 value of R squared is better
 r2_train = regression_model.score(X_train, y_train)
 r2_test = regression_model.score(X_test, y_test)
-r2_predictions = regression_model.score(X_test, predictions)
+r2_predictions = regression_model.score(X_test, predictions) # Predictions are taken from Regression line. So, R squared will be 1.0 for predictions.
 
 print("r2_train: ", r2_train) # 0.6738072404638304
 print("r2_test: ", r2_test) # 0.6297977850974639
+# R squared values of train data and test data are almost same. So, we can say that we have a good regression model.
 print("r2_predictions: ", r2_predictions) # 1.0
 
 plt.scatter(X_test['Level'], y_test, color='b')
