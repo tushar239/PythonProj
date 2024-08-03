@@ -105,7 +105,8 @@ r2_predictions = regression_model.score(X_test, predictions) # Predictions are t
 
 print("r2_train: ", r2_train) # 0.6738072404638304
 print("r2_test: ", r2_test) # 0.6297977850974639
-# R squared values of train data and test data are almost same. So, we can say that we have a good regression model.
+# You can say that actual data is little bit further than regression line because their R squared values are not very close to 1.0
+# Given data is like that. You need better data for better R squared value.
 print("r2_predictions: ", r2_predictions) # 1.0
 
 plt.scatter(X_test['Level'], y_test, color='b')
