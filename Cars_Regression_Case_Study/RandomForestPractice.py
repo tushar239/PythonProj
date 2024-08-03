@@ -1187,3 +1187,17 @@ plt.title("Random Forest Regression Results")
 plt.xlabel('Position level')
 plt.ylabel('Salary')
 plt.show()
+
+from sklearn.tree import plot_tree
+import matplotlib.pyplot as plt
+
+# Visualizing a Single Decision Tree from the Random Forest Model
+# Assuming regressor is your trained Random Forest model
+# Pick one tree from the forest, e.g., the first tree (index 0)
+tree_to_plot = regressor.estimators_[0]
+
+# Plot the decision tree
+plt.figure(figsize=(20, 10))
+plot_tree(tree_to_plot, feature_names=df.columns.tolist(), filled=True, rounded=True, fontsize=10)
+plt.title("Decision Tree from Random Forest")
+plt.show()
