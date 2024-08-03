@@ -76,7 +76,7 @@ print(X_test)
 
 from sklearn.metrics import mean_squared_error
 
-# Computing MSE and RMSE
+# Computing MSE and RMSE (Watch 'MAE MSE RMSE.mp4) (https://www.youtube.com/watch?v=XifOXgdl7AI)
 # finding the mean for test data value
 base_pred = np.mean(y_test)
 print(base_pred)
@@ -96,7 +96,7 @@ print("RMSE: \n", rmse_from_predictions) # 147084.49666373926
 # rmse_from_predictions is a way lower than base_rmse.
 # we can say that our regression model is good.
 
-# R squared
+# R squared - Watch 'Regression Line and R Squared.mp4' (https://www.youtube.com/watch?v=Q-TtIPF0fCU)
 # R squared means how far the actual values from Regression line(predicted values)
 # closer to 1 value of R squared is better
 r2_train = regression_model.score(X_train, y_train)
