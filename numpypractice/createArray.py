@@ -8,8 +8,7 @@ creates a numpy array
 '''
 array = np.array([2, 3, 4, 5])  # creating a numpy array from a list
 print(array)  # [2 3 4 5]
-print(type(array))  # <class 'numpy.ndarray'> type is a class, and you are creating an object of that class and trying
-# to print it.
+print(type(array))  # <class 'numpy.ndarray'> type is a class, and you are creating an object of that class and trying to print it.
 
 array = np.array((2, 3, 4, 5))  # creating a numpy array from a tuple
 print(array)  # [2 3 4 5]
@@ -180,6 +179,8 @@ dtype = type of output array
 array = np.logspace(start=1, stop=10, num=5, endpoint=True, base=10.0, dtype=float)
 print(array)  # [1.00000000e+01 1.77827941e+03 3.16227766e+05 5.62341325e+07 1.00000000e+10]
 
+# random samples of one dimensional array.
+# total 15 samples in between 0 and 9
 array = np.random.choice(10, 15)
 print(array)  # [5 8 9 1 6 7 9 3 7 7 3 6 9 2 9]
 

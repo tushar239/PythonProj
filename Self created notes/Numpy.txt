@@ -1,0 +1,48 @@
+Numpy - numerical python
+
+----------------Creating array------------------
+
+Creating array from list : array = np.array([2, 3, 4, 5]) :  [2, 3, 4, 5]
+Creating array from tuple : array = np.array((2, 3, 4, 5)) : [2, 3, 4, 5]
+
+If one element is a string, it converts all others to string also
+array = np.array([2, 3, "hi", 5]) : ['2' '3' 'hi' '5']
+array = np.array([2, 3, "hi", Child()]) : ['2' '3' 'hi']  Child instance is going to be garbage collected
+
+-----------------linspace and arange-----------------
+linspace - returns an array of evenly spaced values within the specified interval [start, stop]
+same as arange, function but instead of a step, it uses a sample number.
+
+array = np.linspace(start=1, stop=10, num=5, endpoint=False, dtype=float, retstep=True)
+array = np.arange(start=1, stop=5, step=.5)
+
+-----------------ones, zeros, random.rand, random.randint, logspace, random.choice -----------------
+
+ones - returns N-D array of 1s
+array = np.ones((5, 4), int)
+it returns 2D array of 5 rows and 4 cols filled with 1s
+
+array = np.ones((5, 4, 2), int)
+it returns 3D array of 5 rows, 4 cols , in that each cell has 2 elements. 1s are filled up as ints
+
+array = np.zeros((5, 4))
+it returns 2D array of 5 rows and 4 columns filled with 0s
+
+array = np.random.rand(5, 3)
+it returns 2D array of 5 rows and 3 columns filled with random numbers between 0 and 1
+
+array = np.random.rand(5, 3, 2)
+it returns 3D array filled with random numbers between 0 and 1
+
+array = np.random.randint(low=0, high=3, size=5)
+it returns 1D array of size 5 with random numbers between 0 and 2
+
+array = np.random.randint(low=-3, high=10, size=(2, 3))
+it returns 2D array of size (2,3) with random numbers between -3 and 9
+
+array = np.logspace(start=1, stop=10, num=5, endpoint=True, base=10.0, dtype=float)
+returns equally spaced numbers based on log scale
+
+np.random.choice(10, 15)
+returns 15 random samples in 1D array from 0 to 9
+
