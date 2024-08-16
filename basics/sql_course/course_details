@@ -1,0 +1,526 @@
+introduction to DBMS and RDBMS
+https://www.youtube.com/watch?v=FR4QIeZaPeM
+What is RDBMS?
+https://www.youtube.com/watch?v=OqjJjpjDRLc
+What is SQL?
+https://www.youtube.com/watch?v=ld6YS5ZK2tE
+
+Example of RDBMS tables:
+http://onlineopenacademy.com/what-is-rdbms/
+
+SQL vs NoSQL
+https://www.youtube.com/watch?v=0buKQHokLK8
+https://www.youtube.com/watch?v=Q5aTUc7c4jg
+
+JSON document for NoSQL
+https://stackoverflow.com/questions/64368928/append-or-attach-a-json-object-inside-another-json-object-json-object-with-plsql
+
+Lambda Architecture
+https://databricks.com/glossary/lambda-architecture
+https://cazton.com/Content/images/blogpost/technicalposts/lambda-architecture-spark-hadoop-cazton.jpg
+
+Messaging queue and database
+https://stackify.com/message-queues-12-reasons/
+
+Explain what is rows and columns in a table.
+Take an example of customer table from https://www.w3schools.com/sql/sql_syntax.asp
+
+
+What is schema?
+If your business has a requirement to keep HR Dept related data in on logical store and IT Dept related data in another logical store.
+Then you can create a logical separation between these two types of data in database.
+This logical separation is called Schema.
+So, you can create two different schemas called 'HR_DEPT' and 'IT_DEPT'
+
+Create database
+
+    create database testdb;    OR     create schema testdb;
+    show tables from testdb;
+
+    DROP DATABASE testdb;
+
+
+Dual table
+
+    select current_timestamp from dual;
+    select current_date from dual;
+    select current_time from dual;
+    select 2*2 from dual;
+
+
+What is keyword?
+
+    reserved words for SQL query syntax
+    e.g. select, from, add, *, %, AND, OR, Between, Any, All, Create, Delete, Update, truncate, drop and many more.
+    e.g. select * from schemaname.table_name
+
+Create table
+
+        Syntax:
+        CREATE TABLE table_name (
+            column1 datatype,
+            column2 datatype,
+            column3 datatype,
+           ....
+        );
+
+        CREATE TABLE Persons (
+            PersonID int AUTO_INCREMENT,
+            LastName varchar(255), --- mysql doesn't have varchar2, oracle has it.
+            FirstName varchar(255),
+            Address text(1000),
+            City varchar(255),
+            json_info clob,   --- mysql doesn't have clob, but oracle has it.
+            photo blob
+        );
+
+
+SQL Data types
+    https://www.youtube.com/watch?v=qVJPnnQhIV4
+    https://www.w3schools.com/sql/sql_datatypes.asp
+
+    Varchar vs Varchar2
+    https://www.databasestar.com/char-varchar-varchar2/
+
+    Text vs Blob vs Clob
+    https://stackoverflow.com/questions/7071662/mysql-text-vs-blob-vs-clob
+
+Drop Table
+    DROP TABLE table_name;
+    The following SQL statement drops the existing table "Shippers":
+
+Truncate Table
+    TRUNCATE TABLE table_name;
+    The TRUNCATE TABLE statement is used to delete the data inside a table, but not the table itself.
+
+
+Insert query
+
+    The INSERT INTO statement is used to insert new records in a table.
+
+    Specify both the column names and the values to be inserted:
+
+        INSERT INTO table_name (column1, column2, column3, ...)
+        VALUES (value1, value2, value3, ...);
+
+    If you are adding values for all the columns of the table, you do not need to specify the column names in the SQL query. However, make sure the order of the values is in the same order as the columns in the table.
+
+        INSERT INTO table_name
+        VALUES (value1, value2, value3, ...);
+
+        INSERT INTO Customers (CustomerName, ContactName, Address, City, PostalCode, Country)
+        VALUES ('Cardinal', 'Tom B. Erichsen', 'Skagen 21', 'Stavanger', '4006', 'Norway');
+
+    Insert data into specified columns
+
+        INSERT INTO Customers (CustomerName, City, Country)
+        VALUES ('Cardinal', 'Stavanger', 'Norway');
+
+
+Select Query
+
+    The SELECT statement is used to select data from a database.
+
+
+    SELECT column1, column2, ...
+    FROM table_name;
+
+    Here, column1, column2, ... are the field names of the table you want to select data from. If you want to select all the fields available in the table, use the following syntax:
+
+    SELECT CustomerName, City FROM Customers;
+
+    The following SQL statement selects all the columns from the "Customers" table.
+        SELECT * FROM table_name;
+
+Alias
+    SELECT column as alias_name FROM table_name;
+
+Normalization Forms
+    https://www.youtube.com/watch?v=UrYLYV7WSHM
+
+Types of Queries
+
+    https://media.geeksforgeeks.org/wp-content/uploads/20210920153429/new.png
+
+    https://www.geeksforgeeks.org/sql-ddl-dql-dml-dcl-tcl-commands/
+
+    DDL – Data Definition Language
+    DQl – Data Query Language
+    DML – Data Manipulation Language
+    DCL – Data Control Language
+
+Select Distinct
+
+    insert into Persons values (1, "Cho", "Tus", "A-1", null);
+    insert into Persons values (2, "Cho", "Mir", "A-2", null);
+    insert into Persons values (3, "Patel", "Mir", "A-2", null);
+    insert into Persons values (4, "Cho", "Tus", "A-4", null);
+
+    select distinct LastName from Persons;
+    select distinct LastName, FirstName from Persons;
+    select count(distinct LastName) from Persons;
+
+Creating temporary table using select query
+
+    SELECT Count(*) AS DistinctPersons
+    FROM (SELECT DISTINCT LastName FROM Persons) as a;
+
+    WITH temporaryTable(LName, FName) as
+    (SELECT LastName, FirstName
+    from persons)
+    SELECT LName, FName
+    FROM temporaryTable;
+
+UPDATE statement
+    UPDATE table_name
+    SET column1 = value1, column2 = value2, ...
+
+    UPDATE Customers
+    SET ContactName = 'Alfred Schmidt', City= 'Frankfurt'
+
+DELETE statement
+
+    DELETE FROM table_name
+
+WHERE condition
+
+    Note: The WHERE clause is not only used in SELECT statements, it is also used in UPDATE, DELETE, etc.!
+
+    SELECT column1, column2, ...
+    FROM table_name
+    WHERE condition;
+
+    SELECT * FROM Customers
+    WHERE Country='Mexico';
+
+    SELECT * FROM Customers
+    WHERE CustomerID=1;
+
+    SELECT column_names
+    FROM table_name
+    WHERE column_name IS NOT NULL;  --- or IS NULL
+
+    Similarly, you can use where condition with Update and Delete queries also.
+
+AND, OR, NOT
+    SELECT column1, column2, ...
+    FROM table_name
+    WHERE condition1 AND condition2 AND condition3 ...;
+
+
+    SELECT column1, column2, ...
+    FROM table_name
+    WHERE condition1 OR condition2 OR condition3 ...;
+
+    SELECT column1, column2, ...
+    FROM table_name
+    WHERE NOT condition;
+
+    SELECT * FROM Customers
+    WHERE Country='Germany' AND City='Berlin';
+
+    SELECT * FROM Customers
+    WHERE City='Berlin' OR City='München';
+
+    SELECT * FROM Customers
+    WHERE NOT Country='Germany';
+
+    Combining AND, OR, NOT
+
+        SELECT * FROM Customers
+        WHERE Country='Germany' AND (City='Berlin' OR City='München');
+
+        SELECT * FROM Customers
+        WHERE NOT Country='Germany' AND NOT Country='USA';
+
+Subquery and IN clause
+
+    select * from person as p
+    where p.firstname = (select c.firstname from customer c where c.id = 1);
+
+    Here, subquery returns only one record. So, you can use '=' sign in where clause.
+
+    select * from person as p
+    where p.firstname in (select c.firstname from customer c where c.lastname = 'Chokshi')
+
+    Here, subquery returns only multiple records. So, you can use 'IN' clause in where clause.
+
+Order By
+    SELECT * FROM Customers
+    ORDER BY Country;
+
+    SELECT * FROM Customers
+    ORDER BY Country DESC;
+
+    SELECT * FROM Customers
+    ORDER BY Country, CustomerName;
+
+    SELECT * FROM Customers
+    ORDER BY Country ASC, CustomerName DESC;
+
+Select TOP/LIMIT
+
+    Access uses 'TOP' clause
+
+        SELECT TOP number|percent column_name(s)
+        FROM table_name
+        WHERE condition;
+
+        SELECT TOP 3 * FROM Customers;
+
+    MySql LIMIT clause
+
+        SELECT column_name(s)
+        FROM table_name
+        WHERE condition
+        LIMIT 3;
+
+        SELECT * FROM Customers
+        WHERE Country='Germany'
+        LIMIT 3;
+
+    Oracle uses 'FETCH FIRST n ROWS ONLY' and 'ROWNUM'
+
+        SELECT column_name(s)
+        FROM table_name
+        ORDER BY column_name(s)
+        FETCH FIRST number ROWS ONLY;
+
+        SELECT TOP 50 PERCENT * FROM Customers;
+
+        SELECT * FROM Customers
+        FETCH FIRST 50 PERCENT ROWS ONLY;
+
+    Older oracle syntax
+
+        SELECT column_name(s)
+        FROM table_name
+        WHERE ROWNUM <= number;
+
+
+Alter Table
+
+    The ALTER TABLE statement is used to add, delete, or modify columns in an existing table.
+    The ALTER TABLE statement is also used to add and drop various constraints on an existing table.
+
+    ALTER TABLE table_name
+    ADD column_name datatype;
+
+    ALTER TABLE Customers
+    ADD Email varchar(255);
+
+    To delete a column in a table, use the following syntax (notice that some database systems don't allow deleting a column):
+
+    ALTER TABLE table_name
+    DROP COLUMN column_name;
+
+    ALTER TABLE Customers
+    DROP COLUMN Email;
+
+    To modify the datatype of a column
+
+    ALTER TABLE table_name
+    MODIFY COLUMN column_name datatype;
+
+    A column must be empty while changing the type of a column; otherwise it will raise an error.
+
+    Oracle 10G and later:
+
+    ALTER TABLE table_name
+    MODIFY column_name datatype;
+
+    You can increase the length of an existing column, or decrease it, if all existing data satisfies the new length.
+    Be careful while decreasing the size of a column where the data exist. It will raise an error if the new size is less than any of the data in that column.
+
+Constraints
+
+    CREATE TABLE table_name (
+        column1 datatype constraint,
+        column2 datatype constraint,
+        column3 datatype constraint,
+        ....
+    );
+
+    The following constraints are commonly used in SQL:
+
+        NOT NULL - Ensures that a column cannot have a NULL value
+        UNIQUE - Ensures that all values in a column are different
+        PRIMARY KEY - A combination of a NOT NULL and UNIQUE. Uniquely identifies each row in a table
+        FOREIGN KEY - Prevents actions that would destroy links between tables
+        CHECK - Ensures that the values in a column satisfies a specific condition
+        DEFAULT - Sets a default value for a column if no value is specified
+        CREATE INDEX - Used to create and retrieve data from the database very quickly
+
+Not Null Constraint
+
+    By default, a column can hold NULL values.
+    The NOT NULL constraint enforces a column to NOT accept NULL values.
+
+    CREATE TABLE Persons (
+        ID int NOT NULL,
+        LastName varchar(255) NOT NULL,
+        FirstName varchar(255) NOT NULL,
+        Age int
+    );
+
+    ALTER TABLE Persons
+    MODIFY Age int NOT NULL;
+
+Unique Constraint
+
+    Oracle
+        CREATE TABLE Persons (
+            ID int NOT NULL UNIQUE,
+            LastName varchar(255) NOT NULL,
+            FirstName varchar(255),
+            Age int
+        );
+
+    MySql
+        CREATE TABLE Persons (
+            ID int NOT NULL,
+            LastName varchar(255) NOT NULL,
+            FirstName varchar(255),
+            Age int,
+            UNIQUE (ID)
+        );
+
+    To name a UNIQUE constraint, and to define a UNIQUE constraint on multiple columns, use the following SQL syntax:
+
+    CREATE TABLE Persons (
+        ID int NOT NULL,
+        LastName varchar(255) NOT NULL,
+        FirstName varchar(255),
+        Age int,
+        CONSTRAINT UC_Person UNIQUE (ID,LastName)
+    );
+
+    ALTER TABLE Persons
+    ADD UNIQUE (ID);
+
+    ALTER TABLE Persons
+    ADD CONSTRAINT UC_Person UNIQUE (ID,LastName);
+
+    MySql
+        ALTER TABLE Persons
+        DROP INDEX UC_Person;
+    Oracle
+        ALTER TABLE Persons
+        DROP CONSTRAINT UC_Person;
+
+Primary Key
+
+    Unique + Not Null
+    https://www.w3schools.com/sql/sql_primarykey.asp
+
+    Index will automatically be created on primary key column.
+
+Index
+    https://www.w3schools.com/sql/sql_create_index.asp
+
+Check Constraint
+    https://www.w3schools.com/sql/sql_check.asp
+
+Foreign Key
+    https://www.w3schools.com/sql/sql_foreignkey.asp
+    A FOREIGN KEY is a field (or collection of fields) in one table, that refers to the PRIMARY KEY in another table.
+    The table with the foreign key is called the child table, and the table with the primary key is called the referenced or parent table.
+
+    A foreign key can refer to either a unique or a primary key of the parent table. If the foreign key refers to a non-primary unique key, you must specify the column names of the key explicitly.
+
+Default value
+    https://www.w3schools.com/sql/sql_default.asp
+
+    The DEFAULT constraint is used to set a default value for a column.
+    The default value will be added to all new records, if no other value is specified.
+
+Auto Increment
+    https://www.w3schools.com/sql/sql_autoincrement.asp
+
+In vs Any
+
+    IN checks for existence of a value in the given list.
+    ANY on the other hand has operators available. It can check for combination of <,>,= .
+    Loosely speaking IN will be equivalent to ANY with equality operator.
+
+    IN clause can have list of values or a query, but ANY clause needs a query only.
+
+ANY vs ALL
+
+    https://www.javatpoint.com/mysql-any
+
+    The following SQL statement lists the ProductName if ALL the records in the OrderDetails table has Quantity equal to 10.
+
+    SELECT ProductName
+    FROM Products
+    WHERE ProductID = ALL
+        (SELECT ProductID
+            FROM OrderDetails
+            WHERE Quantity = 10);
+
+    The following SQL statement lists the ProductName if ANY record in the OrderDetails table has Quantity equal to 10.
+
+    SELECT ProductName
+    FROM Products
+    WHERE ProductID = ANY
+        (SELECT ProductID
+            FROM OrderDetails
+            WHERE Quantity = 10);
+
+
+Date and Date Functions
+    https://www.w3schools.com/sql/sql_dates.asp
+    https://www.tutorialspoint.com/sql/sql-date-functions.htm
+
+Between
+    https://www.javatpoint.com/mysql-between
+
+Group By and Having
+
+    https://www.w3schools.com/sql/sql_groupby.asp
+
+Join vs Exists
+
+    SELECT SupplierName
+    FROM Suppliers
+    WHERE EXISTS (SELECT ProductName FROM Products WHERE Products.SupplierID = Suppliers.supplierID AND Price < 20);
+
+    Use EXISTS, if you don't want display subquery's columns. Here, if you don't want to display ProductName, use EXISTS.
+    EXISTS is faster because database has just needs to run a subquery and find out TRUE or FALSE result. It doesn't have to join its result with outer query.
+
+After teaching Index,
+    teach how to run execution plan in mysql and explain whether it is full table scan or not.
+
+Functions
+    https://www.w3schools.com/sql/sql_ref_mysql.asp
+
+Date functions
+
+    https://www.w3schools.com/sql/sql_dates.asp
+
+    https://doc.ispirer.com/sqlways/Output/SQLWays-1-073.html
+    Oracle
+    select to_char(sysdate,'DD-MON-YYYY:HH24:MI') from dual;
+
+    MySql
+    select  DATE_FORMAT(CURRENT_TIMESTAMP, '%e-%M-%Y:%H:%i')  from dual;
+
+
+
+NULL functions
+
+    https://www.w3schools.com/sql/sql_isnull.asp
+
+IS vs =
+    IS is used only for IS NULL, IS NOT NULL
+
+UPPER/LOWER function for case insensitivity
+     select * from customers where BINARY UPPER(address) = UPPER('Highway 21');   ---- performance is not good
+     or
+      select * from customers where  UPPER(address) = BINARY LOWER('Highway 21'); ---- performance is good
+
+     for case sensitivity, you need to use 'BINARY' in mysql. I think it is not required for oracle.
+
+     Why you shouldn't use UPPER/LOWER functions on the left side of where clause
+     https://use-the-index-luke.com/sql/where-clause/functions/case-insensitive-search
+
