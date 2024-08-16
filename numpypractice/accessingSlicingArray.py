@@ -58,6 +58,7 @@ print(subArray)
 '''
 
 #column_stack - converts 1-D arrays as columns of 2-D array
+# numpy's column_stack - https://www.geeksforgeeks.org/numpy-column_stack-in-python/
 # input array
 in_arr1 = np.array((1, 2, 3))
 print("1st Input array : \n", in_arr1)
