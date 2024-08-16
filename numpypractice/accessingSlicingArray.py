@@ -40,10 +40,36 @@ print(subArray)
 # slicing (extracting column from extracted rows)
 subArray = a[1:3, 0]
 print(subArray) # [4 7]
+'''
+a[1:3] extracts
+[ 
+    [4,5,6],
+    [7,8,9]
+]
+a[1:3, 0] extracts 0th column
+    [4,7]
+'''
 
 subArray = a[1:3, 0:2]
 print(subArray)
 '''
 [[4 5]
  [7 8]]
+'''
+
+#column_stack - converts 1-D arrays as columns of 2-D array
+# input array
+in_arr1 = np.array((1, 2, 3))
+print("1st Input array : \n", in_arr1)
+
+in_arr2 = np.array((4, 5, 6))
+print("2nd Input array : \n", in_arr2)
+
+# Stacking the two arrays
+out_arr = np.column_stack((in_arr1, in_arr2))
+print("Output stacked array:\n ", out_arr)
+'''
+[[1 4]
+ [2 5]
+ [3 6]]
 '''
