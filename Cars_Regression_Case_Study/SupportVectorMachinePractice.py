@@ -4,6 +4,9 @@
 import numpy as np
 import sklearn
 import pandas as pd
+# To visualize data
+import seaborn as sns
+import matplotlib.pyplot as plt  # pyplot means python plot
 
 # importing the dataset
 from sklearn.datasets import load_breast_cancer
@@ -80,6 +83,12 @@ print(data) # you can access it like a dictionary also
 df = pd.DataFrame(data=data.data,
                   columns=data.feature_names)
 print(df)
+'''
+plt.figure(figsize=(7,6))
+plt.scatter(x=df['mean radius'], y=df['mean texture'], c='blue')
+plt.show()
+'''
+
 # column_stack converts 1-D arrays into the columns of 2-D array
 input_variable = np.column_stack((df['mean radius'], df['mean texture']))
 output_variable = data.target
@@ -90,7 +99,8 @@ print(output_variable)
 # "Support Vector Classifier"
 from sklearn.svm import SVC
 
-clf = SVC(kernel='linear')
+clf = SVC(kernel='rbf')
+#clf = SVC(kernel='linear')
 
 # fitting x samples and y classes
 clf.fit(input_variable, output_variable)
@@ -100,3 +110,14 @@ print(prediction1) # [0]
 
 prediction2 = clf.predict([[7.76, 24.54]])
 print(prediction2) # [1]
+
+# second example from - ctrl+click on SVC
+
+X = np.array([[-1, -1], [-2, -1], [1, 1], [2, 1]])
+y = np.array([1, 1, 2, 2])
+clf = SVC(kernel='linear')
+clf.fit(X, y)
+prediction1 = clf.predict([[-0.8, -1]])
+print(prediction1) # [1]
+prediction2 = clf.predict([[1.5, 0.5]])
+print(prediction2) # [2]
