@@ -29,12 +29,12 @@ set PYTHONPATH=/usr/local/lib/python
 
 """
 
-# import packagesandmodules.library.calculator # importing calculator module from packagesandmodules.library package
-# from packagesandmodules.library import *  # importing all modules from packagesandmodules.library package
-from packagesandmodules.library import apple, calculator # importing classes
-from packagesandmodules.library.pineapple import get_pineapple # importing a function from pineapple module
+# import import_packages_and_modules.library.calculator # importing calculator module from import_packages_and_modules.library package
+# from import_packages_and_modules.library import *  # importing all modules from import_packages_and_modules.library package
+from basics.import_packages_and_modules.library import apple, calculator # importing classes
+from basics.import_packages_and_modules.library.pineapple import get_pineapple # importing a function from pineapple module
 
-print(apple.__name__) # packagesandmodules.library.apple
+print(apple.__name__) # import_packages_and_modules.library.apple
 
 calc = calculator.Calculator()
 calc.set_name("Tushar")
@@ -44,7 +44,7 @@ app = apple.Apple()
 app.set_color("red")
 print(app.get_color())
 
-import packagesandmodules.Phone as Phone # importing a package. To import a package, package needs to have __init__.py with all modules imported in it.
+import basics.import_packages_and_modules.Phone as Phone # importing a package. To import a package, package needs to have __init__.py with all modules imported in it.
 
 print("calling imported functions: ")
 get_pineapple() # I'm a Pineapple

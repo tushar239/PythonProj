@@ -1,3 +1,5 @@
+# https://www.geeksforgeeks.org/global-local-variables-python/
+
 firstName = None
 lastName = None
 

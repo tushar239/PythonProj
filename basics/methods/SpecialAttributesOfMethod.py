@@ -23,15 +23,17 @@ class C:
         print("Inside method1")
 
 c=C()
+print(repr(c)) # <__main__.C object at 0x000001D6746FC810>
+print(str(c)) # <__main__.C object at 0x000001D6746FC810>
 print(type(c)) # <class '__main__.C'>
 c.method("Tushar")
 print(type(c.name)) # <class 'str'>
 
-print(c.method.__self__) # <__main__.C object at 0x1005a5e48>
+print(c.method.__self__) # <__main__.C object at 0x000001D6746FC810>
 c1 = c.method.__self__
 c1.method1() # Inside method1
 
-print(c.method.__func__) # <function C.method at 0x1023f0158>
+print(c.method.__func__) # <function C.method at 0x000001D6746E96C0>
 print(c.method.__func__(c.method.__self__,"Tushar"))
 
 print(c.method.__str__()) # <bound method C.method of <__main__.C object at 0x102078908>>
