@@ -2,12 +2,13 @@ from dataclasses import dataclass
 
 '''
 Using Data Class (Python 3.7+): 
-In Python 3.7 and above the Data Class can be used to return a class with 
-automatically added unique methods. The Data Class module has a decorator and functions for automatically adding 
+In Python 3.7 and above the Data Class can be used to return a class with automatically added unique methods. 
+The Data Class module has a decorator and functions for automatically adding 
 generated special methods such as __init__() and __repr__() in the user-defined classes.
 
 _repr__() is one of the magic methods that returns a printable representation of an object in Python that can be 
-customized or predefined, i.e. we can also create the string representation of the object according to our needs.'''
+customized or predefined, i.e. we can also create the string representation of the object according to our needs.
+'''
 
 @dataclass
 class Book_list:
@@ -31,6 +32,9 @@ print(x) # 900
 print(book) # Book_list(name='Introduction to programming.', perunit_cost=300, quantity_available=3)
 
 # 900
-Book_list(name='Python programming.',
+bl = Book_list(name='Python programming.',
           perunit_cost=200,
           quantity_available=3)
+
+print(repr(bl)) # Book_list(name='Python programming.', perunit_cost=200, quantity_available=3)
+print(str(bl)) # Book_list(name='Python programming.', perunit_cost=200, quantity_available=3)
