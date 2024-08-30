@@ -8,7 +8,8 @@ builins.py (builtins module)
 	In python module means a python file. you can import one python file into another.
 
 	https://docs.python.org/3/library/builtins.html
-	All builtin functions and vars are in builins.py. It is by default available to your modules. It is like java.lang.* in Java. You dont need to import it java, so as builtins in Python.
+	All builtin functions and vars are in builins.py. It is by default available to your modules. It is like java.lang.* in Java.
+	You dont need to import it in java, so as builtins in Python.
 
 
 	1) builtins module's classes
@@ -27,12 +28,13 @@ builins.py (builtins module)
 	https://docs.python.org/3/library/constants.html#built-in-consts
 
 	object class is a base class in Python. It has many methods, but __new__ and __init__ are special.
-	__new__ is static method that is used to instantiate a class. Normally, you don't override it in your class.
+	__new__ is a method that is used to instantiate a class. Normally, you don't override it in your class.
 	__init__(self,...) is a method that is used to initialize instance variables. Normally, you override this method in your class.
 
 	http://stackoverflow.com/questions/674304/pythons-use-of-new-and-init
 
-	__new__ is the first step of instance creation. It's called first, and is responsible for returning a new instance of your class. In contrast, __init__ doesn't return anything; it's only responsible for initializing the instance after it's been created.
+	__new__ is the first step of instance creation. It's called first, and is responsible for returning a new instance of your class.
+	In contrast, __init__ doesn't return anything; it's only responsible for initializing the instance after it's been created.
 	In general, you shouldn't need to override __new__ unless you're subclassing an immutable type like str, int, unicode or tuple.
 
 
