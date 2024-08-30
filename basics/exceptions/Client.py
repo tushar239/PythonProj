@@ -49,7 +49,17 @@ Raising an Exceptions:
     An exception can be a string, a class or an object.
 
 
+Builtin errors
+--------------
+https://www.tutorialsteacher.com/python/error-types-in-python
+IndexError	Raised when the index of a sequence is out of range.
+KeyError	Raised when a key is not found in a dictionary.
+NameError	Raised when a variable is not found in the local or global scope.
+ValueError	Raised when a function gets an argument of correct type but improper value.
 
+SyntaxError	Raised by the parser when a syntax error is encountered.
+
+RuntimeError	Raised when an error does not fall under any other category.
 """
 
 import random
