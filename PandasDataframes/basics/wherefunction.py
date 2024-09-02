@@ -25,6 +25,7 @@ Result dataframe :
 2  Aishwarya   20   Science          95
 """
 
+# if dataframe['Percentage'] > 80, then return dataframe['Percentage'], otherwise return NaN
 rslt_df = dataframe.where(dataframe['Percentage'] > 80)
 # this is same as
 rslt_df = dataframe.where(dataframe['Percentage'] > 80, np.nan)
@@ -41,6 +42,7 @@ Result dataframe using where function:
 5        NaN   NaN       NaN         NaN
 """
 
+# if dataframe['Percentage'] > 80, then return dataframe['Percentage'], otherwise return NaN
 rslt = np.where(dataframe['Percentage'] > 80, dataframe['Percentage'], np.nan)
 print(rslt)
 # [88. 92. 95. nan nan nan]

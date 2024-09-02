@@ -11,6 +11,8 @@ print(cars_data)
 # info() returns the information of dataframe that contains total number of non-null values in each column along with other data
 summary =  cars_data.info()
 print(summary)
+#Price_Summary = cars_data['Price'].info()
+#print(Price_Summary)
 '''
  #   Column     Non-Null Count  Dtype  
 ---  ------     --------------  -----  
