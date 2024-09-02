@@ -1,0 +1,63 @@
+cars_data = pd.read_csv('Toyota.csv', index_col=0, na_values=['??', '###']) # replacing ?? and ### to NaN while loading the data from csv to dataframe.
+
+row_ids = cars_data.index
+get all index numbers (row ids)
+
+columns = cars_data.columns
+get all columns
+
+size = cars_data.size
+get total number of rows
+
+shape = cars_data.shape
+returns a tuple of (number of rows, number of columns)
+
+memory = cars_data.memory_usage()
+returns memory usage in bytes for every column
+
+student = {
+    'Name': ['John', 'Jay', 'sachin', 'Geetha', 'Amutha', 'ganesh'],
+    'gender': ['male', 'male', 'male', 'female', 'female', 'male'],
+    'math score': [50, 100, 70, 80, 75, 40],
+    'test preparation': ['none', 'completed', 'none', 'completed',
+                         'completed', 'none'],
+}
+df = pd.DataFrame(student)
+creating dataframe from dictionary (map)
+
+firstNRows = cars_data.head(15)
+selecting the first 15 rows of dataframe. By default, it returns the first 5 rows.
+
+lastNRows = cars_data.tail(15)
+selecting the last 15 rows of dataframe. By default, it returns the last 5 rows.
+
+result = cars_data.at[4, 'FuelType']
+at[row id, column name] returns a cell data
+
+result = cars_data.iat[4, 5]
+iat[row id, column id] returns a cell data
+
+df.loc takes two arguments, 'row index' and 'column index'
+------
+
+data.loc[(data.Brand == 'Maruti') & (data.Mileage > 25)]
+selecting rows with all columns where Brand=Maruti and Mileage>25
+
+data.loc[(data.Brand == 'Maruti') & (data.Mileage > 25), ['Mileage']]
+selecting rows with only Mileage column where Brand=Maruti and Mileage>25
+
+result = cars_data.loc[4:15, ['Price', 'FuelType']]
+returns data of specific rows and columns
+
+data.loc[(data.Year < 2015), ['Mileage']] = 22
+change the values of Mileage column where year<2015
+
+df.loc[df['First season'] > 1990, 'First Season'] = 1
+
+df.iloc() function is an indexed-based selecting method
+---------
+data.iloc[[0, 2, 4, 7]]
+selecting 0th, 2nd, 4th, and 7th index rows
+
+data.iloc[1: 5, 2: 5]
+selecting rows from 1 to 4 and columns from 2 to 4

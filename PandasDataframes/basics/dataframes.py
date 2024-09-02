@@ -5,7 +5,7 @@ import pandas as pd
 #pd.set_option('display.max_columns', None)
 #pd.set_option('display.max_rows', None)
 
-cars_data = pd.read_csv('Toyota.csv', index_col=0, na_values=['??', '###'])
+cars_data = pd.read_csv('Toyota.csv', index_col=0, na_values=['??', '###']) # replacing ?? and ### to NaN while loading the data from csv to dataframe.
 print(cars_data)
 # to print all rows and cols use to_string()
 #print(cars_data.to_string())
@@ -41,7 +41,7 @@ Index(['Price', 'Age', 'KM', 'FuelType', 'HP', 'MetColor', 'Automatic', 'CC','Do
       dtype='object')
 '''
 
-# gives total number of elements in the dataframe
+# gives total number of rows in the dataframe
 size = cars_data.size
 print(size) # 14360
 

@@ -18,7 +18,8 @@ display(data.loc[2: 5])
 # updating values of Mileage if Year < 2015
 data.loc[(data.Year < 2015), ['Mileage']] = 22
 
-The iloc() function is an indexed-based selecting method which means that we have to pass an integer index in the method to select a specific row/column. This method does not include the last element of the range passed in it unlike loc(). iloc() does not accept the boolean data unlike loc().
+The iloc() function is an indexed-based selecting method which means that we have to pass an integer index in the method to select a specific row/column.
+This method does not include the last element of the range passed in it unlike loc(). iloc() does not accept the boolean data unlike loc().
 
 # selecting 0th, 2nd, 4th, and 7th index rows
 display(data.iloc[[0, 2, 4, 7]])
