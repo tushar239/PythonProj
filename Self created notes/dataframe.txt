@@ -1,3 +1,42 @@
+------------- data types ------------------------------
+There mainly 2 types of data types
+    - numerical
+        int64 - Basic python's int. It says that it uses 64 bits (8 bytes) to store int value.
+        float64 - Basic python's float. It says that it uses 64 bits (8 bytes) to store double value.
+    - character
+        categorical - limited number of fixed values can be there in categorical column. This can save some memory for you.
+        object - when number of values are not limited, object data type is used. whichever column has blank cell with NaN value, automatically gets object data type
+
+dataTypes = cars_data.dtypes
+
+    Price          int64
+    Age          float64
+    KM           float64
+    FuelType      object
+    HP            object
+    MetColor     float64
+    Automatic      int64
+    CC             int64
+    Doors         object
+    Weight         int64
+
+cols = cars_data.select_dtypes(include=[int])
+return values of only int columns
+
+cols = cars_data.select_dtypes(exclude=[object, int])
+return values of non-int and non-object columns (only float columns)
+
+summary =  cars_data.info()
+
+     #   Column     Non-Null Count  Dtype
+    ---  ------     --------------  -----
+     0   Price      1436 non-null   int64
+     1   Age        1336 non-null   float64
+     2   KM         1421 non-null   float64
+     3   FuelType   1336 non-null   object
+     4   HP         1436 non-null   object
+
+--------------------------------------------------------------
 cars_data = pd.read_csv('Toyota.csv', index_col=0, na_values=['??', '###']) # replacing ?? and ### to NaN while loading the data from csv to dataframe.
 
 row_ids = cars_data.index
@@ -95,3 +134,25 @@ returns total null(NaN) cells in each column
     FuelType     100
     HP             6
 
+--------------------- Data Clean Up (read_csv with nav_values, unique, replace, where, loc functions) ------------------------
+cars_data = pd.read_csv(filepath_or_buffer = 'Toyota.csv', index_col=0, na_values=["??", "????"])
+replacing ?? and ???? with NaN
+
+doors_unique_elements = np.unique(cars_data['Doors'])
+find unique values
+
+cars_data.replace(to_replace='three', value=3, inplace=True)
+cars_data.replace(to_replace='four', value=4, inplace=True)
+cars_data.replace(to_replace='five', value=5, inplace=True)
+replace values in entire dataframe(all columns)
+
+cars_data["Doors"] = np.where(dataframe['Doors'] = 'three',
+                3,
+                dataframe['Doors'])
+replacing data in a particular column
+
+
+cars_data['Doors'] = cars_data['Doors'].astype(dtype='int64')
+replacing datatype from object to int
+
+cars_data.loc[df['Doors'] = 'three', 'Doors'] = 3
