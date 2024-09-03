@@ -64,6 +64,10 @@ student = {
 df = pd.DataFrame(student)
 creating dataframe from dictionary (map)
 
+
+cars_data2 = cars_data.copy()
+creating a copy of dataframe. Working on the copy, so that original data remains unchanged.
+
 ------------------- Filtering (head, tail, at, iat, loc, iloc, filtering through condition in df, where ----------------------------------
 firstNRows = cars_data.head(15)
 selecting the first 15 rows of dataframe. By default, it returns the first 5 rows.
@@ -126,7 +130,7 @@ Price_Summary = cars_data['Price'].info()
 returns the summary of a 'Price' column
     1436 non-null   int64
 
-NaN_cells_in_each_column = cars_data.isnull().sum()
+NaN_cells_in_each_column = cars_data.isnull().sum()   or   cars_data.isna().sum()
 returns total null(NaN) cells in each column
     Price          0
     Age          100
@@ -156,3 +160,71 @@ cars_data['Doors'] = cars_data['Doors'].astype(dtype='int64')
 replacing datatype from object to int
 
 cars_data.loc[df['Doors'] = 'three', 'Doors'] = 3
+
+------------------ missing data (isnull, isna, isnull().any(axis=1), df[filters], describe(), fillna()-----------------
+
+Either you can remove missing (NaN) data or replace them with proper value.
+There are two ways to fill in the missing values.
+    1. If it is a numerical column, then you can fill in mean/median
+    2. If it's a categorical column, then you can fill in the max occurring category
+
+NaN_cells_in_each_column = cars_data.isnull().sum()   or   cars_data.isna().sum()
+returns total null(NaN) cells in each column
+    Price          0
+    Age          100
+    KM            15
+    FuelType     100
+    HP             6
+
+
+rows_with_missing_values = cars_data[cars_data.isnull().any(axis=1)]
+selecting rows that have one or more missing values
+
+rows_with_missing_age = cars_data[cars_data['Age'].isnull()]
+find rows with missing (NaN) age.
+
+filter1 = rows_with_missing_values['Age'].isnull()
+filter2 = rows_with_missing_values['KM'].isnull()
+rows_with_missing_age_and_km = cars_data[filter1 & filter2]
+finding rows with missing age and km
+
+
+print(cars_data.describe())
+returns 5 pointer analysis
+
+Average is represented by mean.
+Median is represented by 50%
+
+              Price          Age  ...  Age_Converted2  Km_per_month
+count   1436.000000  1336.000000  ...     1336.000000   1321.000000
+mean   10730.824513    55.672156  ...        4.639346      0.111520
+std     3626.964585    18.589804  ...        1.549150      2.526162
+min     4350.000000     1.000000  ...        0.083333      0.000177
+25%     8450.000000    43.000000  ...        3.583333      0.000661
+50%     9900.000000    60.000000  ...        5.000000      0.000880
+75%    11950.000000    70.000000  ...        5.833333      0.001156
+max    32500.000000    80.000000  ...        6.666667     76.000000
+
+Filling up NaN Age with mean value
+    mean_of_age = cars_data2['Age'].mean()
+    print(mean_of_age) # 55.67215568862275
+    cars_data2.fillna({'Age' : mean_of_age}, inplace=True)
+
+
+Filling up NaN Age with median value
+    median_of_km = cars_data2['KM'].median()
+    print(median_of_km) # 63061.5
+    cars_data2.fillna({'KM' : median_of_km}, inplace=True)
+
+
+...................... For Categorical Data ....................
+
+fuel_types_counts = cars_data2['FuelType'].value_counts(ascending=False)
+    FuelType
+    Petrol    1177
+    Diesel     144
+    CNG         15
+
+indices = fuel_types_counts.index
+cars_data2.fillna({'FuelType' : indices[0]}, inplace=True)
+filling up NaN FuelType with 'Petrol'

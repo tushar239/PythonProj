@@ -16,7 +16,7 @@ cars_data3 = cars_data2.copy()
 
 ################ Working with numerical columns ################################
 '''
-To find missing values, you can use isna() or isNull.
+To find missing values, you can use isna() or isnull.
 They return True for NaN values.
 '''
 count_of_missing_values = cars_data2.isna().sum()
@@ -109,7 +109,7 @@ https://www.geeksforgeeks.org/how-to-drop-rows-in-pandas-dataframe-by-index-labe
 '''
 There are 340 rows with missing values. You can't afford to loose them.
 There are two ways to fill in the missing values.
-1. If it's is a numerical column, then you can fill in mean/median 
+1. If it's a numerical column, then you can fill in mean/median 
 2. If it's a categorical column, then you can fill in the max occurring category
 But if you have very low/high value (extreme cases), it can affect a mean/median value.
 In this case you should take median. Median will sort all the values and take the middle value in case of odd number of rwos.
