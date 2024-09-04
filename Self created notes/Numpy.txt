@@ -2,6 +2,12 @@ Numpy - numerical python
 
 ----------------Creating array------------------
 
+Create an empty array filled up with 0s
+empa = np.empty((3, 4), dtype=int)
+
+create full array filled up with 55
+flla = np.full([3, 3], 55, dtype=int)
+
 Creating array from list : array = np.array([2, 3, 4, 5]) :  [2, 3, 4, 5]
 Creating array from tuple : array = np.array((2, 3, 4, 5)) : [2, 3, 4, 5]
 

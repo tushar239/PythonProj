@@ -1,6 +1,13 @@
 import numpy as np
 from inheritance.Child import Child
 
+# https://www.geeksforgeeks.org/how-to-create-an-empty-and-a-full-numpy-array/
+# Create an empty array of 3x4 filled up with 0s
+empa = np.empty((3, 4), dtype=int)
+
+#create full array of 3x3filled up with 55
+flla = np.full([3, 3], 55, dtype=int)
+
 '''
 numpy is is used to create n-dimensional array and so it is called nd array
 
