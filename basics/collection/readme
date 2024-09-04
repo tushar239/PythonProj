@@ -1,0 +1,11 @@
+List -  ordered, changeable, duplicates allowed.
+Tuple - ordered, changeable, duplicates allowed
+Set -   unordered, unchangeable*, and unindexed. duplicates not allowed.
+Dictionary - ordered** and changeable. duplicate keys not allowed.
+
+*Set items are unchangeable, but you can remove and/or add items whenever you like.
+**As of Python version 3.7, dictionaries are ordered. In Python 3.6 and earlier, dictionaries are unordered.
+
+https://www.geeksforgeeks.org/are-python-dictionaries-ordered/
+The CPython implementation of dictionaries uses a sparse table that contains indices into another, dense table holding the actual order of keys and values.
+When a new item is inserted, it goes into the next available slot in the dense table, thus preserving order. When items are deleted, the algorithm maintains the order of the remaining items, ensuring that the order reflects the sequence of insertion and deletion.

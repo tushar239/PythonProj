@@ -5,7 +5,7 @@ from inheritance.Child import Child
 Python List vs Numpy Array
 https://www.geeksforgeeks.org/python-lists-vs-numpy-arrays/
 
-Python List is like a LinkedList.
+Python List is like a LinkedList (not exactly a linked list - see the diagram in above link).
 Numpy array ls like an ArrayList
 
 Element Overhead: Lists in Python store additional information about each element, such as its type and reference count. This overhead can be significant when dealing with a large number of elements.
