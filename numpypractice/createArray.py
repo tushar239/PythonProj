@@ -1,6 +1,21 @@
 import numpy as np
 from inheritance.Child import Child
 
+'''
+Python List vs Numpy Array
+https://www.geeksforgeeks.org/python-lists-vs-numpy-arrays/
+
+Python List is like a LinkedList.
+Numpy array ls like an ArrayList
+
+Element Overhead: Lists in Python store additional information about each element, such as its type and reference count. This overhead can be significant when dealing with a large number of elements.
+Datatype: Lists can hold different data types, but this can decrease memory efficiency and slow numerical operations.
+Memory Fragmentation: Lists may not store elements in contiguous memory locations, causing memory fragmentation and inefficiency.
+Performance: Lists are not optimized for numerical computations and may have slower mathematical operations due to Python’s interpretation overhead. They are generally used as general-purpose data structures.
+Functionality: Lists can store any data type, but lack specialized NumPy functions for numerical operations.
+'''
+
+
 # https://www.geeksforgeeks.org/how-to-create-an-empty-and-a-full-numpy-array/
 # Create an empty array of 3x4 filled up with 0s
 empa = np.empty((3, 4), dtype=int)
@@ -8,6 +23,20 @@ empa = np.empty((3, 4), dtype=int)
 #create full array of 3x3filled up with 55
 flla = np.full([3, 3], 55, dtype=int)
 
+# Create an empty array filled up with 0s
+empa = np.empty((3, 4), dtype=int)
+
+# create full array filled up with 55
+flla = np.full([3, 3], 55, dtype=int)
+
+# create empty array with None value
+matrix = np.empty(shape=(2, 5), dtype='object')
+
+# create empty array with NaN value
+a = np.full([3,3], np.nan)
+#or
+a = np.full([3,3], 0)
+a.fill(np.nan)
 '''
 numpy is is used to create n-dimensional array and so it is called nd array
 
