@@ -239,3 +239,21 @@ list2 = [1, 2, 3]
 
 list1.extend(list2)
 print(list1)
+
+################### Unpacking a list #################
+(one, two, three) = ["a", "b", "c"]
+print(one) # a
+print(two) # b
+print(three) # c
+
+fruits = ["apple", "banana", "cherry", "strawberry", "raspberry"]
+(green, yellow, *red) = fruits
+print(green) # apple
+print(yellow) # banana
+print(red) # ['cherry', 'strawberry', 'raspberry']
+
+fruits = ["apple", "mango", "papaya", "pineapple", "cherry"]
+(green, *tropic, red) = fruits
+print(green) # apple
+print(tropic) # ['mango', 'papaya', 'pineapple']
+print(red) # cherry
