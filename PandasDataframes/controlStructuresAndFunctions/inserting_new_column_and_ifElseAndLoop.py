@@ -24,7 +24,7 @@ print(cars_data)
 '''
 
 for i in range(0, len(cars_data["Price"]), 1):
-    if (cars_data["Price"][i] <= 8450):
+    if (cars_data["Price"][i] <= 8450): # you can use (cars_data.at[i, "Price"] <= 8450) also
         value = "Low"
     elif (cars_data["Price"][i] >= 11950):
         value = "High"

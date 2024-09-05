@@ -75,11 +75,14 @@ selecting the first 15 rows of dataframe. By default, it returns the first 5 row
 lastNRows = cars_data.tail(15)
 selecting the last 15 rows of dataframe. By default, it returns the last 5 rows.
 
-result = cars_data.at[4, 'FuelType']
+result = cars_data.at[4, 'FuelType'] --- 4th row of FuelType column
 at[row id, column name] returns a cell data
 
-result = cars_data.iat[4, 5]
+result = cars_data.iat[4, 5] --- 4th row of FuelType column
 iat[row id, column id] returns a cell data
+
+Instead of at()/iat(), you can use
+cars_data['FuelType'][4]   --- 4th row of FuelType column
 
 df.loc takes two arguments, 'row index' and 'column index'
 ------
@@ -253,4 +256,15 @@ cars_data["Age_Converted"].fillna(0)
 
 cars_data["Age_Converted"] = cars_data["Age_Converted"].astype(dtype="int64")
 
+OR
+
+for i in range(0, len(cars_data["Price"]), 1):
+    if (cars_data["Price"][i] <= 8450):
+        value = "Low"
+    elif (cars_data["Price"][i] >= 11950):
+        value = "High"
+    else:
+        value = "Medium"
+    # See indexingAndSelectingData.py to know more about df.loc() method.
+    cars_data.loc[i, "Price_Class"] = value
 
