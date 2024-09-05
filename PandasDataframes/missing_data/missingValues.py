@@ -214,7 +214,7 @@ Series.index will give you labels(ids) of each value in a series.
 fuel_types_counts = cars_data2['FuelType'].value_counts(ascending=False)  # you can use crosstab function also that will give you the frequencies (counts)
 indices = fuel_types_counts.index # finds all labels(ids) from the series
 print(indices[0], ' has count ' , fuel_types_counts.get(indices[0])) # Petrol  has count  1177
-#print(type(fuel_types_counts))
+print(type(fuel_types_counts)) # <class 'pandas.core.series.Series'>
 #print(fuel_types_counts)
 '''
 FuelType

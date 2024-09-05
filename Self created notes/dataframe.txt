@@ -216,8 +216,15 @@ Filling up NaN Age with median value
     print(median_of_km) # 63061.5
     cars_data2.fillna({'KM' : median_of_km}, inplace=True)
 
+Filling up NaN MetColor with mode value
+    In statistics, the mode is the value that is repeatedly occurring in a given set. We can also say that the value or number in a data set, which has a high frequency or appears more frequently, is called mode or modal value.
 
-...................... For Categorical Data ....................
+    mode_value_of_MetColor = cars_data2['MetColor'].mode()
+    cars_data2.fillna({'MetColor': mode_value_of_MetColor[0]}, inplace=True)
+
+
+For Categorical Data
+--------------------
 
 fuel_types_counts = cars_data2['FuelType'].value_counts(ascending=False)
     FuelType
@@ -228,3 +235,5 @@ fuel_types_counts = cars_data2['FuelType'].value_counts(ascending=False)
 indices = fuel_types_counts.index
 cars_data2.fillna({'FuelType' : indices[0]}, inplace=True)
 filling up NaN FuelType with 'Petrol'
+
+
