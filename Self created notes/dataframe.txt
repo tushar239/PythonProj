@@ -237,3 +237,20 @@ cars_data2.fillna({'FuelType' : indices[0]}, inplace=True)
 filling up NaN FuelType with 'Petrol'
 
 
+------------------ Inserting a new column and filling up the data in it ------------------
+# create new column in dataframe with default value as 0
+cars_data.insert(10, "Age_Converted", 0)
+
+def age_convert(val):
+    val_converted = val/12
+    return round(val_converted)
+
+cars_data["Age_Converted"] = age_convert(cars_data["Age"])
+
+print(age_converted_series.unique())
+
+cars_data["Age_Converted"].fillna(0)
+
+cars_data["Age_Converted"] = cars_data["Age_Converted"].astype(dtype="int64")
+
+
