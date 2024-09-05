@@ -268,3 +268,20 @@ for i in range(0, len(cars_data["Price"]), 1):
     # See indexingAndSelectingData.py to know more about df.loc() method.
     cars_data.loc[i, "Price_Class"] = value
 
+----------------------- Series ----------------------
+Series is like a column in a table. Each row in a series gets a label. Either you can assign a label or it gets its own using ids.
+https://www.w3schools.com/python/pandas/pandas_series.asp
+On any series, you can call value counts(). It gives you a count of all types of values in that series.
+In dataframe, each column returns a Series type.
+
+price_class_series = cars_data["Price_Class"] # column is a series
+values = price_class_series.value_counts()
+
+Price_Class
+Medium    704
+Low       369
+High      363
+
+index = price_class_series.index
+
+values.get(index[0]) # 704
