@@ -32,6 +32,7 @@ print(fuelTypes) # ['CNG' 'Diesel' 'Petrol']
 # https://www.geeksforgeeks.org/how-to-count-occurrences-of-specific-value-in-pandas-column/
 #
 # To find frequencies (count), you can use
+# value_counts()
 # crosstab function --- frequencyTables.py
 # or sns.countplot(...) chart --- BarPlotOrCountPlot.py
 # or plt.bar(...) chart --- BarPlot.py
