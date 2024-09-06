@@ -228,6 +228,8 @@ Filling up NaN MetColor with mode value
 
 For Categorical Data
 --------------------
+crosstab with columns='count'/value_counts()/countplot/barplot are same.
+They show the frequencies.
 
 fuel_types_counts = cars_data2['FuelType'].value_counts(ascending=False)
     FuelType
@@ -285,3 +287,156 @@ High      363
 index = price_class_series.index
 
 values.get(index[0]) # 704
+
+---------------- Correlation -----------------
+
+Correlation shows the strength of relation between two variables.
+Variables do not have to be numeric, but for our example, we will use numeric variables.
+
+Correlation is bound between -1 and +1. 0 means no correlation at all.
+# Watch 'Pearson Correlation Coefficient' video
+# https://www.youtube.com/watch?v=B8LcYdblXBI
+
+Closer to +1 represents there is a strong correlation between two variables positively.
+Theoretically, above 0.7, you can say there is a fair correlation between two numerical variables.
+
+Closer to -1 represents weaker correlation between two numerical variables.
+E.g. relation between price and age of the car. As car gets older, price goes down.
+Relation between price and km. As car is driven more, its price goes down.
+Relation between price and weight. As weight of the car increases, its price also increases. There is a positive correlation between price and weight.
+Relation between Age and KM. As Age of the car increases, its KMs also increases. There is a positive correlation in between these Age and KM.
+
+Pearson method can calculate correlation only between two numeric variables.
+Pearson method is a default method.
+
+result = cars_data_copy.corr(method="pearson", numeric_only=True)
+print(result)
+
+              Price       Age        KM  ...  Automatic        CC    Weight
+Price      1.000000 -0.878407 -0.574720  ...   0.033081  0.165067  0.581198
+Age       -0.878407  1.000000  0.512735  ...   0.032573 -0.120706 -0.464299
+KM        -0.574720  0.512735  1.000000  ...  -0.081248  0.299993 -0.026271
+MetColor   0.112041 -0.099659 -0.093825  ...  -0.013973  0.029189  0.057142
+Automatic  0.033081  0.032573 -0.081248  ...   1.000000 -0.069321  0.057249
+CC         0.165067 -0.120706  0.299993  ...  -0.069321  1.000000  0.651450
+Weight     0.581198 -0.464299 -0.026271  ...   0.057249  0.651450  1.000000
+
+result = cars_data_copy.corr(method="kendall", numeric_only=True)
+print(result)
+
+result = cars_data_copy.corr(method="spearman", numeric_only=True)
+print(result)
+
+----------------- Frequency Table (crosstab) -------------------
+Frequency Table
+---------------
+it should be used mainly for categorical variables
+crosstab with columns='count' is same as value_counts()/countplot/barplot
+
+fuel_types_counts = cars_data2['FuelType'].value_counts(ascending=False)
+    FuelType
+    Petrol    1177
+    Diesel     144
+    CNG         15
+
+result = pd.crosstab(index=cars_data_copy['FuelType'],
+                     columns='count',
+                     dropna=False)
+   col_0     count
+    FuelType
+    CNG          15
+    Diesel      144
+    Petrol     1177
+    NaN         100
+
+Two-way frequency table
+-----------------------
+It finds out the FREQUENCY cross table between two variables.
+
+    result = pd.crosstab(index=cars_data_copy['Automatic'], # index means row
+                     columns=cars_data_copy['FuelType'],
+                     dropna=False)
+
+    FuelType   CNG  Diesel  Petrol  NaN
+    Automatic
+    0           15     144    1104   93
+    1            0       0      73    7
+    This relationship shows that Automatic cars (value=1) has only Petrol cars.
+
+Two-way Joint Probability
+-------------------------
+By setting normalize=True in crosstab(), you can convert the values to percentage (probability).
+
+    result = pd.crosstab(index=cars_data_copy['Automatic'],# index means row
+                         columns=cars_data_copy['FuelType'],
+                         normalize=True, # convert the values to percentage (probability)
+                         dropna=True)
+    print(result)
+
+    FuelType        CNG    Diesel    Petrol
+    Automatic
+    0          0.011228  0.107784  0.826347
+    1          0.000000  0.000000  0.054641
+
+    This means the probability of Automatic cars having petrol engine is really high.
+
+Two-Way Marginal Probability Table
+----------------------------------
+
+You will get row sums and column sums by setting margins=True
+shows correlation between the data of two variables
+
+    result = pd.crosstab(index=cars_data_copy['Automatic'],
+                         columns=cars_data_copy['FuelType'],
+                         normalize=True, # convert the values to percentage (probability)
+                         margins=True, # Gives sums of rows and sums of columns
+                         dropna=True) # do not consider NaN values
+
+    FuelType        CNG    Diesel    Petrol       All
+    Automatic
+    0          0.011228  0.107784  0.826347  0.945359
+    1          0.000000  0.000000  0.054641  0.054641
+    All        0.011228  0.107784  0.880988  1.000000
+
+Two-Way Conditional Property Table
+----------------------------------
+    https://www.youtube.com/watch?v=-bijcTgRVBQ - watch this video to understand what is conditional probability
+
+    Conditional probability:
+    focuses on the probability of one event given that another event has already occurred.
+
+    In above data with margins,
+    Conditional probability P(Petrol | Automatic) = probability of petrol with given probability of Automatic
+                                                  = 0.826347/0.945359
+                                                  = 0.874109
+
+    result = pd.crosstab(index=cars_data_copy['Automatic'],
+                         columns=cars_data_copy['FuelType'],
+                         normalize='index', # means sum cols in a row should be 1
+                         margins=True, # Gives sums of rows and sums of columns
+                         dropna=True) # do not consider NaN values
+    print(result)
+
+    FuelType        CNG    Diesel    Petrol
+    Automatic
+    0          0.011876  0.114014  0.874109
+    1          0.000000  0.000000  1.000000
+    All        0.011228  0.107784  0.880988
+
+
+    Conditional probability P(Automatic | Petrol) = probability of Automatic with given probability of Petrol
+                                              = 0.826347/0.880988
+                                              = 0.937978
+
+    result = pd.crosstab(index=cars_data_copy['Automatic'],
+                         columns=cars_data_copy['FuelType'],
+                         normalize='columns', # Sum of rows in a column will become 1
+                         margins=True, # Gives sums of rows and sums of columns
+                         dropna=True) # do not consider NaN values
+    print(result)
+
+    FuelType   CNG  Diesel    Petrol       All
+    Automatic
+    0          1.0     1.0  0.937978  0.945359
+    1          0.0     0.0  0.062022  0.054641
+

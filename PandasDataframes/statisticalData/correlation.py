@@ -8,7 +8,7 @@ cars_data = pd.read_csv('Toyota.csv', index_col=0, na_values=['??', '???', '###'
 cars_data_copy = cars_data.copy()
 
 '''
-It shows the strength of relation between two variables. 
+Correlation shows the strength of relation between two variables. 
 Variables do not have to be numeric, but for our example, we will use numeric variables.
 
 Correlation is bound between -1 and +1. 0 means no correlation at all. 
