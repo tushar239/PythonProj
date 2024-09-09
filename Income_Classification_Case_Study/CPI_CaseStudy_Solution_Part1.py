@@ -78,6 +78,8 @@ dtype: int64
 summary_mum = data.describe()
 print(summary_mum)
 """
+Study 'Variance and Standard Deviation.mp4'
+      'Mean Median and Mode.mp4'
                 age   capitalgain   capitalloss  hoursperweek
 count  31978.000000  31978.000000  31978.000000  31978.000000
 mean      38.579023   1064.360623     86.739352     40.417850 --- average

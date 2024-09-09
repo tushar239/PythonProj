@@ -193,20 +193,28 @@ finding rows with missing age and km
 
 
 print(cars_data.describe())
-returns 5 pointer analysis
+returns 5 pointer analysis for numeric variables
 
-Average is represented by mean.
-Median is represented by 50%
+    Average is represented by mean.
+    Median is represented by 50%
 
-              Price          Age  ...  Age_Converted2  Km_per_month
-count   1436.000000  1336.000000  ...     1336.000000   1321.000000
-mean   10730.824513    55.672156  ...        4.639346      0.111520
-std     3626.964585    18.589804  ...        1.549150      2.526162
-min     4350.000000     1.000000  ...        0.083333      0.000177
-25%     8450.000000    43.000000  ...        3.583333      0.000661
-50%     9900.000000    60.000000  ...        5.000000      0.000880
-75%    11950.000000    70.000000  ...        5.833333      0.001156
-max    32500.000000    80.000000  ...        6.666667     76.000000
+                  Price          Age  ...  Age_Converted2  Km_per_month
+    count   1436.000000  1336.000000  ...     1336.000000   1321.000000
+    mean   10730.824513    55.672156  ...        4.639346      0.111520
+    std     3626.964585    18.589804  ...        1.549150      2.526162
+    min     4350.000000     1.000000  ...        0.083333      0.000177
+    25%     8450.000000    43.000000  ...        3.583333      0.000661
+    50%     9900.000000    60.000000  ...        5.000000      0.000880
+    75%    11950.000000    70.000000  ...        5.833333      0.001156
+    max    32500.000000    80.000000  ...        6.666667     76.000000
+
+print(cars_data.describe(inlcude='o'))
+             JobType    EdType        maritalstatus       occupation relationship    race gender   nativecountry                        SalStat
+    count      31978     31978                31978            31978        31978   31978  31978           31978                          31978
+    unique         9        16                    7               15            6       5      2              41                              2
+    top      Private   HS-grad   Married-civ-spouse   Prof-specialty      Husband   White   Male   United-States   less than or equal to 50,000
+    freq       22286     10368                14692             4038        12947   27430  21370           29170                          24283
+
 
 Filling up NaN Age with mean value
     mean_of_age = cars_data2['Age'].mean()

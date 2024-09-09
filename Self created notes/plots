@@ -1,0 +1,11 @@
+IMPORTANT:
+For categorical variable, following things are useful
+- value_count
+- crosstab - can be used for a single categorical variable or for two categorical variables
+- countplot - can be used for a single categorical variable or for two categorical variables
+- boxplot - can be used for a single categorical variable or for comparing a categorical variable with a numerical variable
+
+For numerical variable, following things are useful
+- histplot/displot
+- boxplot
+- regplot (same as scatterplot with or without regression line) - to compare two numerical variables
