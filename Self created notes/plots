@@ -1,11 +1,12 @@
 IMPORTANT:
 For categorical variable, following things are useful
-- value_count
-- crosstab - can be used for a single categorical variable or for two categorical variables
-- countplot - can be used for a single categorical variable or for two categorical variables
-- boxplot - can be used for a single categorical variable or for comparing a categorical variable with a numerical variable
+- value_count - shows frequencies
+- crosstab - can be used for a single categorical variable to see frequencies or to see the frequencies by showing the relation between two categorical variables
+- countplot - can be used for a single categorical variable or for two categorical variables to see the frequencies
+- boxplot - can be used for a single categorical variable or for comparing a categorical variable with a numerical variable. shows min, median, max analysis (like describe() method).
+            shows min, median, max, 25%(first quartile), 50%(second quartile), 75% analysis(third quartile), like describe() method
 
 For numerical variable, following things are useful
-- histplot/displot
-- boxplot
+- histplot/displot - shows frequency distribution
+- boxplot - shows min, median, max, 25%(first quartile), 50%(second quartile), 75% analysis(third quartile), like describe() method
 - regplot (same as scatterplot with or without regression line) - to compare two numerical variables

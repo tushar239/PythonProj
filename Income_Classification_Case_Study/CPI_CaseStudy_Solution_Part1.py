@@ -384,7 +384,9 @@ capitalgain   0.080154     1.000000    -0.032229      0.080432
 capitalloss   0.060165    -0.032229     1.000000      0.052417
 hoursperweek  0.101599     0.080432     0.052417      1.000000
 
-None of the numeric field is co-related to another because none of them have value close to 1. 
+None of the numeric field is co-related to another because none of them have value close to 1 or -1.
+Close to 0 means no relation.
+ 
 Correlation value varies from -1 to +1.
 '''
 
@@ -408,7 +410,7 @@ Columns:
 # ================================================
 gender = pd.crosstab(index = data2['gender'],
                      columns = 'count',
-                     normalize = True)
+                     normalize = True)# show the result in percentage
 print('Gender Proportion Table:\n ', gender)
 '''
 col_0      count
@@ -423,7 +425,7 @@ This shows that 67% data has Male and 33% data has Female.
 # Gender vs Salary Status (Two Categorical variables):
 # ====================================================
 gender_salstat = pd.crosstab(index = data2['gender'], # index means row
-                     columns = data2['SalStat'],
+                     columns = data2['SalStat'], # output variable
                      margins = True,
                      normalize = 'index') # index means row. normalize = 'index' means you will get row proportion sum = 1
 print('Gender vs SalStat: \n', gender_salstat)

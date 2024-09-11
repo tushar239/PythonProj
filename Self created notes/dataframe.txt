@@ -68,7 +68,7 @@ creating dataframe from dictionary (map)
 cars_data2 = cars_data.copy()
 creating a copy of dataframe. Working on the copy, so that original data remains unchanged.
 
-------------------- Filtering (head, tail, at, iat, loc, iloc, filtering through condition in df, where ----------------------------------
+------------------- Filtering/selecting/slicing (head, tail, at, iat, loc, iloc, filtering through condition in df, where ----------------------------------
 firstNRows = cars_data.head(15)
 selecting the first 15 rows of dataframe. By default, it returns the first 5 rows.
 
@@ -78,11 +78,14 @@ selecting the last 15 rows of dataframe. By default, it returns the last 5 rows.
 result = cars_data.at[4, 'FuelType'] --- 4th row of FuelType column
 at[row id, column name] returns a cell data
 
-result = cars_data.iat[4, 5] --- 4th row of FuelType column
+result = cars_data.iat[4, 5] --- 4th row of FuelType(5th) column
 iat[row id, column id] returns a cell data
 
 Instead of at()/iat(), you can use
 cars_data['FuelType'][4]   --- 4th row of FuelType column
+
+jobtype_and_occupation_data = dataframe[['JobType','occupation']]
+selecting only two columns from dataframe
 
 df.loc takes two arguments, 'row index' and 'column index'
 ------
@@ -109,6 +112,8 @@ selecting 0th, 2nd, 4th, and 7th index rows
 data.iloc[1: 5, 2: 5]
 selecting rows from 1 to 4 and columns from 2 to 4
 
+dataframe with condition
+------------------------
 filtered_data = dataframe[dataframe['Percentage'] > 80]
 selecting rows based on condition. works same as loc() function.
 
@@ -164,7 +169,7 @@ replacing datatype from object to int
 
 cars_data.loc[df['Doors'] = 'three', 'Doors'] = 3
 
------------------- missing data (isnull, isna, isnull().any(axis=1), df[filters], describe(), fillna()-----------------
+------------------ missing data (isnull, isna, isnull().any(axis=1)/all(axis=1), df[filters], describe(), fillna()-----------------
 
 Either you can remove missing (NaN) data or replace them with proper value.
 There are two ways to fill in the missing values.
@@ -181,7 +186,10 @@ returns total null(NaN) cells in each column
 
 
 rows_with_missing_values = cars_data[cars_data.isnull().any(axis=1)]
-selecting rows that have one or more missing values
+selecting rows that have missing values in one or more columns
+
+rows_with_missing_values = cars_data[cars_data.isnull().all(axis=1)]
+selecting rows that have missing values in all columns
 
 rows_with_missing_age = cars_data[cars_data['Age'].isnull()]
 find rows with missing (NaN) age.
@@ -189,6 +197,9 @@ find rows with missing (NaN) age.
 filter1 = rows_with_missing_values['Age'].isnull()
 filter2 = rows_with_missing_values['KM'].isnull()
 rows_with_missing_age_and_km = cars_data[filter1 & filter2]
+finding rows with missing age and km
+
+rows_with_non_missing_age_and_missing_km = cars_data[~filter1 & filter2]
 finding rows with missing age and km
 
 
@@ -447,5 +458,13 @@ Two-Way Conditional Property Table
     Automatic
     0          1.0     1.0  0.937978  0.945359
     1          0.0     0.0  0.062022  0.054641
+
+
+------------------------ dropping/deleting/removing NaN(null) data -----------------------------
+# axis=0 means drop all those ROWs that have missing values
+# axis=1 means drop all those COLUMNs that have missing values
+data2 = data.dropna(axis=0)
+total_rows_left = data2.shape[0]
+
 
 ------------------------- Data visualization (plots/charts) -------------------
