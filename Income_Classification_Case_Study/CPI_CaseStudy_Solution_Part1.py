@@ -580,7 +580,7 @@ sns.countplot(data=data2, x='JobType', hue='SalStat') # y axis is always frequen
 plt.show()
 
 # sns.barplot(...) is different than plt.bar(...)
-# sns's bartplot(...) needs categorical variable on x-axis, numerical variable on y-axis, and categorical variable for hue(not mandatory)
+# sns's barplot(...) needs categorical variable on x-axis, numerical variable on y-axis, and categorical variable for hue(not mandatory)
 sns.barplot(x='JobType', y='age', hue='SalStat', data=data2)
 plt.show()
 
@@ -693,7 +693,7 @@ It can be used for two variables x=categorical variable, y=numerical variable OR
 sns.boxplot() can be used to get 5 number summary for one variable or comparing one variable with another.
 To get exact value by comparing two variables, you can use dataframe.groupby(x axis variable)[y-axis variable].median()
 '''
-sns.boxplot(data=data2, y="hoursperweek", x="SalStat")
+sns.boxplot(data=data2, x="SalStat", y="hoursperweek")
 plt.show()
 # From the plot, it is clearly visible that those who make more than 50k USD per year are more likely to
 # spend 40-50 hours per week.
