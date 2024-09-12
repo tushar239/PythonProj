@@ -45,7 +45,8 @@ print("After dropping the rows with missing values, total rows left: ", total_ro
 # Logistic regression is a machine learning algorithm.
 # It works with numbers only. So, we have to change categorical variables to numbers.
 
-# Reindexing the salary status names to 0,1
+# Machine learning algorithm understands only numeric values.
+# so, Reindexing the salary status names to 0,1.
 
 # map function doesn't work. Instead, use loc function.
 # https://www.geeksforgeeks.org/python-pandas-map/
@@ -261,7 +262,7 @@ print('Misclassified samples: %d' % (test_y != prediction).sum()) # 1483 (954+52
 # ############################################################
 # LOGISTIC REGRESSION - REMOVING INSIGNIFICANT VARIABLES
 # ############################################################
-data3 = data.dropna(axis=0)
+data3 = data.dropna(axis=0) # removing all rows having NaN in any column
 
 # Reindexing the salary status names to 0,1
 data3.loc[(data3['SalStat'] == ' less than or equal to 50,000'), 'SalStat'] = 0
