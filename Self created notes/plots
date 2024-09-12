@@ -17,20 +17,30 @@ For categorical variable, following things are useful
 
                 plt.bar(...) can also be used in place of sns.countplot(), but it is not so convinient.
 
-    - sns.boxplot - can be used for comparing a categorical variable with a numerical variable.
+    - sns.boxplot - can be used just for a numeric variable or for comparing a categorical variable with a numerical variable.
                 shows min, median, max, 25%(first quartile), 50%(second quartile), 75% analysis(third quartile), like describe() method
 
+                sns.boxplot(data=cars_data, y="Price")
+                This will show 5-pointer summary of Price
+
                 sns.boxplot(data=data2, x='SalStat', y='age')
+                sns.boxplot(data=cars_data, y="Price", x="FuelType")
+                This will show 5-pointer summary of Price for every FuelType
+
+                sns.boxplot(data=cars_data, y="Price", x="FuelType", hue="Automatic")
+                This will show 5-pointer summary of Price for every FuelType. And 5-point summary for every Automatic within FuelType
 
     - sns.barplot - can be used for comparing a categorical variable with a numeric variable with hue='another categorical variable'
                 sns.barplot(x='JobType', y='age', hue='SalStat', data=data2)
                 sns.barplot() is different than plt.barplot()
 
+                It can also be understood as a visualization of the group by action.
+
 For numerical variable, following things are useful
 
     - plt.histplot/sns.displot - shows frequency distribution
                                 sns.displot(data2['capitalgain'], bins=10, kde=False)
-    - sns.boxplot - can be used for comparing a categorical variable with a numerical variable.
+    - sns.boxplot - can be used just for a numeric variable or can be used for comparing a categorical variable with a numerical variable.
                 shows min, median, max, 25%(first quartile), 50%(second quartile), 75% analysis(third quartile), like describe() method
     - regplot (same as scatterplot with or without regression line) - to compare two numerical variables
 

@@ -10,6 +10,13 @@ cars_data.dropna(axis=0, inplace=True)
 print(cars_data)
 
 '''
+https://www.geeksforgeeks.org/box-plot-in-python-using-matplotlib/
+A Box Plot is also known as Whisker plot 
+It is created to display the summary of the set of data values having properties like minimum, first quartile, median, third quartile and maximum. 
+In the box plot, a box is created from the first quartile to the third quartile, a vertical line is also there which goes through the box at the median. 
+Here x-axis denotes the data to be plotted while the y-axis shows the frequency distribution.
+
+
 dataframe.describe() or sns.boxplot() can be used to get 5 number summary
 sns.boxplot() can be used to get 5 number summary for one variable or comparing one variable with another.
 To get exact value by comparing two variables, you can use dataframe.groupby(x axis variable)[y-axis variable].median()
@@ -30,6 +37,8 @@ The mean (average) of a data set is found by adding all numbers in the data set 
 The median is the middle value when a data set is ordered from least(min) to greatest(max). 
 The mode is the number that occurs most often in a data set.
 '''
+print(cars_data['Price'].describe())
+
 sns.boxplot(data=cars_data, y="Price")
 plt.show()
 
