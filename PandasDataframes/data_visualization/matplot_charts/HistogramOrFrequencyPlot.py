@@ -4,6 +4,8 @@ import matplotlib as mpl
 import matplotlib.pyplot as plt # pyplot means python plot
 import gotoDataDir
 '''
+sns.displot() is almost same as plt.hist()
+
 Histogram Plot:
 It is a graphical representation of data using bars of different heights
 Histogram groups members into ranges and the height of each bar depicts the FREQUENCY of each RANGE or bin.

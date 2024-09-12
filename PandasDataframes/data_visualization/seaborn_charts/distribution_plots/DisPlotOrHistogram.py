@@ -4,6 +4,9 @@ import seaborn as sns  # It is based on matplotlib, more attractive and informat
 import gotoDataDir
 
 '''
+sns.displot() is almost same as plt.hist()
+
+
 It is used basically for univariant set of observations and visualizes it through a histogram 
 i.e. only one observation and hence we choose one particular column of the dataset.
 '''
@@ -25,12 +28,12 @@ While a histogram counts the number of data points in somewhat arbitrary regions
 KDE shows the density where the points match up the most
 
 '''
-sns.distplot(a=cars_data['Age'], kde=False, color='red')
+sns.displot(cars_data['Age'], kde=False, color='red')
 plt.show()
 
 # KDE shows the density where the points match up the most
-sns.distplot(a=cars_data['Age'], kde=True, color='red')
+sns.displot(cars_data['Age'], kde=True, color='red')
 plt.show()
 
-sns.distplot(a=cars_data['Age'], kde=False, bins=5) # this will show only 5 ranges on x-axis for Age
+sns.displot(cars_data['Age'], kde=False, bins=5) # this will show only 5 ranges on x-axis for Age
 plt.show()
