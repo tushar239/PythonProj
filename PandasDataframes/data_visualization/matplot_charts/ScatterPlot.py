@@ -4,6 +4,9 @@ import matplotlib as mpl
 import matplotlib.pyplot as plt # pyplot means python plot
 import gotoDataDir
 '''
+plt.scatter() is almost same as sns.regplot().
+scatter plot can't show a regression line like regression plot(regplot).
+
 Scatter Plot:
 It is a set of points that represents the values obtained for two different variable plotted on a horizontal and vertical axes.
 
