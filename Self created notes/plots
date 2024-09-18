@@ -40,10 +40,21 @@ For numerical variable, following things are useful
 
     - plt.histplot/sns.displot - shows frequency distribution
                                 sns.displot(data2['capitalgain'], bins=10, kde=False)
-    - sns.boxplot - can be used just for a numeric variable or can be used for comparing a categorical variable with a numerical variable.
-                shows min, median, max, 25%(first quartile), 50%(second quartile), 75% analysis(third quartile), like describe() method
-    - regplot (same as scatterplot with or without regression line) - to compare two numerical variables
 
+    - sns.boxplot - can be used just for a numeric variable(on y-axis) or can be used for comparing a categorical variable with a numerical variable.
+                shows min, median, max, 25%(first quartile), 50%(second quartile), 75% analysis(third quartile), like describe() method
+
+                sns.boxplot(y=cars['price'])
+                same as price_summary=cars['price'].describe()
+
+                sns.boxplot(data=data2, x='SalStat', y='age')
+
+    - sns.regplot (same as scatterplot with or without regression line) - to compare two numerical variables
+    - plt.scatterplot - to compare two numerical variables. you can use it before and after dropping outliers to see whether they are dropped properly.
+                        plt.scatter(x=cars['yearOfRegistration'], y=cars['price'], c='blue')
+                        or
+                        sns.regplot(x='yearOfRegistration', y='price', scatter=True, fit_reg=False, data=cars)
+                        fit_reg=False means you don't want a regression line in the plot
 
 Alternative of boxplot
 

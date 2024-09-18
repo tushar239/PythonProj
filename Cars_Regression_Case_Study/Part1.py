@@ -69,6 +69,8 @@ pd.set_option('display.float_format', lambda x: '%.3f' % x)
 pd.set_option('display.max_columns', 500)
 
 
+###### Let's check the outliers in numerical variables(columns). Outliers can exist in numerical columns only #######
+
 summary = cars.describe()
 print(summary)
 '''
@@ -142,12 +144,11 @@ dtype: int64
 Process finished with exit code 0
 
 '''
+
 # Variable yearOfRegistration
 yearwise_count = cars['yearOfRegistration'].value_counts().sort_index()
 print("Yearwise count: \n", yearwise_count.to_string())
 '''
-Yearwise count: 
- yearOfRegistration
 Yearwise count: 
  yearOfRegistration
 1000       6
@@ -268,7 +269,7 @@ plt.figure(figsize=(7,6))
 sns.regplot(x='yearOfRegistration', y='price', scatter=True, fit_reg=False, data=cars)
 plt.show()
 # this plot is not explaining much  because there are some records with very high price
-# and that is affecting the plot with other prices and also yearOfRegistrations ranges is affected because of outliars.
+# and that is affecting the plot with other prices and also yearOfRegistrations ranges is affected because of outliers.
 
 # Variable price
 '''

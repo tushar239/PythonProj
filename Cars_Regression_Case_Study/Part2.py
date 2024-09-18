@@ -50,6 +50,19 @@ cars = cars[
 print("total filtered records")
 print(cars.shape[0]) # 43155. ~6700 records are dropped
 
+'''
+After outliers are removed from the price, you will see that box plots will start appearing properly
+plt.figure(figsize=(7,6))
+sns.boxplot(data=cars, x='abtest', y='price')
+plt.show()
+plt.figure(figsize=(7,6))
+sns.boxplot(data=cars, x='gearbox', y='price')
+plt.show()
+plt.figure(figsize=(7,6))
+sns.boxplot(data=cars, x='brand', y='price')
+plt.show()
+'''
+
 records_with_month_of_registration_0 = cars[cars['monthOfRegistration'] == 0]
 print('Total Records with monthOfRegistration=0 :\n', records_with_month_of_registration_0.shape[0]) # 2578
 '''

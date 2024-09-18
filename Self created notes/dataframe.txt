@@ -289,6 +289,14 @@ for i in range(0, len(cars_data["Price"]), 1):
     # See indexingAndSelectingData.py to know more about df.loc() method.
     cars_data.loc[i, "Price_Class"] = value
 
+
+Create a new column 'monthsConvertedToYears' as the last column in dataframe
+cars['monthsConvertedToYears'] = cars['monthOfRegistration']/12
+
+Create a new column 'Age' as the last column in dataframe
+cars['Age'] = 2018 - (cars['yearOfRegistration'] + cars['monthsConvertedToYears'])
+cars['Age'] = round(cars['Age'], 2)
+
 ----------------------- Series ----------------------
 Series is like a column in a table. Each row in a series gets a label. Either you can assign a label or it gets its own using ids.
 https://www.w3schools.com/python/pandas/pandas_series.asp
@@ -466,5 +474,11 @@ Two-Way Conditional Property Table
 data2 = data.dropna(axis=0)
 total_rows_left = data2.shape[0]
 
+Dropping duplicates
+cars.drop_duplicates(keep='first', inplace=True)
+
+Dropping columns
+col = ['name', 'dateCrawled', 'dateCreated', 'postalCode', 'lastSeen']
+cars = cars.drop(columns=col, axis=1) # axis=1 means columns. axis=0 means rows.
 
 ------------------------- Data visualization (plots/charts) -------------------
