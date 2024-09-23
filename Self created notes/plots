@@ -6,7 +6,17 @@ correlation works only between numerical variables
 For categorical variable, following things are useful
 
     - value_count - shows frequencies
+
+                seller_frequency = cars['seller'].value_counts()
+
     - crosstab - can be used for a single categorical variable to see frequencies or to see the frequencies by showing the relation between two categorical variables
+
+                seller_crosstab = pd.crosstab(cars['seller'], columns='count', normalize=True)
+                jobtype_salstat = pd.crosstab(index = data2['JobType'], # index means row
+                     columns = data2['SalStat'],
+                     margins = True,
+                     normalize = 'index').round(4)*100 # index means row. normalize = 'index' means you will get row proportion sum = 1
+
     - sns.countplot - it is used to see frequencies. Categorical variable on x-axis, y-axis will be frequency(count). You can add hue='another categorical variable'.
 
                 sns.countplot(data=data2, x='JobType')
@@ -37,6 +47,8 @@ For categorical variable, following things are useful
                 It can also be understood as a visualization of the group by action.
 
 For numerical variable, following things are useful
+    Use describe() to see mean and median for numerical variable. If mean and median are closer, you have good data.
+    Otherwise, there are outliers. you should find them and remove them.
 
     - plt.histplot/sns.displot - shows frequency distribution
                                 sns.displot(data2['capitalgain'], bins=10, kde=False)
