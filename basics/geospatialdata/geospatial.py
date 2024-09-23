@@ -13,3 +13,5 @@ plt.show()
 
 world_data = world_data[['NAME', 'geometry']]
 print(world_data)
+# exporting data to excel
+#world_data.to_excel('world_name_geometry_export.xlsx')
