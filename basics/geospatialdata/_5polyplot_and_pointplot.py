@@ -3,6 +3,8 @@ import geopandas as gpd
 import os
 import matplotlib.pyplot as plt
 
+# plotting from geoson file.
+
 # got data from 'https://github.com/ResidentMario/geoplot-data/tree/master'
 
 # cwd = os.getcwd()
