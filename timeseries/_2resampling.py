@@ -54,6 +54,8 @@ print(df.head())
 df.drop(columns='Name', inplace =True)
 
 # Assuming df is your DataFrame with a datetime index
+# you can resample based on 30s, min etc also
+# Resampling - https://www.geeksforgeeks.org/python-pandas-dataframe-resample/
 df_resampled = df.resample('M').mean() # Resampling to monthly frequency, using mean as an aggregation function
 print(df_resampled.head())
 

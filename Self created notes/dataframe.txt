@@ -75,6 +75,10 @@ selecting the first 15 rows of dataframe. By default, it returns the first 5 row
 lastNRows = cars_data.tail(15)
 selecting the last 15 rows of dataframe. By default, it returns the last 5 rows.
 
+slicing
+df2 = df[1:10]
+df2 has 1st to 9th rows from df
+
 result = cars_data.at[4, 'FuelType'] --- 4th row of FuelType column
 at[row id, column name] returns a cell data
 
