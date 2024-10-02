@@ -7,6 +7,7 @@ from statsmodels.tsa.stattools import adfuller
 
 # reading the dataset using read_csv
 df = pd.read_csv("stock_data.csv",
+                 # convert string date(1/3/2006) to date format(2006-01-03)
                  parse_dates=True, # Here we will use the ‘parse_dates’ parameter in the read_csv function to convert the ‘Date’ column to the DatetimeIndex format. By default, Dates are stored in string format which is not the right format for time series data analysis.
                  index_col="Date" # setting date as index column
                  )

@@ -481,4 +481,12 @@ Dropping columns
 col = ['name', 'dateCrawled', 'dateCreated', 'postalCode', 'lastSeen']
 cars = cars.drop(columns=col, axis=1) # axis=1 means columns. axis=0 means rows.
 
+---------------------- converting string dates to datetime ----------------------
+https://www.geeksforgeeks.org/python-pandas-to_datetime/
+df['Date'] = pd.to_datetime(df['Date'])
+
+---------------------- setting/changing index column ------------------------------
+df.set_index("Date", inplace=True)
+
 ------------------------- Data visualization (plots/charts) -------------------
+see plots file
