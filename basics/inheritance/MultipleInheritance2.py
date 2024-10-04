@@ -19,6 +19,8 @@ class Class3(Class1):
 
 class Class4(Class2, Class3):
     def m(self):
+        super(Class4, self).m() # equivalent to super().m()
+        #super().m() # equivalent to super( Child4, self).m()
         print("In Class4")
 
 

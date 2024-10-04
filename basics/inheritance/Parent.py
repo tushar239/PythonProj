@@ -11,6 +11,7 @@ class Parent:  # by default it extends 'object' class from __builtins__ module.
 
     def method1(self, var):  # non-static method takes 'self' as first parameter
         self.parentVar = var
+        #print(self)
         print("Inside Parent->method1() : " + str(var))
 
     def get_parent_var(self):

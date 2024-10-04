@@ -1,5 +1,5 @@
 import numpy as np
-from inheritance.Child import Child
+from basics.inheritance import Child
 
 '''
 Python List vs Numpy Array

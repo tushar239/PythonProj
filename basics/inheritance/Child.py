@@ -1,6 +1,6 @@
 # object is top base class and if you want to use super(...).method(...) calling feature, then you have to extend
 # object like this or use '__metaclass__ = type'. I don't know why ???
-from inheritance.Parent import Parent
+from basics.inheritance.Parent import Parent
 
 
 # you don't need it for Python 3.x
@@ -8,7 +8,7 @@ from inheritance.Parent import Parent
 class Child(Parent):  # This is same as 'Child extends Parent' in java.
 
     def __init__(self):
-        super().__init__()
+        super().__init__() # equivalent to super( Child, self).__init__()
         self.childVar = Parent.parentStaticVar
 
     # In Python method overloading is not allowed, but method overriding is allowed. There is a reason why it is not
