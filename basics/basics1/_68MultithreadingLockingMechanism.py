@@ -72,10 +72,14 @@ import threading
 # global variable x
 x = 0
 
-
+# function to increment global variable x
 def increment():
-    # function to increment global variable x
-    global x
+    '''
+    https://www.w3schools.com/python/python_variables_global.asp
+    Normally, when you create a variable inside a function, that variable is local, and can only be used inside that function.
+    To create a global variable inside a function, you can use the global keyword.
+    '''
+    global x # To change the value of a global variable inside a function, refer to the variable by using the global keyword:
     x += 1
 
 
