@@ -57,7 +57,7 @@ print(thislist[:4])
 print(thislist[2:])
 print(thislist[-4:-1])
 
-# check if item exists
+# check if item exists (java's contains)
 if "apple" in thislist:
   print("Yes, 'apple' is in the fruits list")
 

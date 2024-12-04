@@ -1,4 +1,5 @@
-# A set is a collection which is unordered, UNCHANGEABLE*, and unindexed.
+# https://www.w3schools.com/python/python_sets.asp
+# A set is a collection which is UNORDERED, UNCHANGEABLE*, and unindexed.
 # Set items are UNCHANGEABLE, but you can remove items and add new items.
 
 thisset = {"apple", "banana", "cherry", True, 1, 2}
@@ -60,7 +61,7 @@ thisset = {"apple", "banana", "cherry"}
 thisset.discard("banana")
 print(thisset) # {'cherry', 'apple'}
 
-# Remove a RANDOM item by using the pop() method.
+# Remove a RANDOM item(because set is unordered) by using the pop() method.
 thisset = {"apple", "banana", "cherry"}
 x = thisset.pop()
 print(x)

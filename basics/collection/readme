@@ -1,11 +1,17 @@
 List -  ordered, changeable, duplicates allowed.
-Tuple - ordered, changeable, duplicates allowed
-Set -   unordered, unchangeable*, and unindexed. duplicates not allowed.
+Tuple - ordered, unchangeable, duplicates allowed
+        tuple is UNCHANGEABLE.
+        If you want to change anything in it, you have to first create a list from that tuple, change it and then covert that list back to tuple.
+Set -   unordered, unchangeable*, and unindexed. duplicates are NOT allowed.
+        *Set items are unchangeable, but you can remove and/or add items whenever you like.
 Dictionary - ordered** and changeable. duplicate keys not allowed.
+        **As of Python version 3.7, dictionaries are ordered. In Python 3.6 and earlier, dictionaries are unordered.
 
-*Set items are unchangeable, but you can remove and/or add items whenever you like.
-**As of Python version 3.7, dictionaries are ordered. In Python 3.6 and earlier, dictionaries are unordered.
+        https://www.geeksforgeeks.org/are-python-dictionaries-ordered/
+        The CPython implementation of dictionaries uses a sparse table that contains indices into another, dense table holding the actual order of keys and values.
+        When a new item is inserted, it goes into the next available slot in the dense table, thus preserving order. When items are deleted, the algorithm maintains the order of the remaining items, ensuring that the order reflects the sequence of insertion and deletion.
 
-https://www.geeksforgeeks.org/are-python-dictionaries-ordered/
-The CPython implementation of dictionaries uses a sparse table that contains indices into another, dense table holding the actual order of keys and values.
-When a new item is inserted, it goes into the next available slot in the dense table, thus preserving order. When items are deleted, the algorithm maintains the order of the remaining items, ensuring that the order reflects the sequence of insertion and deletion.
+        The implementation of ordered dictionaries in Python is highly optimized.
+        For most use cases, the overhead introduced by maintaining order is negligible.
+        However, it's always good practice for developers to be mindful of potential performance implications
+        when working with large data sets or in performance-critical applications
