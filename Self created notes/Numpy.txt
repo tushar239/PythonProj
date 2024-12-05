@@ -12,7 +12,7 @@ Memory Fragmentation: Lists may not store elements in contiguous memory location
 Performance: Lists are not optimized for numerical computations and may have slower mathematical operations due to Python’s interpretation overhead. They are generally used as general-purpose data structures.
 Functionality: Lists can store any data type, but lack specialized NumPy functions for numerical operations.
 
-----------------Creating array------------------
+----------------Creating array (empty,full,array)------------------
 
 Create an empty array filled up with 0s
 empa = np.empty((3, 4), dtype=int)
@@ -37,7 +37,7 @@ If one element is a string, it converts all others to string also
 array = np.array([2, 3, "hi", 5]) : ['2' '3' 'hi' '5']
 array = np.array([2, 3, "hi", Child()]) : ['2' '3' 'hi']  Child instance is going to be garbage collected
 
------------------linspace and arange-----------------
+-----------------creating an array - linspace, arange, arange().reshape()-----------------
 linspace - returns an array of evenly spaced values within the specified interval [start, stop]
 same as arange, function but instead of a step, it uses a sample number.
 
@@ -50,7 +50,7 @@ creates an array from 11 to 19
 array = np.arange(11, 20, 1).reshape(3,3)
 arranges an array in 3 x 3 array
 
------ ones, zeros, random.rand, random.randint, logspace, random.choice  --------
+----- creating an array - ones, zeros, random.rand, random.randint, logspace, random.choice  --------
 
 ones - returns N-D array of 1s
 array = np.ones((5, 4), int)
@@ -80,7 +80,7 @@ returns equally spaced numbers based on log scale
 np.random.choice(10, 15)
 returns 15 random samples in 1D array from 0 to 9
 
------ add, multiply, append, delete, insert -----
+----- add, multiply, append row or col, delete row or col, insert row or col -----
 result = np.add(a,b)
 addition of two arrays a and b. creates third array 'result'
 

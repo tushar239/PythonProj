@@ -44,6 +44,10 @@ thislist = list(("apple", "banana", "cherry")) # note the double round-brackets
 
 # length of the list
 print(len(thislist))
+
+fruits = ["apple", "banana", "cherry"]
+doublefruits = fruits * 2
+print(doublefruits) # ['apple', 'banana', 'cherry', 'apple', 'banana', 'cherry']
 ######################### accessing the list item ###################
 # accessing the list
 print(thislist[1])
@@ -176,7 +180,7 @@ for x in fruits:
         newlist.append('orange')
 print(newlist) # ['apple', 'orange', 'cherry', 'kiwi', 'mango']
 # is same as
-newlist = [x if x != "banana" else "orange" for x in fruits]
+newlist = [x if x != "banana" else "orange" for x in fruits] # if there is else part
 print(newlist) # ['apple', 'orange', 'cherry', 'kiwi', 'mango']
 
 newlist = [x for x in fruits if x != "apple"]
@@ -257,3 +261,4 @@ fruits = ["apple", "mango", "papaya", "pineapple", "cherry"]
 print(green) # apple
 print(tropic) # ['mango', 'papaya', 'pineapple']
 print(red) # cherry
+
