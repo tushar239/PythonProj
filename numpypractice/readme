@@ -1,0 +1,6 @@
+Python List vs Numpy Array
+Python list is like LinkedList whereas Numpy Array is like ArrayList
+Python list can contain different type of data whereas Numypy array can contain same type of data only.
+Numpy array has faster mathematical operations compared to Python List.
+
+https://www.geeksforgeeks.org/python-lists-vs-numpy-arrays/

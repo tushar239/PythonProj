@@ -23,6 +23,11 @@ Datatype: Lists can hold different data types, but this can decrease memory effi
 Memory Fragmentation: Lists may not store elements in contiguous memory locations, causing memory fragmentation and inefficiency.
 Performance: Lists are not optimized for numerical computations and may have slower mathematical operations due to Python’s interpretation overhead. They are generally used as general-purpose data structures.
 Functionality: Lists can store any data type, but lack specialized NumPy functions for numerical operations.
+
+Python List vs Numpy Array
+Python list is like LinkedList whereas Numpy Array is like ArrayList
+Python list can contain different type of data whereas Numpy array can contain same type of data only.
+Numpy array has faster mathematical operations compared to Python List.
 """
 
 thislist = ["apple", "banana", "cherry", "apple", "cherry"]

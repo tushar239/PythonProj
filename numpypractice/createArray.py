@@ -29,7 +29,7 @@ empa = np.empty((3, 4), dtype=int)
 # create full array filled up with 55
 flla = np.full([3, 3], 55, dtype=int)
 
-# create empty array with None value
+# create empty array with 'None' value
 matrix = np.empty(shape=(2, 5), dtype='object')
 
 # create empty array with NaN value

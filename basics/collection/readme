@@ -15,3 +15,9 @@ Dictionary - ordered** and changeable. duplicate keys not allowed.
         For most use cases, the overhead introduced by maintaining order is negligible.
         However, it's always good practice for developers to be mindful of potential performance implications
         when working with large data sets or in performance-critical applications
+
+Python List vs Numpy Array
+    https://www.geeksforgeeks.org/python-lists-vs-numpy-arrays/
+    Python list is like LinkedList whereas Numpy Array is like ArrayList
+    Python list can contain different type of data whereas Numypy array can contain same type of data only.
+    Numpy array has faster mathematical operations compared to Python List.
