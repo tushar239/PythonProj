@@ -1,0 +1,298 @@
+list
+----
+Create array
+
+a = [0] * 10 - create array of 10 0s
+b = [None] * 10 - create array of 10 nulls
+initializes a 4 by 3 array matrix all with 0's
+c =  [[0] * 4] * 3
+d = []  - empty array
+
+thislist = ["apple", "banana", "cherry", "apple", "cherry"]
+
+list1 = ["abc", 34, True, 40, "male"] - multiple type data in array
+
+fruits = ["apple", "banana", "cherry"]
+doublefruits = fruits * 2
+print(doublefruits) # ['apple', 'banana', 'cherry', 'apple', 'banana', 'cherry']
+
+thislist[1]
+thislist[-1]
+thislist[2:5]
+thislist[-4:-1]
+
+if "apple" in thislist:
+   print("Yes, 'apple' is in the fruits list")
+
+thislist[1] = "blackcurrant"
+thislist[1:3] = ["blackcurrant", "watermelon"]
+
+Modification
+
+thislist.insert(2, "watermelon")
+thislist.append("orange")
+thislist.extend(tropical) - joining two lists
+
+thislist.remove("banana") - removing first 'banana'
+
+thislist.pop(1) - removing by index number
+thislist.pop() - removing last element
+
+del thislist[0] - delete the first item
+del thislist - delete entire list
+thislist.clear()
+
+
+Accessing
+
+for x in thislist:
+  print(x)
+
+for i in range(len(thislist)):
+  print(thislist[i])
+
+while i < len(thislist):
+  print(thislist[i])
+  i = i + 1
+
+Comprehension
+
+[print(x) for x in thislist]
+newlist = [x for x in thislist]
+
+fruits = ["apple", "banana", "cherry", "kiwi", "mango"]
+newlist = []
+for x in fruits:
+  if "a" in x:
+    newlist.append(x)
+print(newlist)
+
+		is same as 
+
+newlist = [x for x in fruits if "a" in x]
+
+for x in fruits:
+    if x != 'banana':
+        newlist.append(x)
+    else:
+        newlist.append('orange')
+
+		is same as
+
+newlist = [x if x != "banana" else "orange" for x in fruits] # if there is else part
+
+sorting a list
+
+thislist.sort()
+thislist.sort(reverse = True)
+
+Copying one list to another
+
+mylist = thislist.copy()
+mylist = list(thislist)
+mylist = thislist[:]
+
+Joining two lists
+
+list3 = list1 + list2
+list1.extend(list2)
+for x in list2:
+  list1.append(x)
+print(list1)
+
+Unpacking
+
+(one, two, three) = ["a", "b", "c"]
+
+fruits = ["apple", "banana", "cherry", "strawberry", "raspberry"]
+
+(green, yellow, *red) = fruits
+print(green) # apple
+print(yellow) # banana
+print(red) # ['cherry', 'strawberry', 'raspberry']
+
+(green, *tropic, red) = fruits
+print(green) # apple
+print(tropic) # ['mango', 'papaya', 'pineapple']
+print(red) # cherry
+
+
+Set (UNORDERED)
+---
+creating a set
+thisset = {"apple", "banana", "cherry", True, 1, 2}
+creating a set using set() constructor
+thisset = set(("apple", "banana", "cherry")) 
+
+Accessing
+for x in thisset:
+  print(x)
+
+print("banana" in thisset) # True
+print("banana" not in thisset) # False
+
+add
+update/union/set1|set2/set1+set2 - same as extends in list
+intersection/&
+difference/set1 - set2
+difference_update
+symmetric_difference/set1^set2
+symmetric_difference_update
+remove/discard
+pop() - will pop a random element
+clear()
+del thisset
+comprehension is same list
+
+
+tuple(UNCHANGEABLE)
+-----
+
+same as list, except that it is UNCHANGEABLE.
+
+x = ("apple", "banana", "cherry")
+y = list(x) - converting tuple to list
+
+
+
+dictionary (ORDERED since v3.7)
+----------
+thisdict = {
+  "brand": "Ford",
+  "electric": False,
+  "year": 1964,
+  "colors": ["red", "white", "blue"]
+}
+print(thisdict)
+print(thisdict["brand"])
+print(len(thisdict))
+print(type(thisdict))
+
+# Using dict() constructor
+thisdict = dict(name = "John", age = 36, country = "Norway")
+print(thisdict)
+
+thisdict = {
+  "brand": "Ford",
+  "model": "Mustang",
+  "year": 1964
+}
+mydict = dict(thisdict)
+
+keys = thisdict.keys()
+values = thisdict.values()
+keyValues = thisdict.items() # # dict_items([('brand', 'Ford'), ('model', 'Mustang'), ('year', 1964)])
+
+car["color"] = "white"
+car["year"] = 2020
+thisdict.update({"year": 2020})
+thisdict.pop("model")
+thisdict.popitem() - removes the last inserted item
+del thisdict["model"]
+thisdict.clear()
+
+
+if "model" in thisdict:
+  print("Yes, 'model' is one of the keys in the thisdict dictionary")
+
+for key in thisdict:
+  print(thisdict[key])
+
+for key in thisdict.keys():
+  print(key)
+
+for value in thisdict.values():
+  print(value)
+
+for key, value in thisdict.items():
+  print(key, value)
+
+
+mydict = thisdict.copy()
+
+myfamily = {
+  "child1" : {
+    "name" : "Emil",
+    "year" : 2004
+  },
+  "child2" : {
+    "name" : "Tobias",
+    "year" : 2007
+  },
+  "child3" : {
+    "name" : "Linus",
+    "year" : 2011
+  }
+}
+
+child1 = {
+  "name" : "Emil",
+  "year" : 2004
+}
+child2 = {
+  "name" : "Tobias",
+  "year" : 2007
+}
+child3 = {
+  "name" : "Linus",
+  "year" : 2011
+}
+
+myfamily = {
+  "child1" : child1,
+  "child2" : child2,
+  "child3" : child3
+}
+
+print(myfamily["child2"]["name"])
+
+NumPy array
+-----------
+Python List vs Numpy Array
+https://www.geeksforgeeks.org/python-lists-vs-numpy-arrays/
+
+Creating array
+empty,full,array
+
+creating an array 
+linspace, arange, arange(...).reshape()
+
+creating an array 
+ones, zeros, random.rand, random.randint, logspace, random.choice
+
+Modification of an array
+add, multiply, append row or col, delete row or col, insert row or col
+
+iterate an array
+for i in np.arange(start=0, stop=array.size, step=1, dtype=int):
+    print(str(array[i]))
+
+Accessing/Slicing
+syntax for 1D array - array[start : stop : step]
+syntax for 2D array - array[row start : row stop : row step, col start : col stop : col step]
+
+array = np.arange(1, 10, 1).reshape((3,3))
+print(array.shape) # (3,3)
+print(array.shape[0])  # gives number of rows - 3
+print(array.shape[1])  # gives number of cols - 3
+
+iterating 2-D array
+arr = np.array([[1, 2, 3], [4, 5, 6]])
+for x in arr:
+  for y in x:
+    print(y)
+
+Take input
+----------
+age = input("What's your age?")
+
+Swap values
+-----------
+x, y = y, x
+
+Package
+-------
+you can import entire package(library) or a class or a function
+import numpy ---- this is like 'import numpy.*' in jaa
+from numpy.core import ComplexWarning ---- this is like 'import numpy.core.ComplexWarning' in jaa
+from numpy.core.numeric import full --- you can't import just a function in java
