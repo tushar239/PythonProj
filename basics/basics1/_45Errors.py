@@ -1,4 +1,14 @@
 """
+There is no checked and unchecked exceptions concept in Python
+            BaseException
+                |
+            Exception
+                |
+    AssertionError  ValueError   RuntimeError   User defined exceptions
+
+All custom exceptions should be inherited from Exception class (do not use BaseException)
+
+
 What is an Exception?
 An unwanted or unexpected event which disturbs the normal flow of the program is called exception.
 Whenever an exception occurs, then immediately program will terminate abnormally.
@@ -61,7 +71,7 @@ class D(C):
     pass
 
 
-# he following code will print B, C, D in that order
+# following code will print B, C, D in that order
 for cls in [B, C, D]:
     try:
         raise cls()
@@ -74,7 +84,13 @@ for cls in [B, C, D]:
 # if the except clauses were reversed (with except B first), it would have printed B, B, B — the first matching except clause is triggered.
 
 """
-All exceptions inherit from BaseException, and so it can be used to serve as a wildcard. Use this with extreme caution, since it is easy to mask a real programming error in this way! It can also be used to print an error message and then re-raise the exception (allowing a caller to handle the exception as well):
+All exceptions inherit from BaseException, and so it can be used to serve as a wildcard. 
+Use this with extreme caution, since it is easy to mask a real programming error in this way! 
+It can also be used to print an error message and then re-raise the exception (allowing a caller to handle the exception as well):
+
+IMPORTANT:
+The built-in exception classes can be subclassed to define new exceptions; 
+programmers are encouraged to derive new exceptions from the Exception class or one of its subclasses, and not from BaseException. 
 
 # import sys --- default
 
@@ -86,9 +102,9 @@ except OSError as err:
     print("OS error: {0}".format(err))
 except ValueError:
     print("Could not convert data to an integer.")
-except BaseException as err:
+except BaseException as err:     #----- All exceptions inherit from BaseException
     print(f"Unexpected {err=}, {type(err)=}")
-    raise
+    raise   # re-raise the exception
 """
 
 """
@@ -165,11 +181,13 @@ if x < 0:
 
 
 x = "hello"
-
 if not type(x) is int:
     raise TypeError("Only integers are allowed")
+    OR
+x="hello"
+if type(x) is not int:
+    raise TypeError("Only integers are allowed")
 """
-
 # https://docs.python.org/3/tutorial/errors.html#tut-userexceptions
 
 """

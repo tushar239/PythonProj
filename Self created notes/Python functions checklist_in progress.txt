@@ -301,7 +301,7 @@ for char in "banana":
 
 x[1]  - 'b'
 
-if "ban" in x:
+if "ban" in x:  ------ same as java's contains method
    print('yes')
 
 if "bay" not in x:
@@ -316,7 +316,7 @@ while "a" in x:
   count = count + 1
 
 
-find vs index methods
+		find vs index methods
 
 # The find() method returns -1 if the value is not found
 txt = "Mi casa, su casa."
@@ -430,3 +430,74 @@ you can import entire package(library) or a class or a function
 import numpy ---- this is like 'import numpy.*' in jaa
 from numpy.core import ComplexWarning ---- this is like 'import numpy.core.ComplexWarning' in jaa
 from numpy.core.numeric import full --- you can't import just a function in java
+
+
+Errors
+------
+There is no checked and unchecked exceptions concept in Python
+            BaseException
+                |
+            Exception
+                |
+    AssertionError  ValueError   RuntimeError   User defined exceptions
+
+All custom exceptions should be inherited from Exception class (do not use BaseException)
+
+
+try:
+    f = open('myfile.txt')
+    s = f.readline()
+    i = int(s.strip())
+except OSError as err:
+    print("OS error: {0}".format(err))
+except ValueError:
+    print("Could not convert data to an integer.")
+except BaseException as err:     OR simply write except: --- all other exceptions will be handled
+    print(f"Unexpected {err=}, {type(err)=}")
+    raise   # re-raise the exception
+
+try:
+    print(x)
+except NameError:
+    print("Variable x is not defined")
+except:			--- all other exceptions will be handled
+    print("Something else went wrong")
+else:			--- if there is no exception, then what to do
+  print("Nothing went wrong")
+
+
+try:
+  print(x)
+except:
+  print("Something went wrong")
+finally:
+  print("The 'try except' is finished")
+
+
+x = -1
+if x < 0:
+    raise Exception("Sorry, no numbers below zero")
+
+x="hello"
+if type(x) is not int:
+    raise TypeError("Only integers are allowed")
+
+
+Exception chaining
+
+try:
+    func()
+except ConnectionError as exc:
+    raise RuntimeError('Failed to open database') from exc
+
+Creating custom exceptions 
+class B(Exception):
+    pass
+
+
+class C(B):
+    pass
+
+
+class D(C):
+    pass
