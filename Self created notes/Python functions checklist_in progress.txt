@@ -426,6 +426,11 @@ x, y = y, x
 
 Package
 -------
+# You can import entire package or a specific module inside a package or just a class or function inside the module
+# import packagename - this will import all modules (.py) files inside this package
+# import packagename.module - this will import a specific module in side a package
+# from packagename.module import class1, class2, fun1, fun2
+
 you can import entire package(library) or a class or a function
 import numpy ---- this is like 'import numpy.*' in jaa
 from numpy.core import ComplexWarning ---- this is like 'import numpy.core.ComplexWarning' in jaa
