@@ -282,6 +282,140 @@ for x in arr:
   for y in x:
     print(y)
 
+String
+------
+Multiline quotes
+a = """Lorem ipsum dolor sit amet,
+consectetur adipiscing elit,
+sed do eiusmod tempor incididunt
+ut labore et dolore magna aliqua."""
+
+Just like an array
+x = 'banana'
+for idx in range(0, len(x)):
+    print(x[idx], "=", id(x[idx]))
+
+for char in "banana":
+    print(char, end=", ")
+
+
+x[1]  - 'b'
+
+if "ban" in x:
+   print('yes')
+
+if "bay" not in x:
+   print('yes')
+
+	OR
+if x.find("bay") == -1:
+   print('yes')
+
+count: int = 0
+while "a" in x:
+  count = count + 1
+
+
+find vs index methods
+
+# The find() method returns -1 if the value is not found
+txt = "Mi casa, su casa."
+x = txt.find("casa")
+print(x)  # 3
+
+# Where in the text is the last occurrence of the string "casa"?
+x = txt.rfind("casa")
+print(x)  # 12
+
+
+# index() throws an ERROR, if the value is not found
+x = txt.index("casa")
+print(x)  # 3
+x = txt.rindex("casa")
+print(x)  # 12
+
+s.replace('a', '', 1)
+
+x = txt.startswith("Hello") # True
+
+ord() function to get a number for a character
+ord("h") # 104
+
+
+b = "Hello, World!"
+print(b[2:5])  # llo
+print(b[:5])  # Hello
+print(b[2:])  # llo, World!
+print(b[-5:-2])  # orl  --- -2,-3,-4 index elements are considered
+
+
+a.upper()
+a.lower()
+
+txt = "Hello My Name Is PETER"
+x = txt.swapcase()
+print(x)  # hELLO mY nAME iS peter
+
+
+a.strip() - same as trim
+a.lstrip()
+a.rstrip()
+
+a = "Hello, World!"
+print(a.split(","))  # ['Hello', ' World!']
+
+
+txt = "Thank you for the music\nWelcome to the jungle"
+x = txt.splitlines()
+print(x)  # ['Thank you for the music', 'Welcome to the jungle']
+
+txt = "I could eat bananas all day"
+x = txt.partition("bananas")
+print(x)  # ('I could eat ', 'bananas', ' all day')
+
+myTuple = ("John", "Peter", "Vicky")
+x = "#".join(myTuple)
+print(x)  # John#Peter#Vicky
+
+# Make the first letter in each word upper case.
+txt = "Welcome to my world"
+x = txt.title()
+print(x)  # Welcome To My World
+
+# use a dictionary with ascii codes to replace 83 (S) with 80 (P):
+mydict = {83:  80}
+txt = "Hello Sam!"
+print(txt.translate(mydict))  # Hello Pam!
+
+# Print the word "banana", taking up $ of 20 characters, with "banana" in the middle.
+txt = "banana"
+x = txt.center(20, "$")
+print(x)  # $$$$$$$banana$$$$$$$
+
+age = 36
+txt = "My name is John, I am " + str(age)
+print(txt)  # My name is John, I am 36
+
+# OR
+
+age = 36
+txt = "My name is John, I am {}"
+print(txt.format(age))  # My name is John, I am 36
+
+quantity = 3
+itemno = 567
+price = 49.95
+myorder = "I want {} pieces of item {} for {} dollars."
+print(myorder.format(quantity, itemno, price))  # I want 3 pieces of item 567 for 49.95 dollars.
+
+
+quantity = 3
+itemno = 567
+price = 49.95
+myorder = "I want to pay {2} dollars for {0} pieces of item {1}."
+print(myorder.format(quantity, itemno, price))  # I want to pay 49.95 dollars for 3 pieces of item 567.
+
+
 Take input
 ----------
 age = input("What's your age?")
