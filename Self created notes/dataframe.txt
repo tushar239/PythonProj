@@ -150,7 +150,7 @@ returns total null(NaN) cells in each column
     FuelType     100
     HP             6
 
---------------------- Data Clean Up (read_csv with nav_values, unique, replace, where, loc functions) ------------------------
+--------------------- Data Clean Up (read_csv with na_values, unique, replace, where, loc functions) ------------------------
 cars_data = pd.read_csv(filepath_or_buffer = 'Toyota.csv', index_col=0, na_values=["??", "????"])
 replacing ?? and ???? with NaN
 
@@ -243,7 +243,9 @@ Filling up NaN Age with median value
     cars_data2.fillna({'KM' : median_of_km}, inplace=True)
 
 Filling up NaN MetColor with mode value
-    In statistics, the mode is the value that is repeatedly occurring in a given set. We can also say that the value or number in a data set, which has a high frequency or appears more frequently, is called mode or modal value.
+    In statistics, the mode is the value that is repeatedly occurring in a given set.
+    We can also say that the value or number in a data set, which has a high frequency or appears more frequently,
+    is called mode or modal value.
 
     mode_value_of_MetColor = cars_data2['MetColor'].mode()
     cars_data2.fillna({'MetColor': mode_value_of_MetColor[0]}, inplace=True)
@@ -302,7 +304,8 @@ cars['Age'] = 2018 - (cars['yearOfRegistration'] + cars['monthsConvertedToYears'
 cars['Age'] = round(cars['Age'], 2)
 
 ----------------------- Series ----------------------
-Series is like a column in a table. Each row in a series gets a label. Either you can assign a label or it gets its own using ids.
+Series is like a column in a table. Each row in a series gets a label.
+Either you can assign a label or it gets its own using ids.
 https://www.w3schools.com/python/pandas/pandas_series.asp
 On any series, you can call value counts(). It gives you a count of all types of values in that series.
 In dataframe, each column returns a Series type.
