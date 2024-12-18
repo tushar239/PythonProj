@@ -11,12 +11,14 @@ In Python, names with double leading and trailing underscores (__) have special 
 These names are known as dunder names, and dunder is short for double underscore.
 In most cases, Python uses dunder names for methods that support a given functionality in the language’s data model.
 Dunder methods are also known as special methods, and in some informal circles, they’re called magic methods.
-Why magic? Because Python calls them automatically in response to specific actions. For example, when you call the built-in len() function with a list object as an argument, Python calls list.
+Why magic? Because Python calls them automatically in response to specific actions. For example, when you call the
+built-in len() function with a list object as an argument, Python calls list.
 __len__() under the hood to retrieve the list’s length.
 In general, dunder names are reserved for supporting internal Python behaviors.
 So, you should avoid inventing such names.
 Instead, you should only use documented dunder names.
-In the end, creating a custom dunder name won’t have a practical effect because Python only calls those special methods that the language defines.
+In the end, creating a custom dunder name won’t have a practical effect because Python only calls those special methods
+that the language defines.
 
 Dunder here means “Double Under (Underscores)”.
 '''
