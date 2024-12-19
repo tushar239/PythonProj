@@ -144,7 +144,8 @@ class D:
         # __name is a private instance variable. It can't be accessed outside this class.
         self.__name = name
         self.age = age
-        # _address is a protected instance variable. It can be accessed in derived class as well in the same package. But it is a convention that you don't use it outside this and derived classes.
+        # _address is a protected instance variable. It can be accessed in derived class as well in the same package.
+        # But it is a convention that you don't use it outside this and derived classes.
         self._address = address
 
     def printname(self):
