@@ -1,6 +1,7 @@
 '''
 https://www.geeksforgeeks.org/q-learning-in-python/
 https://www.youtube.com/watch?v=QRMNPCsnSHk&list=PLWPirh4EWFpEjbNicXUZk0wrPBzBlAlU_&index=19
+https://www.youtube.com/watch?v=J3qX50yyiU0
 '''
 
 import numpy as np
