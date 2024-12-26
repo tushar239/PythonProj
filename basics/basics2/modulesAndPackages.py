@@ -11,9 +11,10 @@ It is recommended that modules be named with just a single word.
 
 Naming Python packages
 
-A Python package is a collection of modules. It is typically a folder containing modules and maybe other folders each of which can contain more modules and/or folders.
-A package folder typically contains a file called “__init__.py” which is a way to signal to Python that this folder is a package. The contents of “__init__.py” typically
-contain code to be executed upon package initialization within a larger program.
+A Python package is a collection of modules.
+It is typically a folder containing modules and maybe other folders each of which can contain more modules and/or folders.
+A package folder typically contains a file called “__init__.py” which is a way to signal to Python that this folder is a package.
+The contents of “__init__.py” typically contain code to be executed upon package initialization within a larger program.
 '''
 
 '''
