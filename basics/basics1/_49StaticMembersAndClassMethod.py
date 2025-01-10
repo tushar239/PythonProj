@@ -96,12 +96,12 @@ print(a.roll)  # prints "1"
 print(b.roll)  # prints "2"
 
 
-# Now if we change the stream for just a it won't be changed for b
+# IMPORTANT: Now if we change the stream for just a, it won't be changed for b
 a.stream = 'ece'
 print(a.stream)  # prints 'ece'
 print(b.stream)  # prints 'cse'
 
-# To change the stream for all instances of the class we can change it
+# IMPORTANT: To change the stream for all instances of the class we can change it
 # directly from the class
 CSStudent.stream = 'mech'
 
@@ -127,7 +127,7 @@ class Person:
 
     # a static method to check if a Person is adult or not.
     @staticmethod
-    def isAdult(age):
+    def isAdult(age): # static methods can't access instance variables
         Person.someclassvariable = 35
         return age > 18
 

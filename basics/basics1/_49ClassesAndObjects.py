@@ -94,10 +94,10 @@ class Person:
     # This is also a magic method. When you compare two instances of this class (instance1 == instance2),
     # this magic method will be called.
     def __eq__(self, other):
-        return self.age == other.age
+        return self.age == other.age and self.name == other.name
 
     def __hash__(self):
-        return hash(self.age)  # not doing any changes
+        return hash(self.age) + hash(self.name)# not doing any changes
 
     def __str__(self):
         # Using Turnary operator
@@ -129,10 +129,18 @@ print(person == person2)  # True
 person.age = 37
 print(person == person2)  # False
 
+print('.....testing two person objects in set.....')
 person.age = 35
-s = {person, person2}  # as hash of both instances are same, set will keep only one of these instances.
+s = {person, person2}  # IMPORTANT: as __eq__ and __hash__ of both instances are same, set will keep only one of these instances.
 for element in s:
     print(element)  # John#35 --- when you print an instance, __str__ method will be called.
+
+person3 = Person("T", 42)
+person4 = Person("M", 42)
+setOfPersons = {person3, person4}
+for element in setOfPersons:
+    print(element)
+print("...............................")
 
 # deleting an instance. This is like person=null in java.
 del person

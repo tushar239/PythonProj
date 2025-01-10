@@ -62,7 +62,7 @@ print("free" in txt)
 
 # Print only if "free" is present
 txt = "The best things in life are free!"
-if "free" in txt:  # implicitly calls a magic method __contains__ of str class
+if "free" in txt:  # implicitly calls a magic method __contains__ of str class. Same as subString() of Java
     print("Yes, 'free' is present.")  # Yes, 'free' is present.
 
 # Check if "expensive" is NOT present in the following text:
@@ -79,7 +79,7 @@ if txt.find("expensive") == -1:
 
 s: str = "abcad"
 count: int = 0
-while "a" in s: # see whether 'a' is inside s
+while "a" in s: # see whether 'a' is inside
     itr = s.find("a")
     count = count + 1
     # s.replace('a', '') # all a's will be replaced

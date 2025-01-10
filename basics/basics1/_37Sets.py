@@ -1,5 +1,7 @@
 """
 Set items are unchangeable, meaning that we cannot change the items after the set has been created.
+
+https://www.geeksforgeeks.org/sets-in-python/
 """
 
 thisset = {"apple", "banana", "cherry", "apple"}
