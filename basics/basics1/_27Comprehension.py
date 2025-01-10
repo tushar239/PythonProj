@@ -63,3 +63,14 @@ print(newlist)  # ['hello', 'hello', 'hello', 'hello', 'hello']
 # when you need else condtion, for loop goes after if-else
 newlist = [x if x != "banana" else "orange" for x in fruits]
 print(newlist)  # ['apple', 'orange', 'cherry', 'kiwi', 'mango']
+
+# Dictionary Comprehensions
+# https://www.geeksforgeeks.org/comprehensions-in-python/
+input_list = [1, 2, 3, 4, 5, 6, 7]
+dict_using_comp = {var: var ** 3 for var in input_list if var % 2 != 0}
+print("Output Dictionary using dictionary comprehensions:", dict_using_comp)
+
+# Set Comprehension
+input_list = [1, 2, 3, 4, 4, 5, 6, 6, 6, 7, 7]
+set_using_comp = {var for var in input_list if var % 2 == 0}
+print("Output Set using set comprehensions:", set_using_comp)

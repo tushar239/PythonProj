@@ -45,14 +45,15 @@ https://www.tutorialsteacher.com/python/magic-methods-in-python
 Access modifiers:
 https://www.geeksforgeeks.org/encapsulation-in-python/
 Python has three modifiers for instance variables.
-- private (created with suffix '__', e.g. __name, __getname())
+- private (created with prefix '__', e.g. __name, __getname())
 - public (default modifier)
-- protected (created with suffix '_', e.g. _name, _getname())
+- protected (created with prefix '_', e.g. _name, _getname())
     Protected members (in C++ and JAVA) are those members of the class that cannot be accessed outside the class but can be accessed from within the class and its subclasses.
     Although the protected variable can be accessed out of the class as well as in the derived class(modified too in derived class), it is customary(convention not a rule) to not access the protected out the class body.
 """
 
-# sometimes, you just want to create an empty class for some kind of placeholder. Just like function, you can't have empty class. But you can just add 'pass' statement.
+# sometimes, you just want to create an empty class for some kind of placeholder.
+# Just like function, you can't have empty class. But you can just add 'pass' statement.
 class MyClass:
     pass
 
@@ -70,7 +71,8 @@ print(obj.x)
 class Person:
     # self - it means current instance of the class and it is used to access variables that belong to the class.
     # It is like 'this' in java.
-    # It does not have to be named self , you can call it whatever you like, but it has to be the first parameter of any function in the class.
+    # It does not have to be named self , you can call it whatever you like,
+    # but it has to be the first parameter of any function in the class.
     def __init__(self, name, age):
         self.name = name
         self.age = age
@@ -89,7 +91,8 @@ class Person:
     def __add__(self, other):
         return self.age + other.age
 
-    # This is also a magic method. When you compare two instances of this class (instance1 == instance2), this magic method will be called.
+    # This is also a magic method. When you compare two instances of this class (instance1 == instance2),
+    # this magic method will be called.
     def __eq__(self, other):
         return self.age == other.age
 
