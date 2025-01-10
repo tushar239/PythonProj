@@ -51,6 +51,10 @@ print("Initial Queue:", queue)  # deque(['John', 'Steve', 'Harry'])
 queue.append("Kevin")
 print("After adding a new element to queue:", queue)  # ["John", "Steve", "Harry", "Kevin"]
 
-poppedElement = queue.popleft()
+poppedElement = queue.popleft() # popping the first element
 print("Popped Element:", poppedElement)  # John
 print("Queue after popping an element:", queue)  # ["Steve", "Harry", "Kevin"]
+
+poppedElement = queue.pop() # popping the last element
+print("Popped Element:", poppedElement)  # Kevin
+print("Queue after popping an element:", queue)  # ['Steve', 'Harry']
