@@ -168,6 +168,7 @@ Creating temporary table using select query
     WITH temporaryTable(LName, FName) as
     (SELECT LastName, FirstName
     from persons)
+
     SELECT LName, FName
     FROM temporaryTable;
 

@@ -84,11 +84,14 @@ class Person:
         print('Destructor called, instance is deleted.')
 
     def myfunc(self):
+        #self.name2 = 'abc' # you can create an instance variable like this inside a method also.
+        # print("Hello my name is " + self.name2)
         print("Hello my name is " + self.name)
 
     # This is a magic method. Python has many inbuilt magic methods. They work as operator overloading.
     # Whenever you do instance1 + instance2, __add__ method will be called
     def __add__(self, other):
+
         return self.age + other.age
 
     # This is also a magic method. When you compare two instances of this class (instance1 == instance2),
@@ -100,17 +103,29 @@ class Person:
         return hash(self.age) + hash(self.name)# not doing any changes
 
     def __str__(self):
-        # Using Turnary operator
+        # Using Ternary operator
         # Syntax: (if_test_is_false, if_test_is_true)[test]
-        return "#".join([self.name,
-                         ("", str(self.age))[self.age != None]  # Using Ternary operator
-                         ])
-        """
-        return "#".join([self.name, 
-                            str(self.age) if self.age != None else ""  # Using Comprehension
+        '''
+        anAge=""
+        if(self.age != None):
+            anAge=str(self.age)
+        return "#".join([self.name, anAge])
+        '''
+        return '#'.join([
+                            self.name,
+                            str(self.age) if self.age != None else "" # Ternary operator - https://www.geeksforgeeks.org/ternary-operator-in-python/
                         ])
         """
-        # return self.name+"#",self.age
+        return "#".join([self.name,
+                         ("", str(self.age))[self.age != None]  # Using comprehension
+                         ])
+        """
+        """
+        return "#".join([self.name, 
+                            str(self.age) if self.age != None else ""  # Using Ternary operator
+                        ])
+        """
+        # return self.name+"#"+str(self.age)
 
 
 person = Person("John", 36)
