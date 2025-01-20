@@ -27,6 +27,7 @@ https://www.geeksforgeeks.org/python-interface-module/
 # Create a parent class
 class Person:  # it is same as 'class Person(object)'. object is a parent class for all claases.
     def __init__(self, fname, lname):
+        print('Person init method is called')
         self.firstname = fname
         self.lastname = lname
 
@@ -42,7 +43,7 @@ x.printname()
 # Create a child class
 # To create a class that inherits the functionality from another class, send the parent class as a parameter when creating the child class.
 # If there is no __init__() in the child class, it will be inherited from the parent class.
-# But if there is an __init() in the child class, parent class' __init__() will not be called automatically from child class' __init__() method. You have to call it explicitly.
+# But if there is an __init__() in the child class, parent class' __init__() will not be called automatically from child class' __init__() method. You have to call it explicitly.
 class Student(Person):
     """
     # IMP: In Java, if there is a non-default constructor in parent class, you will be forced to add similar constructor in child class, but that is not true for python.
@@ -50,6 +51,10 @@ class Student(Person):
     def __init__(self, fname, lname):
         super().__init__(fname, lname)
     """
+
+    def __init__(self, fname, lname):
+        super().__init__(fname, lname)
+        print('Student init method is called')
 
     pass  # Note: Use the pass keyword when you do not want to add any other properties or methods to the class.
 
@@ -75,6 +80,7 @@ class Student(Person):
 
 x = Student("Mike", "Olsen", 2019)
 x.printname()
+
 """
 O/P:
 Mike Olsen
