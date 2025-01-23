@@ -98,8 +98,20 @@ Non-Null Count  Dtype
 --------------  ----- 
 6 non-null      object
 '''
-
-# just like df.loc('math score' > 50)
+mathScoreGreaterThan50Series = df['math score'] > 50
+print(type(mathScoreGreaterThan50Series))
+print("mathScoreGreaterThan50Series: \n", mathScoreGreaterThan50Series)
+'''
+0    False
+1     True
+2     True
+3     True
+4     True
+5    False
+6     True
+'''
+# just like df.loc[df['math score'] > 50]
+# df['math score'] > 50 returns a series of True and False values
 mathGreaterDataframe = df[df['math score'] > 50]
 print(mathGreaterDataframe)
 '''
@@ -207,15 +219,38 @@ print("------- changing index column ---------")
 subsetDf = df.loc[2:4, ['Name', 'math score']]
 print(subsetDf)
 '''
-
+print("------ changing index col --------")
 df = df.set_index("Name")
 print(df)
+'''
+        gender  math score test preparation
+Name                                       
+Josh      male          50             none
+Jay       male         100        completed
+sachin    male         100             none
+Geetha  female          80        completed
+Amutha  female          75        completed
+ganesh    male          40             none
+None      None          60             none
+'''
 for i in range(0, len(df['math score']), 1):
-    aCellFromDf = df['math score'][i]
+    # aCellFromDf = df['math score'][i]
+    # or
+    aCellFromDf = df.iloc[i, 1]
     print(aCellFromDf)
     #df['math score'][i] = df['math score'][i] * 10 # not allowed. use df.loc[]
+'''
+50
+100
+100
+80
+75
+40
+60
+'''
 
-subsetDf = df.loc[2:4, ['Name', 'math score']]
+
+subsetDf = df.loc[['sachin','Amutha'], ['gender', 'math score']]
 print(subsetDf)
 '''
      Name  math score
@@ -232,5 +267,5 @@ print(subsetDf)
 3  female          80
 '''
 
-nameSeries = df['Name']
-print(type(nameSeries)) # <class 'pandas.core.series.Series'>
+genderSeries = df['gender']
+print(type(genderSeries)) # <class 'pandas.core.series.Series'>
