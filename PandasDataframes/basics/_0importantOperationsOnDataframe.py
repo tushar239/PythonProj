@@ -3,6 +3,7 @@
 import pandas as pd
 import numpy as np
 
+
 # Data
 student = {
     'Name': ['John', 'Jay', 'sachin', 'Geetha', 'Amutha', 'ganesh', None],
@@ -14,9 +15,47 @@ student = {
 
 # Creating a DataFrame object
 df = pd.DataFrame(student)
-
 print(df)
 
+# checking entire df (all columns) for null. It returns data frame of True and False
+nullDf = df.isnull()
+print(nullDf)
+
+'''
+  Name  gender  math score  test preparation
+0  False   False       False             False
+1  False   False       False             False
+2  False   False       False             False
+3  False   False       False             False
+4  False   False       False             False
+5  False   False       False             False
+6   True    True       False             False
+'''
+
+# checking a particular column for null. It returns a series of True and False
+nullTestPreparationSeries = df['test preparation'].isnull()
+print(nullTestPreparationSeries)
+'''
+0    False
+1    False
+2    False
+3    False
+4    False
+5    False
+6    False
+'''
+nullTestPrparationNotOd = df[nullTestPreparationSeries == False]
+print(nullTestPrparationNotOd)
+'''
+     Name  gender  math score test preparation
+0    John    male          50             none
+1     Jay    male         100        completed
+2  sachin    male          70             none
+3  Geetha  female          80        completed
+4  Amutha  female          75        completed
+5  ganesh    male          40             none
+6    None    None          60             none
+'''
 ############ dataframe related operations ##################
 # summaryOfDf       = df.info()
 # df1               = df[[col1, col2]]
@@ -163,7 +202,13 @@ Process finished with exit code 0
 '''
 
 #########  changing index column ##########
-df.set_index("Name")
+print("------- changing index column ---------")
+'''
+subsetDf = df.loc[2:4, ['Name', 'math score']]
+print(subsetDf)
+'''
+
+df = df.set_index("Name")
 print(df)
 for i in range(0, len(df['math score']), 1):
     aCellFromDf = df['math score'][i]
@@ -186,3 +231,6 @@ print(subsetDf)
 2    male         100
 3  female          80
 '''
+
+nameSeries = df['Name']
+print(type(nameSeries)) # <class 'pandas.core.series.Series'>
