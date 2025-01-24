@@ -264,7 +264,7 @@ print('Misclassified samples: %d' % (test_y != prediction).sum()) # 1483 (954+52
 # ############################################################
 data3 = data.dropna(axis=0) # removing all rows having NaN in any column
 
-# Reindexing the salary status names to 0,1
+# Reindexing the salary status names (output variable) to 0,1
 data3.loc[(data3['SalStat'] == ' less than or equal to 50,000'), 'SalStat'] = 0
 data3.loc[(data3['SalStat'] == ' greater than 50,000'), 'SalStat'] = 1
 print(data3['SalStat'])
