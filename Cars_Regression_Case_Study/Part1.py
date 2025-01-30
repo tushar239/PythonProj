@@ -69,7 +69,8 @@ pd.set_option('display.float_format', lambda x: '%.3f' % x)
 pd.set_option('display.max_columns', 500)
 
 
-###### Let's check the outliers in numerical variables(columns). Outliers can exist in numerical columns only #######
+###### Let's check the outliers in numerical variables(columns).
+# Outliers can exist in numerical columns only #######
 
 summary = cars.describe()
 print(summary)
@@ -97,8 +98,10 @@ max                 12.000   99998.000
 The mean (average) of a data set is found by adding all numbers in the data set and then dividing by the number of values in the set.
 The median is the middle value when a data set is ordered from least(min) to greatest(max).
 
-There is a huge difference between mean and median(50%) price. It shows that data is skewed. 
+There is a huge difference between mean and median(50%) price. 
+It shows that data is skewed. 
 yearOfRegistration 1000,9999 do not make any sense
+
 PowerPS (Horse Power) min value is 0 and max value is 19312. It doesn't make sense. 
 monthOfRegistration 0 doesn't make sense.
 postalCode - we can get rid of it
@@ -253,13 +256,21 @@ You can see that there are not much data for the year < 1950 and > 2018. Conside
 '''
 # filtering data
 cars_with_year_of_registration_greater_than_2018 = cars[cars['yearOfRegistration'] > 2018]
+# same as
+# cars_with_year_of_registration_greater_than_2018 = cars.loc[cars['yearOfRegistration'] > 2018]
 print("total records with yearOfRegistration > 2018")
 print(cars_with_year_of_registration_greater_than_2018.shape[0]) # 26
 # or
 # cars_with_year_of_registration_greater_than_2018[cars_with_year_of_registration_greater_than_2018.columns[0]].count()
 cars_with_year_of_registration_lesser_than_1950 = cars[cars['yearOfRegistration'] < 1950]
+# same as
+# cars_with_year_of_registration_lesser_than_1950 = cars.loc[cars['yearOfRegistration'] < 1950]
 print("total records with yearOfRegistration < 1950")
 print(cars_with_year_of_registration_lesser_than_1950.shape[0]) # 38
+'''
+cars_with_excluded_unnecessary_year_of_registration = cars.loc[(cars['yearOfRegistration'] > 1949) &
+                                                               (cars['yearOfRegistration'] < 2019)]
+'''
 
 plt.figure(figsize=(7,6))
 plt.scatter(x=cars['yearOfRegistration'], y=cars['price'], c='blue')
