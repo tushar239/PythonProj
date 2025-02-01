@@ -36,6 +36,7 @@ cars = cars[
     (cars.powerPS >= 10) &
     (cars.powerPS <= 500)
 ]
+# you can use cars = cars.loc[...] also
 '''
 This is also fine
 cars = cars[
@@ -141,9 +142,10 @@ For categorical variable, following things are useful
 - boxplot - can be used for a single categorical variable or for comparing a categorical variable with a numerical variable
 
 For numerical variable, following things are useful
+- value_count
 - histplot/displot
 - boxplot
-- regplot (same as scatterplot with or without regression line) - to compare two numerical variables 
+- scatterplot/regplot (same as scatterplot with or without regression line) - to compare two numerical variables 
 '''
 
 # Age
@@ -754,7 +756,7 @@ y1 = cars_omit['price'] # output variable (feature)
 prices = pd.DataFrame({"1. Before":y1, "2. After":np.log(y1)})
 plt.figure(figsize=(7,6))
 prices_histogram = prices.hist()
-# plt.show()
+plt.show()
 # compared to the histogram of y1, the histogram of log(y1) is giving a nice bell curve
 
 # Transforming price as a logarithmic value
