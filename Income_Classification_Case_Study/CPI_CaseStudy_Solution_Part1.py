@@ -102,6 +102,7 @@ A low standard deviation indicates that the values tend to be close to the mean 
 The standard deviation is commonly used in the determination of what constitutes an outlier and what does not.
 """
 
+# IMP: If you want to find out a Modal value(mode) for categorical variables, you can use describe for categorical variables
 summary_categories = data.describe(include='O')  # consider only variables of type object
 print(summary_categories.to_string())
 """
@@ -124,9 +125,10 @@ For categorical variable, following things are useful
 - boxplot - can be used for a single categorical variable or for comparing a categorical variable with a numerical variable
 
 For numerical variable, following things are useful
+- value_count - sometimes, it is used e.g. Cars_Regression_Case_Study
 - histplot/displot
 - boxplot
-- regplot (same as scatterplot with or without regression line) - to compare two numerical variables 
+- scatterplot/regplot (same as scatterplot with or without regression line) - to compare two numerical variables 
 '''
 
 
@@ -224,6 +226,16 @@ JobType and occupation have missing values
 """
 
 
+# print(data.isnull().any(axis=1))
+'''
+Returns a series like this
+0        False
+1        False
+2        False
+3        False
+......
+'''
+
 # data.isnull() returns a dataframe with True and False values in each cell
 # True means null value and False means not-null value
 # any() returns a series of index numbers
@@ -296,6 +308,7 @@ print('JobType and Occupation columns with NaN value: \n', rows_with_missing_job
 
 ''' doesn't work
 # data.isnull() returns a dataframe with True and False values in each cell
+# data[col].isnull() returns a series
 # True means null value and False means not-null value
 # where function should have a condition that returns True or False. Here it returns a Series of index numbers.
 # That is why it doesn't work
@@ -388,6 +401,9 @@ None of the numeric field is co-related to another because none of them have val
 Close to 0 means no relation.
  
 Correlation value varies from -1 to +1.
+
+Correlation can be found between numeric variables only.
+For two categorical variables, you have to use crosstab
 '''
 
 # ================================================
@@ -423,6 +439,10 @@ This shows that 67% data has Male and 33% data has Female.
 
 # ====================================================
 # Gender vs Salary Status (Two Categorical variables):
+
+# IMP: Unlike to Cars_Registration project, here output variable is categorical.
+# So, if you want to find the relation between input categorical variable and output categorical variable,
+# you have to use crosstab
 # ====================================================
 gender_salstat = pd.crosstab(index = data2['gender'], # index means row
                      columns = data2['SalStat'], # output variable
@@ -513,7 +533,8 @@ plt.show()
 exact_median_of_age_by_salarystatus = data2.groupby('SalStat')['age'].median()
 print('Exact median of age by salary status: ', exact_median_of_age_by_salarystatus)
 '''
-Exact median of age by salary status:  SalStat
+Exact median of age by salary status:  
+SalStat
 greater than 50,000             43.0
 less than or equal to 50,000    34.0
 '''
@@ -553,6 +574,12 @@ Name: count, dtype: int64
 # crosstab and countplot/barplot can be used for one categorical variable also to see its frequency.
 # They can be used to see the relation between two categorical variable also.
 
+
+'''
+# IMP: Unlike to Cars_Registration project, here output variable is categorical.
+# So, if you want to find the relation between input categorical variable and output categorical variable,
+# you have to use crosstab
+'''
 jobtype_salstat = pd.crosstab(index = data2['JobType'], # index means row
                      columns = data2['SalStat'],
                      margins = True,
@@ -576,6 +603,8 @@ All                              24.89                         75.11
 This shows that majority of the job types (except self-emp-inc) have 2/3 rd people earning <=50k.
 Hence, it is an important variable in avoiding the misuse of subsidies.
 '''
+# Unlike to Cars_Registration project, here output variable is categorical
+# so, you can use output variable as 'hue' in plots.
 sns.countplot(data=data2, x='JobType', hue='SalStat') # y axis is always frequency
 plt.show()
 
@@ -637,6 +666,8 @@ From the above table, we can see that people who have done Doctorate, Masters, P
 more likely to earn above 50k USD when compared to with others. 
 Hence and influencing variable in avoiding the misuse of subsidies.
 """
+# Unlike to Cars_Registration project, here output variable is categorical
+# so, you can use output variable as 'hue' in plots.
 sns.countplot(data=data2, x='EdType', hue='SalStat') # y axis is always frequency
 plt.show()
 

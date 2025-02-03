@@ -15,7 +15,7 @@ When you install a particular package, all related packages on which that packag
 """ 
 you can import entire package(library) or a class or a function
 import numpy ---- this is like 'import numpy.*' in jaa
-from numpy.core import ComplexWarning ---- this is like 'import numpy.core.ComplexWarning' in jaa
+from numpy.core import ComplexWarning ---- this is like 'import numpy.core.ComplexWarning' in java
 from numpy.core.numeric import full --- you can't import just a function in java
 """
 
