@@ -42,8 +42,40 @@ predictions = logr.predict(test_x)
 print(predictions) # [0 0 0 0 0 1 1]
 
 # Calculating Accuracy Score
+'''
+Accuracy measures how often the model is correct.
+How to Calculate?
+Accuracy = (True Positive + True Negative) / Total Predictions
+'''
 accuracy_score1 = accuracy_score(test_y, predictions)
 print(accuracy_score1) # 1.0
 
+
+confusion_matrix_1 = confusion_matrix(test_y, predictions)
+print(confusion_matrix_1)
+'''
+[[5 0]
+ [0 2]]
+ 
+           ------------
+         0  | 5  | 0 |
+  test_y    |    |   |
+            -----------
+         1  |  0 | 2 |
+            |    |   |
+            -----------
+               0   1
+                predictions
+
+The Confusion Matrix created has four different quadrants:
+
+True Negative (Top-Left Quadrant)
+False Positive (Top-Right Quadrant)
+False Negative (Bottom-Left Quadrant)
+True Positive (Bottom-Right Quadrant)
+
+True means that the values were accurately predicted, 
+False means that there was an error or wrong prediction.
+ '''
 
 
