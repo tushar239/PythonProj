@@ -47,9 +47,12 @@ Data columns (total 3 columns):
 dtypes: int64(2), object(1)
 memory usage: 368.0+ bytes
 '''
-
-x = df.iloc[::,1:2:].values  #features
-y = df.iloc[::,2::].values  # Target variable
+# print(df.values)
+#x = df.iloc[::,1:2:].values  #features
+#y = df.iloc[::,2::].values  # Target variable
+# or
+x = df.loc[::, ['Level']].values # features
+y = df.loc[::, ['Salary']].values # Target variable
 print(x)
 '''
 [[ 1]

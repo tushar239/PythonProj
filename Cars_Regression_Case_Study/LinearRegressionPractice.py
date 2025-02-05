@@ -46,8 +46,11 @@ plt.show()
 # Separating input and output variables
 #x1 = df.drop(['Salary'], axis='columns', inplace=False) # input variables(features)
 # or
-x1 = df.drop(['Salary'], axis=1, inplace=False) # input variables(features)
-y1 = df['Salary'] # output variable
+#x1 = df.drop(['Salary'], axis=1, inplace=False) # input variables(features)
+#y1 = df['Salary'] # output variable
+# or
+x1 = df.loc[::, ['Level']]
+y1 = df.loc[::, ['Salary']]
 
 
 
