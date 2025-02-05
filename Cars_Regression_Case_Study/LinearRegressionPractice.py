@@ -27,7 +27,7 @@ print(df)
 109     10  1000000
 '''
 
-#plotting the Scatter plot to check relationship between Sal and Temp
+#plotting the Scatter plot to check relationship between Sal and Level
 '''
 plt.figure(figsize=(7,6))
 sns.lmplot(x ="Level", y ="Salary", data = df, order = 2, ci = None)
@@ -43,9 +43,11 @@ plt.show()
 #df_dummies=pd.get_dummies(data=df, drop_first=True)
 #print(df_dummies)
 
-# Separating input and output features
-x1 = df.drop(['Salary'], axis='columns', inplace=False) # input variables(features)
-y1 = df['Salary'] # output variable (feature)
+# Separating input and output variables
+#x1 = df.drop(['Salary'], axis='columns', inplace=False) # input variables(features)
+# or
+x1 = df.drop(['Salary'], axis=1, inplace=False) # input variables(features)
+y1 = df['Salary'] # output variable
 
 
 
@@ -71,8 +73,8 @@ print(predictions)
   -44854.90800032  209973.65648051  209973.65648051  549745.07578828
    40087.94682662]
 '''
-print(y_test)
-print(X_test)
+print('y_test:\n', y_test)
+print('X_test:\n', X_test)
 
 from sklearn.metrics import mean_squared_error
 
@@ -85,11 +87,12 @@ print(base_pred)
 base_pred = np.repeat(base_pred, len(y_test))
 print('base_pred : \n', base_pred) # 241739.37350287204
 
-# finding the RMSE (root_mean_square_error)
+# finding the Base RMSE (root_mean_square_error) comparing y_test with base_pred
 base_mse = mean_squared_error(y_test, base_pred)
 base_rmse = np.sqrt(base_mse)
 print('base rmse (RMSE) : \n', base_rmse) # 241739.37350287204
 
+# finding actual RMSE (root_mean_square_error) comparing y_test with predictions
 mse_from_predictions = mean_squared_error(y_test, predictions)
 rmse_from_predictions = np.sqrt(mse_from_predictions)
 print("RMSE: \n", rmse_from_predictions) # 147084.49666373926
@@ -110,5 +113,6 @@ print("r2_test: ", r2_test) # 0.6297977850974639
 print("r2_predictions: ", r2_predictions) # 1.0
 
 plt.scatter(X_test['Level'], y_test, color='b')
-plt.plot(X_test['Level'], predictions, color='k')
+plt.show()
+plt.scatter(X_test['Level'], predictions, color='k')
 plt.show()

@@ -725,7 +725,7 @@ There is a reasonable correlation between the price and powerPS
 
 '''
 # ========================================================
-We are going to build a Liner Regression and Random Forest model
+We are going to build a Linear Regression and Random Forest model
 on two sets of data.
 1. Data obtained by omitting rows with any missing value
 2. Data obtained by imputing the missing values
