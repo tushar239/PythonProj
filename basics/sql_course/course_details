@@ -225,6 +225,12 @@ AND, OR, NOT
 
     SELECT * FROM Customers
     WHERE NOT Country='Germany';
+    OR
+    SELECT * FROM Customers
+    WHERE Country != 'Germany';
+    OR
+    SELECT * FROM Customers
+    WHERE Country <> 'Germany';
 
     Combining AND, OR, NOT
 
