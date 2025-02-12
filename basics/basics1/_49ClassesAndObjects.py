@@ -102,6 +102,10 @@ class Person:
     def __hash__(self):
         return hash(self.age) + hash(self.name)# not doing any changes
 
+    '''
+    when you call print(...), it calls __str__(), if it is defined.
+    If you don't define a __str__() method for a class, then the built-in object implementation calls the __repr__() method instead.
+    '''
     def __str__(self):
         # Using Ternary operator
         # Syntax: (if_test_is_false, if_test_is_true)[test]
