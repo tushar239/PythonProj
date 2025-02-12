@@ -25,3 +25,7 @@ price = 49.95
 myorder = "I want to pay {2} dollars for {0} pieces of item {1}."
 print(myorder.format(quantity, itemno, price))  # I want to pay 49.95 dollars for 3 pieces of item 567.
 
+# OR
+# you can use f-string
+
+# https://www.w3schools.com/python/python_string_formatting.asp
