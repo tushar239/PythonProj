@@ -454,25 +454,24 @@ In vs Any
 
 ANY vs ALL
 
-    https://www.javatpoint.com/mysql-any
+    https://www.geeksforgeeks.org/sql-all-and-any/
 
-    The following SQL statement lists the ProductName if ALL the records in the OrderDetails table has Quantity equal to 10.
-
-    SELECT ProductName
-    FROM Products
-    WHERE ProductID = ALL
-        (SELECT ProductID
-            FROM OrderDetails
-            WHERE Quantity = 10);
-
-    The following SQL statement lists the ProductName if ANY record in the OrderDetails table has Quantity equal to 10.
+    If productID is same in OrderDetails table whether Quantity=6 or 2. Basically, if subquery returns only one record, then ALL query returns true.
 
     SELECT ProductName
     FROM Products
-    WHERE ProductID = ANY
-        (SELECT ProductID
-            FROM OrderDetails
-            WHERE Quantity = 10);
+    WHERE ProductID = ALL (SELECT ProductID
+                       FROM OrderDetails
+                       WHERE Quantity = 6 OR Quantity = 2);
+
+
+    If at least one record exists in OrderDetails table with Quantity=9, then subquery returns true.
+
+    SELECT ProductName
+    FROM Products
+    WHERE ProductID = ANY (SELECT ProductID
+                       FROM OrderDetails
+                       WHERE Quantity = 9);
 
 
 Date and Date Functions
