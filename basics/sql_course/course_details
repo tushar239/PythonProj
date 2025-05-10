@@ -472,10 +472,12 @@ ANY vs ALL
     WHERE ProductID = ANY (SELECT ProductID
                        FROM OrderDetails
                        WHERE Quantity = 9);
-
+LIKE operator
+    https://www.w3schools.com/sql/sql_like.asp
 
 Date and Date Functions
     https://www.w3schools.com/sql/sql_dates.asp
+    https://dev.mysql.com/doc/refman/8.4/en/date-and-time-functions.html
     https://www.tutorialspoint.com/sql/sql-date-functions.htm
 
 Between
