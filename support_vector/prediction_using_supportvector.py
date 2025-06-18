@@ -1,3 +1,5 @@
+# code is taken from chatgpt
+
 # Import necessary libraries
 from sklearn import datasets
 from sklearn.model_selection import train_test_split
