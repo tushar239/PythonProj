@@ -38,7 +38,8 @@ dtype: object
 '''
 select columns based on their data types.
 '''
-cols = cars_data.select_dtypes(include=[int])
+cols = cars_data.\
+    select_dtypes(include=[int])
 print(cols)
 '''
      Price  Automatic    CC  Weight
