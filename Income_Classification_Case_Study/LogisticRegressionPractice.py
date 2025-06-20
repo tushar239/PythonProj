@@ -15,10 +15,42 @@ student = {
 df = pd.DataFrame(student)
 print(df)
 
+tumor_size=df.loc[::, ['tumor_size']]
+print(tumor_size)
+'''
+    tumor_size
+0         3.78
+1         2.44
+2         2.09
+3         0.14
+4         1.72
+5         1.65
+6         4.92
+7         4.37
+8         4.96
+9         4.52
+10        3.69
+11        5.88
+'''
+
 train_x = df.loc[::, ['tumor_size']].values
 train_y = df.loc[::, ['is_cancerous']].values
 
 print(train_x)
+'''
+[[3.78]
+ [2.44]
+ [2.09]
+ [0.14]
+ [1.72]
+ [1.65]
+ [4.92]
+ [4.37]
+ [4.96]
+ [4.52]
+ [3.69]
+ [5.88]]
+'''
 
 logr = linear_model.LogisticRegression()
 logr.fit(train_x,train_y)
