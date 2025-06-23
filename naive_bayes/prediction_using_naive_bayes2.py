@@ -19,6 +19,9 @@ X = vectorizer.fit_transform(texts)
 print(X)
 print(type(X))
 
+print(vectorizer.get_feature_names_out())
+print(X.toarray())
+
 # Split into training and test sets
 X_train, X_test, y_train, y_test = train_test_split(X, labels, test_size=0.3, random_state=42)
 
