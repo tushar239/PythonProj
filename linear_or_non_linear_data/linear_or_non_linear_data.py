@@ -5,12 +5,12 @@ from sklearn.linear_model import LinearRegression
 import numpy as np
 import matplotlib.pyplot as plt
 
-
 # Study hours (independent variable)
 X = np.array([[1], [2], [3], [4], [5], [6], [7], [8], [9], [10]])
 # Corresponding scores (dependent variable)
 y = np.array([35, 45, 50, 55, 60, 65, 70, 75, 85, 95])
 
+# ----------- Approach 1 - scatter plot ------------
 plt.scatter(X, y)
 plt.xlabel("X")
 plt.ylabel("y")
@@ -21,7 +21,7 @@ plt.show()
 Straight-line trend → Linear
 Curved, wave-like, or U-shaped trend → Non-linear
 '''
-
+# ----------- Approach 2 - plot residuals  ------------
 # Reshape if X is 1D
 #X_reshaped = X.reshape(-1, 1)
 model = LinearRegression()
@@ -41,6 +41,7 @@ Random scatter around 0 → Linear
 Pattern (curve, funnel, wave) → Non-linear
 '''
 
+# ----------- Approach 3 - compare r-squared for Linear Regression and Polynomial Regression ------------
 from sklearn.preprocessing import PolynomialFeatures
 from sklearn.metrics import r2_score
 from sklearn.pipeline import make_pipeline
@@ -63,9 +64,11 @@ If polynomial R² is much higher than linear R² → Data is non-linear
 If both are close → Data is linear
 '''
 
+# ----------- Approach 4 - find out correlation between input and output variables ------------
 from scipy.stats import pearsonr
 
-r, _ = pearsonr(X.flatten(), y) # returns tuple
+# print(X.flatten()) # [ 1  2  3  4  5  6  7  8  9 10]
+r, _ = pearsonr(X.flatten(), y) # returns tuple of correlation number and p-value
 print("Pearson correlation coefficient:", r) # 0.9913757113262456
 '''
 r ≈ ±1: Strong linear correlation
