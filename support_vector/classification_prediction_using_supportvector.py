@@ -30,4 +30,4 @@ print("Accuracy:", accuracy)
 # Predict on a new data point (example)
 new_data = [[5.1, 3.5, 1.4, 0.2]]
 prediction = svm_model.predict(new_data)
-print("Predicted class:", prediction)
+print("Predicted class:", prediction) # Predicted class: [0]

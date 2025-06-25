@@ -39,6 +39,7 @@ def plot_svm_decision_boundary(model, X, y):
 
     # Plot margin and decision boundary
     ax.contour(XX, YY, Z, colors='k', levels=[-1, 0, 1], linestyles=['--', '-', '--'])
+
     plt.title("SVM Decision Boundary")
     plt.xlabel("Feature 1")
     plt.ylabel("Feature 2")

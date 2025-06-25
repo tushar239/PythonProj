@@ -1,11 +1,16 @@
 '''
 From chatgpt
-Here’s a complete Python script you can run locally to visualize SVM decision boundaries with different kernels (linear, RBF, and polynomial) and see how many support vectors each model uses:
+Here’s a complete Python script you can run locally to visualize SVM decision boundaries
+with different kernels (linear, RBF, and polynomial) and see how many support vectors
+each model uses:
 
 What You'll Learn by Running This:
 - How different SVM kernels separate the same dataset
 - The effectiveness of linear vs. non-linear kernels
 - How many support vectors are used by each model (shown in the plot title)
+
+Different kernels:
+https://www.geeksforgeeks.org/machine-learning/major-kernel-functions-in-support-vector-machine-svm/
 '''
 
 import numpy as np
