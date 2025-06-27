@@ -1,3 +1,9 @@
+'''
+Bar plot vs Histogram plot:
+Bar plots are used for comparing categorical data,
+while histograms are used for visualizing the distribution of continuous data.
+'''
+
 import seaborn as sns
 import numpy as np
 import matplotlib.pyplot as plt
@@ -17,4 +23,13 @@ print(data)
 # Plot histogram with KDE
 sns.histplot(data, kde=True, bins=30)
 plt.title("Histogram with KDE")
+plt.show()
+
+###########################################
+# np.random.randn(1000) will produce a one-dimensional NumPy array containing 1000 values,
+# where each value is a random sample from a normal distribution
+# with a mean of 0 and a standard deviation of 1.
+data = np.random.randn(1000)
+plt.hist(data, bins=30, color='skyblue', edgecolor='black')
+plt.title("Histogram")
 plt.show()
