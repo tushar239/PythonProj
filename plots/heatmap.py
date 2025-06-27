@@ -1,4 +1,6 @@
-
+'''
+heatmap: Displays matrix-like data with color.
+'''
 import matplotlib.pyplot as plt
 import seaborn as sns
 import numpy as np

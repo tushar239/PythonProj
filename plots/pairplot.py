@@ -1,6 +1,6 @@
 # code is taken from chatgpt
 '''
-A pairplot:
+A pairplot: Shows pairwise relationships between multiple variables.
 
 Plots a scatter plot for every pair of numerical features.
 Plots histograms (or KDE plots) on the diagonal.
