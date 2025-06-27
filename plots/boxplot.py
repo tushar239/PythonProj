@@ -1,6 +1,6 @@
 # code is taken from chatgpt
 '''
-What is a Box Plot?
+What is a Box Plot (Box-and-Whisker)?
 A box plot (also called a box-and-whisker plot) shows:
     Median (middle line)
     Quartiles (box edges)

@@ -1,7 +1,9 @@
 '''
 Bar plot vs Histogram plot:
 Bar plots are used for comparing categorical data,
-while histograms are used for visualizing the distribution of continuous data.
+while Histograms are used for visualizing the distribution of continuous data.
+
+Histogram: Shows the distribution of numerical data.
 '''
 
 import seaborn as sns
