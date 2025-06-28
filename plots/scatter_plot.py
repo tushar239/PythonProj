@@ -1,4 +1,4 @@
-# Scatter plot: Shows the relationship between two continuous variables.
+# Scatter plot: Shows the relationship between two numeric continuous variables.
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -60,4 +60,16 @@ plt.title("Scatter Plot Example")
 # plt.legend()
 
 # Show plot
+plt.show()
+
+#################################################
+
+import seaborn as sns
+
+df = sns.load_dataset("tips")
+print(df.info())
+plt.scatter(x="day", y="total_bill", data=df)
+plt.xlabel("day")
+plt.ylabel("total bill")
+plt.title("Scatter Plot")
 plt.show()
