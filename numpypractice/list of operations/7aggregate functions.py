@@ -1,0 +1,6 @@
+np.sum(a)
+np.mean(a)
+np.min(a)
+np.max(a)
+np.std(a)
+np.median(a)
