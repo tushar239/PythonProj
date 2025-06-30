@@ -19,15 +19,12 @@ loc - mean value
 scale - standard deviation
 size - total numbers to generate
 '''
-data = np.random.normal(loc=0, scale=1, size=1000)
-print(data)
+#data = np.random.normal(loc=0, scale=1, size=1000)
+#print(data)
 
-# Plot histogram with KDE
-sns.histplot(data, kde=True, bins=30)
-plt.title("Histogram with KDE")
-plt.show()
+# histogram vs hist/dist plot:
+# histogram plot can not have kde. hist/dist plot can have kde.
 
-###########################################
 # np.random.randn(1000) will produce a one-dimensional NumPy array containing 1000 values,
 # where each value is a random sample from a normal distribution
 # with a mean of 0 and a standard deviation of 1.
