@@ -16,7 +16,7 @@ print(just_powerPS_df)
 print(len(just_powerPS_df)) # 50001
 
 # applying IsolationForest strategy to find outliers
-iso = IsolationForest(contamination=0.1)
+iso = IsolationForest(contamination=0.1) # contamination=0.1 means we expect ~10% of points to be outliers.
 just_powerPS_df['outlier'] = iso.fit_predict(just_powerPS_df[['powerPS']])
 
 # -1 = outlier, 1 = inlier

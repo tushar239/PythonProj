@@ -1,3 +1,11 @@
+'''
+Isolation Forest is a machine learning algorithm specifically designed
+to detect anomalies (outliers) in data.
+
+It works by isolating outliers instead of profiling normal data points —
+which makes it fast, efficient, and scalable, even for large datasets.
+'''
+
 from sklearn.ensemble import IsolationForest
 import pandas as pd
 import seaborn as sns
@@ -9,7 +17,7 @@ df = pd.DataFrame({
     'age': [15, 16, 14, 17, 18, 16, 100]  # 100 is an outlier
 })
 
-iso = IsolationForest(contamination=0.1)
+iso = IsolationForest(contamination=0.1) # contamination=0.1 means we expect ~10% of points to be outliers.
 df['outlier'] = iso.fit_predict(df[['age']])
 
 # -1 = outlier, 1 = inlier
