@@ -16,7 +16,9 @@ print(just_powerPS_df)
 print(len(just_powerPS_df)) # 50001
 
 # applying IsolationForest strategy to find outliers
-iso = IsolationForest(contamination=0.1) # contamination=0.1 means we expect ~10% of points to be outliers.
+# contamination=0.039 means we expect ~3.9% of points to be outliers.
+# By plotting box plot with different contamination values, I could figure out that 0.039 can be the right value
+iso = IsolationForest(contamination=0.039)
 just_powerPS_df['outlier'] = iso.fit_predict(just_powerPS_df[['powerPS']])
 
 # -1 = outlier, 1 = inlier
@@ -34,7 +36,7 @@ condition = just_powerPS_df['outlier'] == -1
 # Get the index of rows to drop
 indices_to_drop = just_powerPS_df[condition].index
 print(type(indices_to_drop)) # <class 'pandas.core.indexes.base.Index'>
-print(len(indices_to_drop)) # total 4821 rows needs to be removed
+print(len(indices_to_drop)) # total 1948 rows needs to be removed
 
 # Drop the rows (in-place)
 cars.drop(indices_to_drop, inplace=True)
