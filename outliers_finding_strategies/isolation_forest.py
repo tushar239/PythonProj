@@ -88,3 +88,4 @@ print(df[df['outlier2'] == -1])
    age  year  outlier  outlier2
 6  100  2000       -1        -1
 '''
+
