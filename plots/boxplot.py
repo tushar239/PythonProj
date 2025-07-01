@@ -18,6 +18,7 @@ IQR	    Interquartile Range = Q3 - Q1 → middle 50% spread
 It's useful for visualizing the distribution and
 detecting skewness or outliers in data.
 
+https://www.geeksforgeeks.org/data-visualization/creating-multiple-boxplots-on-the-same-graph-from-a-dictionary/
 '''
 
 import matplotlib.pyplot as plt
