@@ -1,3 +1,7 @@
+# Use LOF (Local Outlier Factor) method to find outliers when
+# you want to find outliers in clusters or variable densities
+# When you need to consider local context rather than global statistics
+
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
