@@ -36,8 +36,8 @@ def choose_k_value():
     # 5-fold cross-validation
     # cv=5 splits data into 5 parts and runs training/testing 5 times
     for k in k_range:
-        knn = KNeighborsClassifier(n_neighbors=k)
-        scores = cross_val_score(knn, just_powerPS_df, cars['price'], cv=5, scoring='accuracy')
+        knn_model = KNeighborsClassifier(n_neighbors=k)
+        scores = cross_val_score(knn_model, just_powerPS_df, cars['price'], cv=5, scoring='accuracy')
         cv_scores.append(scores.mean())
 
     optimal_k = k_range[np.argmax(cv_scores)]

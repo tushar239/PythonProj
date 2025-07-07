@@ -55,11 +55,11 @@ k_range = range(1, 31)
 cv_scores = []  # to store average accuracy for each k
 
 for k in k_range:
-    knn = KNeighborsClassifier(n_neighbors=k)
+    knn_model = KNeighborsClassifier(n_neighbors=k)
 
     # Step 4: 5-fold cross-validation
     # cv=5 splits data into 5 parts and runs training/testing 5 times
-    scores = cross_val_score(knn, X, y, cv=5, scoring='accuracy')
+    scores = cross_val_score(knn_model, X, y, cv=5, scoring='accuracy')
 
     # Step 5: Store the average score for this k
     cv_scores.append(scores.mean())
