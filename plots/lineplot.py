@@ -12,7 +12,8 @@ x = [1,2,3,4,5]
 y = [1,4,9,16,25]
 
 # https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.plot.html#matplotlib.axes.Axes.plot
-plt.plot(x, y)
+plt.plot(x, y) # plot x and y using default line style and color
+# plot(x, y, color='green', marker='o', linestyle='dashed', linewidth=2, markersize=12)
 plt.title("Line Plot")
 plt.xlabel("x")
 plt.ylabel("sin(x)")
