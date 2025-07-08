@@ -23,12 +23,64 @@ import matplotlib.pyplot as plt
 # Sample DataFrame
 df = pd.DataFrame({
     'age': [15, 16, 14, 17, 18, 16, 100]  # 100 is an outlier
+    #'age': [15, 16, 14, 17, 18, 16, 100,101,102,103,104] # here, two clusters will be formed, no outlier
 })
 
 X = df[['age']]
-dbscan = DBSCAN(eps=5, min_samples=2)
+
+def find_eps(min_samples):
+    from sklearn.datasets import make_blobs
+    from sklearn.neighbors import NearestNeighbors
+    import matplotlib.pyplot as plt
+    import numpy as np
+
+    # Create sample data
+    #X, _ = make_blobs(n_samples=300, centers=3, cluster_std=0.6, random_state=0)
+
+    # Step 1: Choose min_samples and compute k-distance
+    k = min_samples  # min_samples
+    nn = NearestNeighbors(n_neighbors=k)
+    nn.fit(X)
+    distances, _ = nn.kneighbors(X)
+    print(distances)
+    '''
+    [[ 0.  1.]
+     [ 0.  0.]
+     [ 0.  1.]
+     [ 0.  1.]
+     [ 0.  1.]
+     [ 0.  0.]
+     [ 0. 82.]]
+    '''
+    # Step 2: Get the distances to the k-th nearest neighbor
+    k_distances = np.sort(distances[:, k - 1])  # kth column (0-indexed)
+    print(k_distances) # [ 0.  0.  1.  1.  1.  1. 82.]
+
+    # Step 3: Plot the k-distance graph
+    plt.figure(figsize=(8, 5))
+    # https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.plot.html#matplotlib.axes.Axes.plot
+    plt.plot(k_distances) # plot x and y using default line style and color
+    # same as
+    #plt.plot([0,1,2,3,4,5,6], k_distances)
+    #plt.plot([0,1,2,3,4,5,6], k_distances, marker='o', linestyle='--', color='green', linewidth=2, label='Squared Values')
+
+    plt.ylabel(f"{k}th Nearest Neighbor Distance")
+    plt.xlabel("Points sorted by distance")
+    plt.title("K-distance Graph to Estimate eps for DBSCAN")
+    plt.grid(True)
+    plt.show()
+
+
+# eps - Radius to search for neighboring points
+# min_samples - Minimum number of points required to form a dense region (cluster)
+# Usually, min_samples = 2 * number_of_features, If unsure, try between 4 to 10.
+find_eps(2)
+eps = 5
+#dbscan = DBSCAN(eps=5, min_samples=2)
+dbscan = DBSCAN(eps=eps, min_samples=2)
 df['outlier'] = dbscan.fit_predict(X)
 
+print(df)
 # Outliers are labeled as -1
 print(df[df['outlier'] == -1])
 '''

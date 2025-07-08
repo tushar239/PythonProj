@@ -10,7 +10,8 @@ from sklearn.neighbors import LocalOutlierFactor
 # Create synthetic data with outliers
 X = np.array([[1, 2], [2, 1.5], [2, 2], [8, 8], [8.5, 8], [25, 80]])  # Last point is likely an outlier
 
-# Fit LOF model. n_neighbors is same has number of neighbours in KNN algorithm.
+# Fit LOF model.
+# n_neighbors is same has number of neighbours in KNN algorithm.
 lof = LocalOutlierFactor(n_neighbors=2)  # n_neighbors typically 10-20 for real data
 y_pred = lof.fit_predict(X)  # -1 = outlier, 1 = inlier
 scores = -lof.negative_outlier_factor_  # Higher = more likely to be outlier

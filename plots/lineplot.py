@@ -11,6 +11,7 @@ import numpy as np
 x = [1,2,3,4,5]
 y = [1,4,9,16,25]
 
+# https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.plot.html#matplotlib.axes.Axes.plot
 plt.plot(x, y)
 plt.title("Line Plot")
 plt.xlabel("x")
