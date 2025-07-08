@@ -71,9 +71,10 @@ find_eps(min_samples)
 eps = 5
 #dbscan = DBSCAN(eps=5, min_samples=2)
 dbscan = DBSCAN(eps=eps, min_samples=min_samples)
-just_powerPS_df['outlier'] = dbscan.fit_predict(just_powerPS_df[['powerPS']])
+just_powerPS_df['outlier'] = dbscan.fit_predict(just_powerPS_df[['powerPS']]) # When you use df[['column_name']], you are providing a list containing a single column name
 
 print(just_powerPS_df)
+
 # Outliers are labeled as -1
 print(just_powerPS_df[just_powerPS_df['outlier'] == -1])
 
