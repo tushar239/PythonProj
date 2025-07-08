@@ -28,6 +28,7 @@ df = pd.DataFrame({
 
 X = df[['age']]
 
+# elbow method strategy from chatgpt
 def find_eps(min_samples):
     from sklearn.datasets import make_blobs
     from sklearn.neighbors import NearestNeighbors
@@ -59,7 +60,7 @@ def find_eps(min_samples):
     # Step 3: Plot the k-distance graph
     plt.figure(figsize=(8, 5))
     # https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.plot.html#matplotlib.axes.Axes.plot
-    plt.plot(k_distances) # plot x and y using default line style and color
+    plt.plot(k_distances) # plot y using x as index array 0..N-1, using default line style and color
     # same as
     #plt.plot([0,1,2,3,4,5,6], k_distances)
     #plt.plot([0,1,2,3,4,5,6], k_distances, marker='o', linestyle='--', color='green', linewidth=2, label='Squared Values')
@@ -74,10 +75,11 @@ def find_eps(min_samples):
 # eps - Radius to search for neighboring points
 # min_samples - Minimum number of points required to form a dense region (cluster)
 # Usually, min_samples = 2 * number_of_features, If unsure, try between 4 to 10.
-find_eps(2)
+min_samples=2
+find_eps(min_samples)
 eps = 5
 #dbscan = DBSCAN(eps=5, min_samples=2)
-dbscan = DBSCAN(eps=eps, min_samples=2)
+dbscan = DBSCAN(eps=eps, min_samples=min_samples)
 df['outlier'] = dbscan.fit_predict(X)
 
 print(df)
