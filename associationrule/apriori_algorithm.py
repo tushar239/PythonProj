@@ -34,6 +34,12 @@ frequent_itemsets = apriori(df, min_support=0.4, use_colnames=True)
 # metric="confidence": Filter rules by their reliability
 # min_threshold=0.7: Only show rules with confidence ≥ 70%
 rules = association_rules(frequent_itemsets, metric="confidence", min_threshold=0.7)
+'''
+metric="lift" and set min_threshold=1.2 to find stronger rules
+apriori(..., max_len=2) to limit to pairs only
+'''
+
+
 
 # Step 5: Show useful columns from the result
 print(rules[['antecedents', 'consequents', 'support', 'confidence', 'lift']])
