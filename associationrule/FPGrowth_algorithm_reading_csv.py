@@ -16,9 +16,33 @@ print(df)
 4  bread     NaN     NaN
 '''
 
+print(df[0])
 #transactions = df.values.tolist()
+print(df.shape[1]) # 3
+print(df.values)
+'''
+[['milk' 'bread' 'butter']
+ ['bread' 'butter' nan]
+ ['milk' 'bread' nan]
+ ['milk' 'bread' 'butter']
+ ['bread' nan nan]]
+'''
+print(df.values.tolist())
+'''
+[['milk', 'bread', 'butter'], 
+['bread', 'butter', nan], 
+['milk', 'bread', nan], 
+['milk', 'bread', 'butter'], 
+['bread', nan, nan]]
 
-
+'''
+'''
+if df.shape[1] == 1:
+    transactions = df[0].apply(lambda x: x.split(',')).tolist()
+else:
+    transactions = df.values.tolist()
+'''
+# or
 #transactions = df[0].apply(lambda x: x.split(',')).tolist() if df.shape[1] == 1 else df.values.tolist()
 #print(type(transactions)) # <class 'list'>
 #print(transactions)
@@ -37,6 +61,44 @@ print(transactions)
 '''
 
 # Step 2: Convert to one-hot encoded DataFrame
+'''
+The TransactionEncoder is designed to convert transactional data 
+(typically a list of lists, where each inner list represents a transaction 
+and contains items) into a one-hot encoded format. 
+This format is crucial for applying frequent pattern mining algorithms like Apriori or FP-Growth.
+
+Transaction Data Format: 
+The TransactionEncoder expects your data to be a Python list of lists, where each inner list represents a transaction (a collection of items purchased together).
+For example: [['Apple', 'Beer', 'Rice', 'Chicken'], ['Apple', 'Beer', 'Rice'], ['Apple', 'Beer']].
+
+Learning Unique Labels: 
+When you call te.fit(dataset), the TransactionEncoder iterates through all the transactions in your dataset and identifies all the distinct items that appear across all transactions.
+For example, in the dataset above, it would identify 'Apple', 'Beer', 'Rice', and 'Chicken' as the unique items.
+
+Internal Storage: 
+This learned information (the list of unique items) is stored internally within the TransactionEncoder object (accessed via the columns_ attribute). 
+This is crucial for the subsequent transformation step.
+
+Internal Storage: 
+This learned information (the list of unique items) is stored internally within the TransactionEncoder object (accessed via the columns_ attribute). 
+This is crucial for the subsequent transformation step.
+
+In summary:
+The fit method essentially "teaches" the TransactionEncoder about the vocabulary of items within your transaction data, preparing it for 
+the transformation into a one-hot encoded format suitable for market basket analysis and other machine learning tasks.
+
+One-hot encoding:
+It is a method used in machine learning and data science to convert categorical (non-numerical) data into a numerical format that algorithms can understand.
+-   For each unique category in a categorical variable, a new binary (0 or 1) column (also known as a dummy variable) is created.
+-   In each row, only one of these new columns will have a value of 1, indicating the presence of that particular category, while all other columns for that row will be 0. 
+
+Imagine a dataset with a "Color" column containing the values "Red," "Blue," and "Green." 
+One-hot encoding would transform this into three new binary columns: 
+    "Color_Red," "Color_Blue," and "Color_Green." 
+If an original row has "Red" as the color, the "Color_Red" column would be 1, and "Color_Blue" and "Color_Green" would be 0.
+If an original row has "Blue" as the color, the "Color_Blue" column would be 1, and "Color_Red" and "Color_Green" would be 0.
+
+'''
 te = TransactionEncoder()
 te_array = te.fit(transactions).transform(transactions)
 onehot_df = pd.DataFrame(te_array, columns=te.columns_)

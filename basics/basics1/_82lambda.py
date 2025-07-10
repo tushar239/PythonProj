@@ -34,15 +34,13 @@ names = ['apple', 'banana', 'cherry']
 sorted_names = sorted(names, key=lambda x: len(x))
 print(sorted_names) # ['apple', 'banana', 'cherry']
 
-
-
-
-
-
-
-
-
-
+df = pd.DataFrame({
+    'product': ['P,Q,R', 'B,D', 'C,A']
+})
+transactions = list(df['product'].apply(lambda x: x.split(','))) # x='P,Q,R' / 'B',D' / 'C','A'
+# or    split function returns a list
+# transactions = df['product'].apply(lambda x: x.split(',')).toList()
+print(transactions) # [['P', 'Q', 'R'], ['B', 'D'], ['C', 'A']]
 ###################################################################
 '''
 A Python lambda function is limited to a single expression,
