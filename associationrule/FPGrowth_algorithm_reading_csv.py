@@ -24,7 +24,7 @@ print(df)
 #print(transactions)
 
 # Step 2: Convert rows to lists and drop NaNs
-transactions = df.apply(lambda row: row.dropna().tolist(), axis=1).tolist()
+transactions = df.apply(lambda row: row.dropna().tolist(), axis=1).tolist() # axis=1 means column
 print(type(transactions)) # <class 'list'>
 print(transactions)
 
