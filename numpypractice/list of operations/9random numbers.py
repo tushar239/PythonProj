@@ -90,3 +90,13 @@ a = np.random.normal(loc=0, scale=1, size=300)
 sns.histplot(a, kde=True, bins=30)  # newer version; distplot is deprecated
 plt.title("Distribution Plot with KDE")
 plt.show()
+
+
+lunch = ["pizza", "pasta", "hamburger", "pancake", "doughnut"]
+print(np.random.choice(lunch)) # pancake
+
+# randomly chooses the float number between 0 and 1
+print(np.random.uniform(0, 1)) # 0.7598842345175858
+
+# randomly chooses the integer number between 3 and 9 (both included)
+print(np.random.randint(3, 9))
