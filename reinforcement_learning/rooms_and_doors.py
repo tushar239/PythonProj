@@ -12,12 +12,12 @@ R = np.array([
     [-1, 0, -1, -1, 0, 100]
 ])
 
-# Q-table initialized to 0
+# Q-table initialized to 0, each entry represents the value of taking a particular action in a given state.
 Q = np.zeros_like(R, dtype=float)
 
 # Hyperparameters
-gamma = 0.8  # discount factor
-alpha = 0.9  # learning rate
+gamma = 0.8  # discount factor, representing the importance of future rewards.
+alpha = 0.9  # learning rate, controlling how much new information overrides old information.
 episodes = 1000
 
 # Q-learning process
@@ -32,12 +32,13 @@ for _ in range(episodes):
         # Get next state's best future value
         next_state = action
         nonNegativeActions = [act for act in Q[next_state] if act >= 0]
-        next_best_action_value = np.max(nonNegativeActions)
+        best_value_of_next_action = np.max(nonNegativeActions) # maximum Q-value for the next state, representing the best possible reward achievable from that state.
         # or
         #next_best_action = np.max(Q[next_state])
 
+        immediate_reward_for_taking_action =R[state, action] # immediate reward for taking action a in state s.
         # Q-learning update rule
-        Q[state, action] += alpha * (R[state, action] + gamma * next_best_action_value - Q[state, action])
+        Q[state, action] += alpha * (immediate_reward_for_taking_action + gamma * best_value_of_next_action - Q[state, action])
 
         state = next_state
         if state == 5:  # reached the goal
