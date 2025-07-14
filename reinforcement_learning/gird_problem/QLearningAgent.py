@@ -13,7 +13,7 @@ class QLearningAgent:
 
     def choose_action(self, state):
         if random.uniform(0, 1) < self.exploration_rate:
-            return random.randint(0, 3)  # Explore
+            return random.randint(0, 3)  # Explore   -  0 to 3 are four actions
         else:
             return np.argmax(self.q_table[state])  # Exploit
 

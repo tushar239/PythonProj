@@ -10,6 +10,7 @@ episodes = 1000  # Number of training episodes
 
 for episode in range(episodes):
     state = env.reset()  # Reset the environment at the start of each episode
+    #print('initial state: ', state) # (3, 0)
     done = False
 
     while not done:

@@ -23,8 +23,8 @@ class GridWorld:
     def is_terminal(self, state):
         return self.grid[state] == 1 or self.grid[state] == -1
 
-    def get_next_state(self, state, action):
-        next_state = list(state)
+    def get_next_state(self, state, action): # state=(3,0) cell number in grid, action=0/1/2/3
+        next_state = list(state) # (3,0) to [3,0]
         if action == 0:  # Move up
             next_state[0] = max(0, state[0] - 1)
         elif action == 1:  # Move right
@@ -37,7 +37,7 @@ class GridWorld:
 
     def step(self, action):
         next_state = self.get_next_state(self.state, action)
-        reward = self.grid[next_state]
+        reward = self.grid[next_state] # reward from grid(R) table
         self.state = next_state
         done = self.is_terminal(next_state)
         return next_state, reward, done
