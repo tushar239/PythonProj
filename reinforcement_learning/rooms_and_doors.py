@@ -32,12 +32,12 @@ for _ in range(episodes):
         # Get next state's best future value
         next_state = action
         nonNegativeActions = [act for act in Q[next_state] if act >= 0]
-        next_best_action = np.max(nonNegativeActions)
+        next_best_action_value = np.max(nonNegativeActions)
         # or
         #next_best_action = np.max(Q[next_state])
 
         # Q-learning update rule
-        Q[state, action] += alpha * (R[state, action] + gamma * next_best_action - Q[state, action])
+        Q[state, action] += alpha * (R[state, action] + gamma * next_best_action_value - Q[state, action])
 
         state = next_state
         if state == 5:  # reached the goal
