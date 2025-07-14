@@ -29,6 +29,7 @@ print(state)  # nice
 
 # Syntax: newlist = [expression for item in iterable if condition == True]
 fruits = ["apple", "banana", "cherry", "kiwi", "mango", "apple"]
+#fruits = ["khjoor"] # newlist will be empty []
 newlist = [x for x in fruits if "a" in x]  # for loop and if conditions are merged in one line
 print(newlist)  # ['apple', 'banana', 'mango', "apple"]
 
