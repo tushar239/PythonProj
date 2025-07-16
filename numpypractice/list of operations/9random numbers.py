@@ -95,7 +95,7 @@ plt.show()
 lunch = ["pizza", "pasta", "hamburger", "pancake", "doughnut"]
 print(np.random.choice(lunch)) # pancake
 
-# randomly chooses the float number between 0 and 1
+# randomly chooses the float number between 0 and 1 (0 and 1 included)
 print(np.random.uniform(0, 1)) # 0.7598842345175858
 
 # randomly chooses the integer number between 3 and 9 (both included)
