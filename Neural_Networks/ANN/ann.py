@@ -1,3 +1,4 @@
+# NOTE: Install Microsoft Visual C++ latest version on your computer. Tensorflow needs it.
 import numpy as np
 import pandas as pd
 import tensorflow as tf
