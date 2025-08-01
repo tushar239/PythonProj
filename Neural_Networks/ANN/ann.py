@@ -42,6 +42,7 @@ print(y)
 # Label Encoding the "Gender" column
 from sklearn.preprocessing import LabelEncoder
 le = LabelEncoder()
+# If X is a dataframe
 #X['Gender'] = le.fit_transform(X.iloc[:, 2])
 X[:, 2] = le.fit_transform(X[:, 2])
 
@@ -56,12 +57,36 @@ print(X)
  [792 'France' 0 ... 1 0 38190.78]]
 '''
 # One Hot Encoding the "Geography" column
-#from sklearn.compose import ColumnTransformer
-#from sklearn.preprocessing import OneHotEncoder
-#ct = ColumnTransformer(transformers=[('encoder', OneHotEncoder(), [1])], remainder='passthrough')
-#X = np.array(ct.fit_transform(X))
+# One-Hot encoding is a method used to represent categorical data, where each category is represented by a binary variable.
+# The binary variable takes the value 1 if the category is present and 0 otherwise.
+# The binary variables are also known as dummy variables.
+from sklearn.compose import ColumnTransformer
+from sklearn.preprocessing import OneHotEncoder
+# you want to apply One Hot Encoding on the column 1 of 2-D array (Geography). 'encoder' is just a unique name given to this transformer.
+'''
+ColumnTransformer is a class within the sklearn.compose module of the scikit-learn Python machine learning library. 
+It is designed to apply different data transformation techniques to different columns or subsets of columns within a dataset.
 
-#print(X)
+ColumnTransformer takes a list of tuples, where each tuple specifies:
+A unique name for the transformer.
+The transformer object itself (e.g., StandardScaler, OneHotEncoder, SimpleImputer).
+The columns (by index or name) to which that transformer should be applied.
+
+You should be able to use OneHotEncoder() without ColumnTransformer also.
+'''
+ct = ColumnTransformer(transformers=[('encoder', OneHotEncoder(), [1])], remainder='passthrough')
+X = np.array(ct.fit_transform(X))
+
+print(X)
+
+'''
+onehotencoder = OneHotEncoder()
+# Example with a Pandas DataFrame 'df' and a list of categorical columns 'categorical_cols'
+#transformed_data = onehotencoder.fit_transform(df[categorical_cols])
+# Example with a NumPy array 'X' and selecting columns by index (e.g., first column)
+X = onehotencoder.fit_transform(X, [1]) # somehow, this is not working
+print(X)
+'''
 
 '''
 # get_dummies needs dataframe. So, first you need to convert X (2-D array) to dataframe
