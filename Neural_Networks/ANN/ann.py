@@ -56,17 +56,25 @@ print(X)
  [792 'France' 0 ... 1 0 38190.78]]
 '''
 # One Hot Encoding the "Geography" column
-from sklearn.compose import ColumnTransformer
-from sklearn.preprocessing import OneHotEncoder
-ct = ColumnTransformer(transformers=[('encoder', OneHotEncoder(), [1])], remainder='passthrough')
-X = np.array(ct.fit_transform(X))
+#from sklearn.compose import ColumnTransformer
+#from sklearn.preprocessing import OneHotEncoder
+#ct = ColumnTransformer(transformers=[('encoder', OneHotEncoder(), [1])], remainder='passthrough')
+#X = np.array(ct.fit_transform(X))
 
-print(X)
-
-# Label encoding for Geography column also
-#X[:, 1] = le.fit_transform(X[:, 1])
 #print(X)
 
+'''
+# get_dummies needs dataframe. So, first you need to convert X (2-D array) to dataframe
+df = pd.DataFrame(X)
+print(df)
+X = pd.get_dummies(df, columns=[1]).values
+print(X)
+'''
+'''
+# Label encoding for Geography column also
+X[:, 1] = le.fit_transform(X[:, 1])
+print(X)
+'''
 
 '''
 [[1.0 0.0 0.0 ... 1 1 101348.88]
@@ -340,8 +348,13 @@ Estimated Salary: $ 50000
 
 So, should we say goodbye to that customer?
 '''
+# If OneHotEncoder is used for Geography column. 1,0,0 is added at the beginning for France, Germany, Spain. Randomly 3 columns are arranged at the beginning.
 print(ann.predict(sc.transform([[1, 0, 0, 600, 1, 40, 3, 60000, 2, 1, 1, 50000]])) > 0.5)
-# If label encoding is used for Geography column also
+
+# If get_dummies is used for Geography column: True, False, False is added at the end for France, Germany, Spain. Randomly 3 columns are arranged at the end.
+# print(ann.predict(sc.transform([[600, 1, 40, 3, 60000, 2, 1, 1, 50000, True, False, False]])) > 0.5)
+
+# If label encoding is used for Geography column, 1- France, 2-Germany, 0-Spain. Random labeling.
 #print(ann.predict(sc.transform([[600, 1, 1, 40, 3, 60000, 2, 1, 1, 50000]])) > 0.5)
 '''
 1/1 ━━━━━━━━━━━━━━━━━━━━ 0s 47ms/step
