@@ -8,9 +8,17 @@ print(tf.__version__)
 # Part 1 - Data Preprocessing
 # Importing the dataset
 
-dataset = pd.read_csv('Churn_Modelling.csv')
-X = dataset.iloc[:, 3:-1].values
-y = dataset.iloc[:, -1].values
+dataset = pd.read_csv('Churn_Modelling.csv') # this is dataframe
+#print(dataset.iloc[:, 3:-1]) # print dataframe
+
+#X will be a dataframe. Y will be a series. This also works for training the model.
+#X = dataset.iloc[:, 3:-1]
+#y = dataset.iloc[:, -1]
+
+#.values will give all the values in 2-D array
+X = dataset.iloc[:, 3:-1].values # exclude RowNumber, CusterId, Surname, Exited columns. RowNumber, CusterId, Surname have no impact on dependent variable Exited.
+#.values will give all the values in 1-D array
+y = dataset.iloc[:, -1].values # keep only Exited column
 
 print(X)
 '''
@@ -33,6 +41,7 @@ print(y)
 # Label Encoding the "Gender" column
 from sklearn.preprocessing import LabelEncoder
 le = LabelEncoder()
+#X['Gender'] = le.fit_transform(X.iloc[:, 2])
 X[:, 2] = le.fit_transform(X[:, 2])
 
 print(X)

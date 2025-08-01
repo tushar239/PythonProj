@@ -6,11 +6,17 @@ from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error, r2_score
 
+# df = pd.read_csv('Churn_Modelling.csv')
+# X = df.iloc[:, :-1].values # dataframe values in 2-D array
+# Y = df.iloc[:, -1].values # considering last col as a dependent variable. It will give 1-D array.
+
 # Study hours (independent variable)
 X = np.array([[1], [2], [3], [4], [5], [6], [7], [8], [9], [10]])
 # Corresponding scores (dependent variable)
 y = np.array([35, 45, 50, 55, 60, 65, 70, 75, 85, 95])
 
+# X can be a 2-D array or a dataframe without dependent variable
+# y can be a 1-D array or a series
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
 
 model = LinearRegression()
