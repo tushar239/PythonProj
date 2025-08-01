@@ -21,6 +21,7 @@ X = dataset.iloc[:, 3:-1].values # exclude RowNumber, CusterId, Surname, Exited 
 y = dataset.iloc[:, -1].values # keep only Exited column
 
 print(X)
+# print(np.unique(X[:, 1])) # ['France' 'Germany' 'Spain']
 '''
 [[619 'France' 'Female' ... 1 1 101348.88]
  [608 'Spain' 'Female' ... 0 1 112542.58]
@@ -61,6 +62,11 @@ ct = ColumnTransformer(transformers=[('encoder', OneHotEncoder(), [1])], remaind
 X = np.array(ct.fit_transform(X))
 
 print(X)
+
+# Label encoding for Geography column also
+#X[:, 1] = le.fit_transform(X[:, 1])
+#print(X)
+
 
 '''
 [[1.0 0.0 0.0 ... 1 1 101348.88]
@@ -335,6 +341,8 @@ Estimated Salary: $ 50000
 So, should we say goodbye to that customer?
 '''
 print(ann.predict(sc.transform([[1, 0, 0, 600, 1, 40, 3, 60000, 2, 1, 1, 50000]])) > 0.5)
+# If label encoding is used for Geography column also
+#print(ann.predict(sc.transform([[600, 1, 1, 40, 3, 60000, 2, 1, 1, 50000]])) > 0.5)
 '''
 1/1 ━━━━━━━━━━━━━━━━━━━━ 0s 47ms/step
 [[False]]
@@ -369,7 +377,7 @@ print(np.concatenate((y_pred.reshape(len(y_pred),1), y_test.reshape(len(y_test),
 from sklearn.metrics import confusion_matrix, accuracy_score
 cm = confusion_matrix(y_test, y_pred)
 print(cm)
-accuracy_score(y_test, y_pred)
+print(accuracy_score(y_test, y_pred))
 
 '''
 [[1529   66]
