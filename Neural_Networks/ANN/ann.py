@@ -5,7 +5,7 @@ import tensorflow as tf
 
 print(tf.__version__)
 
-# Part 1 - Data Preprocessing
+# ************************************* Part 1 - Data Preprocessing **********************************
 # Importing the dataset
 
 dataset = pd.read_csv('Churn_Modelling.csv') # this is dataframe
@@ -68,40 +68,21 @@ ColumnTransformer is a class within the sklearn.compose module of the scikit-lea
 It is designed to apply different data transformation techniques to different columns or subsets of columns within a dataset.
 
 ColumnTransformer takes a list of tuples, where each tuple specifies:
-A unique name for the transformer.
-The transformer object itself (e.g., StandardScaler, OneHotEncoder, SimpleImputer).
-The columns (by index or name) to which that transformer should be applied.
-
-You should be able to use OneHotEncoder() without ColumnTransformer also.
+- A unique name for the transformer.
+- The transformer object itself (e.g., StandardScaler, OneHotEncoder, SimpleImputer).
+- The columns (by index or name) to which that transformer should be applied.
 '''
 ct = ColumnTransformer(transformers=[('encoder', OneHotEncoder(), [1])], remainder='passthrough')
 X = np.array(ct.fit_transform(X))
 
 print(X)
+'''
+OnHotEncoding keeps the encoded columns at the beginning with 1.0/0.0 values. One column from France, another for Germany, third one for Spain.
 
-'''
-onehotencoder = OneHotEncoder()
-# Example with a Pandas DataFrame 'df' and a list of categorical columns 'categorical_cols'
-#transformed_data = onehotencoder.fit_transform(df[categorical_cols])
-# Example with a NumPy array 'X' and selecting columns by index (e.g., first column)
-X = onehotencoder.fit_transform(X, [1]) # somehow, this is not working
-print(X)
-'''
+get_Dummies does the same thing by keeping the encoded columns at the end with True/False values.
+In Python, and consequently in Pandas, True is treated as 1 and False is treated as 0 when used in numerical contexts or when explicitly converted to an integer type. 
+This is due to Python's underlying representation of booleans as a subclass of integers.
 
-'''
-# get_dummies needs dataframe. So, first you need to convert X (2-D array) to dataframe
-df = pd.DataFrame(X)
-print(df)
-X = pd.get_dummies(df, columns=[1]).values
-print(X)
-'''
-'''
-# Label encoding for Geography column also
-X[:, 1] = le.fit_transform(X[:, 1])
-print(X)
-'''
-
-'''
 [[1.0 0.0 0.0 ... 1 1 101348.88]
  [0.0 0.0 1.0 ... 0 1 112542.58]
  [1.0 0.0 0.0 ... 1 0 113931.57]
@@ -111,17 +92,48 @@ print(X)
  [1.0 0.0 0.0 ... 1 0 38190.78]]
 '''
 
+'''
+# You should be able to use OneHotEncoder() without ColumnTransformer also.
+
+onehotencoder = OneHotEncoder()
+# Example with a Pandas DataFrame 'df' and a list of categorical columns 'categorical_cols'
+# transformed_data = onehotencoder.fit_transform(df[categorical_cols])
+# Example with a NumPy array 'X' and selecting columns by index (e.g., first column)
+X = onehotencoder.fit_transform(X, [1]) # somehow, this is not working
+print(X)
+'''
+
+'''
+# get_dummies needs dataframe. So, first you need to convert X (2-D array) to dataframe
+# get_Dummies does the same thing by keeping the encoded columns at the end with True/False values.
+# In Python, and consequently in Pandas, True is treated as 1 and False is treated as 0 when used in numerical contexts or when explicitly converted to an integer type. 
+# This is due to Python's underlying representation of booleans as a subclass of integers.
+
+df = pd.DataFrame(X)
+print(df)
+X = pd.get_dummies(df, columns=[1]).values # get_dummies gives a dataframe with col=1 encoded. .values converts dataframe into 2-D array.
+print(X)
+'''
+'''
+# Label encoding for Geography column also
+X[:, 1] = le.fit_transform(X[:, 1])
+print(X)
+'''
+
+
 # Splitting the dataset into the Training set and Test set
 from sklearn.model_selection import train_test_split
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 0)
 
 # Feature Scaling
+# It is absolutely MANDATORY for deep learning.
 from sklearn.preprocessing import StandardScaler
 sc = StandardScaler()
 X_train = sc.fit_transform(X_train)
 X_test = sc.transform(X_test)
 
-# Part 2 - Building the ANN
+# ************************************* Part 1 - Data Preprocessing Ends **********************************
+# ************************************* Part 2 - Building the ANN *************************************
 # Initializing the ANN
 ann = tf.keras.models.Sequential()
 
