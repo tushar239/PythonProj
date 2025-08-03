@@ -7,6 +7,10 @@ A box plot (also called a box-and-whisker plot) shows:
     Minimum and maximum (whiskers)
     Outliers (dots)
 
+boxplot is same as dataframe.describe(). It shows 5 point summary.
+It can be used for two variables x=categorical variable, y=numerical variable OR just y=numerical variable
+
+
 Quartiles are values that divide a sorted dataset into four equal parts, each containing 25% of the data.
 The Four Quartiles:
 Name	Meaning
@@ -46,5 +50,16 @@ plt.boxplot(data, labels=["Group A", "Group B", "Group C"])
 plt.title("Box Plot Example")
 plt.ylabel("Values")
 plt.grid(True)
+plt.show()
 
+plt.boxplot(data1)
+plt.title("Box Plot Example")
+plt.ylabel("Values")
+plt.grid(True)
+plt.show()
+
+plt.boxplot(data)
+plt.title("Box Plot Example")
+plt.ylabel("Values")
+plt.grid(True)
 plt.show()

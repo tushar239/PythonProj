@@ -26,11 +26,12 @@ df = sns.load_dataset("titanic")
 # This will show how many passengers are male vs. female in the Titanic dataset.
 category_counts = df['sex'].value_counts()
 print(type(category_counts)) # <class 'pandas.core.series.Series'>
+print(category_counts)
 
-print(category_counts.values)
+print(category_counts.values) # [577 314]
 print(type(category_counts.values))
 
-print(category_counts.index.values) # <class 'numpy.ndarray'>
+print(category_counts.index.values) # ['male' 'female']
 print(type(category_counts.index.values)) # <class 'numpy.ndarray'>
 
 plt.bar(category_counts.index.values, category_counts.values)
