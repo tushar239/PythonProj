@@ -134,19 +134,65 @@ X_test = sc.transform(X_test)
 
 # ************************************* Part 1 - Data Preprocessing Ends **********************************
 # ************************************* Part 2 - Building the ANN *************************************
-# Initializing the ANN
+# Initializing the ANN. ANN is a sequence of layers.
 ann = tf.keras.models.Sequential()
 
 # Adding the input layer and the first hidden layer
-ann.add(tf.keras.layers.Dense(units=6, activation='relu'))
+'''
+When you add the first hidden layer, 
+input layer with proper number of neurons will automatically be added based on number of input features.
+'''
+'''
+How to decide number of neurons (units)?
+Unfortunately, there is no rule of thumb. You just need to try different numbers and pick the one that works better.
+Here, I tried multiple numbers. All of them gave almost the same result. So, I picked 6.
+For all the hidden layers, activation function bust be ReLU or 'Leaky ReLU)
+'''
+'''
+A Dense layer, also known as a fully connected layer, is a fundamental building block in neural networks. 
+In this layer, every neuron receives input from all neurons in the previous layer, and each connection has an associated weight. 
+The layer then applies a transformation to the weighted sum of its inputs, typically followed by an activation function.
+'''
+'''
+ReLU vs Leaky ReLU:
+Leaky Rectified Linear Unit (Leaky ReLU) is an activation function designed to address the "dying ReLU" problem, where neurons can become inactive and stop learning for negative input values. 
+Unlike standard ReLU, which outputs zero for negative inputs, Leaky ReLU introduces a small, non-zero slope for negative values. 
+This ensures that even when the input is negative, a small gradient can still pass through, allowing the neuron to continue learning.
+
+activation='Leaky Relu'
+'''
+'''
+If you add just one hidden layer, it creates a shallow NN.
+So, create at least two hidden layers to create a deep NN.
+'''
+ann.add(tf.keras.layers.Dense(units=6, activation='relu')) # adding an object of Dense class to ann
 
 # Adding the second hidden layer
-ann.add(tf.keras.layers.Dense(units=6, activation='relu'))
+ann.add(tf.keras.layers.Dense(units=6, activation='relu')) # adding an object of Dense class to ann
 
 # Adding the output layer
-ann.add(tf.keras.layers.Dense(units=1, activation='sigmoid'))
+'''
+Here, I am expecting binary output 0 or 1 (Classification problem). So, just one neuron is required in output layer.
+If there are 3 categorical values in output, you need to first use OneHotEncoding for that variable and then
+have 3 neurons in output layer. which will give 1,0,0 or 0,1,0 or 0,0,1 as an output.
+'''
+'''
+The Softmax activation function is appropriate for the output layer of a multi-class classification neural network.
+The Softmax function takes a vector of arbitrary real-valued scores and transforms them into a probability distribution over multiple classes. 
+This means that the output values for all classes will sum to 1, and each individual output value will be between 0 and 1, representing the estimated probability of the input belonging to that specific class.
+This characteristic makes Softmax ideal for multi-class classification problems where the goal is to assign an input to one of several mutually exclusive classes, and a probabilistic interpretation of the output is desired.
+'''
+'''
+For the output layer of a regression neural network, the linear activation function is most appropriate. 
+This function allows the output to be any real number, which is suitable for predicting continuous values like prices, temperatures, or scores. 
+Other activation functions, like ReLU or sigmoid, are typically used in the hidden layers or for classification tasks, but not for the final output in regression. 
 
-# Part 3 - Training the ANN
+A linear function (f(x) = x) simply passes the input value through without modification, 
+which is ideal for regression as it doesn't impose any restrictions on the output range. 
+'''
+ann.add(tf.keras.layers.Dense(units=1, activation='sigmoid')) # adding an object of Dense class to ann
+
+# ************************************ Part 3 - Training the ANN ************************************
 # Compiling the ANN
 ann.compile(optimizer = 'adam', loss = 'binary_crossentropy', metrics = ['accuracy'])
 
@@ -356,7 +402,7 @@ Epoch 100/100
 <keras.src.callbacks.history.History at 0x78b291eee530>
 '''
 
-# Part 4 - Making the predictions and evaluating the model
+# ************************************ Part 4 - Making the predictions and evaluating the model ************************************
 
 # Predicting the result of a single observation
 
