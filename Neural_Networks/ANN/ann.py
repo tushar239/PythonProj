@@ -165,6 +165,29 @@ activation='Leaky Relu'
 If you add just one hidden layer, it creates a shallow NN.
 So, create at least two hidden layers to create a deep NN.
 '''
+'''
+Number of Layers:
+There's no hard and fast rule for the exact number of hidden layers, but as a general guideline:
+    Simple tasks: One or two hidden layers might be enough. 
+    Complex tasks: Deep learning models with several hidden layers (e.g., 3 or more) are often necessary. 
+For simple tasks, a single hidden layer may suffice, while more complex tasks, like image recognition or natural language processing, often require multiple hidden layers. 
+Deep learning, which involves networks with multiple hidden layers, is frequently used for these more complex problems. 
+
+Single Hidden Layer:
+    Neural networks with one hidden layer can effectively solve many problems, especially those involving linearly separable data or relatively simple patterns. 
+Multiple Hidden Layers (Deep Learning):
+    As the complexity of the task increases, adding more hidden layers allows the network to learn more intricate relationships and features within the data. 
+    Deep learning, which is characterized by multiple hidden layers, is particularly useful for tasks that require high levels of abstraction and representation learning. 
+
+Overfitting:
+Adding too many layers can lead to overfitting, where the network learns the training data too well and doesn't generalize effectively to new, unseen data. 
+
+Practical Considerations:
+When determining the number of hidden layers, factors like the size and complexity of the dataset, the desired accuracy, and computational resources available should be considered. 
+
+Empirical Approach:
+Often, the best approach is to start with a reasonable number of layers and then experiment, monitoring performance on a validation set to find the optimal architecture for a given task. 
+'''
 ann.add(tf.keras.layers.Dense(units=6, activation='relu')) # adding an object of Dense class to ann
 
 # Adding the second hidden layer
@@ -197,6 +220,9 @@ ann.add(tf.keras.layers.Dense(units=1, activation='sigmoid')) # adding an object
 ann.compile(optimizer = 'adam', loss = 'binary_crossentropy', metrics = ['accuracy'])
 
 # Training the ANN on the Training set
+# batch_size = 32 means 32 rows (observations/data) will be fed together to make NN learn.
+# 32 rows will be fed, NN will give some output. This output will be compared with actual output,
+# error will be calculated, stochastic gradient descent will be used to reduce the error, weights will be modified accordingly.
 ann.fit(X_train, y_train, batch_size = 32, epochs = 100)
 '''
 Epoch 1/100
