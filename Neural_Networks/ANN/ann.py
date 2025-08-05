@@ -328,13 +328,24 @@ Keras provides a comprehensive set of built-in metrics to evaluate the performan
 ann.compile(optimizer = 'adam', loss = 'binary_crossentropy', metrics = ['accuracy', 'binary_accuracy'])
 
 # Training the ANN on the Training set
+
 # batch_size = 32 means 32 rows (observations/data) will be fed together to make NN learn.
 # 32 rows will be fed, NN will give some output. This output will be compared with actual output,
-# error will be calculated, stochastic gradient descent will be used to reduce the error, weights will be modified accordingly.
+# error will be calculated, stochastic gradient descent will be used to reduce the error (because of optimizer=adam), weights will be modified accordingly.
+# batch_size parameter can be twicked, but normally 32 works the best.
+# When training a model, data is split into mini-batches because:
+# It’s more memory-efficient than using all data at once
+# It helps the model update weights more frequently (faster convergence)
+
+
+# epochs=100 means NN will be trained 100 times with the same data to improve its outcome.
+# do not keep it too small. NN needs certain amount of epochs to learn properly.
 ann.fit(X_train, y_train, batch_size = 32, epochs = 100)
 '''
+------ There are 250 batches of data in the epoch, each batch has 32 records
+------ total training samples = 8000 out of 10000, batch size = 32
 Epoch 1/100
-250/250 ━━━━━━━━━━━━━━━━━━━━ 2s 1ms/step - accuracy: 0.7618 - loss: 0.5313
+250/250 ━━━━━━━━━━━━━━━━━━━━ 2s 1ms/step - accuracy: 0.7618 - loss: 0.5313 
 Epoch 2/100
 250/250 ━━━━━━━━━━━━━━━━━━━━ 1s 1ms/step - accuracy: 0.7977 - loss: 0.4429
 Epoch 3/100
@@ -541,7 +552,7 @@ Epoch 100/100
 # Predicting the result of a single observation
 
 '''
-Use our ANN model to predict if the customer with the following informations will leave the bank:
+Use our ANN model to predict if the customer with the following information will leave the bank:
 
 Geography: France
 Credit Score: 600
@@ -558,7 +569,7 @@ Estimated Salary: $ 50000
 So, should we say goodbye to that customer?
 '''
 # If OneHotEncoder is used for Geography column. 1,0,0 is added at the beginning for France, Germany, Spain. Randomly 3 columns are arranged at the beginning.
-print(ann.predict(sc.transform([[1, 0, 0, 600, 1, 40, 3, 60000, 2, 1, 1, 50000]])) > 0.5)
+print(ann.predict(sc.transform([[1, 0, 0, 600, 1, 40, 3, 60000, 2, 1, 1, 50000]])) > 0.5) # [[False]]
 
 # If get_dummies is used for Geography column: True, False, False is added at the end for France, Germany, Spain. Randomly 3 columns are arranged at the end.
 # print(ann.predict(sc.transform([[600, 1, 40, 3, 60000, 2, 1, 1, 50000, True, False, False]])) > 0.5)
@@ -572,14 +583,11 @@ print(ann.predict(sc.transform([[1, 0, 0, 600, 1, 40, 3, 60000, 2, 1, 1, 50000]]
 
 '''
 Therefore, our ANN model predicts that this customer stays in the bank!
-
 Important note 1: Notice that the values of the features were all input in a double pair of square brackets. That's because the "predict" method always expects a 2D array as the format of its inputs. And putting our values into a double pair of square brackets makes the input exactly a 2D array.
-
 Important note 2: Notice also that the "France" country was not input as a string in the last column but as "1, 0, 0" in the first three columns. That's because of course the predict method expects the one-hot-encoded values of the state, and as we see in the first row of the matrix of features X, "France" was encoded as "1, 0, 0". And be careful to include these values in the first three columns, because the dummy variables are always created in the first columns.
 '''
 
-
-# metrics from tensorflow
+# metrics from tensorflow. We set metrics = ['accuracy', 'binary_accuracy'], so it will return those.
 # finds y_pred from x_test and then compares y_pred and y_test to find accuracy
 loss, accuracy, binary_accuracy = ann.evaluate(X_test, y_test, verbose=0)
 print(f"Test Loss: {loss}") # 0.33554255962371826
@@ -608,10 +616,6 @@ from sklearn.metrics import confusion_matrix, accuracy_score
 cm = confusion_matrix(y_test, y_pred)
 print(cm)
 print(accuracy_score(y_test, y_pred))
-
-# To get the training binary accuracy for each epoch:
-#train_accuracy = history.History['binary_accuracy']
-#print(train_accuracy)
 '''
 [[1529   66]
  [ 206  199]]
