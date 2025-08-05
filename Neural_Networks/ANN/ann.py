@@ -544,23 +544,15 @@ Epoch 100/100
 Use our ANN model to predict if the customer with the following informations will leave the bank:
 
 Geography: France
-
 Credit Score: 600
-
 Gender: Male
-
 Age: 40 years old
-
 Tenure: 3 years
-
 Balance: $ 60000
-
 Number of Products: 2
 
 Does this customer have a credit card? Yes
-
 Is this customer an Active Member: Yes
-
 Estimated Salary: $ 50000
 
 So, should we say goodbye to that customer?
@@ -586,8 +578,16 @@ Important note 1: Notice that the values of the features were all input in a dou
 Important note 2: Notice also that the "France" country was not input as a string in the last column but as "1, 0, 0" in the first three columns. That's because of course the predict method expects the one-hot-encoded values of the state, and as we see in the first row of the matrix of features X, "France" was encoded as "1, 0, 0". And be careful to include these values in the first three columns, because the dummy variables are always created in the first columns.
 '''
 
-# Predicting the Test set results
 
+# metrics from tensorflow
+# finds y_pred from x_test and then compares y_pred and y_test to find accuracy
+loss, accuracy, binary_accuracy = ann.evaluate(X_test, y_test, verbose=0)
+print(f"Test Loss: {loss}") # 0.33554255962371826
+print(f"Test Accuracy: {accuracy}") # 0.8585000038146973
+print(f"Test Binary Accuracy: {binary_accuracy}") # 0.8585000038146973
+
+
+# Predicting the Test set results
 y_pred = ann.predict(X_test)
 y_pred = (y_pred > 0.5)
 print(np.concatenate((y_pred.reshape(len(y_pred),1), y_test.reshape(len(y_test),1)),1))
@@ -603,15 +603,15 @@ print(np.concatenate((y_pred.reshape(len(y_pred),1), y_test.reshape(len(y_test),
  [0 0]]
 '''
 
-# Making the Confusion Matrix
+# Making the Confusion Matrix and finding accuracy using sklearn library
 from sklearn.metrics import confusion_matrix, accuracy_score
 cm = confusion_matrix(y_test, y_pred)
 print(cm)
 print(accuracy_score(y_test, y_pred))
 
 # To get the training binary accuracy for each epoch:
-train_accuracy = history.history['binary_accuracy']
-print(train_accuracy)
+#train_accuracy = history.History['binary_accuracy']
+#print(train_accuracy)
 '''
 [[1529   66]
  [ 206  199]]
