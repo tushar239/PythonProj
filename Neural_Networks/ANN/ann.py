@@ -2,7 +2,65 @@
 import numpy as np
 import pandas as pd
 import tensorflow as tf
+from keras.src.callbacks import history
 
+'''
+What is Tensor?
+Inputs/ Outputs in TensorFlow are called Tensor. Tensor is nothing but a multi-dimensional array for which the underpinning element type is specified at the graph construction time.
+
+https://www.geeksforgeeks.org/deep-learning/tensorflow/
+
+TensorFlow is an open-source machine-learning framework developed by Google. 
+It is written in Python, making it accessible and easy to understand. 
+It is designed to build and train machine learning (ML) and deep learning models.
+
+    - It is highly scalable for both research and production.
+    - It supports CPUs, GPUs, and TPUs for faster computation.
+    - TensorFlow provides built-in tools for visualization and debugging.
+    - It works seamlessly with other AI frameworks and libraries.
+
+https://www.geeksforgeeks.org/python/introduction-to-tensorflow/
+Primary Focus of
+TensorFlow  - Deep learning, production-level deployment
+PyTorch - Deep learning, research and experimentation. Limited deployment options compared to TensorFlow
+Keras - High-level API for building deep learning models that runs on top of TensorFlow
+        Simplified interface for model creation, limited flexibility compared to raw TensorFlow
+        High-level API for neural networks, focused on simplifying the process of building models without needing much detail about architecture
+Scikit-Learn - Traditional machine learning algorithms like decision trees, SVMs, linear regression, etc.       
+               Focused on traditional machine learning, not deep learning; limited flexibility for neural networks
+               Classical machine learning tasks like classification, regression, clustering, dimensionality reduction and more. 
+
+https://www.geeksforgeeks.org/machine-learning/difference-between-tensorflow-and-keras/
+Keras
+It is an Open Source Neural Network library that runs on top of Theano or Tensorflow. 
+It is designed to be fast and easy for the user to use. 
+It is a useful library to construct any deep learning algorithm of whatever choice we want.
+
+TensorFlow is used for large datasets and high performance models.
+Keras is usually used for small datasets.
+
+TensorFlow is a framework that offers both high and low-level APIs.
+Keras is a high-Level API.
+
+TensorFlow is used for high-performance models.
+Keras is used for low-performance models.
+
+TensorFlow has a complex architecture and not easy to use.
+Keras has a simple architecture and easy to use.
+
+Advantages of Keras:
+    - Keras is the best platform out there to work on neural network models.
+    - The API that Keras has a user-friendly where a beginner can easily understand.
+    - Keras has the advantage that it can choose any libraries which support it for its backend support.
+    - Keras provides various pre-trained models which help the user in further improving the models the user is designing.
+    - When it comes to community support Keras has the best like stack overflow.
+
+Disadvantages of Keras:
+    - The major drawback of Keras is it is a low-level application programming interface.
+    - Few of the pre-trained models that the Keras has been not much supportive when it comes to designing of some models.
+    - The errors given by the Keras library were not much helpful for the user.
+
+'''
 print(tf.__version__)
 
 # ************************************* Part 1 - Data Preprocessing **********************************
@@ -217,7 +275,57 @@ ann.add(tf.keras.layers.Dense(units=1, activation='sigmoid')) # adding an object
 
 # ************************************ Part 3 - Training the ANN ************************************
 # Compiling the ANN
-ann.compile(optimizer = 'adam', loss = 'binary_crossentropy', metrics = ['accuracy'])
+'''
+'adam' optimizer performs Stochastic Gradient Descent.
+https://www.geeksforgeeks.org/deep-learning/optimizers-in-tensorflow/
+'''
+'''
+When you are doing binary classification, loss function must always be binary_crossentropy
+for multi-class classification, loss function must always be cagetgorical_corssentropy
+for regression, loss function should be mse/mae/huber
+'''
+'''
+metrics
+
+Keras provides a comprehensive set of built-in metrics to evaluate the performance of deep learning models during training and evaluation. These metrics are broadly categorized based on the problem type they address:
+
+1. Accuracy Metrics (for Classification):
+
+    BinaryAccuracy: Calculates how often predictions match binary labels (0 or 1). Can include a threshold argument.
+    CategoricalAccuracy: Calculates how often predictions match one-hot encoded categorical labels. 
+    SparseCategoricalAccuracy: Similar to CategoricalAccuracy but works with integer-encoded categorical labels, saving memory for a large number of classes.
+    TopKCategoricalAccuracy: Computes how often the true label is among the top K predicted probabilities.
+    SparseTopKCategoricalAccuracy: The sparse version of TopKCategoricalAccuracy, for integer-encoded labels.
+
+2. Regression Metrics:
+
+    MeanSquaredError (MSE):
+        Calculates the mean of the squared differences between true and predicted values.
+    RootMeanSquaredError (RMSE):
+        The square root of the Mean Squared Error.
+    MeanAbsoluteError (MAE):
+        Calculates the mean of the absolute differences between true and predicted values.
+    MeanAbsolutePercentageError (MAPE):
+        Calculates the mean of the absolute percentage differences between true and predicted values.
+    CosineProximity:
+        Measures the cosine of the angle between true and predicted vectors, indicating similarity.
+    R2Score:
+        Computes the R-squared score, which indicates the proportion of variance in the dependent variable that can be predicted from the independent variable(s).
+
+3. Classification Metrics based on True/False Positives & Negatives: 
+
+    AUC: Area Under the Receiver Operating Characteristic (ROC) curve.
+    Precision: The proportion of correctly predicted positive observations among all predicted positive observations.
+    Recall (Sensitivity): The proportion of correctly predicted positive observations among all actual positive observations.
+    TruePositives, TrueNegatives, FalsePositives, FalseNegatives: Count the occurrences of these specific outcomes.
+    F1Score: The harmonic mean of Precision and Recall.
+    FBetaScore: A weighted harmonic mean of Precision and Recall, allowing for emphasis on either.
+    PrecisionAtRecall, RecallAtPrecision, SensitivityAtSpecificity, SpecificityAtSensitivity: Metrics that evaluate performance at specific thresholds of another metric.
+
+4. Custom Metrics:
+    Keras also allows users to define and implement custom metrics if the built-in options do not suffice for a specific problem or evaluation criteria. This involves subclassing tf.keras.metrics.Metric and implementing the update_state, result, and reset_states methods.
+'''
+ann.compile(optimizer = 'adam', loss = 'binary_crossentropy', metrics = ['accuracy', 'binary_accuracy'])
 
 # Training the ANN on the Training set
 # batch_size = 32 means 32 rows (observations/data) will be fed together to make NN learn.
@@ -501,8 +609,39 @@ cm = confusion_matrix(y_test, y_pred)
 print(cm)
 print(accuracy_score(y_test, y_pred))
 
+# To get the training binary accuracy for each epoch:
+train_accuracy = history.history['binary_accuracy']
+print(train_accuracy)
 '''
 [[1529   66]
  [ 206  199]]
 0.864
+'''
+
+'''
+[[1529   66]
+ [ 206  199]]
+            ------------------
+         0  | 1529  | 66    |
+  test_y    |       |       |
+            ------------------
+         1  |  206  | 199   |
+            |       |       |
+            ------------------
+                0       1
+                predictions
+
+The Confusion Matrix created has four different quadrants:
+
+True Negative (Top-Left Quadrant)
+False Positive (Top-Right Quadrant)
+False Negative (Bottom-Left Quadrant)
+True Positive (Bottom-Right Quadrant)
+
+True means that the values were accurately predicted, 
+False means that there was an error or wrong prediction.
+
+Accuracy measures how often the model is correct.
+How to Calculate?
+Accuracy = (True Positive + True Negative) / Total Predictions
 '''
