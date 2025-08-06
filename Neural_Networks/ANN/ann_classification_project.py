@@ -364,7 +364,7 @@ ann.compile(optimizer = 'adam', loss = 'binary_crossentropy', metrics = ['accura
 
 # epochs=100 means NN will be trained 100 times with the same data to improve its outcome.
 # do not keep it too small. NN needs certain amount of epochs to learn properly.
-ann.fit(X_train, y_train, batch_size = 32, epochs = 1)
+ann.fit(X_train, y_train, batch_size = 32, epochs = 100)
 '''
 ------ There are 250 batches of data in the epoch, each batch has 32 records
 ------ total training samples = 8000 out of 10000, batch size = 32
@@ -655,7 +655,7 @@ print(result)
 '''
 
 '''
-63/63 ━━━━━━━━━━━━━━━━━━━━ 0s 1ms/step
+predicated result - test data result
 [[0 0]
  [0 1]
  [0 0]
@@ -680,14 +680,18 @@ print(accuracy_score(y_test, y_pred))
 [[1529   66]
  [ 206  199]]
             ------------------
-         0  | 1529  | 66    |
+         0  | 1529  | 66    |       customers stays with the bank
   test_y    |       |       |
             ------------------
-         1  |  206  | 199   |
+         1  |  206  | 199   |       customers leaves the bank
             |       |       |
             ------------------
                 0       1
                 predictions
+
+correctly predicated result
+1529 and 199 predicated results matches with test data results
+66 and 206 predicted result DOESN'T match with test data result
 
 The Confusion Matrix created has four different quadrants:
 
