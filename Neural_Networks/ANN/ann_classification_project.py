@@ -635,16 +635,24 @@ print(f"Test Binary Accuracy: {binary_accuracy}") # 0.8585000038146973
 
 # Predicting the Test set results
 y_pred = ann.predict(X_test)
-print(y_pred.flatten()) # converts 2-D array into 1-D array
-print(y_test)
 y_pred = (y_pred > 0.5)
+print(len(y_pred)) # 2000
 '''
 np.column_stack((arr1, arr2)) takes these 1D arrays and treats each as a column in the resulting 2D array.
 The output result will be a 2D array where the first column contains elements from arr1 and the second column contains elements from arr2.
 '''
-y_pred_1D_array = y_pred.flatten()
+y_pred_1D_array = y_pred.flatten() # converts 2-D array into 1-D array
 result = np.column_stack((y_pred_1D_array,y_test)) # pass arrays within a tuple or list
 print(result)
+
+# OR
+'''
+#y_pred_1D_array = y_pred.reshape(len(y_pred),1) # y_pred is already a 2-D array
+y_test_2D_array = y_test.reshape(len(y_test),1)# reshape converts 1-D array to 2-D array
+print(y_test_2D_array)
+result = np.concatenate((y_pred, y_test_2D_array),axis=1)
+print(result)
+'''
 
 '''
 63/63 ━━━━━━━━━━━━━━━━━━━━ 0s 1ms/step
