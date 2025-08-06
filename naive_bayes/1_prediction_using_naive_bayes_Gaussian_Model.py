@@ -8,6 +8,10 @@ from sklearn.metrics import accuracy_score
 
 # Load a sample dataset (Iris)
 iris = datasets.load_iris()
+'''
+df = pd.DataFrame(data=iris.data, columns=iris.feature_names)
+df['target'] = iris.target
+'''
 X = iris.data            # Features
 y = iris.target          # Labels
 

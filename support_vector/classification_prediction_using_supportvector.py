@@ -8,6 +8,11 @@ from sklearn.metrics import accuracy_score
 
 # Load dataset (e.g., Iris)
 iris = datasets.load_iris()
+'''
+This is how you can convert the dataset into dataframe
+df = pd.DataFrame(data=iris.data, columns=iris.feature_names)
+df['target'] = iris.target
+'''
 X = iris.data          # Features
 y = iris.target        # Labels
 print(y)

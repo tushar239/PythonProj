@@ -189,6 +189,28 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, rando
 # Read more about normalization and standardization in 'Normalization and Standardization.docx'
 from sklearn.preprocessing import StandardScaler
 sc = StandardScaler()
+'''
+https://www.geeksforgeeks.org/python/what-is-the-difference-between-transform-and-fit_transform-in-sklearn-python/
+
+fit() component:
+    It calculates the necessary parameters from the data. 
+    For example, for StandardScaler, it calculates the mean and standard deviation of each feature. 
+    For SimpleImputer, it might calculate the mean or median to fill missing values.
+transform() component:
+    It then applies the transformation to the data using the parameters learned during the fit step. 
+
+    Purpose: This method applies a pre-learned transformation to new data.
+    Dependency: It requires that the fit() method (or fit_transform()) has already been called on some data to learn the necessary transformation parameters.
+    Usage: transform() is used on new or unseen data, such as test sets or production data, to apply the same transformation learned from the training data. This ensures consistency in the preprocessing applied to all data used by the model.
+
+fit_transform() is typically used on the training data to both learn the transformation parameters and apply the transformation to that data. 
+This ensures that the parameters are learned from the data the model will be trained on.
+
+Key Difference:
+    The fundamental difference lies in parameter learning. 
+    fit_transform() learns the parameters and applies the transformation, while transform() only applies a transformation using already learned parameters. 
+    Using transform() on test data with parameters learned from the training data prevents data leakage from the test set into the model training process.
+'''
 X_train = sc.fit_transform(X_train)
 X_test = sc.transform(X_test)
 
@@ -556,9 +578,9 @@ Epoch 100/100
 '''
 Use our ANN model to predict if the customer with the following information will leave the bank:
 
-Geography: France
+Geography: France  ---- encoded as 1,0,0
 Credit Score: 600
-Gender: Male
+Gender: Male        ---- labeled as 1
 Age: 40 years old
 Tenure: 3 years
 Balance: $ 60000
@@ -571,24 +593,27 @@ Estimated Salary: $ 50000
 So, should we say goodbye to that customer?
 '''
 # If OneHotEncoder is used for Geography column. 1,0,0 is added at the beginning for France, Germany, Spain. Randomly 3 columns are arranged at the beginning.
-standardized_data = sc.transform([[1, 0, 0, 600, 1, 40, 3, 60000, 2, 1, 1, 50000]])
+data = [[1, 0, 0, 600, 1, 40, 3, 60000, 2, 1, 1, 50000]]
+standardized_data = sc.transform(data)
 prediction = ann.predict(standardized_data)
 # We have used sigmoid function in output layer, so prediction will be in between 0 and 1
 # If it is < 0.5, we can consider it close to 0, otherwise close to 1.
 print(prediction)
-print(ann.predict() > 0.5) # [[False]]
+print(prediction > 0.5) # [[False]]
 
 # If get_dummies is used for Geography column: True, False, False is added at the end for France, Germany, Spain. Randomly 3 columns are arranged at the end.
-# standardized_data = sc.transform([[600, 1, 40, 3, 60000, 2, 1, 1, 50000, True, False, False]])
+# data = [[600, 1, 40, 3, 60000, 2, 1, 1, 50000, True, False, False]]
+# standardized_data = sc.transform(data)
 # prediction = ann.predict(standardized_data)
 # print(prediction)
-# print(ann.predict() > 0.5) # [[False]]
+# print(prediction > 0.5) # [[False]]
 
 # If label encoding is used for Geography column, 1- France, 2-Germany, 0-Spain. Random labeling.
-# standardized_data = sc.transform([[600, 1, 1, 40, 3, 60000, 2, 1, 1, 50000]])
+# data = [[600, 1, 1, 40, 3, 60000, 2, 1, 1, 50000]]
+# standardized_data = sc.transform(data)
 # prediction = ann.predict(standardized_data)
 # print(prediction)
-# print(ann.predict() > 0.5) # [[False]]
+# print(prediction > 0.5) # [[False]]
 '''
 1/1 ━━━━━━━━━━━━━━━━━━━━ 0s 47ms/step
 [[False]]
