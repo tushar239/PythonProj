@@ -598,8 +598,8 @@ standardized_data = sc.transform(data)
 prediction = ann.predict(standardized_data)
 # We have used sigmoid function in output layer, so prediction will be in between 0 and 1
 # If it is < 0.5, we can consider it close to 0, otherwise close to 1.
-print(prediction)
-print(prediction > 0.5) # [[False]]
+print(prediction) # [[0.02852276]]  very low chance to leave the bank
+print(prediction > 0.5) # [[False]] customer will not leave the bank
 
 # If get_dummies is used for Geography column: True, False, False is added at the end for France, Germany, Spain. Randomly 3 columns are arranged at the end.
 # data = [[600, 1, 40, 3, 60000, 2, 1, 1, 50000, True, False, False]]
