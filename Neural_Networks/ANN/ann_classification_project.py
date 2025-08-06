@@ -364,7 +364,7 @@ ann.compile(optimizer = 'adam', loss = 'binary_crossentropy', metrics = ['accura
 
 # epochs=100 means NN will be trained 100 times with the same data to improve its outcome.
 # do not keep it too small. NN needs certain amount of epochs to learn properly.
-ann.fit(X_train, y_train, batch_size = 32, epochs = 100)
+ann.fit(X_train, y_train, batch_size = 32, epochs = 1)
 '''
 ------ There are 250 batches of data in the epoch, each batch has 32 records
 ------ total training samples = 8000 out of 10000, batch size = 32
@@ -635,8 +635,16 @@ print(f"Test Binary Accuracy: {binary_accuracy}") # 0.8585000038146973
 
 # Predicting the Test set results
 y_pred = ann.predict(X_test)
+print(y_pred.flatten()) # converts 2-D array into 1-D array
+print(y_test)
 y_pred = (y_pred > 0.5)
-print(np.concatenate((y_pred.reshape(len(y_pred),1), y_test.reshape(len(y_test),1)),1))
+'''
+np.column_stack((arr1, arr2)) takes these 1D arrays and treats each as a column in the resulting 2D array.
+The output result will be a 2D array where the first column contains elements from arr1 and the second column contains elements from arr2.
+'''
+y_pred_1D_array = y_pred.flatten()
+result = np.column_stack((y_pred_1D_array,y_test)) # pass arrays within a tuple or list
+print(result)
 
 '''
 63/63 ━━━━━━━━━━━━━━━━━━━━ 0s 1ms/step
