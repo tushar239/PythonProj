@@ -185,6 +185,8 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, rando
 
 # Feature Scaling
 # It is absolutely MANDATORY for deep learning.
+# you have to convert the data into standardize format. It will convert the data with 0 mean and 1 standard deviation.
+# Read more about normalization and standardization in 'Normalization and Standardization.docx'
 from sklearn.preprocessing import StandardScaler
 sc = StandardScaler()
 X_train = sc.fit_transform(X_train)
@@ -569,13 +571,24 @@ Estimated Salary: $ 50000
 So, should we say goodbye to that customer?
 '''
 # If OneHotEncoder is used for Geography column. 1,0,0 is added at the beginning for France, Germany, Spain. Randomly 3 columns are arranged at the beginning.
-print(ann.predict(sc.transform([[1, 0, 0, 600, 1, 40, 3, 60000, 2, 1, 1, 50000]])) > 0.5) # [[False]]
+standardized_data = sc.transform([[1, 0, 0, 600, 1, 40, 3, 60000, 2, 1, 1, 50000]])
+prediction = ann.predict(standardized_data)
+# We have used sigmoid function in output layer, so prediction will be in between 0 and 1
+# If it is < 0.5, we can consider it close to 0, otherwise close to 1.
+print(prediction)
+print(ann.predict() > 0.5) # [[False]]
 
 # If get_dummies is used for Geography column: True, False, False is added at the end for France, Germany, Spain. Randomly 3 columns are arranged at the end.
-# print(ann.predict(sc.transform([[600, 1, 40, 3, 60000, 2, 1, 1, 50000, True, False, False]])) > 0.5)
+# standardized_data = sc.transform([[600, 1, 40, 3, 60000, 2, 1, 1, 50000, True, False, False]])
+# prediction = ann.predict(standardized_data)
+# print(prediction)
+# print(ann.predict() > 0.5) # [[False]]
 
 # If label encoding is used for Geography column, 1- France, 2-Germany, 0-Spain. Random labeling.
-#print(ann.predict(sc.transform([[600, 1, 1, 40, 3, 60000, 2, 1, 1, 50000]])) > 0.5)
+# standardized_data = sc.transform([[600, 1, 1, 40, 3, 60000, 2, 1, 1, 50000]])
+# prediction = ann.predict(standardized_data)
+# print(prediction)
+# print(ann.predict() > 0.5) # [[False]]
 '''
 1/1 ━━━━━━━━━━━━━━━━━━━━ 0s 47ms/step
 [[False]]
