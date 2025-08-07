@@ -10,6 +10,16 @@ dataset = pd.read_excel('Folds5x2_pp.xlsx')
 X = dataset.iloc[:, :-1].values
 y = dataset.iloc[:, -1].values
 
+print(X)
+'''
+[[  14.96   41.76 1024.07   73.17]
+ [  25.18   62.96 1020.04   59.08]
+ [   5.11   39.4  1012.16   92.14]
+ ...
+ [  31.32   74.33 1012.92   36.48]
+ [  24.48   69.45 1013.86   62.39]
+ [  21.6    62.52 1017.23   67.87]]
+'''
 print(y)
 '''
 [463.26 444.37 488.56 ... 429.57 435.74 453.28]
@@ -17,6 +27,21 @@ print(y)
 
 from sklearn.model_selection import train_test_split
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 0)
+
+from sklearn.preprocessing import StandardScaler
+sc = StandardScaler()
+X_train = sc.fit_transform(X_train)
+print(X_train)
+'''
+[[-1.13572795 -0.88685592  0.67357894  0.52070558]
+ [-0.80630243 -0.00971567  0.45145467  0.14531044]
+ [ 1.77128416  1.84743445  0.24279248 -1.88374143]
+ ...
+ [-0.38409993 -1.24886277  0.84522042  0.13092486]
+ [-0.9232821  -1.04155299  1.54693117  0.8830852 ]
+ [ 1.70136528  1.05824381 -1.20438076 -2.42285818]]
+'''
+
 
 ann = tf.keras.models.Sequential()
 
@@ -69,6 +94,8 @@ Epoch 99/100
 Epoch 100/100
 240/240 [==============================] - 0s 1ms/step - loss: 26.7392
 '''
+
+X_test = sc.transform(X_test)
 
 y_pred = ann.predict(X_test)
 np.set_printoptions(precision=2)

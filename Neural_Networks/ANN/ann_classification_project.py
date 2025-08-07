@@ -184,7 +184,33 @@ from sklearn.model_selection import train_test_split
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 0)
 
 # Feature Scaling
-# It is absolutely MANDATORY for deep learning.
+'''
+While not strictly compulsory, data scaling is highly recommended and often crucial for effective training of artificial neural networks. 
+Scaling helps prevent features with larger magnitudes from dominating the learning process and can significantly improve convergence speed and model performance. 
+
+Here's why:
+
+    Gradient Descent Convergence:
+        Neural networks primarily learn through gradient descent, an optimization algorithm that iteratively adjusts model weights. When input features have vastly different scales, the gradients can become unstable, leading to slow or erratic convergence. Scaling brings all features to a similar range, ensuring that gradient updates are more balanced and the optimization process is smoother. 
+    
+    Feature Importance:
+        Without scaling, features with larger values can disproportionately influence the model's calculations, 
+        potentially masking the importance of smaller-scale features, even if they are highly relevant. 
+        Scaling helps ensure all features contribute appropriately to the learning process. 
+    
+    Preventing Numerical Instability:
+        Some activation functions (like sigmoid) are more sensitive to the scale of inputs. 
+        Scaling can help prevent numerical instability issues that might arise from very large or very small input values. 
+    
+    Faster Training:
+        By improving the stability and efficiency of gradient descent, scaling can lead to faster training times and reduced computational cost. 
+    
+    While some network architectures or specific activation functions might be less sensitive to scaling, in general, 
+    it's a best practice to scale your data before training a neural network. Common scaling methods include: 
+    
+        Min-Max Scaling: Rescales data to a range between 0 and 1.
+        Standardization: Centers the data around zero with a unit standard deviation.
+'''
 # you have to convert the data into standardize format. It will convert the data with 0 mean and 1 standard deviation.
 # Read more about normalization and standardization in 'Normalization and Standardization.docx'
 from sklearn.preprocessing import StandardScaler
