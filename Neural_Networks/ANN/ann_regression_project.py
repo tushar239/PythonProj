@@ -1,3 +1,5 @@
+# https://www.udemy.com/course/linear-regression-with-artificial-neural-network/
+
 import numpy as np
 import pandas as pd
 import tensorflow as tf
