@@ -1,5 +1,5 @@
 # https://www.udemy.com/course/linear-regression-with-artificial-neural-network/
-
+# Dataset location: https://archive.ics.uci.edu/dataset/294/combined+cycle+power+plant
 import numpy as np
 import pandas as pd
 import tensorflow as tf
