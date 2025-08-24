@@ -31,16 +31,27 @@ datagen = ImageDataGenerator(
 - horizontal_flip is for randomly flipping half of the images horizontally --relevant when there are no assumptions of horizontal assymetry (e.g. real-world pictures).
 - fill_mode is the strategy used for filling in newly created pixels, which can appear after a rotation or a width/height shift.
 '''
+'''
+Image augmentation is required to avoid overfitting.
+- If you train a model on limited images, it may just memorize them.
+- Augmentation introduces variations → model learns general patterns (edges, shapes, textures) instead of memorizing exact images.
+- In practice, objects appear in different orientations, lighting, backgrounds, and partial occlusions.
+  Augmentation helps the model handle such unseen variations.
+'''
+
 train_datagen = ImageDataGenerator(rescale = 1./255, # normalize pixel values (0-255 → 0-1). Each pixel has a value from 0-255. Normalizing it to 0-1 by dividing original value by 255.
                                    shear_range = 0.2,
                                    zoom_range = 0.2,
                                    horizontal_flip = True)
 training_set = train_datagen.flow_from_directory('dataset/training_set', # path to training data
-                                                 target_size = (64, 64), # resize images
+                                                 # target_size = (150, 150), # made the training slower.
+                                                 target_size = (64, 64), # resize images. Resizing an image means changing its dimensions (width and height), which can affect its file size and visual appearance. This can involve either increasing the size (upscaling) or decreasing the size (downscaling) of the image.
                                                  batch_size = 32, # number of images per batch
                                                  class_mode = 'binary') # for binary classification; use 'categorical' for multi-class
 # Found 8000 images belonging to 3 classes.
 # Preprocessing the Test set
+# Unlike to training data set, we don't want to apply shearing, zooming and flipping transformations on test images.
+# We do not want to increase total number of images in test data.
 test_datagen = ImageDataGenerator(rescale = 1./255)
 test_set = test_datagen.flow_from_directory('dataset/test_set',
                                             target_size = (64, 64),
