@@ -13,7 +13,25 @@ Read more about it in 'Udemy Course.docx'-> ImageDataGenerator in Code
 '''
 
 # Preprocessing the Training set
-train_datagen = ImageDataGenerator(rescale = 1./255, # normalize pixel values (0-255 → 0-1)
+'''
+datagen = ImageDataGenerator(
+        rotation_range=40,
+        width_shift_range=0.2,
+        height_shift_range=0.2,
+        shear_range=0.2,
+        zoom_range=0.2,
+        horizontal_flip=True,
+        fill_mode='nearest')
+
+- rotation_range is a value in degrees (0-180), a range within which to randomly rotate pictures
+- width_shift and height_shift are ranges (as a fraction of total width or height) within which to randomly translate pictures vertically or horizontally
+- rescale is a value by which we will multiply the data before any other processing. Our original images consist in RGB coefficients in the 0-255, but such values would be too high for our models to process (given a typical learning rate), so we target values between 0 and 1 instead by scaling with a 1/255. factor.
+- shear_range is for randomly applying shearing transformations (https://en.wikipedia.org/wiki/Shear_mapping)
+- zoom_range is for randomly zooming inside pictures
+- horizontal_flip is for randomly flipping half of the images horizontally --relevant when there are no assumptions of horizontal assymetry (e.g. real-world pictures).
+- fill_mode is the strategy used for filling in newly created pixels, which can appear after a rotation or a width/height shift.
+'''
+train_datagen = ImageDataGenerator(rescale = 1./255, # normalize pixel values (0-255 → 0-1). Each pixel has a value from 0-255. Normalizing it to 0-1 by dividing original value by 255.
                                    shear_range = 0.2,
                                    zoom_range = 0.2,
                                    horizontal_flip = True)
@@ -21,7 +39,7 @@ training_set = train_datagen.flow_from_directory('dataset/training_set', # path 
                                                  target_size = (64, 64), # resize images
                                                  batch_size = 32, # number of images per batch
                                                  class_mode = 'binary') # for binary classification; use 'categorical' for multi-class
-# Found 200 images belonging to 3 classes.
+# Found 8000 images belonging to 3 classes.
 # Preprocessing the Test set
 test_datagen = ImageDataGenerator(rescale = 1./255)
 test_set = test_datagen.flow_from_directory('dataset/test_set',
@@ -29,7 +47,7 @@ test_set = test_datagen.flow_from_directory('dataset/test_set',
                                             batch_size = 32,
                                             class_mode = 'binary')
 
-# Found 20 images belonging to 3 classes.
+# Found 2000 images belonging to 3 classes.
 
 # ################# Part 2 - Building the CNN ###############
 # Initialising the CNN
