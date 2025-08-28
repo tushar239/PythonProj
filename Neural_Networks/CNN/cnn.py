@@ -65,10 +65,12 @@ test_set = test_datagen.flow_from_directory('dataset/test_set',
 cnn = tf.keras.models.Sequential()
 
 # Step 1 - Convolution
-cnn.add(tf.keras.layers.Conv2D(filters=32,
-                               kernel_size=3,
+# how to decide number of filters?
+# look at 'Udemy Course.docx -> Number of filters section'
+cnn.add(tf.keras.layers.Conv2D(filters=32, # we are using a classic cnn architecture with filters=32
+                               kernel_size=3, # shape of filter/feature detector/kernel will be 3x3
                                activation='relu',
-                               input_shape=[64, 64, 3]))
+                               input_shape=[64, 64, 3])) # we have resized the images to 64x64 using target_size in flow_from_directory(). Third parameter is 3 because these are color images. If they are black and white, then there should be 1.
 '''
 /usr/local/lib/python3.10/dist-packages/keras/src/layers/convolutional/base_conv.py:107: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
   super().__init__(activity_regularizer=activity_regularizer, **kwargs)
