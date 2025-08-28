@@ -65,7 +65,7 @@ test_set = test_datagen.flow_from_directory('dataset/test_set',
 cnn = tf.keras.models.Sequential()
 
 # Step 1 - Convolution
-# how to decide number of filters?
+# how to decide number of filters and it size?
 # look at 'Udemy Course.docx -> Number of filters section'
 cnn.add(tf.keras.layers.Conv2D(filters=32, # we are using a classic cnn architecture with filters=32
                                kernel_size=3, # shape of filter/feature detector/kernel will be 3x3
