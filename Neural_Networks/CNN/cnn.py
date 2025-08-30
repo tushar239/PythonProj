@@ -76,10 +76,12 @@ cnn.add(tf.keras.layers.Conv2D(filters=32, # we are using a classic cnn architec
   super().__init__(activity_regularizer=activity_regularizer, **kwargs)
 '''
 # Step 2 - Pooling
-cnn.add(tf.keras.layers.MaxPool2D(pool_size=2, strides=2))
+cnn.add(tf.keras.layers.MaxPool2D(pool_size=2, strides=2)) # pool_size=2 means 2x2 matrix will be used for pooling. strides=2 means matrix will move by 2 pixels. padding=valid(default) means you ignore missing cells when you are moving 2x2 matrix on the image. padding=same means pad extra cells with the same cell values which are available.
 
 # Adding a second convolutional layer
-cnn.add(tf.keras.layers.Conv2D(filters=32, kernel_size=3, activation='relu'))
+cnn.add(tf.keras.layers.Conv2D(filters=32,
+                               kernel_size=3,
+                               activation='relu')) # input_shape is required only for the first convolutional layer.
 cnn.add(tf.keras.layers.MaxPool2D(pool_size=2, strides=2))
 
 # Step 3 - Flattening
