@@ -88,9 +88,12 @@ cnn.add(tf.keras.layers.MaxPool2D(pool_size=2, strides=2))
 cnn.add(tf.keras.layers.Flatten())
 
 # Step 4 - Full Connection
+# In ANN problem, we used smaller number of neurons(units) because that was a simple classification problem.
+# Here, the problem is more complex as we are dealing with images, let's keep number of neurons to 128.
 cnn.add(tf.keras.layers.Dense(units=128, activation='relu'))
 
 # Step 5 - Output Layer
+# we have binary output (cat or dog), so units=1
 cnn.add(tf.keras.layers.Dense(units=1, activation='sigmoid'))
 
 # ############## Part 3 - Training the CNN #################
