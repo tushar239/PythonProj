@@ -172,7 +172,8 @@ test_image = image.img_to_array(test_image)
 test_image = np.expand_dims(test_image, axis = 0)
 result = cnn.predict(test_image)
 print(result) # [[0. 1.]]
-#training_set.class_indices
+
+print(training_set.class_indices) # {'cats': 0, 'dogs': 1}
 
 # softmax function returns a probability value for each category in such a way that sum becomes 1
 # if result[0][0] = 0.7 and result[0][1] = 0.3, it means that prediction is a cat

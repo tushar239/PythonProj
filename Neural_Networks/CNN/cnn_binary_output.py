@@ -191,10 +191,11 @@ from tensorflow.keras.preprocessing import image
 test_image = image.load_img('dataset/single_prediction/cat_or_dog_3.jpg', target_size = (64, 64))
 # Read 'image.img_to_array()' section in 'Udemy Course.docx'
 test_image = image.img_to_array(test_image) # converts pil format image to numpy array
+# We created training_set with a batch, so we have to do add an extra dimension for the batch for this image also.
 test_image = np.expand_dims(test_image, axis = 0)
 result = cnn.predict(test_image) # predict method expects input as 2-D array
 print(result) # [[1.]]
-#training_set.class_indices
+print(training_set.class_indices) # {'cats': 0, 'dogs': 1}
 
 # sigmoid function returns a probability value between 0 and 1
 # For us, labels are cat=0 and dog=1
