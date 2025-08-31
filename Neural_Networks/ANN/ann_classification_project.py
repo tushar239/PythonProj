@@ -326,54 +326,14 @@ ann.add(tf.keras.layers.Dense(units=1, activation='sigmoid')) # adding an object
 # ************************************ Part 3 - Training the ANN ************************************
 # Compiling the ANN
 '''
-'adam' optimizer performs Stochastic Gradient Descent.
-https://www.geeksforgeeks.org/deep-learning/optimizers-in-tensorflow/
-'''
-'''
-When you are doing binary classification, loss function must always be binary_crossentropy
-for multi-class classification, loss function must always be cagetgorical_corssentropy
-for regression, loss function should be mse/mae/huber
-'''
-'''
-metrics
+Optimizer:
+Read 'Optimizers (Gradient Descents)' section in 'Udemy Course.docx'
 
-Keras provides a comprehensive set of built-in metrics to evaluate the performance of deep learning models during training and evaluation. These metrics are broadly categorized based on the problem type they address:
+Loss Function:
+Read 'crossentropy loss function' section in 'Udemy Course.docx'
 
-1. Accuracy Metrics (for Classification):
-
-    BinaryAccuracy: Calculates how often predictions match binary labels (0 or 1). Can include a threshold argument.
-    CategoricalAccuracy: Calculates how often predictions match one-hot encoded categorical labels. 
-    SparseCategoricalAccuracy: Similar to CategoricalAccuracy but works with integer-encoded categorical labels, saving memory for a large number of classes.
-    TopKCategoricalAccuracy: Computes how often the true label is among the top K predicted probabilities.
-    SparseTopKCategoricalAccuracy: The sparse version of TopKCategoricalAccuracy, for integer-encoded labels.
-
-2. Regression Metrics:
-
-    MeanSquaredError (MSE):
-        Calculates the mean of the squared differences between true and predicted values.
-    RootMeanSquaredError (RMSE):
-        The square root of the Mean Squared Error.
-    MeanAbsoluteError (MAE):
-        Calculates the mean of the absolute differences between true and predicted values.
-    MeanAbsolutePercentageError (MAPE):
-        Calculates the mean of the absolute percentage differences between true and predicted values.
-    CosineProximity:
-        Measures the cosine of the angle between true and predicted vectors, indicating similarity.
-    R2Score:
-        Computes the R-squared score, which indicates the proportion of variance in the dependent variable that can be predicted from the independent variable(s).
-
-3. Classification Metrics based on True/False Positives & Negatives: 
-
-    AUC: Area Under the Receiver Operating Characteristic (ROC) curve.
-    Precision: The proportion of correctly predicted positive observations among all predicted positive observations.
-    Recall (Sensitivity): The proportion of correctly predicted positive observations among all actual positive observations.
-    TruePositives, TrueNegatives, FalsePositives, FalseNegatives: Count the occurrences of these specific outcomes.
-    F1Score: The harmonic mean of Precision and Recall.
-    FBetaScore: A weighted harmonic mean of Precision and Recall, allowing for emphasis on either.
-    PrecisionAtRecall, RecallAtPrecision, SensitivityAtSpecificity, SpecificityAtSensitivity: Metrics that evaluate performance at specific thresholds of another metric.
-
-4. Custom Metrics:
-    Keras also allows users to define and implement custom metrics if the built-in options do not suffice for a specific problem or evaluation criteria. This involves subclassing tf.keras.metrics.Metric and implementing the update_state, result, and reset_states methods.
+Performance metrics:
+Read 'Performance metrics' section in 'Udemy Course.docx'
 '''
 ann.compile(optimizer = 'adam', loss = 'binary_crossentropy', metrics = ['accuracy', 'binary_accuracy'])
 

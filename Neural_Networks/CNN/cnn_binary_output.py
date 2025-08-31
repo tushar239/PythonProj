@@ -93,14 +93,22 @@ cnn.add(tf.keras.layers.Flatten())
 cnn.add(tf.keras.layers.Dense(units=128, activation='relu'))
 
 # Step 5 - Output Layer
-# we have binary output (cat or dog), so units=1
+# we have binary output (cat or dog), so units=1 anc activation function is sigmoid
 cnn.add(tf.keras.layers.Dense(units=1, activation='sigmoid'))
 
 # ############## Part 3 - Training the CNN #################
 # Compiling the CNN
+#'adam' optimizer performs Stochastic Gradient Descent.
+#https://www.geeksforgeeks.org/deep-learning/optimizers-in-tensorflow/
+# we have binary output, so loss function is binary_corssentropy
+# Read 'crossentropy loss function' section in 'Udemy course.docx'
+# accuracy metrics is the most relevant way to measure the performance of classification problem
 cnn.compile(optimizer = 'adam', loss = 'binary_crossentropy', metrics = ['accuracy'])
 
 # Training the CNN on the Training set and evaluating it on the Test set
+# For each epoch, CNN will be trained with training_set and evaluated with test_set
+# This is a bit different from what we used to before
+# We used to train the NN with epochs and then used to evaluate just once.
 cnn.fit(x = training_set, validation_data = test_set, epochs = 25)
 '''
 # Trying to fit training_set, evaluating test_set and predicting some images(test_set) just like how we did in ann. 
