@@ -102,79 +102,19 @@ cnn.compile(optimizer = 'adam', loss = 'binary_crossentropy', metrics = ['accura
 
 # Training the CNN on the Training set and evaluating it on the Test set
 cnn.fit(x = training_set, validation_data = test_set, epochs = 25)
-#cnn.fit(x = training_set, epochs = 1)
 '''
-Epoch 1/25
-/usr/local/lib/python3.10/dist-packages/keras/src/trainers/data_adapters/py_dataset_adapter.py:121: UserWarning: Your `PyDataset` class should call `super().__init__(**kwargs)` in its constructor. `**kwargs` can include `workers`, `use_multiprocessing`, `max_queue_size`. Do not pass these arguments to `fit()`, as they will be ignored.
-  self._warn_if_super_not_called()
-7/7 ━━━━━━━━━━━━━━━━━━━━ 5s 256ms/step - accuracy: 0.3230 - loss: -2.2601 - val_accuracy: 0.5000 - val_loss: -23.8118
-Epoch 2/25
-7/7 ━━━━━━━━━━━━━━━━━━━━ 4s 121ms/step - accuracy: 0.4982 - loss: -41.1298 - val_accuracy: 0.5000 - val_loss: -160.0631
-Epoch 3/25
-7/7 ━━━━━━━━━━━━━━━━━━━━ 1s 126ms/step - accuracy: 0.5162 - loss: -223.8972 - val_accuracy: 0.5000 - val_loss: -633.7938
-Epoch 4/25
-7/7 ━━━━━━━━━━━━━━━━━━━━ 1s 123ms/step - accuracy: 0.4903 - loss: -810.8215 - val_accuracy: 0.5000 - val_loss: -1911.9957
-Epoch 5/25
-7/7 ━━━━━━━━━━━━━━━━━━━━ 3s 136ms/step - accuracy: 0.5091 - loss: -2393.6680 - val_accuracy: 0.5000 - val_loss: -4851.8799
-Epoch 6/25
-7/7 ━━━━━━━━━━━━━━━━━━━━ 4s 223ms/step - accuracy: 0.4933 - loss: -5910.8174 - val_accuracy: 0.5000 - val_loss: -10857.8613
-Epoch 7/25
-7/7 ━━━━━━━━━━━━━━━━━━━━ 2s 121ms/step - accuracy: 0.5140 - loss: -12052.2305 - val_accuracy: 0.5000 - val_loss: -21890.6836
-Epoch 8/25
-7/7 ━━━━━━━━━━━━━━━━━━━━ 1s 124ms/step - accuracy: 0.5167 - loss: -24240.6094 - val_accuracy: 0.5000 - val_loss: -40895.3164
-Epoch 9/25
-7/7 ━━━━━━━━━━━━━━━━━━━━ 3s 119ms/step - accuracy: 0.4353 - loss: -49519.0586 - val_accuracy: 0.5000 - val_loss: -71038.4766
-Epoch 10/25
-7/7 ━━━━━━━━━━━━━━━━━━━━ 1s 120ms/step - accuracy: 0.5378 - loss: -72490.2500 - val_accuracy: 0.5000 - val_loss: -117384.2656
-Epoch 11/25
-7/7 ━━━━━━━━━━━━━━━━━━━━ 1s 120ms/step - accuracy: 0.5195 - loss: -122115.1406 - val_accuracy: 0.5000 - val_loss: -187146.6719
-Epoch 12/25
-7/7 ━━━━━━━━━━━━━━━━━━━━ 1s 118ms/step - accuracy: 0.4779 - loss: -202863.3438 - val_accuracy: 0.5000 - val_loss: -286768.2812
-Epoch 13/25
-7/7 ━━━━━━━━━━━━━━━━━━━━ 3s 210ms/step - accuracy: 0.5105 - loss: -296021.3125 - val_accuracy: 0.5000 - val_loss: -422930.8125
-Epoch 14/25
-7/7 ━━━━━━━━━━━━━━━━━━━━ 2s 117ms/step - accuracy: 0.4695 - loss: -470339.0312 - val_accuracy: 0.5000 - val_loss: -610107.8125
-Epoch 15/25
-7/7 ━━━━━━━━━━━━━━━━━━━━ 1s 131ms/step - accuracy: 0.5197 - loss: -625722.1250 - val_accuracy: 0.5000 - val_loss: -856135.1875
-Epoch 16/25
-7/7 ━━━━━━━━━━━━━━━━━━━━ 1s 117ms/step - accuracy: 0.4777 - loss: -940437.4375 - val_accuracy: 0.5000 - val_loss: -1183422.0000
-Epoch 17/25
-7/7 ━━━━━━━━━━━━━━━━━━━━ 1s 116ms/step - accuracy: 0.5118 - loss: -1186474.0000 - val_accuracy: 0.5000 - val_loss: -1598235.2500
-Epoch 18/25
-7/7 ━━━━━━━━━━━━━━━━━━━━ 1s 116ms/step - accuracy: 0.4538 - loss: -1754937.0000 - val_accuracy: 0.5000 - val_loss: -2126164.5000
-Epoch 19/25
-7/7 ━━━━━━━━━━━━━━━━━━━━ 1s 116ms/step - accuracy: 0.5038 - loss: -2120881.2500 - val_accuracy: 0.5000 - val_loss: -2771290.7500
-Epoch 20/25
-7/7 ━━━━━━━━━━━━━━━━━━━━ 1s 116ms/step - accuracy: 0.5007 - loss: -2834427.0000 - val_accuracy: 0.5000 - val_loss: -3576980.0000
-Epoch 21/25
-7/7 ━━━━━━━━━━━━━━━━━━━━ 2s 230ms/step - accuracy: 0.5079 - loss: -3545062.5000 - val_accuracy: 0.5000 - val_loss: -4533354.5000
-Epoch 22/25
-7/7 ━━━━━━━━━━━━━━━━━━━━ 2s 121ms/step - accuracy: 0.4555 - loss: -4910181.0000 - val_accuracy: 0.5000 - val_loss: -5697485.0000
-Epoch 23/25
-7/7 ━━━━━━━━━━━━━━━━━━━━ 2s 126ms/step - accuracy: 0.4305 - loss: -6426874.0000 - val_accuracy: 0.5000 - val_loss: -7062758.5000
-Epoch 24/25
-7/7 ━━━━━━━━━━━━━━━━━━━━ 2s 115ms/step - accuracy: 0.4586 - loss: -7566496.5000 - val_accuracy: 0.5000 - val_loss: -8630248.0000
-Epoch 25/25
-7/7 ━━━━━━━━━━━━━━━━━━━━ 3s 136ms/step - accuracy: 0.4535 - loss: -9405489.0000 - val_accuracy: 0.5000 - val_loss: -10498646.0000
-<keras.src.callbacks.history.History at 0x7b9deeed7640>
-'''
+# Trying to fit training_set, evaluating test_set and predicting some images(test_set) just like how we did in ann. 
+cnn.fit(x = training_set, epochs = 1)
 
+#loss, accuracy = cnn.evaluate(test_set, verbose=0)
+print(f"Test Loss: {loss}") #  0.6554234027862549
+print(f"Test Accuracy: {accuracy}") # 0.6035000085830688
 
 # Predicting the Test set results
-#y_pred = cnn.predict(test_set)
-#print(y_pred)
+y_pred = cnn.predict(test_set)
+print(y_pred)
+
 '''
-[[0.41396636]
- [0.5188031 ]
- [0.3797575 ]
- ...
- [0.33638963]
- [0.15152374]
- [0.43475413]]
-'''
-#loss, accuracy = cnn.evaluate(test_set, verbose=0)
-#print(f"Test Loss: {loss}") #  0.6554234027862549
-#print(f"Test Accuracy: {accuracy}") # 0.6035000085830688
 # ################### Part 4 - Making a single prediction ##################
 import numpy as np
 from tensorflow.keras.preprocessing import image
@@ -185,6 +125,7 @@ test_image = np.expand_dims(test_image, axis = 0)
 result = cnn.predict(test_image)
 print(result) # [[1.]]
 #training_set.class_indices
+
 # sigmoid function returns a probability value between 0 and 1
 # For us, labels are cat=0 and dog=1
 # if result has value closer to 0, then prediction is a cat
