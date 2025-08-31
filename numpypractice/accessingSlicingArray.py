@@ -76,9 +76,6 @@ print("Output stacked array:\n ", out_arr)
 '''
 
 # concatinating two arrays (rowwise, columnwise)
-import numpy as np
-
-import numpy as np
 
 # Two 2D arrays
 a = np.array([[1, 2],
