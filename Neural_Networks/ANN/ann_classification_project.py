@@ -673,7 +673,8 @@ print(result)
 
 # OR
 '''
-#y_pred_1D_array = y_pred.reshape(len(y_pred),1) # y_pred is already a 2-D array
+# syntax: reshape(number of rows, number of columns)
+#y_pred_2D_array = y_pred.reshape(len(y_pred),1) # y_pred is already a 2-D array
 y_test_2D_array = y_test.reshape(len(y_test),1)# reshape converts 1-D array to 2-D array
 print(y_test_2D_array)
 result = np.concatenate((y_pred, y_test_2D_array),axis=1)
