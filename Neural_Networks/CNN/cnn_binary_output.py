@@ -48,7 +48,7 @@ training_set = train_datagen.flow_from_directory('dataset/training_set', # path 
                                                  target_size = (64, 64), # resize images. Resizing an image means changing its dimensions (width and height), which can affect its file size and visual appearance. This can involve either increasing the size (upscaling) or decreasing the size (downscaling) of the image.
                                                  batch_size = 32, # number of images per batch
                                                  class_mode = 'binary') # for binary classification; use 'categorical' for multi-class
-# Found 8000 images belonging to 3 classes.
+# Found 8000 images belonging to 2 classes(cats and dogs).
 # Preprocessing the Test set
 # Unlike to training data set, we don't want to apply shearing, zooming and flipping transformations on test images.
 # We do not want to increase total number of images in test data.
@@ -58,7 +58,7 @@ test_set = test_datagen.flow_from_directory('dataset/test_set',
                                             batch_size = 32,
                                             class_mode = 'binary')
 
-# Found 2000 images belonging to 3 classes.
+# Found 2000 images belonging to 2 classes(cats and dogs).
 
 # ################# Part 2 - Building the CNN ###############
 # Initialising the CNN
@@ -117,6 +117,8 @@ cnn.compile(optimizer = 'adam', loss = 'binary_crossentropy', metrics = ['accura
 cnn.fit(x = training_set, validation_data = test_set, epochs = 25)
 '''
 Note that with each epoch, accuracy is increasing and loss is decreasing.
+If you do not augment the training_set images, you will observe high accuracy for training_set(around 98%), but low accuracy for test_set.
+So, you will see overfitting. 
 
 Epoch 1/25
 250/250 ━━━━━━━━━━━━━━━━━━━━ 163s 643ms/step - accuracy: 0.5631 - loss: 0.6795 - val_accuracy: 0.5890 - val_loss: 0.6659

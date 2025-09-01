@@ -15,7 +15,7 @@ training_set = train_datagen.flow_from_directory('dataset/training_set', # path 
                                                  target_size = (64, 64), # resize images. Resizing an image means changing its dimensions (width and height), which can affect its file size and visual appearance. This can involve either increasing the size (upscaling) or decreasing the size (downscaling) of the image.
                                                  batch_size = 32, # number of images per batch
                                                  class_mode = 'binary') # for binary classification; use 'categorical' for multi-class
-# Found 8000 images belonging to 3 classes.
+# Found 8000 images belonging to 2 classes(cats and dogs).
 # Preprocessing the Test set
 test_datagen = ImageDataGenerator(rescale = 1./255)
 test_set = test_datagen.flow_from_directory('dataset/test_set',
@@ -23,7 +23,7 @@ test_set = test_datagen.flow_from_directory('dataset/test_set',
                                             batch_size = 32,
                                             class_mode = 'binary')
 
-# Found 2000 images belonging to 3 classes.
+# Found 2000 images belonging to 2 classes(cats and dogs).
 
 # ################# Part 2 - Building the CNN ###############
 # Initialising the CNN
@@ -108,6 +108,10 @@ cnn.compile(optimizer = 'adam', loss = 'sparse_categorical_crossentropy', metric
 # Training the CNN on the Training set and evaluating it on the Test set
 cnn.fit(x = training_set, validation_data = test_set, epochs = 25)
 '''
+Note that with each epoch, accuracy is increasing and loss is decreasing.
+If you do not augment the training_set images, you will observe high accuracy for training_set(around 98%), but low accuracy for test_set.
+So, you will see overfitting. 
+
 Epoch 1/25
 /usr/local/lib/python3.10/dist-packages/keras/src/trainers/data_adapters/py_dataset_adapter.py:121: UserWarning: Your `PyDataset` class should call `super().__init__(**kwargs)` in its constructor. `**kwargs` can include `workers`, `use_multiprocessing`, `max_queue_size`. Do not pass these arguments to `fit()`, as they will be ignored.
   self._warn_if_super_not_called()
