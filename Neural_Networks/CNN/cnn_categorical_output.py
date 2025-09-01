@@ -113,58 +113,55 @@ If you do not augment the training_set images, you will observe high accuracy fo
 So, you will see overfitting. 
 
 Epoch 1/25
-/usr/local/lib/python3.10/dist-packages/keras/src/trainers/data_adapters/py_dataset_adapter.py:121: UserWarning: Your `PyDataset` class should call `super().__init__(**kwargs)` in its constructor. `**kwargs` can include `workers`, `use_multiprocessing`, `max_queue_size`. Do not pass these arguments to `fit()`, as they will be ignored.
-  self._warn_if_super_not_called()
-7/7 ━━━━━━━━━━━━━━━━━━━━ 5s 256ms/step - accuracy: 0.3230 - loss: -2.2601 - val_accuracy: 0.5000 - val_loss: -23.8118
+250/250 ━━━━━━━━━━━━━━━━━━━━ 201s 774ms/step - accuracy: 0.6094 - loss: 0.6515 - val_accuracy: 0.6590 - val_loss: 0.6121
 Epoch 2/25
-7/7 ━━━━━━━━━━━━━━━━━━━━ 4s 121ms/step - accuracy: 0.4982 - loss: -41.1298 - val_accuracy: 0.5000 - val_loss: -160.0631
+250/250 ━━━━━━━━━━━━━━━━━━━━ 43s 173ms/step - accuracy: 0.6998 - loss: 0.5794 - val_accuracy: 0.6940 - val_loss: 0.5788
 Epoch 3/25
-7/7 ━━━━━━━━━━━━━━━━━━━━ 1s 126ms/step - accuracy: 0.5162 - loss: -223.8972 - val_accuracy: 0.5000 - val_loss: -633.7938
+250/250 ━━━━━━━━━━━━━━━━━━━━ 28s 111ms/step - accuracy: 0.7308 - loss: 0.5364 - val_accuracy: 0.7615 - val_loss: 0.4959
 Epoch 4/25
-7/7 ━━━━━━━━━━━━━━━━━━━━ 1s 123ms/step - accuracy: 0.4903 - loss: -810.8215 - val_accuracy: 0.5000 - val_loss: -1911.9957
+250/250 ━━━━━━━━━━━━━━━━━━━━ 30s 121ms/step - accuracy: 0.7516 - loss: 0.5125 - val_accuracy: 0.7460 - val_loss: 0.5147
 Epoch 5/25
-7/7 ━━━━━━━━━━━━━━━━━━━━ 3s 136ms/step - accuracy: 0.5091 - loss: -2393.6680 - val_accuracy: 0.5000 - val_loss: -4851.8799
+250/250 ━━━━━━━━━━━━━━━━━━━━ 29s 116ms/step - accuracy: 0.7591 - loss: 0.4989 - val_accuracy: 0.7700 - val_loss: 0.5040
 Epoch 6/25
-7/7 ━━━━━━━━━━━━━━━━━━━━ 4s 223ms/step - accuracy: 0.4933 - loss: -5910.8174 - val_accuracy: 0.5000 - val_loss: -10857.8613
+250/250 ━━━━━━━━━━━━━━━━━━━━ 44s 174ms/step - accuracy: 0.7632 - loss: 0.4813 - val_accuracy: 0.7730 - val_loss: 0.4779
 Epoch 7/25
-7/7 ━━━━━━━━━━━━━━━━━━━━ 2s 121ms/step - accuracy: 0.5140 - loss: -12052.2305 - val_accuracy: 0.5000 - val_loss: -21890.6836
+250/250 ━━━━━━━━━━━━━━━━━━━━ 41s 165ms/step - accuracy: 0.7821 - loss: 0.4576 - val_accuracy: 0.7400 - val_loss: 0.5284
 Epoch 8/25
-7/7 ━━━━━━━━━━━━━━━━━━━━ 1s 124ms/step - accuracy: 0.5167 - loss: -24240.6094 - val_accuracy: 0.5000 - val_loss: -40895.3164
+250/250 ━━━━━━━━━━━━━━━━━━━━ 25s 102ms/step - accuracy: 0.7857 - loss: 0.4484 - val_accuracy: 0.7470 - val_loss: 0.5205
 Epoch 9/25
-7/7 ━━━━━━━━━━━━━━━━━━━━ 3s 119ms/step - accuracy: 0.4353 - loss: -49519.0586 - val_accuracy: 0.5000 - val_loss: -71038.4766
+250/250 ━━━━━━━━━━━━━━━━━━━━ 26s 102ms/step - accuracy: 0.7945 - loss: 0.4271 - val_accuracy: 0.7730 - val_loss: 0.4830
 Epoch 10/25
-7/7 ━━━━━━━━━━━━━━━━━━━━ 1s 120ms/step - accuracy: 0.5378 - loss: -72490.2500 - val_accuracy: 0.5000 - val_loss: -117384.2656
+250/250 ━━━━━━━━━━━━━━━━━━━━ 43s 173ms/step - accuracy: 0.8098 - loss: 0.4122 - val_accuracy: 0.7710 - val_loss: 0.4912
 Epoch 11/25
-7/7 ━━━━━━━━━━━━━━━━━━━━ 1s 120ms/step - accuracy: 0.5195 - loss: -122115.1406 - val_accuracy: 0.5000 - val_loss: -187146.6719
+250/250 ━━━━━━━━━━━━━━━━━━━━ 30s 116ms/step - accuracy: 0.8192 - loss: 0.4024 - val_accuracy: 0.7575 - val_loss: 0.5102
 Epoch 12/25
-7/7 ━━━━━━━━━━━━━━━━━━━━ 1s 118ms/step - accuracy: 0.4779 - loss: -202863.3438 - val_accuracy: 0.5000 - val_loss: -286768.2812
+250/250 ━━━━━━━━━━━━━━━━━━━━ 30s 119ms/step - accuracy: 0.8183 - loss: 0.3947 - val_accuracy: 0.7975 - val_loss: 0.4601
 Epoch 13/25
-7/7 ━━━━━━━━━━━━━━━━━━━━ 3s 210ms/step - accuracy: 0.5105 - loss: -296021.3125 - val_accuracy: 0.5000 - val_loss: -422930.8125
+250/250 ━━━━━━━━━━━━━━━━━━━━ 38s 153ms/step - accuracy: 0.8279 - loss: 0.3768 - val_accuracy: 0.7840 - val_loss: 0.4976
 Epoch 14/25
-7/7 ━━━━━━━━━━━━━━━━━━━━ 2s 117ms/step - accuracy: 0.4695 - loss: -470339.0312 - val_accuracy: 0.5000 - val_loss: -610107.8125
+250/250 ━━━━━━━━━━━━━━━━━━━━ 39s 156ms/step - accuracy: 0.8325 - loss: 0.3681 - val_accuracy: 0.7930 - val_loss: 0.4642
 Epoch 15/25
-7/7 ━━━━━━━━━━━━━━━━━━━━ 1s 131ms/step - accuracy: 0.5197 - loss: -625722.1250 - val_accuracy: 0.5000 - val_loss: -856135.1875
+250/250 ━━━━━━━━━━━━━━━━━━━━ 39s 155ms/step - accuracy: 0.8399 - loss: 0.3618 - val_accuracy: 0.7995 - val_loss: 0.4640
 Epoch 16/25
-7/7 ━━━━━━━━━━━━━━━━━━━━ 1s 117ms/step - accuracy: 0.4777 - loss: -940437.4375 - val_accuracy: 0.5000 - val_loss: -1183422.0000
+250/250 ━━━━━━━━━━━━━━━━━━━━ 38s 152ms/step - accuracy: 0.8455 - loss: 0.3507 - val_accuracy: 0.7800 - val_loss: 0.5136
 Epoch 17/25
-7/7 ━━━━━━━━━━━━━━━━━━━━ 1s 116ms/step - accuracy: 0.5118 - loss: -1186474.0000 - val_accuracy: 0.5000 - val_loss: -1598235.2500
+250/250 ━━━━━━━━━━━━━━━━━━━━ 43s 172ms/step - accuracy: 0.8510 - loss: 0.3314 - val_accuracy: 0.8010 - val_loss: 0.5044
 Epoch 18/25
-7/7 ━━━━━━━━━━━━━━━━━━━━ 1s 116ms/step - accuracy: 0.4538 - loss: -1754937.0000 - val_accuracy: 0.5000 - val_loss: -2126164.5000
+250/250 ━━━━━━━━━━━━━━━━━━━━ 41s 166ms/step - accuracy: 0.8633 - loss: 0.3128 - val_accuracy: 0.8040 - val_loss: 0.4782
 Epoch 19/25
-7/7 ━━━━━━━━━━━━━━━━━━━━ 1s 116ms/step - accuracy: 0.5038 - loss: -2120881.2500 - val_accuracy: 0.5000 - val_loss: -2771290.7500
+250/250 ━━━━━━━━━━━━━━━━━━━━ 45s 180ms/step - accuracy: 0.8720 - loss: 0.3015 - val_accuracy: 0.7930 - val_loss: 0.5318
 Epoch 20/25
-7/7 ━━━━━━━━━━━━━━━━━━━━ 1s 116ms/step - accuracy: 0.5007 - loss: -2834427.0000 - val_accuracy: 0.5000 - val_loss: -3576980.0000
+250/250 ━━━━━━━━━━━━━━━━━━━━ 46s 185ms/step - accuracy: 0.8786 - loss: 0.2892 - val_accuracy: 0.8075 - val_loss: 0.4671
 Epoch 21/25
-7/7 ━━━━━━━━━━━━━━━━━━━━ 2s 230ms/step - accuracy: 0.5079 - loss: -3545062.5000 - val_accuracy: 0.5000 - val_loss: -4533354.5000
+250/250 ━━━━━━━━━━━━━━━━━━━━ 33s 132ms/step - accuracy: 0.8776 - loss: 0.2873 - val_accuracy: 0.8110 - val_loss: 0.4991
 Epoch 22/25
-7/7 ━━━━━━━━━━━━━━━━━━━━ 2s 121ms/step - accuracy: 0.4555 - loss: -4910181.0000 - val_accuracy: 0.5000 - val_loss: -5697485.0000
+250/250 ━━━━━━━━━━━━━━━━━━━━ 30s 122ms/step - accuracy: 0.8834 - loss: 0.2753 - val_accuracy: 0.8030 - val_loss: 0.4986
 Epoch 23/25
-7/7 ━━━━━━━━━━━━━━━━━━━━ 2s 126ms/step - accuracy: 0.4305 - loss: -6426874.0000 - val_accuracy: 0.5000 - val_loss: -7062758.5000
+250/250 ━━━━━━━━━━━━━━━━━━━━ 37s 148ms/step - accuracy: 0.8827 - loss: 0.2708 - val_accuracy: 0.7980 - val_loss: 0.5276
 Epoch 24/25
-7/7 ━━━━━━━━━━━━━━━━━━━━ 2s 115ms/step - accuracy: 0.4586 - loss: -7566496.5000 - val_accuracy: 0.5000 - val_loss: -8630248.0000
+250/250 ━━━━━━━━━━━━━━━━━━━━ 46s 185ms/step - accuracy: 0.8903 - loss: 0.2572 - val_accuracy: 0.8005 - val_loss: 0.5065
 Epoch 25/25
-7/7 ━━━━━━━━━━━━━━━━━━━━ 3s 136ms/step - accuracy: 0.4535 - loss: -9405489.0000 - val_accuracy: 0.5000 - val_loss: -10498646.0000
-<keras.src.callbacks.history.History at 0x7b9deeed7640>
+250/250 ━━━━━━━━━━━━━━━━━━━━ 43s 173ms/step - accuracy: 0.8985 - loss: 0.2462 - val_accuracy: 0.7965 - val_loss: 0.5157
 '''
 
 # ################### Part 4 - Making a single prediction ##################
