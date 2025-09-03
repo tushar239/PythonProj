@@ -73,9 +73,9 @@ dataset = pd.read_csv('Churn_Modelling.csv') # this is dataframe
 #X = dataset.iloc[:, 3:-1]
 #y = dataset.iloc[:, -1]
 
-#.values will give all the values in 2-D array
+# '.values' will give all the values in 2-D array
 X = dataset.iloc[:, 3:-1].values # exclude RowNumber, CusterId, Surname, Exited columns. RowNumber, CusterId, Surname have no impact on dependent variable Exited.
-#.values will give all the values in 1-D array
+# '.values' will give all the values in 1-D array
 y = dataset.iloc[:, -1].values # keep only Exited column
 
 print(X)
@@ -135,8 +135,10 @@ X = np.array(ct.fit_transform(X))
 
 print(X)
 '''
-OnHotEncoding keeps the encoded columns at the beginning with 1.0/0.0 values. One column from France, another for Germany, third one for Spain.
+OnHotEncoding keeps the encoded columns at the beginning with 1.0/0.0 values. 
+One column from France, another for Germany, third one for Spain.
 
+get_dummies needs dataframe.
 get_Dummies does the same thing by keeping the encoded columns at the end with True/False values.
 In Python, and consequently in Pandas, True is treated as 1 and False is treated as 0 when used in numerical contexts or when explicitly converted to an integer type. 
 This is due to Python's underlying representation of booleans as a subclass of integers.
