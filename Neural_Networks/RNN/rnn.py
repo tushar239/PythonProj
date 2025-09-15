@@ -20,6 +20,7 @@ print (training_set)
 from sklearn.preprocessing import MinMaxScaler
 sc = MinMaxScaler(feature_range = (0, 1))
 training_set_scaled = sc.fit_transform(training_set)
+print(type(training_set_scaled)) # <class 'numpy.ndarray'>
 print(training_set_scaled)
 '''
 [[0.08581368]
@@ -35,13 +36,35 @@ print(training_set_scaled)
 X_train = []
 y_train = []
 for i in range(60, 1258):
-    X_train.append(training_set_scaled[i-60:i, 0])
-    y_train.append(training_set_scaled[i, 0])
+    a_array = training_set_scaled[i-60:i, 0] # e.g. 0-59 rows, 0th col in each row
+    X_train.append(a_array)
+    b_element = training_set_scaled[i, 0] # e.g. 60th row, 0th col in it
+    y_train.append(b_element)
 X_train, y_train = np.array(X_train), np.array(y_train)
+print(X_train)
+'''
+[[0.08581368 0.09701243 0.09433366 ... 0.07846566 0.08034452 0.08497656]
+ [0.09701243 0.09433366 0.09156187 ... 0.08034452 0.08497656 0.08627874]
+ [0.09433366 0.09156187 0.07984225 ... 0.08497656 0.08627874 0.08471612]
+ ...
+ [0.92106928 0.92438053 0.93048218 ... 0.95475854 0.95204256 0.95163331]
+ [0.92438053 0.93048218 0.9299055  ... 0.95204256 0.95163331 0.95725128]
+ [0.93048218 0.9299055  0.93113327 ... 0.95163331 0.95725128 0.93796041]]
+'''
+print(y_train)
+'''
+[0.08627874 0.08471612 0.07454052 ... 0.95725128 0.93796041 0.93688146]
+'''
 
 # Reshaping
+print(X_train.shape) # (1198, 60)
+# making 2-D array to 3-D array
 X_train = np.reshape(X_train, (X_train.shape[0], X_train.shape[1], 1))
+print(X_train.shape) # (1198, 60, 1)
 print(X_train)
+'''
+[[[0.08581368],  [0.09701243],  [0.09433366],  ...,  [0.07846566],  [0.08034452],  [0.08497656]],, [[0.09701243],  [0.09433366],  [0.09156187],  ...,  [0.08034452],  [0.08497656],  [0.08627874]],, [[0.09433366],  [0.09156187],  [0.07984225],  ...,  [0.08497656],  [0.08627874],  [0.08471612]],, ...,, [[0.16227026],  [0.16236327],  [0.15933105],  ...,  [0.2174641 ],  [0.22630032],  [0.23455986]],, [[0.16236327],  [0.15933105],  [0.16911601],  ...,  [0.22630032],  [0.23455986],  [0.22602128]],, [[0.15933105],  [0.16911601],  [0.1683347 ],  ...,  [0.23455986],  [0.22602128],  [0.20916735]]]
+'''
 
 # **************** Part 2 - Building and Training the RNN ************
 from keras.models import Sequential
