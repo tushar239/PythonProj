@@ -4,12 +4,32 @@ import pandas as pd
 
 # Importing the training set
 dataset_train = pd.read_csv('Google_Stock_Price_Train.csv')
-training_set = dataset_train.iloc[:, 1:2].values
-
+training_set = dataset_train.iloc[:, 1:2].values # .values converts dataframe into an array
+print(type(training_set)) # <class 'numpy.ndarray'>
+print (training_set)
+'''
+[[325.25]
+ [331.27]
+ [329.83]
+ ...
+ [793.7 ]
+ [783.33]
+ [782.75]]
+'''
 # Feature Scaling
 from sklearn.preprocessing import MinMaxScaler
 sc = MinMaxScaler(feature_range = (0, 1))
 training_set_scaled = sc.fit_transform(training_set)
+print(training_set_scaled)
+'''
+[[0.08581368]
+ [0.09701243]
+ [0.09433366]
+ ...
+ [0.95725128]
+ [0.93796041]
+ [0.93688146]]
+'''
 
 # Creating a data structure with 60 timesteps and 1 output
 X_train = []
@@ -21,6 +41,7 @@ X_train, y_train = np.array(X_train), np.array(y_train)
 
 # Reshaping
 X_train = np.reshape(X_train, (X_train.shape[0], X_train.shape[1], 1))
+print(X_train)
 
 # **************** Part 2 - Building and Training the RNN ************
 from keras.models import Sequential
