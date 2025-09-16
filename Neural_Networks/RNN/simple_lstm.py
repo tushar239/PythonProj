@@ -32,6 +32,7 @@ training_set_scaled = np.array([
 X is 3-D array
 Horizontal (T1…T10) → timesteps (sequence length = 10).
 Vertical (F1…F5) → features per timestep (like stock OHLCV: Open, High, Low, Close, Volume).
+X= (samples/batch-size, timesteps, features)
 
 input_shape = (10, 5)
 which means “10 time steps, each with 5 features.”
@@ -90,7 +91,7 @@ def create_sequences(data, seq_len):
 
 seq_len = 10  # how many past steps to use to predict next step
 X, y = create_sequences(training_set_scaled, seq_len)
-print("X shape:", X.shape)   # (samples, 10, 1) (61, 10, 1)
+print("X shape:", X.shape)   # (samples/batch-size, timesteps, features) - (61, 10, 1) (61, 10, 1)
 print("y shape:", y.shape)   # (samples, 1) (61, 1)
 print(X)
 '''
@@ -843,9 +844,10 @@ print("Val:", X_val.shape, y_val.shape) # Val: (13, 10, 1) (13, 1)
 
 
 tf.random.set_seed(42)
-
+# input_shape=(timesteps, features)
+# As per my understanding, RNN has just one hidden layer which is spread over timesteps.
 model = tf.keras.Sequential([
-    tf.keras.layers.LSTM(50, input_shape=(seq_len, 1)),  # 50 units
+    tf.keras.layers.LSTM(50, input_shape=(seq_len, 1)),  # 50 units - 50 memory cells - 50 neurons in hidden layer
     tf.keras.layers.Dense(1)                             # output one value
 ])
 
