@@ -72,6 +72,15 @@ from keras.layers import Dense
 from keras.layers import LSTM
 from keras.layers import Dropout
 
+'''
+The units parameter in an LSTM layer = the number of memory cells (neurons) inside that layer.
+Total number of neurons in hidden layer
+
+Each unit has:
+    its own cell state (long-term memory),
+    a set of gates (input, forget, output),
+    and outputs a hidden state at each timestep.
+'''
 regressor = Sequential()
 regressor.add(LSTM(units = 50, return_sequences = True, input_shape = (X_train.shape[1], 1)))
 regressor.add(Dropout(0.2))
