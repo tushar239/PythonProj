@@ -925,18 +925,18 @@ print(preds_val)
  [0.05972669]
  [0.06583084]]
 '''
-preds_val_3D = np.reshape(preds_val,(1, 1, len(preds_val)))
-print(preds_val_3D)
+preds_val_2D = np.reshape(preds_val, (1, len(preds_val)))
+print(preds_val_2D)
 '''
 [[[0.07556766 0.07574021 0.07762866 0.0788864  0.07799482 0.07086985 0.06901561 0.06505804 0.060059   0.05604178 0.05762809 0.06001235 0.0663316 ]]]
 '''
-y_val_3D = np.reshape(y_val,(1, 1, len(y_val)))
-print(y_val_3D)
+y_val_2D = np.reshape(y_val, (1, len(y_val)))
+print(y_val_2D)
 '''
 [[[0.08034452 0.08497656 0.08627874 0.08471612 0.07454052 0.07883771 0.07238262 0.06663442 0.06315574 0.06782499 0.06823424 0.07601012 0.08082819]]]
 '''
-actual_and_predicated = np.concatenate((y_val_3D, preds_val_3D), axis=0)
-print(actual_and_predicated)
+actual_and_predicated_side_by_side = np.concatenate((y_val_2D, preds_val_2D), axis=0)
+print(actual_and_predicated_side_by_side)
 '''
 Actual
 [[[0.08034452 0.08497656 0.08627874 0.08471612 0.07454052 0.07883771
