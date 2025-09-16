@@ -884,23 +884,23 @@ model.compile(optimizer='adam', loss='mse', metrics=['mae'])
 print(model.summary())
 
 # ******** 5) Train with Early Stopping *******
-es = EarlyStopping(monitor='val_loss', patience=15, restore_best_weights=True, verbose=1)
+#es = EarlyStopping(monitor='val_loss', patience=15, restore_best_weights=True, verbose=1)
 
 history = model.fit(
     X_train, y_train,
     validation_data=(X_val, y_val),
-    epochs=200,
+    epochs=100,
     batch_size=8,
-    callbacks=[es],
+    #callbacks=[es],
     verbose=2
 )
-
+'''
 # Plot the training history:
 plt.plot(history.history['loss'], label='train_loss')
 plt.plot(history.history['val_loss'], label='val_loss')
 plt.legend(); plt.xlabel('epoch'); plt.ylabel('mse'); plt.title('Training history')
 plt.show()
-
+'''
 # ***** 6) Predict & inverse-transform (if needed) *****
 '''
 If your data was scaled with a MinMaxScaler, you must inverse-transform predictions to original scale. 
@@ -908,20 +908,60 @@ In your case training_set_scaled is already scaled; if you want original values,
 Below we just predict in scaled space:
 '''
 preds_val = model.predict(X_val)      # shape (n_val, 1)
+print(preds_val)
 
+'''
+[[0.07557997]
+ [0.07594149]
+ [0.07798918]
+ [0.07915293]
+ [0.07816914]
+ [0.0710742 ]
+ [0.06959301]
+ [0.06545059]
+ [0.06031918]
+ [0.05627084]
+ [0.05774506]
+ [0.05972669]
+ [0.06583084]]
+'''
+preds_val_3D = np.reshape(preds_val,(1, 1, len(preds_val)))
+print(preds_val_3D)
+'''
+[[[0.07556766 0.07574021 0.07762866 0.0788864  0.07799482 0.07086985 0.06901561 0.06505804 0.060059   0.05604178 0.05762809 0.06001235 0.0663316 ]]]
+'''
+y_val_3D = np.reshape(y_val,(1, 1, len(y_val)))
+print(y_val_3D)
+'''
+[[[0.08034452 0.08497656 0.08627874 0.08471612 0.07454052 0.07883771 0.07238262 0.06663442 0.06315574 0.06782499 0.06823424 0.07601012 0.08082819]]]
+'''
+actual_and_predicated = np.concatenate((y_val_3D, preds_val_3D), axis=0)
+print(actual_and_predicated)
+'''
+Actual
+[[[0.08034452 0.08497656 0.08627874 0.08471612 0.07454052 0.07883771
+   0.07238262 0.06663442 0.06315574 0.06782499 0.06823424 0.07601012
+   0.08082819]]
+Predicted
+ [[0.0753973  0.07570183 0.07758592 0.07877119 0.07789376 0.0710189
+   0.06922377 0.0651882  0.06017476 0.05612967 0.05749686 0.05964653
+   0.06576078]]]
+'''
+'''
 # Example: compare last 20 actual vs predicted
 n_show = min(20, len(preds_val))
 plt.plot(y_val[-n_show:], label='actual')
 plt.plot(preds_val[-n_show:], label='predicted')
 plt.legend(); plt.title('Val: actual vs predicted (scaled)');
 plt.show()
-
+'''
+'''
 # To forecast the next step after the end of the series:
 last_sequence = training_set_scaled[-seq_len:]   # shape (seq_len, 1)
 last_sequence = last_sequence.reshape((1, seq_len, 1))
 next_pred = model.predict(last_sequence)         # predicted scaled value for next time step
 print("Next step (scaled):", next_pred.ravel()[0])
-
+'''
 
 '''
 8) Tips, common pitfalls & tuning
