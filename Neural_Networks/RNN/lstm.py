@@ -80,7 +80,8 @@ Each unit has:
     its own cell state (long-term memory),
     a set of gates (input, forget, output),
     and outputs a hidden state at each timestep.
-
+'''
+'''
 The return_sequences=True parameter 
     It is crucial for stacking, as it means this layer outputs a sequence of hidden states for each timestep, which then serves as the input sequence for the subsequent LSTM layer. 
     Visually, you can imagine a series of LSTM cells processing the input sequence, and each cell's output is passed to the next layer.

@@ -3,6 +3,9 @@ import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.preprocessing import MinMaxScaler
 import tensorflow as tf
+import tensorflow.keras.layers.Sequential as Sequential
+import tensorflow.keras.layers.LSTM as LSTM
+import tensorflow.keras.layers.Dense as Dense
 from tensorflow.keras.callbacks import EarlyStopping
 
 # 1) Your scaled data (copy your array here)
@@ -29,14 +32,8 @@ training_set_scaled = np.array([
 
 # ********* 2) Create sliding windows (sequence inputs) *********
 '''
-X is 3-D array
-Horizontal (T1…T10) → timesteps (sequence length = 10).
-Vertical (F1…F5) → features per timestep (like stock OHLCV: Open, High, Low, Close, Volume).
-X= (samples/batch-size, timesteps, features)
-
-input_shape = (10, 5)
-which means “10 time steps, each with 5 features.”
-
+Units
+-----
 LSTM Layer (with units = 5)
             ┌── U1
             ├── U2
@@ -44,39 +41,104 @@ Input seq → ├── U3
             ├── U4
             └── U5
             
-Each unit (U1…U5) is like a memory cell that learns temporal patterns.
-All timesteps (T1–T6) flow into each unit.
-The hidden state at the last timestep (or all timesteps if return_sequences=True) becomes the output.
+Each unit (U1…U5) is like a memory cell(neuron in hidden layer) that learns temporal patterns.
 
-example of X (training input) and y (training output)
-X =
+Each unit has:
+    its own cell state (long-term memory),
+    a set of gates (input, forget, output),
+    and outputs a hidden state at each timestep.
+
+All timesteps flow into each unit.
+The hidden state at the last timestep (or all timesteps, if return_sequences=True) becomes the output.
+'''
+'''
+input_shape
+-----------
+
+Data=
 [
-    Timestamp1 - 3 samples in each timestamp
+    0- [f1, f2, f3, f4, f5],
+    1- [f1, f2, f3, f4, f5],
+    2- [f1, f2, f3, f4, f5],
+    3- [f1, f2, f3, f4, f5],
+    4- [f1, f2, f3, f4, f5],
+    5- [f1, f2, f3, f4, f5],
+    6- [f1, f2, f3, f4, f5],
+    7- [f1, f2, f3, f4, f5],
+    8- [f1, f2, f3, f4, f5],
+    9- [f1, f2, f3, f4, f5],
+    .
+    .
+    .
+]
+Example of these data can be stock price(open price, closed price, low price, high price, volume)
+This data has to be divided into samples. 
+Each sample has inputs for timesteps in LSTM. 
+Each input for timestep has features.
+
+Example of X (training input - 3D array) and y (training output)
+
+X = 
+100 samples that can be divided into batches
+[
+    Sample1 
     [
-        [f1, f2, f3, f4, f5],  - each sample has 5 features. In our example, there is only one feature.
-        [f1, f2, f3, f4, f5],
-        [f1, f2, f3, f4, f5]
+        0- [f1, f2, f3, f4, f5], - input for Timestep1. Each timestep has 5 features
+        1- [f1, f2, f3, f4, f5], - input for Timestep2
+        2- [f1, f2, f3, f4, f5]  - input for Timestep3
     ],
     
-    Timestamp2
+    Sample2
     [
-        [f1, f2, f3, f4, f5], 
-        [f1, f2, f3, f4, f5],
-        [f1, f2, f3, f4, f5]
+        1- [f1, f2, f3, f4, f5], - input for Timestep1
+        2- [f1, f2, f3, f4, f5], - input for Timestep2
+        3- [f1, f2, f3, f4, f5]  - input for Timestep3
     ],
     
-    Timestamp3
+    Sample3
     [
-        [f1, f2, f3, f4, f5], 
-        [f1, f2, f3, f4, f5],
-        [f1, f2, f3, f4, f5]
+        2- [f1, f2, f3, f4, f5], - input for Timestep1
+        3- [f1, f2, f3, f4, f5], - input for Timestep2
+        4- [f1, f2, f3, f4, f5]  - input for Timestep3
+    ],
+    
+    Sample4
+    [
+        3- [f1, f2, f3, f4, f5], - input for Timestep1
+        4- [f1, f2, f3, f4, f5], - input for Timestep2
+        5- [f1, f2, f3, f4, f5]  - input for Timestep3
+    ],
+    .
+    .
+    .
+    Sample100
+    [
+        n1- [f1, f2, f3, f4, f5], - input for Timestep1
+        n2- [f1, f2, f3, f4, f5], - input for Timestep2
+        n3- [f1, f2, f3, f4, f5]  - input for Timestep3
     ]
 ]
 
-In our example, after every 10 samples, 11th sample is considered as output.
-So, 0-9 samples are kept in X and then 10th sample is kept in y
-10-19 samples are kept in X and then 20th sample is kept in y
+Here, input_shape = (timesteps, features) - (3, 5)
+
+y=
+[
+    3- [f1, f2, f3, f4, f5],
+    4- [f1, f2, f3, f4, f5]
+    5- [f1, f2, f3, f4, f5]
+    6- [f1, f2, f3, f4, f5]
+    .
+    .
+    .
+    n4- [f1, f2, f3, f4, f5]
+]
+
+After every 3 data, 4th data is considered as output.
+So, 0-2 data are kept in X and then 3th sample is kept in y
+3-5 data are kept in X and then 6th data is kept in y
 and so on
+
+In our example, after every 10 data, 11th data is considered as output.
 '''
 def create_sequences(data, seq_len):
     X, y = [], []
@@ -846,9 +908,22 @@ print("Val:", X_val.shape, y_val.shape) # Val: (13, 10, 1) (13, 1)
 tf.random.set_seed(42)
 # input_shape=(timesteps, features)
 # As per my understanding, RNN has just one hidden layer which is spread over timesteps.
-model = tf.keras.Sequential([
-    tf.keras.layers.LSTM(50, input_shape=(seq_len, 1)),  # 50 units - 50 memory cells - 50 neurons in hidden layer
-    tf.keras.layers.Dense(1)                             # output one value
+'''
+The return_sequences=True parameter 
+    It is crucial for stacking, as it means this layer outputs a sequence of hidden states for each timestep, which then serves as the input sequence for the subsequent LSTM layer. 
+    Visually, you can imagine a series of LSTM cells processing the input sequence, and each cell's output is passed to the next layer.
+
+return_sequences is not explicitly set to True, it defaults to False, meaning this layer outputs only the final hidden state, summarizing the information learned from the entire sequence.
+'''
+'''
+Here, two LSTM layers are used (stacked LSTM layers).
+Each LSTM layer has one hidden layer which is spreaded over timesteps
+First LSTM layer's output becomes the input for second LSTM layer.
+'''
+model = Sequential([
+    LSTM(units=50, return_sequences=True, input_shape=(seq_len, 1)),
+    LSTM(units=50),# 50 units - 50 memory cells - 50 neurons in hidden layer
+    Dense(1)  # output one value
 ])
 
 model.compile(optimizer='adam', loss='mse', metrics=['mae'])
