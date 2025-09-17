@@ -852,6 +852,11 @@ model = tf.keras.Sequential([
 ])
 
 model.compile(optimizer='adam', loss='mse', metrics=['mae'])
+
+'''
+The model.summary() output provides a textual visualization of the layers, their order, output shapes, and the number of parameters, 
+which helps in understanding the model's structure.
+'''
 model.summary()
 
 # ********** 4) Build a simple LSTM model ********

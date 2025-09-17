@@ -80,6 +80,10 @@ Each unit has:
     its own cell state (long-term memory),
     a set of gates (input, forget, output),
     and outputs a hidden state at each timestep.
+
+The return_sequences=True parameter 
+    It is crucial for stacking, as it means this layer outputs a sequence of hidden states for each timestep, which then serves as the input sequence for the subsequent LSTM layer. 
+    Visually, you can imagine a series of LSTM cells processing the input sequence, and each cell's output is passed to the next layer.
 '''
 regressor = Sequential()
 regressor.add(LSTM(units = 50, return_sequences = True, input_shape = (X_train.shape[1], 1)))
@@ -94,6 +98,9 @@ regressor.add(LSTM(units = 50, return_sequences = True))
 regressor.add(Dropout(0.2))
 
 # Adding a fourth LSTM layer and some Dropout regularisation
+'''
+return_sequences is not explicitly set to True, it defaults to False, meaning this layer outputs only the final hidden state, summarizing the information learned from the entire sequence.
+'''
 regressor.add(LSTM(units = 50))
 regressor.add(Dropout(0.2))
 
