@@ -3,9 +3,10 @@ import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.preprocessing import MinMaxScaler
 import tensorflow as tf
-import tensorflow.keras.layers.Sequential as Sequential
-import tensorflow.keras.layers.LSTM as LSTM
-import tensorflow.keras.layers.Dense as Dense
+
+from keras.models import Sequential
+from keras.layers import Dense
+from keras.layers import LSTM
 from tensorflow.keras.callbacks import EarlyStopping
 
 # 1) Your scaled data (copy your array here)
@@ -921,9 +922,10 @@ Each LSTM layer has one hidden layer which is spreaded over timesteps
 First LSTM layer's output becomes the input for second LSTM layer.
 '''
 model = Sequential([
-    LSTM(units=50, return_sequences=True, input_shape=(seq_len, 1)),
-    LSTM(units=50),# 50 units - 50 memory cells - 50 neurons in hidden layer
-    Dense(1)  # output one value
+    LSTM(units=50, return_sequences=True, input_shape=(seq_len, 1)), # 50 units - 50 memory cells - 50 neurons in hidden layer
+    #LSTM(units=50, return_sequences=True),
+    LSTM(units=50),
+    Dense(1)  # output one value. Default activation function is 'linear'
 ])
 
 model.compile(optimizer='adam', loss='mse', metrics=['mae'])
@@ -993,41 +995,45 @@ preds_val = model.predict(X_val)      # shape (n_val, 1)
 print(preds_val)
 
 '''
-[[0.07557997]
- [0.07594149]
- [0.07798918]
- [0.07915293]
- [0.07816914]
- [0.0710742 ]
- [0.06959301]
- [0.06545059]
- [0.06031918]
- [0.05627084]
- [0.05774506]
- [0.05972669]
- [0.06583084]]
+[[0.07344558]
+ [0.0744555 ]
+ [0.0761453 ]
+ [0.07710278]
+ [0.0766478 ]
+ [0.07204826]
+ [0.06981792]
+ [0.06593078]
+ [0.06119062]
+ [0.05706385]
+ [0.05607557]
+ [0.05636522]
+ [0.06021986]]
 '''
 preds_val_2D = np.reshape(preds_val, (1, len(preds_val)))
 print(preds_val_2D)
 '''
-[[[0.07556766 0.07574021 0.07762866 0.0788864  0.07799482 0.07086985 0.06901561 0.06505804 0.060059   0.05604178 0.05762809 0.06001235 0.0663316 ]]]
-'''
+[[0.07344558 0.0744555  0.0761453  0.07710278 0.0766478  0.07204826
+  0.06981792 0.06593078 0.06119062 0.05706385 0.05607557 0.05636522
+  0.06021986]]'''
 y_val_2D = np.reshape(y_val, (1, len(y_val)))
 print(y_val_2D)
 '''
-[[[0.08034452 0.08497656 0.08627874 0.08471612 0.07454052 0.07883771 0.07238262 0.06663442 0.06315574 0.06782499 0.06823424 0.07601012 0.08082819]]]
-'''
+[[0.08034452 0.08497656 0.08627874 0.08471612 0.07454052 0.07883771
+  0.07238262 0.06663442 0.06315574 0.06782499 0.06823424 0.07601012
+  0.08082819]]'''
 actual_and_predicated_side_by_side = np.concatenate((y_val_2D, preds_val_2D), axis=0)
 print(actual_and_predicated_side_by_side)
 '''
+[
 Actual
-[[[0.08034452 0.08497656 0.08627874 0.08471612 0.07454052 0.07883771
-   0.07238262 0.06663442 0.06315574 0.06782499 0.06823424 0.07601012
-   0.08082819]]
+ [0.08034452 0.08497656 0.08627874 0.08471612 0.07454052 0.07883771
+  0.07238262 0.06663442 0.06315574 0.06782499 0.06823424 0.07601012
+  0.08082819]
 Predicted
- [[0.0753973  0.07570183 0.07758592 0.07877119 0.07789376 0.0710189
-   0.06922377 0.0651882  0.06017476 0.05612967 0.05749686 0.05964653
-   0.06576078]]]
+ [0.07344558 0.0744555  0.0761453  0.07710278 0.0766478  0.07204826
+  0.06981792 0.06593078 0.06119062 0.05706385 0.05607557 0.05636522
+  0.06021986]
+]
 '''
 '''
 # Example: compare last 20 actual vs predicted
