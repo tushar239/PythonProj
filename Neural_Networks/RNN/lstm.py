@@ -3,9 +3,12 @@ import matplotlib.pyplot as plt
 import pandas as pd
 
 # Importing the training set
-dataset_train = pd.read_csv('Google_Stock_Price_Train.csv')
-training_set = dataset_train.iloc[:, 1:2].values # .values converts dataframe into an array
+# this is Google stock price from 2012 to 2016
+# we are planning to predict Google's stock price on financial day
+dataset_train = pd.read_csv('Google_Stock_Price_Train.csv') # creating a dataframe of Google's stock prices
+training_set = dataset_train.iloc[:, 1:2].values # selecting only 'open' price column. '.values' converts dataframe into numpy array
 print(type(training_set)) # <class 'numpy.ndarray'>
+print(training_set.shape) # (1258, 1)
 print (training_set)
 '''
 [[325.25]
@@ -32,6 +35,95 @@ print(training_set_scaled)
  [0.93688146]]
 '''
 
+'''
+input_shape
+-----------
+
+Data=
+[
+    0- [f1, f2, f3, f4, f5],
+    1- [f1, f2, f3, f4, f5],
+    2- [f1, f2, f3, f4, f5],
+    3- [f1, f2, f3, f4, f5],
+    4- [f1, f2, f3, f4, f5],
+    5- [f1, f2, f3, f4, f5],
+    6- [f1, f2, f3, f4, f5],
+    7- [f1, f2, f3, f4, f5],
+    8- [f1, f2, f3, f4, f5],
+    9- [f1, f2, f3, f4, f5],
+    .
+    .
+    .
+]
+Example of these data can be stock price(open price, closed price, low price, high price, volume)
+This data has to be divided into samples. 
+Each sample has inputs for timesteps in LSTM. 
+Each input for timestep has features.
+
+Example of X (training input - 3D array) and y (training output)
+
+X = 
+100 samples that can be divided into batches
+[
+    Sample1 
+    [
+        0- [f1, f2, f3, f4, f5], - input for Timestep1. Each timestep has 5 features
+        1- [f1, f2, f3, f4, f5], - input for Timestep2
+        2- [f1, f2, f3, f4, f5]  - input for Timestep3
+    ],
+
+    Sample2
+    [
+        1- [f1, f2, f3, f4, f5], - input for Timestep1
+        2- [f1, f2, f3, f4, f5], - input for Timestep2
+        3- [f1, f2, f3, f4, f5]  - input for Timestep3
+    ],
+
+    Sample3
+    [
+        2- [f1, f2, f3, f4, f5], - input for Timestep1
+        3- [f1, f2, f3, f4, f5], - input for Timestep2
+        4- [f1, f2, f3, f4, f5]  - input for Timestep3
+    ],
+
+    Sample4
+    [
+        3- [f1, f2, f3, f4, f5], - input for Timestep1
+        4- [f1, f2, f3, f4, f5], - input for Timestep2
+        5- [f1, f2, f3, f4, f5]  - input for Timestep3
+    ],
+    .
+    .
+    .
+    Sample100
+    [
+        n1- [f1, f2, f3, f4, f5], - input for Timestep1
+        n2- [f1, f2, f3, f4, f5], - input for Timestep2
+        n3- [f1, f2, f3, f4, f5]  - input for Timestep3
+    ]
+]
+
+Here, input_shape = (timesteps, features) - (3, 5)
+
+y=
+[
+    3- [f1, f2, f3, f4, f5],
+    4- [f1, f2, f3, f4, f5]
+    5- [f1, f2, f3, f4, f5]
+    6- [f1, f2, f3, f4, f5]
+    .
+    .
+    .
+    n4- [f1, f2, f3, f4, f5]
+]
+
+After every 3 data, 4th data is considered as output.
+So, 0-2 data are kept in X and then 3th sample is kept in y
+3-5 data are kept in X and then 6th data is kept in y
+and so on
+
+In our example, after every 10 data, 11th data is considered as output.
+'''
 # Creating a data structure with 60 timesteps and 1 output
 X_train = []
 y_train = []
@@ -63,7 +155,15 @@ X_train = np.reshape(X_train, (X_train.shape[0], X_train.shape[1], 1))
 print(X_train.shape) # (1198, 60, 1)
 print(X_train)
 '''
-[[[0.08581368],  [0.09701243],  [0.09433366],  ...,  [0.07846566],  [0.08034452],  [0.08497656]],, [[0.09701243],  [0.09433366],  [0.09156187],  ...,  [0.08034452],  [0.08497656],  [0.08627874]],, [[0.09433366],  [0.09156187],  [0.07984225],  ...,  [0.08497656],  [0.08627874],  [0.08471612]],, ...,, [[0.16227026],  [0.16236327],  [0.15933105],  ...,  [0.2174641 ],  [0.22630032],  [0.23455986]],, [[0.16236327],  [0.15933105],  [0.16911601],  ...,  [0.22630032],  [0.23455986],  [0.22602128]],, [[0.15933105],  [0.16911601],  [0.1683347 ],  ...,  [0.23455986],  [0.22602128],  [0.20916735]]]
+[
+    [[0.08581368],  [0.09701243],  [0.09433366],  ...,  [0.07846566],  [0.08034452],  [0.08497656]],,
+    [[0.09701243],  [0.09433366],  [0.09156187],  ...,  [0.08034452],  [0.08497656],  [0.08627874]],, 
+    [[0.09433366],  [0.09156187],  [0.07984225],  ...,  [0.08497656],  [0.08627874],  [0.08471612]]
+    ,, ...,, 
+    [[0.16227026],  [0.16236327],  [0.15933105],  ...,  [0.2174641 ],  [0.22630032],  [0.23455986]],, 
+    [[0.16236327],  [0.15933105],  [0.16911601],  ...,  [0.22630032],  [0.23455986],  [0.22602128]],, 
+    [[0.15933105],  [0.16911601],  [0.1683347 ],  ...,  [0.23455986],  [0.22602128],  [0.20916735]]
+]
 '''
 
 # **************** Part 2 - Building and Training the RNN ************
