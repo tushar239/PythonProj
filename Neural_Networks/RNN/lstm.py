@@ -20,8 +20,15 @@ print (training_set)
  [782.75]]
 '''
 # Feature Scaling
+'''
+We will use Normalization in case of RNN. We will use Min-Max Normalization.
+When sigmoid function is used as an activation function, it is recommended to use Normalization. 
+
+fit method will calculate min and max, 
+transform method will apply normalization using calculated min and max values.
+'''
 from sklearn.preprocessing import MinMaxScaler
-sc = MinMaxScaler(feature_range = (0, 1))
+sc = MinMaxScaler(feature_range = (0, 1)) # all scaled stock prices will be in between 0 and 1
 training_set_scaled = sc.fit_transform(training_set)
 print(type(training_set_scaled)) # <class 'numpy.ndarray'>
 print(training_set_scaled)
@@ -125,16 +132,21 @@ and so on
 In our example, after every 10 data, 11th data is considered as output.
 '''
 # Creating a data structure with 60 timesteps and 1 output
+# we tried 1,10,20,30.... timesteps, 60 timesteps gave better results.
+# Sliding window technique is used to create this data.
+# https://www.geeksforgeeks.org/dsa/window-sliding-technique/
 X_train = []
 y_train = []
 for i in range(60, 1258):
-    a_array = training_set_scaled[i-60:i, 0] # e.g. 0-59 rows, 0th col in each row
+    a_array = training_set_scaled[i-60:i, 0] # e.g. 0-59 rows, 0th col in each row - 60 timesteps
     X_train.append(a_array)
-    b_element = training_set_scaled[i, 0] # e.g. 60th row, 0th col in it
+    b_element = training_set_scaled[i, 0] # e.g. 60th row, 0th col in it - 1 output
     y_train.append(b_element)
+# converting lists to numpy arrays.
 X_train, y_train = np.array(X_train), np.array(y_train)
 print(X_train)
 '''
+Total 1198 samples, each with 60 timesteps
 [[0.08581368 0.09701243 0.09433366 ... 0.07846566 0.08034452 0.08497656]
  [0.09701243 0.09433366 0.09156187 ... 0.08034452 0.08497656 0.08627874]
  [0.09433366 0.09156187 0.07984225 ... 0.08497656 0.08627874 0.08471612]
