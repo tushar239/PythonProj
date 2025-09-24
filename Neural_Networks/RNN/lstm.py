@@ -164,7 +164,7 @@ print(y_train)
 print(X_train.shape) # (1198, 60)
 # making 2-D array to 3-D array
 X_train = np.reshape(X_train, (X_train.shape[0], X_train.shape[1], 1))
-print(X_train.shape) # (1198, 60, 1)
+print(X_train.shape) # (1198, 60, 1) - (samples, timesteps, features)
 print(X_train)
 '''
 [
@@ -198,8 +198,18 @@ The return_sequences=True parameter
     It is crucial for stacking, as it means this layer outputs a sequence of hidden states for each timestep, which then serves as the input sequence for the subsequent LSTM layer. 
     Visually, you can imagine a series of LSTM cells processing the input sequence, and each cell's output is passed to the next layer.
 '''
-regressor = Sequential()
+'''
+input_shape=(timesteps, features)
+'''
+regressor = Sequential() # sequence of layers
 regressor.add(LSTM(units = 50, return_sequences = True, input_shape = (X_train.shape[1], 1)))
+'''
+A Dropout layer in a neural network is a regularization technique used to reduce overfitting by randomly turning off (dropping) a fraction of neurons during training.
+Here’s the idea:
+- In each training step, dropout randomly sets the output of some neurons to zero with a given probability (e.g., 0.5).
+- This prevents the network from becoming too reliant on specific neurons and forces it to learn more robust and generalized features.
+- At test (inference) time, dropout is disabled, and the full network is used, but the outputs are scaled appropriately to account for the missing neurons during training.
+'''
 regressor.add(Dropout(0.2))
 
 # Adding a second LSTM layer and some Dropout regularisation
@@ -224,7 +234,10 @@ regressor.add(Dense(units = 1)) # Default activation function is 'linear'
 regressor.compile(optimizer = 'adam', loss = 'mean_squared_error')
 
 # Fitting the RNN to the Training set
-regressor.fit(X_train, y_train, epochs = 100, batch_size = 32)
+regressor.fit(X_train, # X_train has to be a 3-D array (number of samples, number of timesteps, number of features)
+              y_train,
+              epochs = 100,
+              batch_size = 32)
 
 '''
 Epoch 1/100

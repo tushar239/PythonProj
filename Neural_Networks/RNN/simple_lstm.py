@@ -908,7 +908,8 @@ print("Val:", X_val.shape, y_val.shape) # Val: (13, 10, 1) (13, 1)
 
 tf.random.set_seed(42)
 # input_shape=(timesteps, features)
-# As per my understanding, RNN has just one hidden layer which is spread over timesteps.
+# As per my understanding, one RNN has just one hidden layer which is spread over timesteps.
+# There can be multiple RNN layers.
 '''
 The return_sequences=True parameter 
     It is crucial for stacking, as it means this layer outputs a sequence of hidden states for each timestep, which then serves as the input sequence for the subsequent LSTM layer. 
@@ -971,7 +972,7 @@ print(model.summary())
 #es = EarlyStopping(monitor='val_loss', patience=15, restore_best_weights=True, verbose=1)
 
 history = model.fit(
-    X_train, y_train,
+    X_train, y_train, # X_train has to be a 3-D array (number of samples, number of timesteps, number of features)
     validation_data=(X_val, y_val),
     epochs=100,
     batch_size=8,
