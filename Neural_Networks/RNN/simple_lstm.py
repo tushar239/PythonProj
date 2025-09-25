@@ -947,16 +947,24 @@ Use units (50 here) as capacity — raise to 100–200 if you have lots of data.
 tf.random.set_seed(42)
 
 '''
+The units parameter in an LSTM layer = the number of memory cells (neurons) inside that layer.
+Total number of neurons in hidden layer. Remember, LSTM has just one hidden layer spanned across different times.
+
+Each unit has:
+    its own cell state (long-term memory),
+    a set of gates (input, forget, output),
+    and outputs a hidden state at each timestep.
+
 Here units=50 means:
-Each timestep’s input (shape (10,1)) is processed by 50 memory cells. seq_len=10 here.
-The final output of the LSTM layer is a vector of shape (50,).
-These 50 outputs are passed into the Dense(1) layer to predict one value.
+    Each timestep’s input (shape (10,1)) is processed by 50 memory cells. seq_len=10 here.
+    The final output of the LSTM layer is a vector of shape (50,).
+    These 50 outputs are passed into the Dense(1) layer to predict one value.
 
 Choosing number of units:
-Small datasets → 10–50 units (to avoid overfitting).
-Larger datasets / complex patterns → 100–200 units.
-Very large datasets (NLP, stock prediction, etc.) → 256–512+ units.
-Often tuned by trial and error + monitoring validation loss.
+    Small datasets → 10–50 units (to avoid overfitting).
+    Larger datasets / complex patterns → 100–200 units.
+    Very large datasets (NLP, stock prediction, etc.) → 256–512+ units.
+    Often tuned by trial and error + monitoring validation loss.
 
 Number of units = number of LSTM neurons/memory cells = dimensionality of hidden state vector.
 '''

@@ -186,7 +186,7 @@ from keras.layers import Dropout
 
 '''
 The units parameter in an LSTM layer = the number of memory cells (neurons) inside that layer.
-Total number of neurons in hidden layer
+Total number of neurons in hidden layer. Remember, LSTM has just one hidden layer spanned across different times.
 
 Each unit has:
     its own cell state (long-term memory),
@@ -206,11 +206,11 @@ regressor.add(LSTM(units = 50, return_sequences = True, input_shape = (X_train.s
 '''
 A Dropout layer in a neural network is a regularization technique used to reduce overfitting by randomly turning off (dropping) a fraction of neurons during training.
 Here’s the idea:
-- In each training step, dropout randomly sets the output of some neurons to zero with a given probability (e.g., 0.5).
+- In each TRAINING step, dropout randomly sets the output of some neurons to zero with a given probability (e.g., 0.2).
 - This prevents the network from becoming too reliant on specific neurons and forces it to learn more robust and generalized features.
-- At test (inference) time, dropout is disabled, and the full network is used, but the outputs are scaled appropriately to account for the missing neurons during training.
+- At TEST (inference) time, dropout is disabled, and the full network is used, but the outputs are scaled appropriately to account for the missing neurons during training.
 '''
-regressor.add(Dropout(0.2))
+regressor.add(Dropout(0.2)) # 10 out of 50 neurons will be disabled randomly during Training step.
 
 # Adding a second LSTM layer and some Dropout regularisation
 regressor.add(LSTM(units = 50, return_sequences = True))
