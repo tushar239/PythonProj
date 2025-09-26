@@ -20,7 +20,7 @@ from abc import ABC, abstractmethod
 
 class Polygon(ABC):
 
-    @abstractmethod  # As this class has an abstract method, you can't instantiate i.
+    @abstractmethod  # As this class has an abstract method, you can't instantiate this class.
     def noofsides(self):
         pass
 
