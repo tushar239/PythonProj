@@ -231,15 +231,21 @@ regressor.add(Dropout(0.2))
 regressor.add(Dense(units = 1)) # Default activation function is 'linear'
 
 # Compiling the RNN
+# optimizer means gradient descent algorithm. 'adam' is stochastic gradient descent algorithm
+# RMSprop is also a good optimizer for RNNs
+# For regression problems, loss function is MSE (mean_squared_error)
 regressor.compile(optimizer = 'adam', loss = 'mean_squared_error')
 
 # Fitting the RNN to the Training set
 regressor.fit(X_train, # X_train has to be a 3-D array (number of samples, number of timesteps, number of features)
               y_train,
               epochs = 100,
-              batch_size = 32)
+              batch_size = 32) # there are total 1198 samples. It is batched into 32 samples.
 
 '''
+You can see the loss reducing at each epoch.
+In first epoch, it was 8%. In 100th epoch, it reduced to 0.18%.
+
 Epoch 1/100
 38/38 ━━━━━━━━━━━━━━━━━━━━ 11s 105ms/step - loss: 0.0881
 Epoch 2/100

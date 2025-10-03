@@ -343,7 +343,7 @@ ann.compile(optimizer = 'adam', loss = 'binary_crossentropy', metrics = ['accura
 
 # batch_size = 32 means 32 rows (observations/data) will be fed together to make NN learn.
 # 32 rows will be fed, NN will give some output. This output will be compared with actual output,
-# error will be calculated, stochastic gradient descent will be used to reduce the error (because of optimizer=adam), weights will be modified accordingly.
+# error will be calculated, stochastic gradient descent (adam) will be used to reduce the error (because of optimizer=adam), weights will be modified accordingly.
 # batch_size parameter can be twicked, but normally 32 works the best.
 # When training a model, data is split into mini-batches because:
 # It’s more memory-efficient than using all data at once
