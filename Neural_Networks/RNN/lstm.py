@@ -449,19 +449,41 @@ Epoch 100/100
 '''
 
 # **************** Part 3 - Making the predictions and visualising the results ***********
-# Getting the real stock price of 2017
+'''
+extracting last 60 records of training set
+merging it with 20 records of test set (Jan 2017 records). That makes total 80 records.
+
+creating 20 samples of 60 records each from these 80 records.
+    For the first sample(0-59 records), 60th record will the actual output
+    For second sample (1-60 records), 61st record will be the actual output
+    For third sample (2-60 records), 62nd record will be the actual output
+    and so on
+    So, 60th to 79th records will be the actual outputs of samples. This is same as real_stock_price.
+
+inputting these 20 samples to LSTM for prediction and getting 20 predicted values which can be compared with real_stock_price.
+'''
+
+
+# Getting the real stock price of Jan 2017 (20 records)
 dataset_test = pd.read_csv('Google_Stock_Price_Test.csv')
-real_stock_price = dataset_test.iloc[:, 1:2].values # getting 'Open' stock price
+real_stock_price = dataset_test.iloc[:, 1:2].values # getting 'Open' stock price from test set
 
-dataset_total_open_series = dataset_train['Open']
+dataset_train_open_series = dataset_train['Open']
 dataset_test_open_series = dataset_test['Open']
-print(len(dataset_total_open_series)) # 1278
-print(len(dataset_test_open_series)) # 20
+print(len(dataset_train_open_series)) # 1258 records
+print(len(dataset_test_open_series)) # 20 records
 
-# Getting the predicted stock price of 2017
-dataset_total = pd.concat((dataset_total_open_series, dataset_test_open_series), axis = 0)
-# last 80 records from dataset_total_open_series
-inputs = dataset_total[len(dataset_total) - len(dataset_test) - 60:].values
+# extract last 60 records from training set
+dataset_train_open_series_last_60 = dataset_train_open_series[len(dataset_train_open_series)-60:]
+print(len(dataset_train_open_series_last_60)) # 60
+print(dataset_train_open_series_last_60)
+
+# merging last 60 records of training set and 20 records of test set
+dataset_total = pd.concat((dataset_train_open_series_last_60, dataset_test_open_series), axis=0)
+print(len(dataset_total)) # 80
+print(dataset_total)
+
+inputs = dataset_total.values
 '''
 [779.   779.66 777.71 786.66 783.76 781.22 781.65 779.8  787.85 798.24
  803.3  795.   804.9  816.68 806.34 801.   808.35 795.47 782.89 778.2
@@ -472,7 +494,7 @@ inputs = dataset_total[len(dataset_total) - len(dataset_test) - 60:].values
  778.81 788.36 786.08 795.26 806.4  807.86 805.   807.14 807.48 807.08
  805.81 805.12 806.91 807.25 822.3  829.62 837.81 834.71 814.66 796.86]
 '''
-inputs = inputs.reshape(-1,1)
+inputs = inputs.reshape(-1,1) # converting 1-D array to 2-D array
 print(inputs)
 '''
 [[779.  ]
@@ -556,6 +578,13 @@ print(inputs)
 '''
 
 inputs = sc.transform(inputs)
+
+# Creating 20 samples for prediction. Each sample has 60 records. Each record has one Open price of Google stock.
+# For the first sample(0-59 records), 60th record will the actual output
+# For second sample (1-60 records), 61st record will be the actual output
+# For third sample (2-60 records), 62nd record will be the actual output
+# and so on
+# So, 60th to 79th records will be the actual outputs of samples. This is same as real_stock_price.
 X_test = []
 for i in range(60, 80):
     X_test.append(inputs[i-60:i, 0])
@@ -614,6 +643,7 @@ print(X_test)
   [0.75166273]]]
 '''
 
+# Getting the predicted stock price of Jan 2017
 predicted_stock_price = regressor.predict(X_test)
 print(predicted_stock_price)
 '''
