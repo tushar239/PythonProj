@@ -131,8 +131,8 @@ inputs = sc.fit_transform(inputs)
 # and so on
 # so, 60th to 79th records will be the actual outputs of samples. This is same as real_stock_price.
 X_test = []
-for i in range(60, 80):
-    X_test.append(inputs[i-60:i, 0])
+for i in range(0, 20):
+    X_test.append(inputs[i:60+i, 0])
 X_test = np.array(X_test) # converting python list to numpy array
 X_test = np.reshape(X_test, (X_test.shape[0], X_test.shape[1], 1))
 print(X_test)
