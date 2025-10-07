@@ -132,8 +132,28 @@ inputs = sc.fit_transform(inputs)
 # so, 60th to 79th records will be the actual outputs of samples. This is same as real_stock_price.
 X_test = []
 for i in range(0, 20):
+    '''
+    e.g. 
+    inputs = [[0.3691268],
+              [0.37620682],
+              [0.35528856],
+              [0.451298],
+              [0.4201888]]
+              
+    extracting 0th,1st and 2nd rows
+    subset_2D = input[0:3]
+             [[0.3691268],
+              [0.37620682],
+              [0.35528856]]
+              
+    extracting 0th,1st and 2nd rows and 0th column from these rows
+    subset_1D = input[0:3, 0]
+            [0.3691268,0.37620682,0.35528856]
+    '''
+    # inputs is a 2D array. Extracting certain rows from it and then extracting 0th column from it. So, it will result in 1-D array.
     X_test.append(inputs[i:60+i, 0])
 X_test = np.array(X_test) # converting python list to numpy array
+print(X_test)
 X_test = np.reshape(X_test, (X_test.shape[0], X_test.shape[1], 1))
 print(X_test)
 '''

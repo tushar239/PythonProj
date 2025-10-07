@@ -1,5 +1,7 @@
 import numpy as np
 
+# slicing is available for numpy array, not for python list
+
 a = np.array([[1,2,3], [4,5,6], [7,8,9]])
 
 # Both syntaxes work to access the elements from 2D array
@@ -38,15 +40,16 @@ print(subArray)
 '''
 
 # slicing (extracting column from extracted rows)
+# extract 1st and 2nd rows and 0th column from these rows
 subArray = a[1:3, 0]
 print(subArray) # [4 7]
 '''
-a[1:3] extracts
+a[1:3] extracts only 1st and 2nd rows
 [ 
     [4,5,6],
     [7,8,9]
 ]
-a[1:3, 0] extracts 0th column
+a[1:3, 0] extract 1st and 2nd rows and 0th column from those rows
     [4,7]
 '''
 
@@ -56,6 +59,8 @@ print(subArray)
 [[4 5]
  [7 8]]
 '''
+
+###############################################################
 
 #column_stack - converts 1-D arrays as columns of 2-D array
 # numpy's column_stack - https://www.geeksforgeeks.org/numpy-column_stack-in-python/
