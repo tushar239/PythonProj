@@ -5,16 +5,34 @@ array = np.arange(start=1, stop=5, step=.5)
 # This is just like a smart for loop in java
 for num in array:
     print(num)
-
+'''
+1.0
+1.5
+2.0
+2.5
+3.0
+3.5
+4.0
+4.5
+'''
 print("--------------------")
 
 # this is like normal for loop in java
 for i in np.arange(start=0, stop=array.size, step=1, dtype=int):
     print(str(array[i]))
-
+'''
+1.0
+1.5
+2.0
+2.5
+3.0
+3.5
+4.0
+4.5
+'''
 print("--------------------")
 
-# range is a class. so, you can't do range(start=0, stop=array.size, step=1
+# range is a class. so, you can't do range(start=0, stop=array.size, step=1)
 indices = range(0, array.size, 1)
 for i in indices:
     print(str(array[i]))

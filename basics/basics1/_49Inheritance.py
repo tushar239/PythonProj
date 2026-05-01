@@ -144,7 +144,7 @@ class Child(Base):
         Base.__init__(self, name)
         self.age = age
 
-    # To get name
+    # To get age
     def getAge(self):
         return self.age
 
